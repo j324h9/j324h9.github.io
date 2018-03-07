@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>AtCoder CODE FESTIVAL 2017 qual B 总结 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,31 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="打了一局试试看，结果是过了前3题，第212名。感觉我的水平就到这了。 A：XXFESTIVAL 送分题，删掉S的最后8个字符输出。 B：Problem Set 送分题，将所有的D和T排序，然后枚举每种值x，如果存在一个值x使得满足D[i]=x的i的个数少于满足T[i]=x的i就是NO，否则YES。 C：3 Steps 稍微试一试，就会发现如果给出的图G是二分图，不管怎么加边都是二分图。 为什么呢？">
-<meta name="keywords" content="总结,AtCoder">
-<meta property="og:type" content="article">
-<meta property="og:title" content="AtCoder CODE FESTIVAL 2017 qual B 总结">
-<meta property="og:url" content="http://yoursite.com/2017/10/09/atcoder-codefestival2017-qualb/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="打了一局试试看，结果是过了前3题，第212名。感觉我的水平就到这了。 A：XXFESTIVAL 送分题，删掉S的最后8个字符输出。 B：Problem Set 送分题，将所有的D和T排序，然后枚举每种值x，如果存在一个值x使得满足D[i]=x的i的个数少于满足T[i]=x的i就是NO，否则YES。 C：3 Steps 稍微试一试，就会发现如果给出的图G是二分图，不管怎么加边都是二分图。 为什么呢？">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-07T10:07:38.392Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AtCoder CODE FESTIVAL 2017 qual B 总结">
-<meta name="twitter:description" content="打了一局试试看，结果是过了前3题，第212名。感觉我的水平就到这了。 A：XXFESTIVAL 送分题，删掉S的最后8个字符输出。 B：Problem Set 送分题，将所有的D和T排序，然后枚举每种值x，如果存在一个值x使得满足D[i]=x的i的个数少于满足T[i]=x的i就是NO，否则YES。 C：3 Steps 稍微试一试，就会发现如果给出的图G是二分图，不管怎么加边都是二分图。 为什么呢？">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -181,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/09/atcoder-codefestival2017-qualb/" data-id="cjegzidcq000gdf1lucjglhas" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/09/atcoder-codefestival2017-qualb/" data-id="cjeh7619q000vgy1lp44o2lad" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
@@ -310,23 +314,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

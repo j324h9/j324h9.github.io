@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>Codechef 6月月赛总结 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,31 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="这次月赛打得不好。传统题难度不大，就是最后一题比较码农。最后区分度主要在Challenge上，然后我Challenge切不动，就滚粗了。 做的时候也几乎是倒着做的。  Cloning（CLONEME） 如果是判断两个序列排序后是否相同，这等价于判断每个数出现的次数是否相同。把每个位置上的数 \(a\) 用项 \(x^a\) 表示，就转成判断区间和的多项式是否相同。随机质数 \(x,p\) 然后在模">
-<meta name="keywords" content="题解,Codechef">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Codechef 6月月赛总结">
-<meta property="og:url" content="http://yoursite.com/2017/06/12/codechef-june-2017/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="这次月赛打得不好。传统题难度不大，就是最后一题比较码农。最后区分度主要在Challenge上，然后我Challenge切不动，就滚粗了。 做的时候也几乎是倒着做的。  Cloning（CLONEME） 如果是判断两个序列排序后是否相同，这等价于判断每个数出现的次数是否相同。把每个位置上的数 \(a\) 用项 \(x^a\) 表示，就转成判断区间和的多项式是否相同。随机质数 \(x,p\) 然后在模">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-18T13:45:51.758Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Codechef 6月月赛总结">
-<meta name="twitter:description" content="这次月赛打得不好。传统题难度不大，就是最后一题比较码农。最后区分度主要在Challenge上，然后我Challenge切不动，就滚粗了。 做的时候也几乎是倒着做的。  Cloning（CLONEME） 如果是判断两个序列排序后是否相同，这等价于判断每个数出现的次数是否相同。把每个位置上的数 \(a\) 用项 \(x^a\) 表示，就转成判断区间和的多项式是否相同。随机质数 \(x,p\) 然后在模">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -234,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/12/codechef-june-2017/" data-id="cjegziddd000ndf1ldcl3z5q1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/12/codechef-june-2017/" data-id="cjeh7618v000kgy1l8htcjm04" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
@@ -363,23 +367,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>UOJ 208 UOIP十合一 口胡 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,31 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="上次来UOJ看发现UOJ多了俩题，而且好多人都A了一题，于是就准备也来A一题 一眼看起来是个模板题，DAG子图计数，然而并不会= =算了先看测试点吧 【以下是本蒟蒻自己闷声做大死的口胡做法，不保证是正解】 测试点1 \(|V|=1000\)，\(|E|=100000\)，好大，想弃疗。 不过既然是第一个点应该是个特殊点。 写了个程序验证，发现 \[\forall (u,v)\in E,u\le v">
-<meta name="keywords" content="题解,UOJ">
-<meta property="og:type" content="article">
-<meta property="og:title" content="UOJ 208 UOIP十合一 口胡">
-<meta property="og:url" content="http://yoursite.com/2016/06/29/uoj-208/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="上次来UOJ看发现UOJ多了俩题，而且好多人都A了一题，于是就准备也来A一题 一眼看起来是个模板题，DAG子图计数，然而并不会= =算了先看测试点吧 【以下是本蒟蒻自己闷声做大死的口胡做法，不保证是正解】 测试点1 \(|V|=1000\)，\(|E|=100000\)，好大，想弃疗。 不过既然是第一个点应该是个特殊点。 写了个程序验证，发现 \[\forall (u,v)\in E,u\le v">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-18T10:32:15.252Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UOJ 208 UOIP十合一 口胡">
-<meta name="twitter:description" content="上次来UOJ看发现UOJ多了俩题，而且好多人都A了一题，于是就准备也来A一题 一眼看起来是个模板题，DAG子图计数，然而并不会= =算了先看测试点吧 【以下是本蒟蒻自己闷声做大死的口胡做法，不保证是正解】 测试点1 \(|V|=1000\)，\(|E|=100000\)，好大，想弃疗。 不过既然是第一个点应该是个特殊点。 写了个程序验证，发现 \[\forall (u,v)\in E,u\le v">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -220,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/29/uoj-208/" data-id="cjegzidhc0029df1lxrnk7oli" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/29/uoj-208/" data-id="cjeh761d30028gy1lin0k7iqq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
@@ -349,23 +353,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

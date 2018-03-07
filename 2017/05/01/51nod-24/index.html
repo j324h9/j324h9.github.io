@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>51nod算法马拉松24 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,31 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="唉……搞了这么久OI还是只会暴力打打，没救了…… 最近没有一场比赛打得爽，互测Round 5 GG，校内训练GG，Codechef GG，省选GG。本来想打打51nod出点气，结果TM又崩了。。。 51nod被两道码农数据结构恶心了一脸（应该是我太弱），F题写了个 \(O(n\log^2n)\) 的东西被卡常数卡内存，然后才发现做复杂了。最后。。。被9min绝杀，#11滚粗。。。真是不爽。 以下是">
-<meta name="keywords" content="酱油记,51nod">
-<meta property="og:type" content="article">
-<meta property="og:title" content="51nod算法马拉松24">
-<meta property="og:url" content="http://yoursite.com/2017/05/01/51nod-24/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="唉……搞了这么久OI还是只会暴力打打，没救了…… 最近没有一场比赛打得爽，互测Round 5 GG，校内训练GG，Codechef GG，省选GG。本来想打打51nod出点气，结果TM又崩了。。。 51nod被两道码农数据结构恶心了一脸（应该是我太弱），F题写了个 \(O(n\log^2n)\) 的东西被卡常数卡内存，然后才发现做复杂了。最后。。。被9min绝杀，#11滚粗。。。真是不爽。 以下是">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-18T13:43:29.113Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="51nod算法马拉松24">
-<meta name="twitter:description" content="唉……搞了这么久OI还是只会暴力打打，没救了…… 最近没有一场比赛打得爽，互测Round 5 GG，校内训练GG，Codechef GG，省选GG。本来想打打51nod出点气，结果TM又崩了。。。 51nod被两道码农数据结构恶心了一脸（应该是我太弱），F题写了个 \(O(n\log^2n)\) 的东西被卡常数卡内存，然后才发现做复杂了。最后。。。被9min绝杀，#11滚粗。。。真是不爽。 以下是">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -147,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/01/51nod-24/" data-id="cjegzidam0003df1lvm21pe9d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/01/51nod-24/" data-id="cjeh7616r0004gy1l3jzhamx6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
@@ -276,23 +280,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

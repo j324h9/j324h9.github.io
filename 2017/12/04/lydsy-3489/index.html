@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>LYDSY P3489 题解 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,31 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="昨晚学弟问我的一个题，想了一晚上感觉想法跟网上看到的题解不太一样，就写一下。 题目描述 http://www.lydsy.com/JudgeOnline/problem.php?id=3489 解法分析 由于要在线，显然不能莫队。 考虑更好地利用问题性质。对于位置i，区间[l,r]只包含位置i的a[i]的条件是last[i]&amp;lt;l&amp;lt;=i，i&amp;lt;=r&amp;lt;next[i]。其中 las">
-<meta name="keywords" content="题解,LYDSY">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LYDSY P3489 题解">
-<meta property="og:url" content="http://yoursite.com/2017/12/04/lydsy-3489/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="昨晚学弟问我的一个题，想了一晚上感觉想法跟网上看到的题解不太一样，就写一下。 题目描述 http://www.lydsy.com/JudgeOnline/problem.php?id=3489 解法分析 由于要在线，显然不能莫队。 考虑更好地利用问题性质。对于位置i，区间[l,r]只包含位置i的a[i]的条件是last[i]&amp;lt;l&amp;lt;=i，i&amp;lt;=r&amp;lt;next[i]。其中 las">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-07T10:13:25.797Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LYDSY P3489 题解">
-<meta name="twitter:description" content="昨晚学弟问我的一个题，想了一晚上感觉想法跟网上看到的题解不太一样，就写一下。 题目描述 http://www.lydsy.com/JudgeOnline/problem.php?id=3489 解法分析 由于要在线，显然不能莫队。 考虑更好地利用问题性质。对于位置i，区间[l,r]只包含位置i的a[i]的条件是last[i]&amp;lt;l&amp;lt;=i，i&amp;lt;=r&amp;lt;next[i]。其中 las">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -108,21 +112,22 @@
 <p>http://www.lydsy.com/JudgeOnline/problem.php?id=3489</p>
 <h3 id="解法分析">解法分析</h3>
 <p>由于要在线，显然不能莫队。</p>
-<p>考虑更好地利用问题性质。对于位置i，区间[l,r]只包含位置i的a[i]的条件是last[i]&lt;l&lt;=i，i&lt;=r&lt;next[i]。其中</p>
-<p>last[i]=max{j|j<i,a[j]=a[i]} next[i]="min{j|j">i,a[j]=a[i]}</i,a[j]=a[i]}></p>
-<p>如果不存在，last=0，next=n+1。</p>
-<p>这样，就可以把询问(l,r)看成二维平面上的点，每个位置对应一个边平行于坐标轴的矩形，询问转化为求包含点(l,r)的所有矩形i中，a[i]的最大值。</p>
-<p>考虑用扫描线解决。按r这一维从小到大扫描，维护集合序列S，遇到一个矩形i时，将S中矩形对应的l区间的每个位置插入一个a[i]；删除矩形i时，将S中矩形对应的l区间的每个位置删除一个a[i]。</p>
-<p>如果没有删除，问题转为区间对一个数取max，单点查询，可以用永久化标记的线段树维护，修改就是将区间对应的O(log n)个结点对一个数取max。然而这题强制在线，需要可持久化线段树，把r扫到每个位置的线段树版本都存下来，查询l,r时在r版本上查l点即可。</p>
-<p>有删除时，只需把线段树结点上的永久化标记换成一个支持插入删除的数据结构，修改时在区间对应的O(log n)个结点的集合中插入/删除这个数。笔者用的是STL自带的set（常数较大），预处理复杂度是O(n log²n)。不过在可持久化线段树版本中不需要存整个set，只要存答案，即结点对应set的最大值。</p>
+<p>考虑更好地利用问题性质。对于位置 <span class="math inline">\(i\)</span>，区间 <span class="math inline">\([l,r]\)</span> 只包含位置 <span class="math inline">\(i\)</span> 的 <span class="math inline">\(a_i\)</span> 的条件是 <span class="math inline">\(\mathrm{last}_i&lt;l\le i\)</span>，<span class="math inline">\(i\le r&lt;\mathrm{next}_i\)</span>。其中</p>
+<p><span class="math display">\[\mathrm{last}_i=\max\{j|j&lt;i,a_j=a_i\}\]</span></p>
+<p><span class="math display">\[\mathrm{next}_i=\min\{j|j&gt;i,a_j=a_i\}\]</span></p>
+<p>如果不存在，<span class="math inline">\(\mathrm{last}=0\)</span>，<span class="math inline">\(\mathrm{next}=n+1\)</span>。</p>
+<p>这样，就可以把询问 <span class="math inline">\((l,r)\)</span> 看成二维平面上的点，每个位置对应一个边平行于坐标轴的矩形，询问转化为求包含点 <span class="math inline">\((l,r)\)</span> 的所有矩形 <span class="math inline">\(i\)</span> 中，<span class="math inline">\(a_i\)</span> 的最大值。</p>
+<p>考虑用扫描线解决。按 <span class="math inline">\(r\)</span> 这一维从小到大扫描，维护集合序列 <span class="math inline">\(S\)</span>，遇到一个矩形 <span class="math inline">\(i\)</span> 时，将 <span class="math inline">\(S\)</span> 中矩形对应的 <span class="math inline">\(l\)</span> 区间的每个位置插入一个 <span class="math inline">\(a_i\)</span>；删除矩形 <span class="math inline">\(i\)</span> 时，将 <span class="math inline">\(S\)</span> 中矩形对应的 <span class="math inline">\(l\)</span> 区间的每个位置删除一个 <span class="math inline">\(a_i\)</span>。</p>
+<p>如果没有删除，问题转为区间对一个数取max，单点查询，可以用永久化标记的线段树维护，修改就是将区间对应的 <span class="math inline">\(O(\log n)\)</span> 个结点对一个数取max。然而这题强制在线，需要可持久化线段树，把 <span class="math inline">\(r\)</span> 扫到每个位置的线段树版本都存下来，查询 <span class="math inline">\(l,r\)</span> 时在 <span class="math inline">\(r\)</span> 版本上查 <span class="math inline">\(l\)</span> 点即可。</p>
+<p>有删除时，只需把线段树结点上的永久化标记换成一个支持插入删除的数据结构，修改时在区间对应的 <span class="math inline">\(O(\log n)\)</span>个结点的集合中插入/删除这个数。笔者用的是STL自带的set（常数较大），预处理复杂度是 <span class="math inline">\(O(n\log^2n)\)</span>。不过在可持久化线段树版本中不需要存整个set，只要存答案，即结点对应set的最大值。</p>
 <p>即：在全局维护线段树套set，修改时在全局先修改，然后修改可持久化线段树存的答案。</p>
-<p>询问仍然只要O(log n)。这样的时间复杂度是O(n log²n+m log n)，空间复杂度是O(n log n)。</p>
+<p>询问仍然只要 <span class="math inline">\(O(\log n)\)</span>。这样的时间复杂度是 <span class="math inline">\(O(n\log^2n+m\log n)\)</span>，空间复杂度是 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <p>由于偷懒用的set常数大，LYDSY上总共要跑10s+。换了个写法把set改成priority_queue，就只要8s了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/04/lydsy-3489/" data-id="cjegzidg7001ldf1l8y8csd08" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/04/lydsy-3489/" data-id="cjeh761br001pgy1lml3hs5ix" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
@@ -242,23 +247,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

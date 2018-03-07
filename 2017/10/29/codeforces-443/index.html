@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>Codeforces Round 443 总结 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,31 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="实力不足，C题做复杂了，没调出来。于是2题滚粗。居然还能涨rating。 A题没什么好说的，程序对每个二进制位的功能只有4种： （1）0-&amp;gt;0,1-&amp;gt;0 （2）0-&amp;gt;0,1-&amp;gt;1 （3）0-&amp;gt;1,1-&amp;gt;0 （4）0-&amp;gt;1,1-&amp;gt;1 第一种等价于AND 0，第二种等价于XOR 0，第三种等价于XOR 1，第四种等价于OR 1。于是随便构造下就好了。 B">
-<meta name="keywords" content="总结,Codeforces">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Codeforces Round 443 总结">
-<meta property="og:url" content="http://yoursite.com/2017/10/29/codeforces-443/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="实力不足，C题做复杂了，没调出来。于是2题滚粗。居然还能涨rating。 A题没什么好说的，程序对每个二进制位的功能只有4种： （1）0-&amp;gt;0,1-&amp;gt;0 （2）0-&amp;gt;0,1-&amp;gt;1 （3）0-&amp;gt;1,1-&amp;gt;0 （4）0-&amp;gt;1,1-&amp;gt;1 第一种等价于AND 0，第二种等价于XOR 0，第三种等价于XOR 1，第四种等价于OR 1。于是随便构造下就好了。 B">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-07T10:18:53.209Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Codeforces Round 443 总结">
-<meta name="twitter:description" content="实力不足，C题做复杂了，没调出来。于是2题滚粗。居然还能涨rating。 A题没什么好说的，程序对每个二进制位的功能只有4种： （1）0-&amp;gt;0,1-&amp;gt;0 （2）0-&amp;gt;0,1-&amp;gt;1 （3）0-&amp;gt;1,1-&amp;gt;0 （4）0-&amp;gt;1,1-&amp;gt;1 第一种等价于AND 0，第二种等价于XOR 0，第三种等价于XOR 1，第四种等价于OR 1。于是随便构造下就好了。 B">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -107,51 +111,51 @@
 <p>A题没什么好说的，程序对每个二进制位的功能只有4种：</p>
 <p>（1）0-&gt;0,1-&gt;0 （2）0-&gt;0,1-&gt;1 （3）0-&gt;1,1-&gt;0 （4）0-&gt;1,1-&gt;1</p>
 <p>第一种等价于AND 0，第二种等价于XOR 0，第三种等价于XOR 1，第四种等价于OR 1。于是随便构造下就好了。</p>
-<p>B题，给一个数列，每次删k个连续的相同的数，直到不能消除为止，问最后剩下几个数。数列是循环的，以循环节（长度n&lt;=10<sup>5）和循环次数m（m&lt;=10</sup>9）的形式给出。题目告诉我们删数是顺序无关的。</p>
+<p>B题，给一个数列，每次删k个连续的相同的数，直到不能消除为止，问最后剩下几个数。数列是循环的，以循环节（长度 <span class="math inline">\(n\le 10^5\)</span>）和循环次数 <span class="math inline">\(m\)</span>（<span class="math inline">\(m\le 10^9\)</span>）的形式给出。题目告诉我们删数是顺序无关的。</p>
 <p>由于顺序无关，可以对每个循环节能消除的先消除，然后再把循环节一个个加进来消除。</p>
-<p>和连续相同数字个数有关的问题可以考虑游程编码，即记录每个极长相同连续段的数值和长度：(a[1],c[1])(a[2],c[2])...(a[n],c[n])，表示a[1]个c[1]、a[2]个c[2]、a[3]个c[3]……依次连起来，c[i]&gt;0，a[i]不等于a[i+1]。这里设n是游程编码后的项数，下同。</p>
+<p>和连续相同数字个数有关的问题可以考虑游程编码，即记录每个极长相同连续段的数值和长度：<span class="math inline">\((a_1,c_1)(a_2,c_2)...(a_n,c_n)\)</span>，表示 <span class="math inline">\(a_1\)</span> 个 <span class="math inline">\(c_1\)</span>、<span class="math inline">\(a_2\)</span> 个 <span class="math inline">\(c_2\)</span>、<span class="math inline">\(a_3\)</span> 个 <span class="math inline">\(c_3\)</span>……依次连起来，<span class="math inline">\(c_i&gt;0\)</span>，<span class="math inline">\(a_i\)</span> 不等于 <span class="math inline">\(a_{i+1}\)</span>。这里设 <span class="math inline">\(n\)</span> 是游程编码后的项数，下同。</p>
 <p>考虑两个循环节拼起来会发生什么：</p>
-<p>(a[1],c[1])(a[2],c[2])...(a[n-1],c[n-1])(a[n],c[n])(a[1],c[1])(a[2],c[2])...(a[n],c[n])</p>
-<p>如果会发生消除，只可能是a[n]=a[1]时，中间的(a[n],c[n])和(a[1],c[1])接起来发生了消除，最后会消到(c[n]+c[1]) mod k个。当(c[n]+c[1]) mod k = 0时，如果a[n-1]=a[2]，中间的(a[n-1],c[n-1])和(a[2],c[2])也会接起来发生消除。如果不断下去，依次配对消掉的有1和n、2和n-1、3和n-2……</p>
+<p><span class="math display">\[(a_1,c_1)(a_2,c_2)...(a_{n-1},c_{n-1})(a_n,c_n)(a_1,c_1)(a_2,c_2)...(a_n,c_n)\]</span></p>
+<p>如果会发生消除，只可能是 <span class="math inline">\(a_n=a_1\)</span> 时，中间的 <span class="math inline">\((a_n,c_n)\)</span> 和 <span class="math inline">\((a_1,c_1)\)</span> 接起来发生了消除，最后会消到 <span class="math inline">\((c_n+c_1) \bmod k\)</span> 个。当 <span class="math inline">\((c_n+c_1) \bmod k = 0\)</span> 时，如果 <span class="math inline">\(a_{n-1}=a_2\)</span>，中间的 <span class="math inline">\((a_{n-1},c_{n-1})\)</span> 和 <span class="math inline">\((a_2,c_2)\)</span> 也会接起来发生消除。如果不断下去，依次配对消掉的有 <span class="math inline">\(1\)</span> 和 <span class="math inline">\(n\)</span>、<span class="math inline">\(2\)</span> 和 <span class="math inline">\(n-1\)</span>、<span class="math inline">\(3\)</span> 和 <span class="math inline">\(n-2\)</span>……</p>
 <p>观察性质的时候到了：</p>
-<p>1、如果这个消除能消到中间，并且把中间消掉，即对所有1&lt;=i&lt;=(n+1)/2，都有a[i]=a[n+1-i]且(c[i]+c[n+1-i]) mod k = 0，那么两个序列拼起来就能把整个序列消完，即对所有1&lt;=i&lt;=n，都有a[i]=a[n+1-i]且(c[i]+c[n+1-i]) mod k = 0；</p>
-<p>这种情况下可以直接把m模2。</p>
-<p>2、如果这个消除消不到中间，即存在i&lt;=n/2，a[i]≠a[n+1-i]或(c[i]+c[n+1-i]) mod k ≠ 0，取最小的这样的i，那么把m个循环节连起来之后，除了第1个和第m个循环阶以外，每个循环节的前i-1项和后i-1项被消掉，第i项和第n-i+1项可能被改变，由于i&lt;n-i+1，前面和后面的消除不会互相影响；（这里的项均指游程编码后的）</p>
-<p>这种情况下，设两个循环节拼起来总共消掉的c为C，那么答案为mn-(m-1)C；</p>
-<p>3、如果这个消除刚好消到中间i=(n+1)/2的位置（显然此时n是奇数），但没把中间消完，那么2个循环节拼起来之后：</p>
-<p>(a[1],c[1])...(a[i],2c[i])...(a[n],c[n])</p>
-<p>m个循环节拼起来之后：</p>
-<p>(a[1],c[1])...(a[i],mc[i])...(a[n],c[n])</p>
-<p>显然中间的a[i]会被消成mc[i] mod k个，如果mc[i] mod k = 0，那么整个序列会被消完。</p>
+<p>1、如果这个消除能消到中间，并且把中间消掉，即对所有 <span class="math inline">\(1\le i\le{n+1\over 2}\)</span>，都有 <span class="math inline">\(a_i=a_{n+1-i}\)</span> 且 <span class="math inline">\((c_i+c_{n+1-i}) \bmod k = 0\)</span>，那么两个序列拼起来就能把整个序列消完，即对所有 <span class="math inline">\(1\le i\le n\)</span>，都有 <span class="math inline">\(a_i=a_{n+1-i}\)</span> 且 <span class="math inline">\((c_i+c_{n+1-i}) \bmod k = 0\)</span>；</p>
+<p>这种情况下可以直接把 <span class="math inline">\(m\)</span> 模 <span class="math inline">\(2\)</span>。</p>
+<p>2、如果这个消除消不到中间，即存在 <span class="math inline">\(i\le{n\over 2}\)</span>，<span class="math inline">\(a_i\ne a_{n+1-i}\)</span> 或 <span class="math inline">\((c_i+c_{n+1-i}) \bmod k\ne 0\)</span>，取最小的这样的 <span class="math inline">\(i\)</span>，那么把 <span class="math inline">\(m\)</span> 个循环节连起来之后，除了第 <span class="math inline">\(1\)</span> 个和第 <span class="math inline">\(m\)</span> 个循环节以外，每个循环节的前 <span class="math inline">\(i-1\)</span> 项和后 <span class="math inline">\(i-1\)</span> 项被消掉，第 <span class="math inline">\(i\)</span> 项和第 <span class="math inline">\(n-i+1\)</span> 项可能被改变，由于 <span class="math inline">\(i&lt;n-i+1\)</span>，前面和后面的消除不会互相影响；（这里的项均指游程编码后的）</p>
+<p>这种情况下，设两个循环节拼起来总共消掉的 <span class="math inline">\(c\)</span> 为 <span class="math inline">\(C\)</span>，那么答案为 <span class="math inline">\(mn-(m-1)C\)</span>；</p>
+<p>3、如果这个消除刚好消到中间 <span class="math inline">\(i={n+1\over 2}\)</span> 的位置（显然此时 <span class="math inline">\(n\)</span> 是奇数），但没把中间消完，那么 <span class="math inline">\(2\)</span> 个循环节拼起来之后：</p>
+<p><span class="math display">\[(a_1,c_1)...(a_i,2c_i)...(a_n,c_n)\]</span></p>
+<p><span class="math inline">\(m\)</span>个循环节拼起来之后：</p>
+<p><span class="math display">\[(a_1,c_1)...(a_i,mc_i)...(a_n,c_n)\]</span></p>
+<p>显然中间的 <span class="math inline">\(a_i\)</span> 会被消成 <span class="math inline">\(mc_i \bmod k\)</span> 个，如果 <span class="math inline">\(mc_i \bmod k = 0\)</span>，那么整个序列会被消完。</p>
 <p>于是这题就做完了。</p>
 <p>C题是一道有趣的题。</p>
-<p>题目说起来很复杂，实际上抽象以后题意很简单：不断加入每个人，把每个人看成一个结点，对两个点u,v，如果存在1&lt;=i&lt;=k使得s[u,i]&gt;s[v,i]，那么u-&gt;v连一条边，求有多少个点可能是一个该图的一个树形图（有向生成树）的根。</p>
-<p>也就是可以对每个除根外的节点u确定一个父结点f[u]，要求f[u]-&gt;u有边，并且父结点的关系不能有环，即每个点不断往父结点走一定能走到根。</p>
+<p>题目说起来很复杂，实际上抽象以后题意很简单：不断加入每个人，把每个人看成一个结点，对两个点 <span class="math inline">\(u,v\)</span>，如果存在 <span class="math inline">\(1\le i\le k\)</span> 使得 <span class="math inline">\(s_{u,i}&gt;s_{v,i}\)</span>，那么 <span class="math inline">\(u\rightarrow v\)</span> 连一条边，求有多少个点可能是一个该图的一个树形图（有向生成树）的根。</p>
+<p>也就是可以对每个除根外的节点 <span class="math inline">\(u\)</span> 确定一个父结点 <span class="math inline">\(f_u\)</span>，要求 <span class="math inline">\(f_u\rightarrow u\)</span> 有边，并且父结点的关系不能有环，即每个点不断往父结点走一定能走到根。</p>
 <p>说白了就是从根出发能到所有点。</p>
-<p>当然这道题的图很有特点：对任意两个点u,v，或者u能到达v，或者v能到达u。这是因为如果s[u,1]&gt;s[v,1]，那么u能到达v，反之v能到达u。于是缩强连通分量之后的图是一条链，满足前面的点往后面的点有连边。入度为0的分量的大小就是答案。</p>
-<p>考虑暴力怎么写。注意到强连通分量只和可达性（传递闭包）有关，可以优化建图：加入点i时，对于每一维j，找出s[i,j]在s[*,j]中的前驱后继连边就行了。这样会加入一组连向i的边和一组i连出去的边。由于强连通分量构成一条链，实际上只要保留起点拓扑序最大的连向i的边(x,i)，以及终点拓扑序最小的连向i的边(i,y)。</p>
-<p>可惜每次暴力跑强连通分量是O(n^2)的，会超时。我们来优化一下。</p>
-<p>考虑加入边(x,i),(i,y)之后：</p>
-<p>1、如果x的拓扑序小于y，那么y一定在x所在分量的下一个分量（否则与任意两点可达矛盾），把i插到这两个分量之间即可。</p>
-<p>2、否则，拓扑序位于[y,x]之间的分量都会被合并成一个分量，并且i会被加入这个分量。</p>
+<p>当然这道题的图很有特点：对任意两个点 <span class="math inline">\(u,v\)</span>，或者 <span class="math inline">\(u\)</span> 能到达 <span class="math inline">\(v\)</span>，或者 <span class="math inline">\(v\)</span> 能到达 <span class="math inline">\(u\)</span>。这是因为如果 <span class="math inline">\(s_{u,1}&gt;s_{v,1}\)</span>，那么 <span class="math inline">\(u\)</span> 能到达 <span class="math inline">\(v\)</span>，反之 <span class="math inline">\(v\)</span> 能到达 <span class="math inline">\(u\)</span>。于是缩强连通分量之后的图是一条链，满足前面的点往后面的点有连边。入度为 <span class="math inline">\(0\)</span> 的分量的大小就是答案。</p>
+<p>考虑暴力怎么写。注意到强连通分量只和可达性（传递闭包）有关，可以优化建图：加入点 <span class="math inline">\(i\)</span> 时，对于每一维 <span class="math inline">\(j\)</span>，找出 <span class="math inline">\(s_{i,j}\)</span> 在 <span class="math inline">\(s_{*,j}\)</span> 中的前驱后继连边就行了。这样会加入一组连向 <span class="math inline">\(i\)</span> 的边和一组 <span class="math inline">\(i\)</span> 连出去的边。由于强连通分量构成一条链，实际上只要保留起点拓扑序最大的连向 <span class="math inline">\(i\)</span> 的边 <span class="math inline">\((x,i)\)</span>，以及终点拓扑序最小的连向 <span class="math inline">\(i\)</span> 的边 <span class="math inline">\((i,y)\)</span>。</p>
+<p>可惜每次暴力跑强连通分量是 <span class="math inline">\(O(n^2)\)</span> 的，会超时。我们来优化一下。</p>
+<p>考虑加入边 <span class="math inline">\((x,i),(i,y)\)</span> 之后：</p>
+<p>1、如果 <span class="math inline">\(x\)</span> 的拓扑序小于 <span class="math inline">\(y\)</span>，那么 <span class="math inline">\(y\)</span> 一定在 <span class="math inline">\(x\)</span> 所在分量的下一个分量（否则与任意两点可达矛盾），把 <span class="math inline">\(i\)</span> 插到这两个分量之间即可。</p>
+<p>2、否则，拓扑序位于 <span class="math inline">\([y,x]\)</span> 之间的分量都会被合并成一个分量，并且i会被加入这个分量。</p>
 <p>这两步用一个set和一个并查集来维护就行了。</p>
-<p><strong>我在考场上推到了这一步，然而卡在了如何维护强连通分量序列，以及如何保留拓扑序最大的x和拓扑序最小的y上。由于set不太能简单地实现在两个元素之间插入一个元素，删除一个元素，以及查询两个数的顺序，我就写了个平衡树。结果把我后半场比赛时间全搭上了，最后还是意料之中地没调出来。</strong></p>
-<p>随便找一维比如第1维，那么s[*,1]从大到小的顺序就是强连通分量的顺序啊！直接按s[*,1]作为关键字插到set里面不就好了。真的很服自己的智商。</p>
+<p><strong>我在考场上推到了这一步，然而卡在了如何维护强连通分量序列，以及如何保留拓扑序最大的 <span class="math inline">\(x\)</span> 和拓扑序最小的 <span class="math inline">\(y\)</span> 上。由于set不太能简单地实现在两个元素之间插入一个元素，删除一个元素，以及查询两个数的顺序，我就写了个平衡树。结果把我后半场比赛时间全搭上了，最后还是意料之中地没调出来。</strong></p>
+<p>随便找一维比如第 <span class="math inline">\(1\)</span> 维，那么 <span class="math inline">\(s_{*,1}\)</span> 从大到小的顺序就是强连通分量的顺序啊！直接按 <span class="math inline">\(s_{*,1}\)</span> 作为关键字插到set里面不就好了。真的很服自己的智商。</p>
 <p>D题居然是个简单题，考场上没看真是太亏了。</p>
-<p>题目可以抽象化为，有不超过12个变量x[1],x[2],...,x[k]，每次操作是新建一个变量的定义 x[new]=max(x[i],x[j]) 或 x[new]=min(x[i],x[j]) （使用max或者min以及i,j都是给定的），或者给一组x[1],x[2],...,x[k]的值，查询x[i]的值。</p>
-<p>每个x[i]是x[1],x[2],...,x[k]的一个函数，遗憾的是这个函数的表达式并不简单。</p>
-<p>不过很显然函数值一定是x[1],x[2],...,x[k]这k个数中的一个。</p>
-<p>由于min、max只和大小关系有关，能不能维护每一种这k个数的大小关系对应的函数值是哪一个数？即f(i,A)表示当这k个数的大小关系为A时，x[i]=x[f(i,A)]（1&lt;=f(i,A)&lt;=k）。可惜A有k!种可能，对于k=12这个规模还是太大了。</p>
-<p>更简单地，如果我只要判断是否x[i]&gt;=m，该怎么做？这时候不用存每个x了，只要记录每个x是否小于m就好了。把小于m的数换成0，其余数换成1，再维护f(i,A)表示前k个数的序列为A时，x[i]是多少。</p>
-<p>此时A只有2^k种，k=12时也只有4096种，比k!可观得多。f(i,A)可以直接用按位与/或运算（对应min/max）来得到，可以用bitset优化。</p>
-<p>查询时只要把x[1],x[2],...,x[k]从大到小排序之后一个个把A的对应二进制位设为1，直到f(i,A)=1，这个x就是答案。</p>
-<p>时间和空间复杂度都是O(2^k*q/w)，其中字长w=32或w=64（CF可能是w=32）。</p>
+<p>题目可以抽象化为，有不超过12个变量 <span class="math inline">\(x_1,x_2,...,x_k\)</span>，每次操作是新建一个变量的定义 <span class="math inline">\(x_\mathrm{new}=\max\{x_i,x_j\}\)</span> 或 $x_={x_i,x_j} （使用max或者min以及 <span class="math inline">\(i,j\)</span> 都是给定的），或者给一组 <span class="math inline">\(x_1,x_2,...,x_k\)</span> 的值，查询 <span class="math inline">\(x_i\)</span> 的值。</p>
+<p>每个 <span class="math inline">\(x_i\)</span> 是 <span class="math inline">\(x_1,x_2,...,x_k\)</span> 的一个函数，遗憾的是这个函数的表达式并不简单。</p>
+<p>不过很显然函数值一定是 <span class="math inline">\(x_1,x_2,...,x_k\)</span> 这 <span class="math inline">\(k\)</span> 个数中的一个。</p>
+<p>由于min、max只和大小关系有关，能不能维护每一种这 <span class="math inline">\(k\)</span> 个数的大小关系对应的函数值是哪一个数？即 <span class="math inline">\(f(i,A)\)</span> 表示当这 <span class="math inline">\(k\)</span> 个数的大小关系为 <span class="math inline">\(A\)</span> 时，<span class="math inline">\(x_i=x_{f(i,A)}\)</span>（<span class="math inline">\(1\le f(i,A)\le k\)</span>）。可惜 <span class="math inline">\(A\)</span> 有 <span class="math inline">\(k!\)</span> 种可能，对于 <span class="math inline">\(k=12\)</span> 这个规模还是太大了。</p>
+<p>更简单地，如果我只要判断是否 <span class="math inline">\(x_i\ge m\)</span>，该怎么做？这时候不用存每个 <span class="math inline">\(x\)</span> 了，只要记录每个 <span class="math inline">\(x\)</span> 是否小于 <span class="math inline">\(m\)</span> 就好了。把小于 <span class="math inline">\(m\)</span> 的数换成 <span class="math inline">\(0\)</span>，其余数换成 <span class="math inline">\(1\)</span>，再维护 <span class="math inline">\(f(i,A)\)</span> 表示前 <span class="math inline">\(k\)</span> 个数的序列为 <span class="math inline">\(A\)</span> 时，<span class="math inline">\(x_i\)</span> 是多少。</p>
+<p>此时 <span class="math inline">\(A\)</span> 只有 <span class="math inline">\(2^k\)</span> 种，<span class="math inline">\(k=12\)</span> 时也只有 <span class="math inline">\(4096\)</span> 种，比 <span class="math inline">\(k!\)</span> 可观得多。<span class="math inline">\(f(i,A)\)</span> 可以直接用按位与/或运算（对应min/max）来得到，可以用bitset优化。</p>
+<p>查询时只要把 <span class="math inline">\(x_1,x_2,...,x_k\)</span> 从大到小排序之后一个个把A的对应二进制位设为 <span class="math inline">\(1\)</span>，直到 <span class="math inline">\(f(i,A)=1\)</span>，这个 <span class="math inline">\(x\)</span> 就是答案。</p>
+<p>时间和空间复杂度都是 <span class="math inline">\(O({2^kq\over w})\)</span>，其中字长 <span class="math inline">\(w=32\)</span> 或 <span class="math inline">\(w=64\)</span>（CF可能是 <span class="math inline">\(w=32\)</span>）。</p>
 <p>E题待坑。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/29/codeforces-443/" data-id="cjegzide5000vdf1lznq29rz3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/29/codeforces-443/" data-id="cjeh7619m000sgy1loyfd1ia8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
@@ -280,23 +284,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

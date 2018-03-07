@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>Codeforces Round 434 总结 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,31 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="果然又滚粗了，rank116。。。还好这场unrated了否则不知道要掉多少。 A题是个无聊题，题意是求在一个字符串中插入最少的空格，使得不存在连续三个字符是不全相同的辅音字母。O(len)贪心实在太显然了。 然而我居然被这题卡住了！我写了个很短的程序交上去，WA on Pretest 7。然后没查出错。这么短代码我怎么可能写得错？一定是我又看错题了。然后把题又仔细读了两三遍，还是没问题，一脸懵逼">
-<meta name="keywords" content="总结,Codeforces">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Codeforces Round 434 总结">
-<meta property="og:url" content="http://yoursite.com/2017/09/18/codeforces-434/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="果然又滚粗了，rank116。。。还好这场unrated了否则不知道要掉多少。 A题是个无聊题，题意是求在一个字符串中插入最少的空格，使得不存在连续三个字符是不全相同的辅音字母。O(len)贪心实在太显然了。 然而我居然被这题卡住了！我写了个很短的程序交上去，WA on Pretest 7。然后没查出错。这么短代码我怎么可能写得错？一定是我又看错题了。然后把题又仔细读了两三遍，还是没问题，一脸懵逼">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-07T10:19:23.226Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Codeforces Round 434 总结">
-<meta name="twitter:description" content="果然又滚粗了，rank116。。。还好这场unrated了否则不知道要掉多少。 A题是个无聊题，题意是求在一个字符串中插入最少的空格，使得不存在连续三个字符是不全相同的辅音字母。O(len)贪心实在太显然了。 然而我居然被这题卡住了！我写了个很短的程序交上去，WA on Pretest 7。然后没查出错。这么短代码我怎么可能写得错？一定是我又看错题了。然后把题又仔细读了两三遍，还是没问题，一脸懵逼">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -134,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/18/codeforces-434/" data-id="cjegziddx000qdf1lw2cf6605" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/18/codeforces-434/" data-id="cjeh7619h000qgy1le26ix16t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
@@ -263,23 +267,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

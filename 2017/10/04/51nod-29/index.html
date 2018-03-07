@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>51nod算法马拉松29总结 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,40 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="一次运气极好的51nod，用错误复杂度算法完成绝杀，rank7。 我的做题顺序：F、D、C、B、A、E F题是个出乎意料的简单题。我一开始考虑了m=1，坐标范围200000的情况，发现要FFT，又考虑了m=2，坐标范围m&amp;lt;=500的情况，二维FFT？然后想到能不能多维FFT，发现过不了……之后开始想别的做法，发现二维m&amp;lt;=500可以不用FFT，距离只有1000种可以暴力前缀和统计。 果">
-<meta name="keywords" content="51nod,总结">
-<meta property="og:type" content="article">
-<meta property="og:title" content="51nod算法马拉松29总结">
-<meta property="og:url" content="http://yoursite.com/2017/10/04/51nod-29/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="一次运气极好的51nod，用错误复杂度算法完成绝杀，rank7。 我的做题顺序：F、D、C、B、A、E F题是个出乎意料的简单题。我一开始考虑了m=1，坐标范围200000的情况，发现要FFT，又考虑了m=2，坐标范围m&amp;lt;=500的情况，二维FFT？然后想到能不能多维FFT，发现过不了……之后开始想别的做法，发现二维m&amp;lt;=500可以不用FFT，距离只有1000种可以暴力前缀和统计。 果">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2018/03/07/5a9fb7e9c0468.png">
-<meta property="og:image" content="https://i.loli.net/2018/03/07/5a9fb7ee088b7.png">
-<meta property="og:image" content="https://i.loli.net/2018/03/07/5a9fb7f5369a7.png">
-<meta property="og:image" content="https://i.loli.net/2018/03/07/5a9fb7fbcbfe6.png">
-<meta property="og:image" content="https://i.loli.net/2018/03/07/5a9fb7ff3f2b9.png">
-<meta property="og:image" content="https://i.loli.net/2018/03/07/5a9fb802bf4b1.png">
-<meta property="og:image" content="https://i.loli.net/2018/03/07/5a9fb8052a9c7.png">
-<meta property="og:image" content="https://i.loli.net/2018/03/07/5a9fb83a58cc7.png">
-<meta property="og:updated_time" content="2018-03-07T10:04:49.440Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="51nod算法马拉松29总结">
-<meta name="twitter:description" content="一次运气极好的51nod，用错误复杂度算法完成绝杀，rank7。 我的做题顺序：F、D、C、B、A、E F题是个出乎意料的简单题。我一开始考虑了m=1，坐标范围200000的情况，发现要FFT，又考虑了m=2，坐标范围m&amp;lt;=500的情况，二维FFT？然后想到能不能多维FFT，发现过不了……之后开始想别的做法，发现二维m&amp;lt;=500可以不用FFT，距离只有1000种可以暴力前缀和统计。 果">
-<meta name="twitter:image" content="https://i.loli.net/2018/03/07/5a9fb7e9c0468.png">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -196,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/04/51nod-29/" data-id="cjegzidbd0007df1lftcosfla" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/04/51nod-29/" data-id="cjeh761790007gy1lg8taumpq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
@@ -325,23 +320,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

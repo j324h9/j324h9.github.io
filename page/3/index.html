@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,26 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="oi_loser&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:locale" content="zh-CN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="oi_loser&#39;s blog">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -77,6 +86,52 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-zjoi2017-record" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/26/zjoi2017-record/" class="article-date">
+  <time datetime="2017-04-26T02:15:14.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/26/zjoi2017-record/">ZJOI2017做题纪录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这套题好难……暂时只想出一题。</p>
+<h4 id="d2t2线段树">D2T2：线段树</h4>
+<p>记得上次被srwudi的题卡内存的经历……启发我们不能满足于表面性质，要发掘更深入的性质！！！</p>
+<p>注意到区间定位就是 <span class="math inline">\(l-1\)</span> 到LCA的右子结点加上 <span class="math inline">\(r-1\)</span> 到LCA的左子结点（<span class="math inline">\(l\)</span> 和 <span class="math inline">\(r\)</span> 有一个和LCA端点重合的特判掉），于是对每个点维护它到根的路径的左/右子结点集合即可。</p>
+<p>然而集合很大，而我们只需要知道距离和，所以只要维护集合中的结点个数以及结点深度和即可。</p>
+<p>查询的时候用前缀相减的思想即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> n,tot,L[<span class="number">400010</span>],mid[<span class="number">400010</span>],R[<span class="number">400010</span>],leaf[<span class="number">400010</span>],</span><br><span class="line">	fa[<span class="number">400010</span>],ls[<span class="number">400010</span>],rs[<span class="number">400010</span>],dep[<span class="number">400010</span>],val[<span class="number">400010</span>][<span class="number">2</span>],</span><br><span class="line">	siz[<span class="number">400010</span>],son[<span class="number">400010</span>],top[<span class="number">400010</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> vals[<span class="number">400010</span>][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=++tot;</span><br><span class="line">	L[x]=l;R[x]=r;</span><br><span class="line">	<span class="keyword">if</span>(l&lt;r)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,mid+x);</span><br><span class="line">		fa[ls[x]=read(l,mid[x])]=x;</span><br><span class="line">		fa[rs[x]=read(mid[x]+<span class="number">1</span>,r)]=x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> leaf[l]=x;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(top[i]!=top[j])dep[top[i]]&gt;dep[top[j]]?i=fa[top[i]]:j=fa[top[j]];</span><br><span class="line">	<span class="keyword">return</span> dep[i]&lt;dep[j]?i:j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dis</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> dep[i]+dep[j]<span class="number">-2</span>*dep[lca(i,j)];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">getsum</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> x,<span class="keyword">bool</span> ty)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=lca(u,x);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">0</span>;</span><br><span class="line">	res+=vals[x][ty]-vals[a][ty]+<span class="number">1l</span>l*(dep[u]<span class="number">-2</span>*dep[a])*(val[x][ty]-val[a][ty]);</span><br><span class="line">	res+=<span class="number">1l</span>l*(dep[u]+<span class="number">2</span>)*val[a][ty]-vals[a][ty];</span><br><span class="line">	<span class="keyword">if</span>(u==a||x==a)<span class="keyword">return</span> res;</span><br><span class="line">	<span class="keyword">while</span>(fa[u]!=a)&#123;</span><br><span class="line">		<span class="keyword">if</span>(top[u]==top[a])u=son[a];</span><br><span class="line">		<span class="keyword">else</span> u=top[u];</span><br><span class="line">		<span class="keyword">if</span>(fa[u]!=a)u=fa[u];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>((u==rs[a])==ty)res-=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=lca(leaf[l],leaf[r]);</span><br><span class="line">	<span class="keyword">if</span>(l==L[a]&amp;&amp;r==R[a])<span class="keyword">return</span> dis(u,a);</span><br><span class="line">	<span class="keyword">if</span>(l==L[a])<span class="keyword">return</span> dis(u,ls[a])+getsum(u,leaf[r+<span class="number">1</span>],<span class="number">0</span>)-getsum(u,rs[a],<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(r==R[a])<span class="keyword">return</span> dis(u,rs[a])+getsum(u,leaf[l<span class="number">-1</span>],<span class="number">1</span>)-getsum(u,ls[a],<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> getsum(u,leaf[r+<span class="number">1</span>],<span class="number">0</span>)-getsum(u,rs[a],<span class="number">0</span>)+getsum(u,leaf[l<span class="number">-1</span>],<span class="number">1</span>)-getsum(u,ls[a],<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	read(<span class="number">1</span>,n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;i++)dep[i]=dep[fa[i]]+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=tot;i++)&#123;</span><br><span class="line">		val[i][<span class="number">0</span>]=val[fa[i]][<span class="number">0</span>]+(i==rs[fa[i]]);</span><br><span class="line">		val[i][<span class="number">1</span>]=val[fa[i]][<span class="number">1</span>]+(i==ls[fa[i]]);</span><br><span class="line">		vals[i][<span class="number">0</span>]=vals[fa[i]][<span class="number">0</span>]+(i==rs[fa[i]]?dep[i]:<span class="number">0</span>);</span><br><span class="line">		vals[i][<span class="number">1</span>]=vals[fa[i]][<span class="number">1</span>]+(i==ls[fa[i]]?dep[i]:<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=tot;i;i--)siz[fa[i]]+=++siz[i],siz[i]&gt;siz[son[fa[i]]]?son[fa[i]]=i:<span class="number">1</span>;</span><br><span class="line">	top[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=tot;i++)top[i]=i==son[fa[i]]?top[fa[i]]:i;</span><br><span class="line">	<span class="keyword">int</span> m,u,l,r;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;m);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;u,&amp;l,&amp;r);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,query(u,l,r));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>做出这题以后顺便把srwudi的互测题也A掉了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/26/zjoi2017-record/" data-id="cjeh761dj002egy1l7wpnwmwd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-hnoi2017-record" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -119,56 +174,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/26/hnoi2017-record/" data-id="cjegzidfq001gdf1l3ntx2o2d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/26/hnoi2017-record/" data-id="cjeh761b5001igy1lbazh06wg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-zjoi2017-record" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/26/zjoi2017-record/" class="article-date">
-  <time datetime="2017-04-26T02:15:14.000Z" itemprop="datePublished">2017-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/26/zjoi2017-record/">ZJOI2017做题纪录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这套题好难……暂时只想出一题。</p>
-<h4 id="d2t2线段树">D2T2：线段树</h4>
-<p>记得上次被srwudi的题卡内存的经历……启发我们不能满足于表面性质，要发掘更深入的性质！！！</p>
-<p>注意到区间定位就是 <span class="math inline">\(l-1\)</span> 到LCA的右子结点加上 <span class="math inline">\(r-1\)</span> 到LCA的左子结点（<span class="math inline">\(l\)</span> 和 <span class="math inline">\(r\)</span> 有一个和LCA端点重合的特判掉），于是对每个点维护它到根的路径的左/右子结点集合即可。</p>
-<p>然而集合很大，而我们只需要知道距离和，所以只要维护集合中的结点个数以及结点深度和即可。</p>
-<p>查询的时候用前缀相减的思想即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> n,tot,L[<span class="number">400010</span>],mid[<span class="number">400010</span>],R[<span class="number">400010</span>],leaf[<span class="number">400010</span>],</span><br><span class="line">	fa[<span class="number">400010</span>],ls[<span class="number">400010</span>],rs[<span class="number">400010</span>],dep[<span class="number">400010</span>],val[<span class="number">400010</span>][<span class="number">2</span>],</span><br><span class="line">	siz[<span class="number">400010</span>],son[<span class="number">400010</span>],top[<span class="number">400010</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> vals[<span class="number">400010</span>][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=++tot;</span><br><span class="line">	L[x]=l;R[x]=r;</span><br><span class="line">	<span class="keyword">if</span>(l&lt;r)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,mid+x);</span><br><span class="line">		fa[ls[x]=read(l,mid[x])]=x;</span><br><span class="line">		fa[rs[x]=read(mid[x]+<span class="number">1</span>,r)]=x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> leaf[l]=x;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(top[i]!=top[j])dep[top[i]]&gt;dep[top[j]]?i=fa[top[i]]:j=fa[top[j]];</span><br><span class="line">	<span class="keyword">return</span> dep[i]&lt;dep[j]?i:j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dis</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> dep[i]+dep[j]<span class="number">-2</span>*dep[lca(i,j)];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">getsum</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> x,<span class="keyword">bool</span> ty)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=lca(u,x);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">0</span>;</span><br><span class="line">	res+=vals[x][ty]-vals[a][ty]+<span class="number">1l</span>l*(dep[u]<span class="number">-2</span>*dep[a])*(val[x][ty]-val[a][ty]);</span><br><span class="line">	res+=<span class="number">1l</span>l*(dep[u]+<span class="number">2</span>)*val[a][ty]-vals[a][ty];</span><br><span class="line">	<span class="keyword">if</span>(u==a||x==a)<span class="keyword">return</span> res;</span><br><span class="line">	<span class="keyword">while</span>(fa[u]!=a)&#123;</span><br><span class="line">		<span class="keyword">if</span>(top[u]==top[a])u=son[a];</span><br><span class="line">		<span class="keyword">else</span> u=top[u];</span><br><span class="line">		<span class="keyword">if</span>(fa[u]!=a)u=fa[u];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>((u==rs[a])==ty)res-=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=lca(leaf[l],leaf[r]);</span><br><span class="line">	<span class="keyword">if</span>(l==L[a]&amp;&amp;r==R[a])<span class="keyword">return</span> dis(u,a);</span><br><span class="line">	<span class="keyword">if</span>(l==L[a])<span class="keyword">return</span> dis(u,ls[a])+getsum(u,leaf[r+<span class="number">1</span>],<span class="number">0</span>)-getsum(u,rs[a],<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(r==R[a])<span class="keyword">return</span> dis(u,rs[a])+getsum(u,leaf[l<span class="number">-1</span>],<span class="number">1</span>)-getsum(u,ls[a],<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> getsum(u,leaf[r+<span class="number">1</span>],<span class="number">0</span>)-getsum(u,rs[a],<span class="number">0</span>)+getsum(u,leaf[l<span class="number">-1</span>],<span class="number">1</span>)-getsum(u,ls[a],<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	read(<span class="number">1</span>,n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;i++)dep[i]=dep[fa[i]]+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=tot;i++)&#123;</span><br><span class="line">		val[i][<span class="number">0</span>]=val[fa[i]][<span class="number">0</span>]+(i==rs[fa[i]]);</span><br><span class="line">		val[i][<span class="number">1</span>]=val[fa[i]][<span class="number">1</span>]+(i==ls[fa[i]]);</span><br><span class="line">		vals[i][<span class="number">0</span>]=vals[fa[i]][<span class="number">0</span>]+(i==rs[fa[i]]?dep[i]:<span class="number">0</span>);</span><br><span class="line">		vals[i][<span class="number">1</span>]=vals[fa[i]][<span class="number">1</span>]+(i==ls[fa[i]]?dep[i]:<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=tot;i;i--)siz[fa[i]]+=++siz[i],siz[i]&gt;siz[son[fa[i]]]?son[fa[i]]=i:<span class="number">1</span>;</span><br><span class="line">	top[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=tot;i++)top[i]=i==son[fa[i]]?top[fa[i]]:i;</span><br><span class="line">	<span class="keyword">int</span> m,u,l,r;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;m);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;u,&amp;l,&amp;r);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,query(u,l,r));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>做出这题以后顺便把srwudi的互测题也A掉了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/26/zjoi2017-record/" data-id="cjegzidho002fdf1lx6qzbbsz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
 
     </footer>
   </div>
@@ -229,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/23/fjoi2017-r2/" data-id="cjegzidev0015df1lvz0w15y6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/23/fjoi2017-r2/" data-id="cjeh761aj0016gy1lp4vakx8v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
@@ -359,7 +368,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/03/mutualtest2017/" data-id="cjegzidg9001ndf1letmd029e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/03/mutualtest2017/" data-id="cjeh761ex005cgy1log9e1r8n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/集训队互测/">集训队互测</a></li></ul>
@@ -416,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/03/51nod-23/" data-id="cjegzida10001df1lt5rhe8k5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/03/51nod-23/" data-id="cjeh761650001gy1lizp1qq2n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
@@ -551,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/06/51nod-22/" data-id="cjegzid9l0000df1l7ajei99i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/06/51nod-22/" data-id="cjeh7615t0000gy1l84izkofr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
@@ -842,7 +851,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/24/thutrain2016-record/" data-id="cjegzidh40023df1lu787ft0y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/24/thutrain2016-record/" data-id="cjeh761cp0022gy1lbjsss0jt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
@@ -934,7 +943,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/08/wc2017/" data-id="cjegzidhl002ddf1lr9u1b9i5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/08/wc2017/" data-id="cjeh761de002dgy1lhbus83zn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WC/">WC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
@@ -1003,7 +1012,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/03/before-wc2017/" data-id="cjegzidd2000kdf1lc1pr2e3n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/03/before-wc2017/" data-id="cjeh7618l000igy1lg6dt5gzn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/记录/">记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
@@ -1063,7 +1072,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/26/goodbye-bingshen/" data-id="cjegzidfi001fdf1ltviqjrok" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/26/goodbye-bingshen/" data-id="cjeh761b1001ggy1lx43wk5yv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
@@ -1178,23 +1187,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

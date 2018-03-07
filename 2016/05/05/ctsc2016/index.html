@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>CTSC2016提答记 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,31 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="神犇的CTSC：怒A数据结构题，狂虐DP题，吓傻出题人。 蒟蒻的CTSC：捞点部分分，磕提交答案题，依赖出题人的良心。 我就是蒟蒻啊- -两天CTSC得分最多的题都是提交答案题…… 先祝贺一下咱们学校的神犇 @kfdong 过关斩将进了IOI！神犇 @immortalCO A掉第1天第1题，直冲rank8！ —————————— Day 0。 5月1日，早早地赶上了到北京的飞机。（心想还有好多题不">
-<meta name="keywords" content="酱油记,CTSC">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CTSC2016提答记">
-<meta property="og:url" content="http://yoursite.com/2016/05/05/ctsc2016/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="神犇的CTSC：怒A数据结构题，狂虐DP题，吓傻出题人。 蒟蒻的CTSC：捞点部分分，磕提交答案题，依赖出题人的良心。 我就是蒟蒻啊- -两天CTSC得分最多的题都是提交答案题…… 先祝贺一下咱们学校的神犇 @kfdong 过关斩将进了IOI！神犇 @immortalCO A掉第1天第1题，直冲rank8！ —————————— Day 0。 5月1日，早早地赶上了到北京的飞机。（心想还有好多题不">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-18T10:28:26.783Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CTSC2016提答记">
-<meta name="twitter:description" content="神犇的CTSC：怒A数据结构题，狂虐DP题，吓傻出题人。 蒟蒻的CTSC：捞点部分分，磕提交答案题，依赖出题人的良心。 我就是蒟蒻啊- -两天CTSC得分最多的题都是提交答案题…… 先祝贺一下咱们学校的神犇 @kfdong 过关斩将进了IOI！神犇 @immortalCO A掉第1天第1题，直冲rank8！ —————————— Day 0。 5月1日，早早地赶上了到北京的飞机。（心想还有好多题不">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -285,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/05/ctsc2016/" data-id="cjegzideh0010df1lldz564g3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/05/ctsc2016/" data-id="cjeh761ab0012gy1ljw2xyffa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
@@ -414,23 +418,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

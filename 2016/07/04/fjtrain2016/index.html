@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>直播FJ省队集训大爆炸 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,31 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="话说省队集训居然开放所有人参加，于是参加的人远远不止15个…… 作为高一参加省队集训的蒟蒻WAer…… 自然是被神犇们爆虐咯……  Day1 计算几何。 居然有两道省冬原题，所以今天训练并没有什么卵用。 一堆人高分。 然后我有一道原题被卡精度，WA了50分。 坐等本WAer明天继续爆炸= =  Day2 计算几何。完全写不动的东西。 上午讲了各种凸包、半平面交、旋转卡壳之类的东西，由于我是口胡选手">
-<meta name="keywords" content="酱油记,省队集训">
-<meta property="og:type" content="article">
-<meta property="og:title" content="直播FJ省队集训大爆炸">
-<meta property="og:url" content="http://yoursite.com/2016/07/04/fjtrain2016/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="话说省队集训居然开放所有人参加，于是参加的人远远不止15个…… 作为高一参加省队集训的蒟蒻WAer…… 自然是被神犇们爆虐咯……  Day1 计算几何。 居然有两道省冬原题，所以今天训练并没有什么卵用。 一堆人高分。 然后我有一道原题被卡精度，WA了50分。 坐等本WAer明天继续爆炸= =  Day2 计算几何。完全写不动的东西。 上午讲了各种凸包、半平面交、旋转卡壳之类的东西，由于我是口胡选手">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-18T10:28:43.159Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="直播FJ省队集训大爆炸">
-<meta name="twitter:description" content="话说省队集训居然开放所有人参加，于是参加的人远远不止15个…… 作为高一参加省队集训的蒟蒻WAer…… 自然是被神犇们爆虐咯……  Day1 计算几何。 居然有两道省冬原题，所以今天训练并没有什么卵用。 一堆人高分。 然后我有一道原题被卡精度，WA了50分。 坐等本WAer明天继续爆炸= =  Day2 计算几何。完全写不动的东西。 上午讲了各种凸包、半平面交、旋转卡壳之类的东西，由于我是口胡选手">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -332,7 +336,7 @@ wwx大爷请我讲了下第一题做法，由于没准备似乎讲错了几个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/04/fjtrain2016/" data-id="cjegzidf80018df1lsdmv09s4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/04/fjtrain2016/" data-id="cjeh761ao0019gy1lfjwpiep0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
@@ -461,23 +465,22 @@ wwx大爷请我讲了下第一题做法，由于没准备似乎讲错了几个�
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

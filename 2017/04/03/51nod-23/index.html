@@ -2,10 +2,26 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>51nod算法马拉松23 | oi_loser&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%
+  var title = page.title;
 
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -20,31 +36,19 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-  
-  <meta name="description" content="这场比赛做得很不及时。 4月1日听到同学讨论才想起有51nod比赛，然后点进去看已经有9个AK了……赚钱基本是没戏了。那就试着做一下呗。点进去第一题，觉得是结论题，然后自信有解就把 \(x=\frac{\pi}{6}\) 代入，直接找出循环节，然后写了几个 if 不检查直接交就A掉了……挺送分。那么再看第二题，好像推个式子就行了然而 \(m\le 10^7\)？输入有点爆炸唉我先码个输入优化，码码">
-<meta name="keywords" content="酱油记,51nod">
-<meta property="og:type" content="article">
-<meta property="og:title" content="51nod算法马拉松23">
-<meta property="og:url" content="http://yoursite.com/2017/04/03/51nod-23/index.html">
-<meta property="og:site_name" content="oi_loser&#39;s blog">
-<meta property="og:description" content="这场比赛做得很不及时。 4月1日听到同学讨论才想起有51nod比赛，然后点进去看已经有9个AK了……赚钱基本是没戏了。那就试着做一下呗。点进去第一题，觉得是结论题，然后自信有解就把 \(x=\frac{\pi}{6}\) 代入，直接找出循环节，然后写了几个 if 不检查直接交就A掉了……挺送分。那么再看第二题，好像推个式子就行了然而 \(m\le 10^7\)？输入有点爆炸唉我先码个输入优化，码码">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-18T12:05:10.191Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="51nod算法马拉松23">
-<meta name="twitter:description" content="这场比赛做得很不及时。 4月1日听到同学讨论才想起有51nod比赛，然后点进去看已经有9个AK了……赚钱基本是没戏了。那就试着做一下呗。点进去第一题，觉得是结论题，然后自信有解就把 \(x=\frac{\pi}{6}\) 代入，直接找出循环节，然后写了几个 if 不检查直接交就A掉了……挺送分。那么再看第二题，好像推个式子就行了然而 \(m\le 10^7\)？输入有点爆炸唉我先码个输入优化，码码">
-  
-    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
+-->
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <% if (config.highlight.enable){ %>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
+  <% } %>
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -126,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/03/51nod-23/" data-id="cjegzida10001df1lt5rhe8k5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/03/51nod-23/" data-id="cjeh761650001gy1lizp1qq2n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
@@ -255,23 +259,22 @@
 
 <script src="/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.6.0/MathJax.js?config=TeX-AMS_HTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>
