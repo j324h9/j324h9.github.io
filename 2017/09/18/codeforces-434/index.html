@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Codeforces Round 434 总结 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="果然又滚粗了，rank116。。。还好这场unrated了否则不知道要掉多少。 A题是个无聊题，题意是求在一个字符串中插入最少的空格，使得不存在连续三个字符是不全相同的辅音字母。O(len)贪心实在太显然了。 然而我居然被这题卡住了！我写了个很短的程序交上去，WA on Pretest 7。然后没查出错。这么短代码我怎么可能写得错？一定是我又看错题了。然后把题又仔细读了两三遍，还是没问题，一脸懵逼">
+<meta name="keywords" content="总结,Codeforces">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces Round 434 总结">
+<meta property="og:url" content="http://yoursite.com/2017/09/18/codeforces-434/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="果然又滚粗了，rank116。。。还好这场unrated了否则不知道要掉多少。 A题是个无聊题，题意是求在一个字符串中插入最少的空格，使得不存在连续三个字符是不全相同的辅音字母。O(len)贪心实在太显然了。 然而我居然被这题卡住了！我写了个很短的程序交上去，WA on Pretest 7。然后没查出错。这么短代码我怎么可能写得错？一定是我又看错题了。然后把题又仔细读了两三遍，还是没问题，一脸懵逼">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-07T10:19:23.226Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Codeforces Round 434 总结">
+<meta name="twitter:description" content="果然又滚粗了，rank116。。。还好这场unrated了否则不知道要掉多少。 A题是个无聊题，题意是求在一个字符串中插入最少的空格，使得不存在连续三个字符是不全相同的辅音字母。O(len)贪心实在太显然了。 然而我居然被这题卡住了！我写了个很短的程序交上去，WA on Pretest 7。然后没查出错。这么短代码我怎么可能写得错？一定是我又看错题了。然后把题又仔细读了两三遍，还是没问题，一脸懵逼">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-codeforces-434" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/18/codeforces-434/" class="article-date">
+  <time datetime="2017-09-18T01:45:46.000Z" itemprop="datePublished">2017-09-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Codeforces Round 434 总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>果然又滚粗了，rank116。。。还好这场unrated了否则不知道要掉多少。</p>
+<p>A题是个无聊题，题意是求在一个字符串中插入最少的空格，使得不存在连续三个字符是不全相同的辅音字母。O(len)贪心实在太显然了。</p>
+<p>然而我居然被这题卡住了！我写了个很短的程序交上去，WA on Pretest 7。然后没查出错。这么短代码我怎么可能写得错？一定是我又看错题了。然后把题又仔细读了两三遍，还是没问题，一脸懵逼。这时候还是学弟cry752264997帮我调的，问题很简单，就是：<strong>加了空格以后忘记清空前面部分了！</strong></p>
+<p>这么短代码我都能写错，唉，我的智商呢。。。</p>
+<p>B题是个送分题，从题意到做法都很显然。用一个hash表或者STL的map维护每个子串的出现次数，我写的是STL的map。查询一个串时，把这个串的子串从map中扣掉，然后找出这个串最短的在map中count为0的子串，之后再加回去，就可以求出所有答案了。</p>
+<p>C题是个细节恶心题。这题和我给正睿OI出的NOIP模拟赛第一题《文件改名》有点类似之处，不过有区别。</p>
+<p>首先我们猜一个性质，答案等于名称错误的文件个数——每次改名一定可以把名称不是1～e的样例文件改成1～e，或者把名称不是e+1～n的非样例文件改成e+1～n。</p>
+<p>这个性质能否证明呢？我们试一下。</p>
+<p>假设1～e这些文件名没有占满，并且名称为e+1～n的文件中有样例文件，那么就可以把这个文件改名为1～e中的某个数。类似的，若e+1～n没占满并且1～e有非样例也可以改。</p>
+<p>如果不是这两种情况呢？假如1～e和e+1～n都没占满，那么1～n的文件名都是正确的。假如1～e没占满而e+1～n占满，那么e+1～n都是非样例，1～e只能都是样例，也是正确的。假如1～e占满而e+1～n没满，同样是正确的。因此这些情况只需要不断把除1～n外的名称的文件改名为正确的文件名（样例1～e，非样例e+1～n）即可。</p>
+<p>最后还有一种情况：1～n都满了，但有名称错误的文件。这种情况你会发现第一步只能把某个文件名改成除e+1～n外的文件名，并不满足性质——事实上这是唯一的反例情况。这种情况下要多进行1次改名：先把某个名称错误的文件改名为一个随机字符串，这样1～n就不满了，可以用之前的方式解决了。</p>
+<p>这题写起来很烦，当然也有可能是我比较菜鸡。</p>
+<p>D题直接暴露了我构造水平低的事实。</p>
+<p>这题我考场上先猜了个结论答案是每个连通块ceil(|E|/2)的和，之后想能不能删一个点，然后发现删完以后图可能分成若干个不连通的块，就不会了。。。又脑补了一会儿DFS树（这东西我都想到了居然还能错过正解。。。）和欧拉回路啥的，也没推出好东西，感觉又是什么构造神题就扔一边了。</p>
+<p>结果考完发现又是全世界AC，完全不知道我在想啥。</p>
+<p>既然我推出的结论有连通块这个东西，那就说明生成树（尤其是DFS树）很有可能就是突破口啊，为啥就不继续想下去呢？挺服自己的智商的。对每个连通块DFS搞个生成树，然后从下往上删V。先考虑最下面一层的每个叶结点v，如果deg(v)为偶数就把v的所有出边两两配对消掉（v成为孤立点离开连通块），否则把v关联的非树边两两配对消掉。考虑再上面一层的叶结点v，如果deg(v)为偶数就把v的所有出边两两配对消掉，否则把v关联的非树边以及连向子结点的边两两配对消掉。重复这个操作，那么做到第i（i&gt;1）层时，只可能剩下层数不超过i的点，做到第1层（根）时，由于没有父边可以消，所以最后最多可以剩下2个点1条边。</p>
+<p>而且这题我以前在BZOJ见过一个不用输出方案的版本，我当时还推出结论A掉了！怎么做过的题都能忘……唉，想想NOI D1T3、D2T2一题我做过类似的一题我出过类似的，结果我两题都没做出来，加起来才44分。退役了我还是这么逗逼。</p>
+<p>E题O(nlog^2n)的做法还是比较常规的，可惜由于时间不够并没有写出来。</p>
+<p>考虑z[a]=∑r(a,b)，其中r(a,b)=∑[x∈sub(b)][rank(x)≤rank(a)]。如果没有rank(x)≤rank(a)这个条件那么非常简单，只需查a到根的路径上r的和就可以了。</p>
+<p>有rank(x)≤rank(a)以后仍然不难。一开始我尝试转化这个式子无果，之后就考虑能不能动态加点，发现可以。做法是按照rank从小到大把点一层一层加到树中，同时维护R(x)为x的下属个数；加入rank(x)=i的所有点之后，计算当前满足rank(x)=i的点x的z[x]值，它等于z的上级到根的链上所有点b的R(b)之和。</p>
+<p>加入点x：将x的上级到根的路径上所有点的R(x)增加1。</p>
+<p>查询x的答案：求x的上级到根的路径上所有点的R(x)之和。</p>
+<p>这两个操作容易用树链剖分+BIT维护。</p>
+<p>至于这题是否存在更优复杂度算法我也不知道……不过O(nlog^2)已经可以过了。</p>
+<p>这题我在手机上写完的时候已经结束了，考后我把写完的程序交上去，TLE on 21。后来上电脑查错，发现n=500000的随机数据随便跑出来，然而n=500000的链根本跑不出来。随后发现我的树剖写炸了，top[son[i]]=top[i]打成了top[son[i]]=son[i]……</p>
+<p>这次CF的5题我想出4题，过了3题。感觉CF好难啊，过不去Pretest的时候让人非常手足无措，不一定能查得出来，进而影响整场的心态。上次B、C看错题，这次A愚蠢地漏写了一个东西。以及我到现在还是不怎么会构造题，CodeM已经死于构造题了，CF又死于构造题，真是无语。OI已经考挂退役了，CF再打不好我就真的很绝望了。</p>
+<p>求高手指点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/18/codeforces-434/" data-id="cjegziddx000qdf1lw2cf6605" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/21/lydsy-1029/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LYDSY P1029 题解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/07/codeforces-433/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Codeforces Round 433 总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

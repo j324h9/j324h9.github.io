@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>NOI2017滚粗记 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="由于省队名额让人，只好以同步赛参加NOI2017。本以为从NOI2016到现在过了一年，我的水平应该进步不少，就算拿不到前3名，起码应该比去年排名高吧。然而最后的结果差到连我自己都不敢相信。 Day 1 以一种能拿前几名的心态开了题。 T1，目测线段树裸题，好的，开始码。 一开始码的时候没有仔细想，一开始只开了 \(10^6/32\) 的线段树，然后看下数据范围改成 \(10^6\) 的线段树。处">
+<meta name="keywords" content="酱油记,NOI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOI2017滚粗记">
+<meta property="og:url" content="http://yoursite.com/2017/07/21/noi2017/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="由于省队名额让人，只好以同步赛参加NOI2017。本以为从NOI2016到现在过了一年，我的水平应该进步不少，就算拿不到前3名，起码应该比去年排名高吧。然而最后的结果差到连我自己都不敢相信。 Day 1 以一种能拿前几名的心态开了题。 T1，目测线段树裸题，好的，开始码。 一开始码的时候没有仔细想，一开始只开了 \(10^6/32\) 的线段树，然后看下数据范围改成 \(10^6\) 的线段树。处">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-07T08:16:19.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOI2017滚粗记">
+<meta name="twitter:description" content="由于省队名额让人，只好以同步赛参加NOI2017。本以为从NOI2016到现在过了一年，我的水平应该进步不少，就算拿不到前3名，起码应该比去年排名高吧。然而最后的结果差到连我自己都不敢相信。 Day 1 以一种能拿前几名的心态开了题。 T1，目测线段树裸题，好的，开始码。 一开始码的时候没有仔细想，一开始只开了 \(10^6/32\) 的线段树，然后看下数据范围改成 \(10^6\) 的线段树。处">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-noi2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/21/noi2017/" class="article-date">
+  <time datetime="2017-07-21T15:48:39.000Z" itemprop="datePublished">2017-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NOI2017滚粗记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于省队名额让人，只好以同步赛参加NOI2017。本以为从NOI2016到现在过了一年，我的水平应该进步不少，就算拿不到前3名，起码应该比去年排名高吧。然而最后的结果差到连我自己都不敢相信。</p>
+<h3 id="day-1">Day 1</h3>
+<p>以一种能拿前几名的心态开了题。</p>
+<p>T1，目测线段树裸题，好的，开始码。</p>
+<p>一开始码的时候没有仔细想，一开始只开了 <span class="math inline">\(10^6/32\)</span> 的线段树，然后看下数据范围改成 <span class="math inline">\(10^6\)</span> 的线段树。处理位运算的细节有点多，开场1h左右才敲完。</p>
+<p>接着从第二个样例开始挂，开始狂输出调试语句，发现好多SB错误。</p>
+<p>改掉一堆错误还是过不去后两个样例，当时就有点慌，写了个暴力来对拍。拍一下结果暴力RE了，想了想好像会爆负。。。就造只加的数据，然后一个错都拍不出。</p>
+<p>这下慌了。。。</p>
+<p>再想想觉得只有可能是减的时候挂了，就仔细查了减的那段代码，发现果然有个地方爆了。</p>
+<p>调过所有样例已经2h过去了，紧张。</p>
+<p>T2目测链表+hash裸题，看完就开始码，码得很顺利，也没出什么错（flag），花1h过完样例。</p>
+<p>过完样例之后发现样例5开-m32要跑1s+，感觉过不了最大的点，要卡成80了。想了想决定等我搞完T3再回来优化一波常数。</p>
+<p>剩2h点开了T3。。。连续三年NOI D1T3都是读入O(1)的题。。。</p>
+<p>一开始以为是求全局最大子矩形，觉得不能做，再看题发现是靠边的，那就变成确定每列的高度了，貌似不难。</p>
+<p>我的想法是，如果要求那个玩意，就要用一个单调栈。那么能不能状压单调栈呢？</p>
+<p>发现好像可以，而且只要状压2sqrt(K)段的样子。。。然后就觉得N&lt;=1000，K&lt;=10的稳了，应该离正解不远了。</p>
+<p>然后想这个东西怎么优化，能不能换一种记状态的方式减少状态数？脑洞了各种奇奇怪怪的idea，总觉得这东西似乎只有O(K)的状态是有用的，但是无论如何也yy不出来。。。尝试打表找规律以及验证一些记状态方法的状态数，一无所获。</p>
+<p>然后还想容斥，枚举哪些区间会爆掉限制，用个DP来搞。结果转成这样还得记单调栈，也不行。。。</p>
+<p>于是2h都没想出来。。。唉。。。绝望啊。。。</p>
+<p>最后交了40分暴力，感觉上不了金牌线了。</p>
+<p>期望得分：100+80+40=220</p>
+<p>去年Day1都有247。。。幸亏早生一年。</p>
+<p>后来大家说T3和UNR D2T1撞题，想想发现还真是。。。人家学的是OI，我学的是什么？暴力？</p>
+<p>出成绩，和期望一样220。全世界都会T3我不会，一堆人A了T3我只有40。matthew99，fateice，RXDoi都是292，我220。pyz5715，fjzzq2002，victbr也都比我高分。</p>
+<p>T2也是什么鬼，全世界卡常，别人92~100我80，人傻自带大常数我也是没救。</p>
+<p>估计了下我的排名只有30+，比去年还糟糕。</p>
+<p>看起来想了一大堆思路，然而从头到尾思路都是从左到右确定每个高度，压根没想到枚举最小值的位置DP！而且UNR我还做过！</p>
+<p>想到UNR D2T1以后很快就想出70分做法，随后就想到100分做法了。简直日了狗了，考场上一直提示自己思路要广，也确实挣扎了很久，却怎么也跳不出思路的第一步。</p>
+<p>晚上回去把T3的正解打出来了。</p>
+<p>心情很不好。</p>
+<p>为什么这么简单的一个DP我就是想不到。</p>
+<p>为什么最大子矩形我没有除了单调栈和容斥以外的别的想法。最土的办法都没有想到。</p>
+<p>枚举第一个最小值在什么位置，求出靠底边的最大子矩形，然后沿最小值位置分开递归下去。</p>
+<p>这个可能我高一的时候都会吧。</p>
+<p>状压单调栈完全没有优化的余地，我却想了很久怎么优化。</p>
+<p>为什么做UNR的时候我都懂这个道理，在考场上就忘了。</p>
+<p>白丢60分。</p>
+<p>我的脑子去哪了？</p>
+<p>我真的是学OI的吗？</p>
+<p>曾经以为我学了这么久OI，面对题目必有高论。</p>
+<p>然而真正在题目面前，我感受到了自己是多么无力。</p>
+<p>看看周围的人，没有一个人像我这么SB，唯独我SB了。</p>
+<h3 id="day-2">Day 2</h3>
+<p>由于Day 1挂惨，想Day 2翻盘上500，不切实际地定了Day2 280的目标。</p>
+<p>带着一种渴望翻盘的心情开了题。</p>
+<p>T1看完题目就大致会做了，2^d暴力枚举x的状态2-SAT。</p>
+<p>决定先切掉T1再说。不知道为啥感觉有点难写，写了1.5h。</p>
+<p>然后造了个极限数据测，然而要跑1s+，过不了。不过至少有90分。</p>
+<p>然后简单写了个check测了下样例，一开始check写错以为样例过了，后来故意把out改错发现check还是输出OK，才发现check写错了。改完以后样例挂了，就改了改过了样例。</p>
+<p>这时候过了2h，又有点紧张了。</p>
+<p>T2看完以后感觉很可做。</p>
+<p>然后开始想，觉得这么多限制、暴力都打不出来的题总得找点贪心结论出来。。。（怎么一开始就没想网络流呢？好气啊</p>
+<p>一开始想贪心，想了一会儿的结论发现很迷。。。</p>
+<p>不对，再想结论，嗯，似乎是推出了正确的引理，可是半点用处都没有。。。</p>
+<p>半个多小时过去了还是没推出结论。考试时间过半，不过还是一直告诉自己，要冷静。</p>
+<p>冷静的结果是我想手玩一会儿样例，发现不对？</p>
+<p>然后看样例解释发现，妈呀！题目理解错了。。。原来不是每次-x，而是变质的部分是确定的。。。md浪费了一个小时。。。</p>
+<p>接着发现原先想的结论都是错的，继续想。</p>
+<p>想了一会儿感觉好像还是可以贪心的，然而有第一次+s的限制一时不知道怎么处理。由于当时只想AC，连部分分都没想打。</p>
+<p>接着又开始想别的思路，想想发现费用流好像可以做？</p>
+<p>只剩2h-，然而我还剩两个题写都没开始写，于是我又不淡定了，</p>
+<p>接着开始写费用流，写完以后过了样例1，样例2根本跑不出来。输出了下中间结果比对了下好像是对的。</p>
+<p>然后想优化费用流，想了一种思路以后发现有问题，叉掉了。。。</p>
+<p>又想贪心，然而不知道哪个地方想错了，都贪不对。</p>
+<p>剩一个多小时的时候很慌，赶紧去打了T3的20分暴力，还有20分也不难只是有点难写就先放着，回来继续想。</p>
+<p>当时十分紧张，感觉要是想不出来就GG了，结果越紧张越想不出来。大概浪了半个小时决定开始从头分析建图。</p>
+<p>于是最后半个小时终于有了思路，把图反过来建，这样所有有费用的边都和源点相连，这样模拟费用流就是贪心了。</p>
+<p>然而时间不够了，具体的贪心细节来不及想清楚，只好放弃。折腾了快三个小时交的还是暴力费用流。</p>
+<p>又想回头打T3的另外20分，但根本来不及，也只好放弃。</p>
+<p>期望得分：(90<sub>100)+(40</sub>60)+20=150~180</p>
+<p>出来发现全世界都会T2的100分或者88分，大家都能上200。。。然后immortalCO说T3动态凸包可以A。。。绝望了。。。</p>
+<p>等成绩。</p>
+<p>本以为出成绩还能给我点惊喜，没想到等来的却是一个意外。</p>
+<p>90+4+20=114。</p>
+<p>T1不是TLE而是WA了两个点？？</p>
+<p>T2挂成4分？？！</p>
+<p>完了，这下真的只剩Ag分数了。身败名裂。</p>
+<p>两天总分334。之前从来没有输得这么惨过，没想到这种事情竟然发生在我高二的NOI上。</p>
+<p>真的绝望了。</p>
+<p>在QQ群里听说Au线418？那我加上笔试434是不是要成为非集训队金牌呢？惨啊。</p>
+<p>群里出榜，看第一页，发现25名是400-分。。。等了好久出了第二页，然后我惊讶地发现。。。</p>
+<p>集训队线436，如果加上A队我439，刚好超过集训队线一点点，大概46~47名吧。。。感动。</p>
+<p>回去调题。</p>
+<p>T1发现我居然数组没清空？这居然只挂10分？</p>
+<p>T2发现我答案没开64位整数以及每天的最后一条边忘了把边权设为剩余库存，改完就60分了。挂成这样居然能过样例1和样例2的一部分，还能有4分让我不至于掉出集训队线，真是喜闻乐见。</p>
+<p>继续推了一会儿T2费用流，发现我考场上SB地多建了一层点。把图反过来建再去掉这一层点就直接变成喜闻乐见的贪心模型了。只想了十几分钟，写只要不到半小时吧。</p>
+<p>后面再把图转了一下，用线段树优化流就A了。</p>
+<p>本来考场上很简单的80分算法，却被我硬生生丢掉了20，又挂成了4分。</p>
+<p>我的脑子去哪里了？</p>
+<p>这个思想我在校内训练出过不止一次的。</p>
+<p>为什么我考场上就是没想出来？</p>
+<p>我又问了一次自己，我真的是学OI的吗？</p>
+<p>T2我考场上完全应该得到至少80分的。</p>
+<p>然而大家都拿到了，我没有。</p>
+<p>也许我考场上不是在想题，是在挣扎。</p>
+<p>害怕自己想不出来，越想越紧张。</p>
+<p>结果越挣扎越出不来。</p>
+<p>越挣扎陷越深。</p>
+<p>这时，我才真正感受到心态有多么重要。</p>
+<p>心态毁了我一整场比赛。</p>
+<p>可是，又该怎么办呢？</p>
+<h3 id="总结">总结</h3>
+<p>总结这次NOI的情况，就是：一试脑抽，损失60分，二试脑抽+心态爆炸+写挂66分，总共损失100+分，最后名次十分惨淡。</p>
+<p>一方面，我从高一到现在几乎没有进步，甚至退步。平时看起来都在努力，但颓的时间太多，而别人的努力比自己多得多。</p>
+<p>另一方面，我总以为过了这一年进步很大，考场上总以一种拿前3的目标去打，然后越想不出来，就越急，越急，思路就越乱。比如这次D2T2，参数很多，如果思路急是一定不可能想清楚的。但我由于一开始看错题浪费一个小时，导致只剩两小时左右时就紧张了，思路开始混乱。其实考场上我已经想到了优化费用流，如果我冷静下来，得到80分算法完全没有问题的。这次NOI让我第一次感受到，考场心态真的很重要。</p>
+<p>这次NOI没有一题是我得心应手的，暴露了我的实力和心态方面的诸多问题。可以说是IOI前的一次教训。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/21/noi2017/" data-id="cjegzidgp001vdf1lwxyxgrt8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NOI/">NOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/25/ioi2017/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          退役之战——IOI2017
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/15/fjtrain2017/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">FJ省队集训2017滚粗记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

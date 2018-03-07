@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>NOI2015 荷马史诗 题解 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="题目描述 http://uoj.ac/problem/130 解法分析 由于串不能有前缀包含关系，可以构造 Trie 树来解决此问题，这样结点深度可以用来表示串长. 难点在于如何构造才能使得解最优，需要通过对问题的深入分析. 详细题解 问题转化为构造一个含 \(n\) 个叶结点的 \(k\) 叉 Trie 树，给 \(n\) 个叶结点分配上权值 \(w_1,w_2,...,w_n\). 叶结点定义">
+<meta name="keywords" content="题解,NOI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOI2015 荷马史诗 题解">
+<meta property="og:url" content="http://yoursite.com/2016/06/25/noi2015-epic/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="题目描述 http://uoj.ac/problem/130 解法分析 由于串不能有前缀包含关系，可以构造 Trie 树来解决此问题，这样结点深度可以用来表示串长. 难点在于如何构造才能使得解最优，需要通过对问题的深入分析. 详细题解 问题转化为构造一个含 \(n\) 个叶结点的 \(k\) 叉 Trie 树，给 \(n\) 个叶结点分配上权值 \(w_1,w_2,...,w_n\). 叶结点定义">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T11:25:05.029Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOI2015 荷马史诗 题解">
+<meta name="twitter:description" content="题目描述 http://uoj.ac/problem/130 解法分析 由于串不能有前缀包含关系，可以构造 Trie 树来解决此问题，这样结点深度可以用来表示串长. 难点在于如何构造才能使得解最优，需要通过对问题的深入分析. 详细题解 问题转化为构造一个含 \(n\) 个叶结点的 \(k\) 叉 Trie 树，给 \(n\) 个叶结点分配上权值 \(w_1,w_2,...,w_n\). 叶结点定义">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-noi2015-epic" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/25/noi2015-epic/" class="article-date">
+  <time datetime="2016-06-25T06:31:45.000Z" itemprop="datePublished">2016-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NOI2015 荷马史诗 题解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目描述">题目描述</h2>
+<p>http://uoj.ac/problem/130</p>
+<h2 id="解法分析">解法分析</h2>
+<p>由于串不能有前缀包含关系，可以构造 Trie 树来解决此问题，这样结点深度可以用来表示串长. 难点在于如何构造才能使得解最优，需要通过对问题的深入分析.</p>
+<h2 id="详细题解">详细题解</h2>
+<p>问题转化为构造一个含 <span class="math inline">\(n\)</span> 个叶结点的 <span class="math inline">\(k\)</span> 叉 Trie 树，给 <span class="math inline">\(n\)</span> 个叶结点分配上权值 <span class="math inline">\(w_1,w_2,...,w_n\)</span>. 叶结点定义为子结点个数为 <span class="math inline">\(0\)</span> 的结点，这样就满足了对任意串 <span class="math inline">\(s_i\)</span>，不存在 <span class="math inline">\(j\ne i\)</span> 使串 <span class="math inline">\(s_i\)</span> 是 <span class="math inline">\(s_j\)</span> 的前缀（即 <span class="math inline">\(i\)</span> 的子树不含 <span class="math inline">\(i\)</span> 以外的任何结点）.</p>
+<p>记第 <span class="math inline">\(i\)</span> 个结点（即分配权值 <span class="math inline">\(w_i\)</span> 的结点）深度为 <span class="math inline">\(d_i\)</span>（根结点深度为 <span class="math inline">\(0\)</span>），则串的总长为 <span class="math display">\[W=\sum_{i=1}^n d_iw_i\]</span> 最长字符串的长度为 <span class="math display">\[H=\max\{d_i|i=1,2,...,n\}\]</span> 现在的任务是构造树 <span class="math inline">\(T\)</span>，使得 <span class="math inline">\(W\)</span> 最小的前提下 <span class="math inline">\(H\)</span> 最小.</p>
+<p>不难发现以下性质：</p>
+<p><strong>性质1</strong> 存在最优解 <span class="math inline">\(T\)</span>，使得对任意非叶结点 <span class="math inline">\(v\)</span>，满足 <span class="math inline">\(v\)</span> 的子结点个数在 <span class="math inline">\([2,k]\)</span> 内.</p>
+<p><strong>证明</strong> 反证法，假设存在非叶结点 <span class="math inline">\(v\)</span> 恰有 <span class="math inline">\(1\)</span> 个子结点 <span class="math inline">\(u\)</span>，则删掉 <span class="math inline">\(v\)</span>，把 <span class="math inline">\(v\)</span> 换成以 <span class="math inline">\(u\)</span> 为根的子树. 不妨设以 <span class="math inline">\(u\)</span> 为根的子树中所有叶结点集合为 <span class="math inline">\(V_u\)</span>，则 <span class="math inline">\(V_u\)</span> 中所有结点深度减少 <span class="math inline">\(1\)</span>，<span class="math inline">\(W\)</span> 的值变为</p>
+<p><span class="math display">\[W&#39;=\sum_{i\in V_u}(d_i-1)w_i+\sum_{i\not\in V_u}d_iw_i=\sum_{i=1}^nd_iw_i-\sum_{i\in V_u}w_i\]</span></p>
+<p>因任意 <span class="math inline">\(w_i&gt;0\)</span>，显然有 <span class="math inline">\(W&#39;&lt; W\)</span>，这样得到了更优解，矛盾.</p>
+<p>所以任意非叶结点 <span class="math inline">\(v\)</span> 的子结点至少有 <span class="math inline">\(2\)</span> 个，且由于 <span class="math inline">\(T\)</span> 为 <span class="math inline">\(k\)</span> 叉 Trie 树，子结点不超过 <span class="math inline">\(k\)</span> 个，故子结点个数在 <span class="math inline">\([2,k]\)</span> 内.</p>
+<a id="more"></a>
+<p><strong>性质2</strong> 存在最优解 <span class="math inline">\(T\)</span>，至多有 <span class="math inline">\(1\)</span> 个非叶结点的子结点个数不满 <span class="math inline">\(k\)</span> 个，且这个结点深度不小于其它任意非叶结点.</p>
+<p><strong>证明</strong> 类似性质1，假设存在 <span class="math inline">\(2\)</span> 个非结点 <span class="math inline">\(a\)</span>，<span class="math inline">\(b\)</span> 子结点个数小于 <span class="math inline">\(k\)</span>， <span class="math inline">\(b\)</span> 深度不小于 <span class="math inline">\(a\)</span>. 取 <span class="math inline">\(b\)</span> 的任意子结点 <span class="math inline">\(c\)</span>，将 <span class="math inline">\(c\)</span> 改成 <span class="math inline">\(a\)</span> 的子结点，设 <span class="math inline">\(a\)</span> 与 <span class="math inline">\(b\)</span> 的深度之差为 <span class="math inline">\(\delta\)</span>（<span class="math inline">\(\delta\ge 0\)</span>），则 <span class="math inline">\(W\)</span> 的值变为 <span class="math display">\[W&#39;=\sum_{i\in V_b}(d_i-\delta)w_i+\sum_{i\not\in V_u}d_iw_i=\sum_{i=1}^n d_iw_i-\delta\sum_{i\in V_u}w_i\]</span></p>
+<p><span class="math inline">\(H\)</span> 的值由原来的</p>
+<p><span class="math display">\[H=\max\{\max\{d_i|i\in V_u\},\max\{d_i|i\not\in V_u\}\}\]</span></p>
+<p>变为</p>
+<p><span class="math display">\[H&#39;=\max\{\max\{d_i-\delta|i\in V_u\},\max\{d_i|i\not\in V_u\}\}\]</span></p>
+<p>于是 <span class="math inline">\(W&#39;\le W\)</span>，<span class="math inline">\(H&#39;\le H\)</span>，不比原来的解差.</p>
+<p>不断将 <span class="math inline">\(b\)</span> 的子结点改成 <span class="math inline">\(a\)</span> 的子结点，每次得到的新的树 <span class="math inline">\(T&#39;\)</span> 都不比原来的树 <span class="math inline">\(T\)</span> 差，最后直到以下两种情况之一发生：</p>
+<ul>
+<li><p><span class="math inline">\(a\)</span> 有 <span class="math inline">\(k\)</span> 个子结点；</p></li>
+<li><p><span class="math inline">\(b\)</span> 恰有 <span class="math inline">\(1\)</span> 个子结点 <span class="math inline">\(c\)</span>，此时删掉 <span class="math inline">\(b\)</span> 用 <span class="math inline">\(c\)</span> 替换它；</p></li>
+</ul>
+<p>这样子结点个数至少减少 <span class="math inline">\(1\)</span>，如果仍有 <span class="math inline">\(2\)</span> 个子结点个数不满 <span class="math inline">\(k\)</span> 个的点，则重复操作，最后得到的树 <span class="math inline">\(T_0\)</span> 不比当前的 <span class="math inline">\(T\)</span> 差，且至多有 <span class="math inline">\(1\)</span> 个非叶结点的子结点树不满 <span class="math inline">\(k\)</span> 个.</p>
+<p>若最后子结点个数 <span class="math inline">\(k&#39;&lt; k\)</span> 个的结点为 <span class="math inline">\(a\)</span>，子结点满 <span class="math inline">\(k\)</span> 个的结点 <span class="math inline">\(b\)</span> 的深度大于 <span class="math inline">\(a\)</span> 的深度，则取 <span class="math inline">\(b\)</span> 的 <span class="math inline">\(k&#39;\)</span> 个子结点 <span class="math inline">\(c_1,c_2,...,c_{k&#39;}\)</span> 改成 <span class="math inline">\(a\)</span> 的子结点，同理可证新的 <span class="math inline">\(W\)</span> 值变小，即更优.</p>
+<p><strong>性质3</strong> 设 <span class="math inline">\(w_1\le w_2\le ...\le w_n\)</span> ，记 <span class="math inline">\(c=[(n-2)\bmod(k-1)]+2\)</span> ，存在最优解 <span class="math inline">\(T\)</span> 使叶结点 <span class="math inline">\(1,2,...,c\)</span> 的父结点为同一结点.</p>
+<p><strong>证明</strong> 由性质1和2，存在最优解 <span class="math inline">\(T\)</span> 恰有一个深度最大且子结点数为 <span class="math inline">\(c\)</span> 的结点 <span class="math inline">\(v\)</span>，考虑进行 <span class="math inline">\(c\)</span> 次操作，第 <span class="math inline">\(i\)</span>（<span class="math inline">\(1\le i\le c\)</span>） 次操作为：</p>
+<ul>
+<li>若 <span class="math inline">\(i\)</span> 的父结点不是 <span class="math inline">\(v\)</span>，则将 <span class="math inline">\(i\)</span> 与 <span class="math inline">\(v\)</span> 的任意编号大于 <span class="math inline">\(i\)</span> 的子结点 <span class="math inline">\(j\)</span> 交换.</li>
+</ul>
+<p>交换后的 <span class="math inline">\(H\)</span> 值不会变大，<span class="math inline">\(W\)</span> 值变为</p>
+<p><span class="math display">\[W&#39;=d_jw_i+d_iw_j+\sum_{i&#39;\ne i,i&#39;\ne j}d_{i&#39;}w_{i&#39;}=(d_i-d_j)(w_j-w_i)+\sum_{i=1}^n d_iw_i\]</span></p>
+<p>因为 <span class="math inline">\(d_i\le d_j\)</span>，<span class="math inline">\(w_j\ge w_i\)</span>，所以 <span class="math inline">\(W&#39;\le W\)</span>.</p>
+<p>因此进行完操作后结果不比原来劣，即必然存在叶结点 <span class="math inline">\(1,2,...,c\)</span> 的父结点为同一结点的最优解 <span class="math inline">\(T\)</span>.</p>
+<p>发现了这些性质以后，可以猜想一种贪心算法：</p>
+<ul>
+<li>每次将 <span class="math inline">\(w\)</span> 最小的 <span class="math inline">\(c=[(n-2)\bmod(k-1)]+2\)</span> 个结点合并成一个结点，令该结点的 <span class="math inline">\(w=\sum_{i=1}^c w_i\)</span>.</li>
+</ul>
+<p>接下来证明以下结论：</p>
+<p><strong>结论</strong> 设可重集 <span class="math inline">\(A=\{w_i\}\)</span> 构造的最优的树 <span class="math inline">\(T\)</span> 的 <span class="math inline">\(W=\sum_{i=1}^{|A|}d_iw_i\)</span> 的最小值为 <span class="math inline">\(W(A)\)</span>，记 <span class="math inline">\(c=[(|A|-2)\bmod(k-1)]+2\)</span> ，则 <span class="math display">\[W(A)=W(A-\{w_1,w_2,...,w_c\}+\{\sum_{i=1}^cw_i\})+\sum_{i=1}^cw_i\]</span> 其中 <span class="math inline">\(w_1\le w_2\le ...\le w_{|A|}\)</span>.</p>
+<p><strong>证明</strong> 由性质3，存在最优解 <span class="math inline">\(T\)</span> 使叶结点 <span class="math inline">\(1,2,...,c\)</span> 的父结点为同一结点 <span class="math inline">\(f\)</span>，将 <span class="math inline">\(f\)</span> 为根的子树合并成一个结点 <span class="math inline">\(f\)</span>，令其权值 <span class="math inline">\(w_f=w_1+w_2+...+w_c\)</span>，得到的新树为 <span class="math inline">\(T&#39;\)</span>.</p>
+<p>记 <span class="math inline">\(f\)</span> 的深度为 <span class="math inline">\(d_f\)</span>，则 <span class="math inline">\(T\)</span> 的权值为</p>
+<p><span class="math display">\[W=\sum_{i=1}^c(d_f+1)w_i+\sum_{i=c+1}^{|A|}d_iw_i\]</span></p>
+<p><span class="math inline">\(T&#39;\)</span> 的权值为</p>
+<p><span class="math display">\[W&#39;=d_f\sum_{i=1}^cw_i+\sum_{i=c+1}^{|A|}d_iw_i\]</span></p>
+<p>于是有 <span class="math inline">\(W&#39;=W-\sum_{i=1}^cw_i\)</span>，这说明可重集 <span class="math inline">\(A-\{w_1,w_2,...,w_c\}+\{\sum_{i=1}^cw_i\}\)</span> 可以构造出权值不大于 <span class="math inline">\(W&#39;\)</span> 的树，即</p>
+<p><span class="math display">\[W(A-\{w_1,w_2,...,w_c\}+\{\sum_{i=1}^cw_i\})\le W&#39;=W(A)-\sum_{i=1}^cw_i\]</span></p>
+<p>设可重集 <span class="math inline">\(A-\{w_1,w_2,...,w_c\}+\{\sum_{i=1}^cw_i\}\)</span> 构造出最优的树为 <span class="math inline">\(T&#39;\)</span>，权值为 <span class="math inline">\(W&#39;\)</span>. 将 <span class="math inline">\(T&#39;\)</span> 中权值为 <span class="math inline">\(\sum_{i=1}^cw_i\)</span> 的叶结点 <span class="math inline">\(f\)</span> 改成非叶结点，加入权值为 <span class="math inline">\(w_1,w_2,...,w_c\)</span> 的 <span class="math inline">\(c\)</span> 个子结点，得到树 <span class="math inline">\(T\)</span>，其权值为 <span class="math inline">\(W\)</span>，同理可得 <span class="math display">\[W=W&#39;+\sum_{i=1}^cw_i\]</span> 于是 <span class="math display">\[W(A)\le W(A-\{w_1,w_2,...,w_c\}+\{\sum_{i=1}^cw_i\})+\sum_{i=1}^cw_i\]</span> 综上，有 <span class="math display">\[W(A)=W(A-\{w_1,w_2,...,w_c\}+\{\sum_{i=1}^cw_i\})+\sum_{i=1}^cw_i\]</span> 由于当 <span class="math inline">\(|A|=1\)</span> 时，<span class="math inline">\(W(A)=0\)</span>，运用该结论，得到的算法如下：</p>
+<ul>
+<li>初始化 <span class="math inline">\(A=\{w_1,w_2,...,w_n\}\)</span>，<span class="math inline">\(W=0\)</span>；</li>
+<li>重复如下操作：</li>
+<li><ul>
+<li>设当前结点数为 <span class="math inline">\(n\)</span>，则 <span class="math inline">\(c=[(n-2)\bmod(k-1)]+2\)</span></li>
+</ul></li>
+<li><ul>
+<li>从 <span class="math inline">\(A\)</span> 中取出最小的 <span class="math inline">\(c\)</span> 个 <span class="math inline">\(w_1,w_2,...,w_c\)</span>，记 <span class="math inline">\(w=\sum_{i=1}^cw_i\)</span>，令 <span class="math inline">\(W\leftarrow W+w\)</span>，<span class="math inline">\(A\leftarrow A-\{w_1,w_2,...,w_c\}+\{w\}\)</span></li>
+</ul></li>
+<li>最后 <span class="math inline">\(W\)</span> 的值就是答案</li>
+</ul>
+<p>该算法只能解决第一个问题，即串的最小总长度，可以得到 <span class="math inline">\(40\)</span> 分.</p>
+<p>考虑如何最小化最大的串长，即树的深度 <span class="math inline">\(H\)</span>. 可以发现，考虑深度的情况下，将若干个结点组成的子树合并成一个结点时，该结点本身具有一定的高度，所以我们需要对结点的值进行扩展定义.</p>
+<p>对一个叶结点 <span class="math inline">\(i\)</span>，定义它的值为一个二元组 <span class="math inline">\((w_i,h_i)\)</span>，<span class="math inline">\(w_i\)</span> 为权值，<span class="math inline">\(h_i\)</span> 为高度（初始时，所有叶结点的 <span class="math inline">\(h_i=0\)</span>）；树的 <span class="math inline">\(W\)</span> 定义不变，<span class="math inline">\(H\)</span> 定义变为 <span class="math display">\[H=\max\{d_i+h_i|i=1,2,...,n\}\]</span> 同理仍可证明性质1和性质2成立，对于性质3，需定义以 <span class="math inline">\(w_i\)</span> 为第一关键字，<span class="math inline">\(h_i\)</span> 为第二关键字的偏序关系： <span class="math display">\[(w_1,h_1)&lt; (w_2,h_2)\Leftrightarrow w_1&lt; w_2\lor\begin{cases}w_1=w_2\\ h_1&lt; h_2\end{cases}\]</span> <span class="math display">\[(w_1,h_1)=(w_2,h_2)\Leftrightarrow \begin{cases}w_1=w_2\\ h_1=h_2\end{cases}\]</span> <span class="math display">\[(w_1,h_1)\le(w_2,h_2)\Leftrightarrow (w_1,h_1)&lt; (w_2,h_2)\lor (w_1,h_1)=(w_2,h_2)\]</span> 则性质3可以表示为：设 <span class="math inline">\((w_1,h_1)\le(w_2,h_2)\le...\le(w_c,h_c)\)</span>，记 <span class="math inline">\(c=[(n-2)\bmod(k-1)]+2\)</span> ，存在最优解 <span class="math inline">\(T\)</span> 使叶结点 <span class="math inline">\(1,2,...,c\)</span> 的父结点为同一结点.</p>
+<p><strong>证明</strong> 记深度最大的子结点数的结点为 <span class="math inline">\(v\)</span>，以下只证明如果叶结点 <span class="math inline">\(i\)</span> 的父结点不是 <span class="math inline">\(v\)</span>，则将 <span class="math inline">\(i\)</span> 与 <span class="math inline">\(v\)</span> 子树中编号大于 <span class="math inline">\(i\)</span> 的结点 <span class="math inline">\(j\)</span> 交换，所得的解更优.（剩余部分见性质3证明）</p>
+<p>交换后，<span class="math inline">\(W\)</span> 的值变为 <span class="math display">\[W&#39;=d_jw_i+d_iw_j+\sum_{i&#39;\ne i,i&#39;\ne j}d_{i&#39;}w_{i&#39;}=(d_i-d_j)(w_j-w_i)+\sum_{i=1}^n d_iw_i\]</span> <span class="math inline">\(H\)</span> 的值由原来的 <span class="math display">\[H=\max\{d_i+h_i,d_j+h_j,\max\{d_{i&#39;}+h_{i&#39;}|i&#39;\ne i,i&#39;\ne j\}\}\]</span> 变为 <span class="math display">\[H&#39;=\max\{d_j+h_i,d_i+h_j,\max\{d_{i&#39;}+h_{i&#39;}|i&#39;\ne i,i&#39;\ne j\}\}\]</span></p>
+<p>（1）当 <span class="math inline">\(d_i&lt; d_j\)</span> 且 <span class="math inline">\(w_j&gt;w_i\)</span> 时，<span class="math inline">\(W&#39;&lt; W\)</span>；</p>
+<p>（2）当 <span class="math inline">\(d_i=d_j\)</span> 时，<span class="math inline">\(W&#39;=W\)</span>，<span class="math inline">\(H&#39;=H\)</span>；</p>
+<p>（3）当 <span class="math inline">\(d_i&lt; d_j\)</span> 且 <span class="math inline">\(w_j=w_i\)</span> 时，可得 <span class="math inline">\(h_j\ge h_i\)</span>，于是 <span class="math inline">\(d_j+h_j\ge d_j+h_i\)</span>，<span class="math inline">\(d_j+h_j&gt;d_i+h_j\)</span>，即 <span class="math inline">\(H&#39;\le H\)</span>.</p>
+<p>于是交换后的解不会比原来差.</p>
+<p>于是可以每次合并最小的 <span class="math inline">\(c\)</span> 个元素 <span class="math inline">\((w_1,h_1),(w_2,h_2),...,(w_c,h_c)\)</span>，合并后的新结点的权值和高度分别为 <span class="math display">\[w=w_1+w_2+...+w_c\]</span><span class="math display">\[h=\max\{h_1,h_2,...,h_c\}+1\]</span></p>
+<p>该定义满足上述结论，这里不加赘述.</p>
+<p>这样得到的最终算法如下：</p>
+<ul>
+<li>初始化 <span class="math inline">\(A=\{(w_1,0),(w_2,0),...,(w_n,0)\}\)</span>，<span class="math inline">\(W=0\)</span>；</li>
+<li>重复如下操作：</li>
+<li><ul>
+<li>设当前结点数为 <span class="math inline">\(n\)</span>，则 <span class="math inline">\(c=[(n-2)\bmod(k-1)]+2\)</span></li>
+</ul></li>
+<li><ul>
+<li>从 <span class="math inline">\(A\)</span> 中取出最小的 <span class="math inline">\(c\)</span> 个 <span class="math inline">\((w_1,h_1),(w_2,h_2),...,(w_c,h_c)\)</span>，记 <span class="math inline">\(w=\sum_{i=1}^cw_i\)</span>，<span class="math inline">\(h=\max\{h_i|i=1,2,...,c\}+1\)</span>，令 <span class="math inline">\(W\leftarrow W+w\)</span>，<span class="math inline">\(A\leftarrow A-\{(w_1,h_1),(w_2,h_2),...,(w_c,h_c)\}+\{(w,h)\}\)</span></li>
+</ul></li>
+<li>最后 <span class="math inline">\(A\)</span> 只剩下一个元素 <span class="math inline">\((w_0,h_0)\)</span>， <span class="math inline">\(W\)</span> 和 <span class="math inline">\(h_0\)</span> 的值就是答案.</li>
+</ul>
+<p>容易发现，除第一次外，每次均取出 <span class="math inline">\(k\)</span> 个元素，并加入 <span class="math inline">\(1\)</span> 个元素，故循环次数为 <span class="math inline">\(O(\frac{n}{k-1})\)</span>.</p>
+<p>每次循环实际上是 <span class="math inline">\(k+1\)</span> 次的删除与插入操作，即删除与插入的次数为 <span class="math inline">\(O(\frac{n(k+1)}{k-1})=O(n(1+\frac{2}{k-1}))\)</span>，当 <span class="math inline">\(k=2\)</span> 时，次数最大，为 <span class="math inline">\(O(n)\)</span>.</p>
+<p>使用排序或优先队列来模拟该操作，总复杂度为 <span class="math inline">\(O(n\log n)\)</span>，可以得到 <span class="math inline">\(100\)</span> 分.</p>
+<h2 id="总结">总结</h2>
+<p>本题是一个经典的贪心问题，贪心法往往证明比实现困难，需要深入分析问题的特殊性质才能解决.</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/25/noi2015-epic/" data-id="cjegzidgf001qdf1lhd17gbi5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NOI/">NOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/29/uoj-208/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          UOJ 208 UOIP十合一 口胡
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/09/apio2016/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">APIO2016酱油记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

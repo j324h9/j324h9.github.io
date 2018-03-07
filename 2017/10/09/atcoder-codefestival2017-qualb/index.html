@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>AtCoder CODE FESTIVAL 2017 qual B 总结 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="打了一局试试看，结果是过了前3题，第212名。感觉我的水平就到这了。 A：XXFESTIVAL 送分题，删掉S的最后8个字符输出。 B：Problem Set 送分题，将所有的D和T排序，然后枚举每种值x，如果存在一个值x使得满足D[i]=x的i的个数少于满足T[i]=x的i就是NO，否则YES。 C：3 Steps 稍微试一试，就会发现如果给出的图G是二分图，不管怎么加边都是二分图。 为什么呢？">
+<meta name="keywords" content="总结,AtCoder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AtCoder CODE FESTIVAL 2017 qual B 总结">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/atcoder-codefestival2017-qualb/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="打了一局试试看，结果是过了前3题，第212名。感觉我的水平就到这了。 A：XXFESTIVAL 送分题，删掉S的最后8个字符输出。 B：Problem Set 送分题，将所有的D和T排序，然后枚举每种值x，如果存在一个值x使得满足D[i]=x的i的个数少于满足T[i]=x的i就是NO，否则YES。 C：3 Steps 稍微试一试，就会发现如果给出的图G是二分图，不管怎么加边都是二分图。 为什么呢？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-07T10:07:38.392Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AtCoder CODE FESTIVAL 2017 qual B 总结">
+<meta name="twitter:description" content="打了一局试试看，结果是过了前3题，第212名。感觉我的水平就到这了。 A：XXFESTIVAL 送分题，删掉S的最后8个字符输出。 B：Problem Set 送分题，将所有的D和T排序，然后枚举每种值x，如果存在一个值x使得满足D[i]=x的i的个数少于满足T[i]=x的i就是NO，否则YES。 C：3 Steps 稍微试一试，就会发现如果给出的图G是二分图，不管怎么加边都是二分图。 为什么呢？">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-atcoder-codefestival2017-qualb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/09/atcoder-codefestival2017-qualb/" class="article-date">
+  <time datetime="2017-10-09T13:44:30.000Z" itemprop="datePublished">2017-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AtCoder CODE FESTIVAL 2017 qual B 总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>打了一局试试看，结果是过了前3题，第212名。感觉我的水平就到这了。</p>
+<h3 id="axxfestival">A：XXFESTIVAL</h3>
+<p>送分题，删掉S的最后8个字符输出。</p>
+<h3 id="bproblem-set">B：Problem Set</h3>
+<p>送分题，将所有的D和T排序，然后枚举每种值x，如果存在一个值x使得满足D[i]=x的i的个数少于满足T[i]=x的i就是NO，否则YES。</p>
+<h3 id="c3-steps">C：3 Steps</h3>
+<p>稍微试一试，就会发现如果给出的图G是二分图，不管怎么加边都是二分图。</p>
+<p>为什么呢？考虑两部为X,Y的二分图G，如果存在一条路径a-b-c-d，不妨设a∈X，b∈Y，c∈X，d∈Y，那么(a,d)也是跨X,Y两部的，所以G+(a,d)仍然是二分图。</p>
+<p>由于图G连通，对任意a∈X,b∈Y，存在一条路径a-v[1]-v[2]-...-v[k]-b，其中k为偶数。不难推出，边(a,v[1])(a,v[3])(a,v[5])...(a,v[k-1])(a,b)都是已有的或者可以加上的，也就是可以连成完全二分图。因此，当G为二分图（两部为X,Y）时，答案为|X||Y|-M。</p>
+<p>如果G不是二分图呢？不妨在完全二分图G上加一条边(u,v)，u,v∈X，那么对任意a∈X，只需任取b∈Y，可得到路径u-v-b-a，即(u,a)可加上；进而所有(x,a)都可以加上，其中x,a∈X且x≠a。对任意p,q∈Y且p≠q，存在路径p-u-v-q，所以(p,q)也是可以加上的，也就是可以连成完全图。因此，当G为非二分图时，答案为N(N-1)/2-M。</p>
+<h3 id="d101-to-010">D：101 to 010</h3>
+<p>讲一下这题我在考场上的奇葩经历吧。</p>
+<p>我一开始以为消除是顺序无关的，然后顺手一个反例11010111。之后想了想感觉奥妙重重的样子，唯一发现的性质是连续两个0把序列分成两个独立部分，之后就不太会了。不如打个表找找规律。</p>
+<p>我的打表方式是枚举n个数a[1],a[2],...,a[n]，然后构造一个串：a[1]个1，0，a[2]个1，0，……，a[n]个1，然后暴力打表观察规律。发现的一点是，当所有a[i]&gt;1时，答案是n-1+(a[1]-1)+(a[2]-2)+...+(a[n-1]-2)+(a[n]-1)-min{a[1]-1,a[2]-2,...,a[n-1]-2,a[n]-1}（*），如果a[1]=1或者a[n]=1似乎规律一样。如果中间出现a[i]=1不是很会搞，不过和1有关的操作就是把1某侧的数减1，然后和另一侧分开。这么一想，似乎可以DP，假设分界点都在1旁边，求一种最优的划分，想想觉得挺靠谱。</p>
+<p>写完以后喜闻乐见地WA了，之后发现我的做法的问题根本不是稍微改改能解决的，时间不够了，最后就没做出来。</p>
+<p>考后继续改这个DP，最后发现我的做法连（<em>）结论都是错的，对于串11011011011011011，（</em>）式的结果是7，但答案是8：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">0 11011011011011011</span><br><span class="line">1 10101011011011011</span><br><span class="line">2 01001011011011011</span><br><span class="line">3 01000101011011011</span><br><span class="line">4 01000010011011011</span><br><span class="line">5 01000010010101011</span><br><span class="line">6 01000010001001011</span><br><span class="line">7 01000010001000101</span><br><span class="line">8 01000010001000010</span><br></pre></td></tr></table></figure>
+<p>GG了。</p>
+<p>晚上继续想想，发现自己如同智障。</p>
+<p>仔细想想操作是个啥，把串按超过1个的0分成若干段，每段取出所有1连续段长度之后，一次操作相当于把两个相邻的数a,b变成a-1,1,b-1，如果a=1，那么变成1,b-1并且把a和左边分开。这么一看显然和1相关的变换可以放到最后做。</p>
+<p>而不和1相关的变换是顺序无关的，所以只要枚举哪些相邻数对做这个操作，之后给每个1确定一个方向就行了。从左到右DP一波，一边确定是否操作一边确定1的方向就好了。</p>
+<p>这样就A了。可惜这仍然是想复杂的做法。</p>
+<p>优秀的思路：根本不要提取连续段啥的（提取连续段这一步本身就是一个浪费），注意到把连续的操作序列提取出来，是01序列的一个划分，每个划分只有111...101或者101...111两种可能，直接DP划分就做完了。</p>
+<p>总结：</p>
+<p>不要啥题都只想游程编码！</p>
+<p>不要啥题都只想游程编码！</p>
+<p>不要啥题都只想游程编码！</p>
+<p>重要的话说三遍</p>
+<h3 id="epopping-balls">E：Popping Balls</h3>
+<p>这题我卡了一个上午。</p>
+<p>打表找规律除了找出前几行的规律以及发现是多项式以外没有别的结果。</p>
+<p>首先我们把删数转成加数，于是统计的是有多少个包含A个a，B个b的字符串S[0,a+b)，记A[i]为S[0,i)中A的个数，使得存在两个数s,t，对任意S[i]=b，都存在x∈{0,s,t}，A[i]≤x≤i。</p>
+<p>“存在两个数s,t”这样的条件直接做并不是很好做。观察了一下性质，区间[A[i],i]的左右端点都是递增的，所以判断是否存在s,t可以贪心选取最大的能覆盖第一个区间的s，类似地再选最大的t。然后就发现还是很难做。</p>
+<p>论思路不够广的危害性。</p>
+<p>可以贪心取最小的t，再选最小的s啊！显然也是对的。那么t就是最后一个b的位置i对应的A[i]。对于位置i∈[t,A+B)，显然A[i]≤t≤i，所以只需考虑S[0,t)的约束。同样地，s就是S[0,t)中最后一个b的位置i对应的A[i]。</p>
+<p>S[s,A+B)确定之后，S[0,s)也就确定了：S[0,s)只能是一段b接一段a，并且a、b的个数也是固定的。</p>
+<p>用f(x,y)表示S[0,t)包含x个a，y个b（x+y=t）时合法的S[0,t)有多少种，当S[x+y-1]=b时，S[x,x+y)可以随便放a和b（只要a不超过x个），S[0,x)也随之确定；S[t-1]=a的方案有f(x-1,y)种。于是f(x,y)=f(x-1,y)+C(y,0)+C(y,1)+...+C(y,a)，里面组合数的和显然可以前缀和O(1)算。</p>
+<p>于是我们可以枚举t，枚举x，那么S[0,t)的方案数为f(x,t-x)，S[t,A+B-t)包含了A-t-x个a，B-t+x个b，且S[A+B-t-1]=a，故方案数为C(A+B-1,A-t-x-1)；S[A+B-t,A)是全a的。因此所有t,x的f(x,t-x)*C(A+B-1,A-t-x-1)的和就是答案了。</p>
+<p>可能有更厉害的做法。</p>
+<h3 id="flargest-smallest-cyclic-shift">F：Largest Smallest Cyclic Shift</h3>
+<p>这题我卡了一个下午，并且做法依赖于猜想。</p>
+<p>同样各种打表找规律。一开始看X=0的部分，以b=5为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bbbbb</span><br><span class="line">bbbbbc</span><br><span class="line">bbbcbbc</span><br><span class="line">bbcbbcbc</span><br><span class="line">bbcbcbcbc</span><br><span class="line">bcbcbcbcbc</span><br><span class="line">bcbcbcbcbcc</span><br></pre></td></tr></table></figure>
+<p>感觉c近似于b的“等分点”，不过是上取整的位置。</p>
+<p>猜想第i个c前面b的个数为ceil(Yi/Z)，并验证了X=0，Y,Z≤10的数据，正确。</p>
+<p>继续看X=1的部分，规律非常显然，1个a，然后Z个c，然后Y个b。</p>
+<p>继续看X=2的部分。就没那么显然了，以b=3为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ababb</span><br><span class="line">abbbac</span><br><span class="line">acbacbb</span><br><span class="line">acbbbacc</span><br><span class="line">accbaccbb</span><br><span class="line">accbbbaccc</span><br><span class="line">acccbacccbb</span><br></pre></td></tr></table></figure>
+<p>好像一点也不规律啊，那么分析一波吧。a把串分成了两部分S[1],S[2]：aS[1]aS[2]，这个串需要满足什么性质呢？</p>
+<p>aS[1]aS[2]≤aS[2]aS[1]，即S[2]≥S[1]。</p>
+<p>这就能解释上面的现象了：当Z为奇数时，S[1]最多包含(Z-1)/2个c，在此条件下，S[2]的c比S[1]多，所以S[1]可以在c后面加所有b，仍满足S[1]&lt;S[2]；当Z为偶数时，S[1]和S[2]可以均包含Z/2个c，在此条件下，S[1]的b不能比S[2]多，于是S[1]只能包含floor(Y/2)个b。</p>
+<p>这么看来X=2的规律也找出来了，X=3呢？</p>
+<p>光看一组X=3,Y=5,Z=4的答案就已经够头疼了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acbbaccacbbb</span><br></pre></td></tr></table></figure>
+<p>a分成的三段，长度分别为3,2,4，b的个数分别为2,0,3，c的个数分别为1,2,1，啥单调性都没。</p>
+<p>观察了很久，猜了一些结论，a分成的每一段（由b,c构成的字符串）满足：</p>
+<p>1、所有c在所有b前面；（猜到这个结论时，我试着考虑如何确定每组中b,c的个数，结合打表找规律猜到以下结论）</p>
+<p>2、c的个数为[Z/X]或[Z/X]+1；（[x]表示floor(x)）</p>
+<p>3、当c的个数为[Z/X]时，b的个数为[Y/(X - Z mod X)]或[Y/(X - Z mod X)+1]；</p>
+<p>4、当c的个数为[Z/X]+1时，没有b。</p>
+<p>虽然不会证……</p>
+<p>于是可以认为串由X个这样的元件构成：（1）1个a、[Z/X]个c、[Y/(X - Z mod X)]个b；（2）1个a、[Z/X]个c、[Y/(X - Z mod X)]+1个b；（3）1个a、[Z/X]+1个c。</p>
+<p>用1、2、3表示三种元件，得到一个新的长度为X的串，由于每段的开头是唯一的最小字符a，故原串是最小的循环表示等价于新串是最小的循环表示。</p>
+<p>这样就可以递归下去做了，递归边界是X,Y,Z至少有一个为0。</p>
+<p>由于每次递归，X+Y+Z至少减少1，并且每次递归处理的复杂度O(X+Y+Z)，所以总复杂度为O((X+Y+Z)²)。可能有更低的上界。</p>
+<p>终于做完了……虽然结论都是靠观察猜的……</p>
+<p>F题似乎也有很厉害的做法？在SD_le的blog上看到一种神奇的做法：</p>
+<p>先把所有字母放到一个multiset<string>里，每回取出最小的字符串和最大的字符串拼在一起放回去，直到只剩一个字符串，输出。</string></p>
+<p>（原文链接：http://www.cnblogs.com/ezyzy/p/7641305.html）</p>
+<p>这个做法我也不会证明。</p>
+<p><strong>UPD：wxh教我F题可以用KMP直接DP，我居然没想到。。。</strong></p>
+<p>这次的后三题感觉都是妙题啊，每个题我都卡了好久。可是大家都会，并且都是考场两小时全都搞出来的。所以其实题没有那么妙……？</p>
+<p>那一定是我太菜了啊。</p>
+<p>技不如人，甘拜下风。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/09/atcoder-codefestival2017-qualb/" data-id="cjegzidcq000gdf1lucjglhas" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/15/codeforces-440/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Codeforces Round 440 总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/04/51nod-29/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">51nod算法马拉松29总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

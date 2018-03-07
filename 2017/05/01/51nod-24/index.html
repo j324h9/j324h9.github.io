@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>51nod算法马拉松24 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="唉……搞了这么久OI还是只会暴力打打，没救了…… 最近没有一场比赛打得爽，互测Round 5 GG，校内训练GG，Codechef GG，省选GG。本来想打打51nod出点气，结果TM又崩了。。。 51nod被两道码农数据结构恶心了一脸（应该是我太弱），F题写了个 \(O(n\log^2n)\) 的东西被卡常数卡内存，然后才发现做复杂了。最后。。。被9min绝杀，#11滚粗。。。真是不爽。 以下是">
+<meta name="keywords" content="酱油记,51nod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="51nod算法马拉松24">
+<meta property="og:url" content="http://yoursite.com/2017/05/01/51nod-24/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="唉……搞了这么久OI还是只会暴力打打，没救了…… 最近没有一场比赛打得爽，互测Round 5 GG，校内训练GG，Codechef GG，省选GG。本来想打打51nod出点气，结果TM又崩了。。。 51nod被两道码农数据结构恶心了一脸（应该是我太弱），F题写了个 \(O(n\log^2n)\) 的东西被卡常数卡内存，然后才发现做复杂了。最后。。。被9min绝杀，#11滚粗。。。真是不爽。 以下是">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T13:43:29.113Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="51nod算法马拉松24">
+<meta name="twitter:description" content="唉……搞了这么久OI还是只会暴力打打，没救了…… 最近没有一场比赛打得爽，互测Round 5 GG，校内训练GG，Codechef GG，省选GG。本来想打打51nod出点气，结果TM又崩了。。。 51nod被两道码农数据结构恶心了一脸（应该是我太弱），F题写了个 \(O(n\log^2n)\) 的东西被卡常数卡内存，然后才发现做复杂了。最后。。。被9min绝杀，#11滚粗。。。真是不爽。 以下是">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-51nod-24" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/01/51nod-24/" class="article-date">
+  <time datetime="2017-05-01T06:25:17.000Z" itemprop="datePublished">2017-05-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      51nod算法马拉松24
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>唉……搞了这么久OI还是只会暴力打打，没救了……</p>
+<p>最近没有一场比赛打得爽，互测Round 5 GG，校内训练GG，Codechef GG，省选GG。本来想打打51nod出点气，结果TM又崩了。。。</p>
+<p>51nod被两道码农数据结构恶心了一脸（应该是我太弱），F题写了个 <span class="math inline">\(O(n\log^2n)\)</span> 的东西被卡常数卡内存，然后才发现做复杂了。最后。。。被9min绝杀，#11滚粗。。。真是不爽。</p>
+<p>以下是本人参加51nod算法马拉松24的滚粗过程。</p>
+<p>开场看题，A一开始没懂，跳过，看B。</p>
+<p>B一开始猜贪心结论，每个尽量往后选，然后随手叉掉了。看 <span class="math inline">\(n\le 20\)</span> 奥妙重重的样子，似乎暴力状压DP可过。</p>
+<p>于是10min+的时候把B题过了。</p>
+<p>C一开始以为是丧题，感觉数据范围这么大一定有什么性质。先猜足够大的图一定有解，然后发现死活没法把一个格子取反，才发现怎么弄xor和都是0。。。</p>
+<p>于是猜想足够大的图有偶数个1就行了。为了验证这个规律，写了个暴力高斯消元观察规律。。。好像确实是这样2333</p>
+<p>然后特判了 <span class="math inline">\(n=1\)</span>、<span class="math inline">\(m=1\)</span>、<span class="math inline">\(n=m=2\)</span> 的情况就切掉了C题，大概30min+？</p>
+<p>D目测套路题。。。推下式子 <span class="math inline">\(\sum_{i=1}^n\sum_{j=i+1}^n\sum_{k=1}^{j-i+1}sum_{i,j,k}\)</span>，<span class="math inline">\(sum_{i,j,k}\)</span> 为区间 <span class="math inline">\([i,j]\)</span> 前 <span class="math inline">\(k\)</span> 大和，再推一下变成 <span class="math display">\[\sum_{i=1}^n\sum_{j=i+1}^n\sum_{k=i}^ja_k\cdot rank_{i,j}(a_k)=\sum_{i=1}^n\sum_{j=i+1}^n\sum_{k=i}^ja_k\sum_{t=i}^j[a_t\le a_k]\]</span></p>
+<p><span class="math inline">\(rank_{i,j}(x)\)</span> 表示 <span class="math inline">\(x\)</span> 是 <span class="math inline">\([i,j]\)</span> 里面第几小的，假设所有数互不相同。于是交换下求和顺序 <span class="math display">\[\sum_{k=1}^na_k\sum_{t=1}^n[a_t\le a_k] (\sum_{l=1}^{\min\{k,t\}}\sum_{r=\max\{k,t\}}^n1)=\sum_{k=1}^na_k\left[\sum_{t=1}^k[a_t\le a_k]t(n-k+1)+\sum_{t=k+1}^n[a_t\le a_k] (n-t+1)k\right]\]</span></p>
+<p>两个和式BIT搞搞就 <span class="math inline">\(O(n\log n)\)</span> 做完了。然后在1h左右的时候过掉了。。。</p>
+<p>接着开E。然后就进入了SB时间。。。一开始想直接弄个DFS序然后按深度奇偶性分成两个序列，接着发现操作3的LCA询问不会做。然后感觉LCA的条件很不好搞，似乎用距离来做更好做一些？于是作死时间开始。。。<span class="math inline">\(dist(a,b)=dep(a)+dep(b)-2\cdot dep(LCA(a,b))\)</span>，通过构造边权使得 <span class="math inline">\(dep(a)=a\)</span>，然后变成询问某点到所有黑点的距离和。接着继续作大死。。。树分治一波看看能不能搞出来，接着脑补了好久的树分治发现并不会做= =</p>
+<p>浪费了好久，回头考虑别的做法。对于每个询问，如果把 <span class="math inline">\(\sum_{i=1}^nLCA(i,x)\)</span> 换成 <span class="math inline">\(\sum_{a=1}^n\sum_{x=1}^n[LCA(i,x)=a]\)</span> 呢？然后发现 <span class="math inline">\(\sum_{x=1}^n[LCA(i,x)=a]\)</span> 并不是 <span class="math inline">\(a\)</span> 子树内的点数。。。如果强行按子树内的点来算呢？那就把LCA和它的所有祖先全算上了。如果构造点权 <span class="math inline">\(v_a\)</span> 使得 <span class="math inline">\(a\)</span> 到祖先的所有点的点权和等于 <span class="math inline">\(a\)</span> 呢？</p>
+<p>好像问题简单了些。。。记 <span class="math inline">\(s(i)\)</span> 为 <span class="math inline">\(i\)</span> 子树内黑点数乘以 <span class="math inline">\(v_i\)</span>，查询只要查 <span class="math inline">\(x\)</span> 到根的路径上 <span class="math inline">\(s(i)\)</span> 的和。似乎可以强上树剖线段树，然而信息不是很好维护？又纠结了一会儿无果。</p>
+<p>看了下好多人过了A，就回去看A，终于正确理解题意了。列了几个方程发现 <span class="math inline">\(n\)</span> 偶数才有解，有解的时候外圈填 <span class="math inline">\(1,2,\cdots,n-1\)</span> 内圈列个方程，似乎直接解出来了= =然后就过了A。</p>
+<p>回去研究E树剖以后怎么维护线段树信息，但搞不清楚，于是准备第二天起来继续研究。</p>
+<p>……</p>
+<a id="more"></a>
+<p>之后的思路大概是，<span class="math inline">\(x\)</span> 到根的路径只要每个点加一个数就行了，然而 <span class="math inline">\(x\)</span> 子树就不会搞了- -感觉是取反，但取反以后和该怎么变？好像是 <span class="math inline">\(siz_i\cdot v_i-s(i)\)</span>。。。接着继续大作死。。。既然修改是子树，那么就是DFS序的一个区间，在线段树上对应 <span class="math inline">\(O(\log n)\)</span> 个节点。那么对一个节点取反的时候，它对应的树上节点的祖先都会受到影响，是不是会影响到这些节点的答案？然后顿时不会了。。。</p>
+<p>又瞎折腾了一堆奇奇怪怪的东西没折腾出来，真不知道自己的脑子哪去了。。。</p>
+<p>后来又想想暴力该怎么写，发现就是 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=pre[x];i&lt;=pos[x];i++)s[i]=siz[i]*v[i]-s[i];</span><br></pre></td></tr></table></figure></p>
+<p>感觉自己真是无比SB。。。初始化几个前缀和然后线段树维护一堆东西就行了。</p>
+<p>然后开始写，写的时候发现忘了考虑深度的奇偶性这一回事，又强行记了两倍东西，常数飞起，不过时限4.5s不虚。继续写，又发现我好像没维护单点的颜色，于是往上更新就更新不动了= =</p>
+<p>总之写完花了挺久的吧，代码还巨长。调过小样例以后测大样例不出意外地挂了，又花了好久调。。。把修改打出来看。。。已经中午了。。。</p>
+<p>才发现我误把 <span class="math inline">\(s(i)\)</span> 当成 <span class="math inline">\(i\)</span> 子树内的黑点数来更新祖先节点了，惨。</p>
+<p>又多写了好多代码终于在14:00前完事了。光这题就花了半天，我这代码能力恐怕是没救了？</p>
+<p>最后做F。</p>
+<p>一开始看到这种题觉得是个 <code>priority_queue</code> 练习题，先把最小的塞进去，每次 <code>pop</code> 掉最小的，把它能到的最小的以及它的上级能到的比它大的最小的塞进 <code>priority_queue</code>，重复 <span class="math inline">\(K-1\)</span> 次以后取 <code>top</code> 就是答案。接着继续作死。。。</p>
+<p>前一种转移相当于子矩形最小值，后一种转移相当于先查出子矩形中某个数的rank为 <span class="math inline">\(x\)</span>，再求子矩形第 <span class="math inline">\(x+1\)</span> 小值。区间第 <span class="math inline">\(x\)</span> 小怎么做？可持久化线段树。。。矩阵呢？可持久化线段树套可持久化线段树，时间空间都是 <span class="math inline">\(O(n\log^2n)\)</span>。。。然而空间204800KB算了算发现过不去。。。</p>
+<p>换成可持久化BIT套可持久化线段树？BIT就用vector记下所有版本，查询时二分出所在版本就行。然而内存还是好虚。。。大力卡卡内存试试。</p>
+<p>写到一半发现好像可以优化的样子，然而并没有去优化。。。</p>
+<p>写了好久结果大样例一直WA，调了好久发现 <span class="math inline">\(i,j\)</span> 打反。</p>
+<p>总算调过以后交上去各种TLE，然后自己生成大数据RE，惨。把数组开大不RE了，但是要跑10s+，GG。。。交上去试试，结果MLE。。。开小点RE，开大点MLE，而且不管怎样都TLE，没救了。。。</p>
+<p>当时20:30看已经有9个人AK了，很慌，觉得快要没奖金拿了。于是把之前的优化思路再想想。。。卧槽为什么我这么SB啊。。。</p>
+<p>只要查最小值就行了啊然后把 <span class="math inline">\([l,r]\)</span> 沿最小值位置 <span class="math inline">\(p\)</span> 分成 <span class="math inline">\([l,p-1]\)</span> 和 <span class="math inline">\([p+1,r]\)</span> 两边递归下去找最小值就行了啊，区间最小值没必要用可持久化线段树用普通线段树就行了啊，二维的就线段树套线段树空间 <span class="math inline">\(O(n\log n)\)</span>。。。代码也简单得多，真是不知道自己为何如此逗逼。。。</p>
+<p>最后花1h大力码代码大力调代码，终于在21:30的时候交上去，F题过了。。。</p>
+<p>接着看到榜就悲催了，#11。。。上一名在我前面9min绝杀了。。。</p>
+<p>总结就是，我的数据结构代码能力实在是太辣鸡了，以及做题老是想复杂掉坑。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/01/51nod-24/" data-id="cjegzidam0003df1lvm21pe9d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/16/ctsc2017-apio2017/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          记第二次CTSC&amp;APIO——CTSC2017&amp;APIO2017
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/26/sdoi2017-record/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SDOI2017做题记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

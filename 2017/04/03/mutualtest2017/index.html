@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>集训队互测2017记录 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="马上就要FJOI二试和CTSC了。然而FJOI二试迷之延时至下旬。CTSC就是下个月的事情。比较紧张。 集训队互测 Round 1 开场看T1，感觉得推什么复杂的式子，不知道有没结论，于是先写个随机模拟打个表再说，然后发现 \(k=1\) 时答案全是 \(0\)。看下子任务居然有 \(k\le 1\) 的部分分，难道是我写错了？再看 \(k=2\) 的，发现是 \(\frac{m(n-1)}{n^">
+<meta name="keywords" content="酱油记,集训队互测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集训队互测2017记录">
+<meta property="og:url" content="http://yoursite.com/2017/04/03/mutualtest2017/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="马上就要FJOI二试和CTSC了。然而FJOI二试迷之延时至下旬。CTSC就是下个月的事情。比较紧张。 集训队互测 Round 1 开场看T1，感觉得推什么复杂的式子，不知道有没结论，于是先写个随机模拟打个表再说，然后发现 \(k=1\) 时答案全是 \(0\)。看下子任务居然有 \(k\le 1\) 的部分分，难道是我写错了？再看 \(k=2\) 的，发现是 \(\frac{m(n-1)}{n^">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T12:09:13.860Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="集训队互测2017记录">
+<meta name="twitter:description" content="马上就要FJOI二试和CTSC了。然而FJOI二试迷之延时至下旬。CTSC就是下个月的事情。比较紧张。 集训队互测 Round 1 开场看T1，感觉得推什么复杂的式子，不知道有没结论，于是先写个随机模拟打个表再说，然后发现 \(k=1\) 时答案全是 \(0\)。看下子任务居然有 \(k\le 1\) 的部分分，难道是我写错了？再看 \(k=2\) 的，发现是 \(\frac{m(n-1)}{n^">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mutualtest2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/03/mutualtest2017/" class="article-date">
+  <time datetime="2017-04-03T03:46:44.000Z" itemprop="datePublished">2017-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      集训队互测2017记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>马上就要FJOI二试和CTSC了。然而FJOI二试迷之延时至下旬。CTSC就是下个月的事情。比较紧张。</p>
+<h3 id="集训队互测-round-1">集训队互测 Round 1</h3>
+<p>开场看T1，感觉得推什么复杂的式子，不知道有没结论，于是先写个随机模拟打个表再说，然后发现 <span class="math inline">\(k=1\)</span> 时答案全是 <span class="math inline">\(0\)</span>。看下子任务居然有 <span class="math inline">\(k\le 1\)</span> 的部分分，难道是我写错了？再看 <span class="math inline">\(k=2\)</span> 的，发现是 <span class="math inline">\(\frac{m(n-1)}{n^2}\)</span>，这个应该有分……好我写一写，交。</p>
+<p>交上去居然是 <code>Invisible</code>，这不科学啊一定是OJ的问题……于是OJ修了一会儿看到结果，才5分= =然而怎么右边显示了标准输出？趁着工作人员修OJ的时候调代码，然后发现期望忘记除以方案总数了。。。接着又看了看表看出 <span class="math inline">\(k=3\)</span> 是 <span class="math inline">\(\frac{m(n-1)(n-2)}{n^3}\)</span> 感觉挺稳，觉得答案应该就是 <span class="math inline">\(\frac{m(n-1)(n-2)\cdots(n-k+1)}{n^k}\)</span>，接着发现 <span class="math inline">\(k\ge 4\)</span> 就挂了……</p>
+<p>算了先交 <span class="math inline">\(k=3\)</span>。看到得了45分就放心了。然后试着推通用的式子，然而每次计算是 <span class="math inline">\(O(m)\)</span> 的，而且怎么都化简不了。先放一边。</p>
+<p>接着去看T2，这题不出意外一定是JOHNKRAM的题，联想到WC时的仙人掌计数……已经不打算想正解了，那就写 <span class="math inline">\(O(n^2)\)</span> 吧。</p>
+<p>推了一下好像得预处理 <span class="math inline">\(i\)</span> 个点的强连通图个数？然后就开始想，想到后面以为只要求这个了，又想到清华集训2014的主旋律，然而我并没有A。。。然后又是线上比赛，不如找一份std对着写？点开以后意识到问题并不是这么简单……</p>
+<p>继续推，发现主旋律做法还是有用的，然而接着处于掉坑状态，想了非常久还是没想出怎么做。后来干脆考虑每种图会被枚举到多少次，接着就好像会 <span class="math inline">\(O(n^2)\)</span> 了，只要DP出每种点数的和合法图个数，然后枚举源点集合大小加起来就是答案了。</p>
+<p>写到210min的时候终于写完，居然对了。70分到手，有点开心。</p>
+<p>最后看T3，好像是个比较麻烦的题，感觉我不可能做出来了，就写了个15分暴力交上去。交完以后发现 <span class="math inline">\(K\le 5000\)</span> 可以离散化啊= =就写了离散化交上去，发现前面WA掉了。。。原来是数组开小了2333</p>
+<p>改完以后想多捞点分，就想 <span class="math inline">\(q=0\)</span> 可不可做，似乎只要找出每一列最后一次被染色的时刻然后按这个顺序做一遍，不需要什么复杂的数据结构就搞定了，不过不太确定能否写对。不过还是试着写写吧……</p>
+<p>最后10min终于调过样例，交上去。后来看到自己这题得了50分，挺满意的了。</p>
+<p>然后还想rush一下T1的另外15分，结果没时间了。</p>
+<p>最后45+70+50=165，出榜以后发现我这一堆暴力加起来居然有rank 2……有点爽。再看下其他人，好多大爷都是刚某道题没时间做别的题，然后送了我这个机会……所以我实力还是不行的。</p>
+<h4 id="看完题解之后">看完题解之后</h4>
+<p>xumingkuan的T1好神奇啊。题解里讲了“有可能出现的情况是找出 <span class="math inline">\(k=3\)</span> 的答案公式，与 <span class="math inline">\(k=2\)</span> 时的答案公式形式相似，试图推出一个普适的规律，然而发现 <span class="math inline">\(k=4\)</span> 时这个规律就挂了”，这不就是我的情况吗2333</p>
+<p>也许学过stirling相关知识这题就能多做一些分？我的姿势水平还需要提高。。。</p>
+<p>JOHNKRAM的T2我可能需要多花一些时间理解。</p>
+<p>zsyzssoft的T3可能细节偏多？然而场上2人AC，可能我还是没跟上大家的水平啊。</p>
+<hr>
+<h3 id="集训队互测-round-2">集训队互测 Round 2</h3>
+<p>还是开场看T1，以为直接状压就行了，结果 <span class="math inline">\(O(3^nn^2)\)</span> 写完一交才4分，好气啊，暴力分真少。优化一发，好像只要考虑包含某个点的集合就行了，再交，20分。分数这么低一定是我想偏了。</p>
+<p>然后发现这题 <span class="math inline">\(p=17\)</span> 居然是给出的，一定是有什么很妙的算法，想到了Codechef的BIKE。那就只要一开始把所有式子DFT一下，乘的时候只要 <span class="math inline">\(O(p)\)</span>，最后IDFT回来就行了。不过不太确定能否AC。</p>
+<p>当然由于时间效率是 <span class="math inline">\(3^{16}\times 17=7.3\times 10^8\)</span>，<span class="math inline">\(3\texttt{s}\)</span> 还是跑出来了……<span class="math inline">\(O(3^np)\)</span> 能过看来这题肯定大家都会。接着看T2。</p>
+<p>然后就说明了我有多弱……一开始没注意到对 <span class="math inline">\(M\)</span> 取模，然后觉得好像可以网络流，正在想怎么建图的时候发现了要对 <span class="math inline">\(M\)</span> 取模，于是瞬间不会了。原本想二分贪心，结果发现二分也是错的。脑补了好几种贪心，结果全是错的，然后一点思路都没有了。</p>
+<p>接着放弃T2去想T3了。一开始觉得条件有点复杂，不过如果枚举了 <span class="math inline">\(m\)</span> 就可以压位高斯消元了，<span class="math inline">\(O(\frac{n^4}{w})\)</span>，这大概有30分。不过要跑 <span class="math inline">\(n\)</span> 次高斯消元，可能我有些性质没用上？</p>
+<p>于是仔细分析了一下性质，发现 <span class="math inline">\(m\)</span> 每增加 <span class="math inline">\(1\)</span>，就少一个约束，多一个变量，好像处理起来不方便。如果 <span class="math inline">\(m\)</span> 减少 <span class="math inline">\(1\)</span>，就多一个约束，少一个变量，直接把最后一列删掉，然后用前面的行消这一行，这样复杂度就优化到 <span class="math inline">\(O(\frac{n^3}{w})\)</span> 了？不知道能不能60分的说。。。</p>
+<p>接着开始写，写了挺久的，写完过了两个样例交上去，一直Waiting，就继续想第二题，还是没想出来。</p>
+<p>测出来了，0分。点进去一看，全都是WA和TLE。</p>
+<p>样例怎么这么弱啊，怎么过了两个样例都能爆0。。。难道是系统差？自定义测试一发，过了。</p>
+<p>那肯定是我写挂了。写了个 <span class="math inline">\(O(2^nn^2)\)</span> 暴力拍，拍了一会儿拍出一个问题，改完以后过了对拍。交。继续想第二题，还是没想出来。</p>
+<p>测出来了，0分。点进去一看，全都是WA和TLE。</p>
+<p>这就尴尬了……无论如何都拍不出错怎么交上去就是0分？难道是我题目理解错了？</p>
+<p>把 <span class="math inline">\(O(2^nn^2)\)</span> 暴力特判 <code>if(n&gt;20)return 0;</code> 交上去。</p>
+<p>测出来了，0分。点进去一看，全都是WA，而且都是0s。不可能跑这么快啊？难道是……数据……犹豫了一会儿把暴力的 <code>gets(a)</code> 换成 <code>scanf(&quot;%s&quot;,a)</code>，交上去，10分了。估计是<del>毛爷爷用Windows造的数据导致</del>文件末有多余字符 <code>gets</code> 会挂，惨啊= =</p>
+<p>再把原来的代码交上去，40分，中间TLE了。好像被卡常数了，开始优化。接着发现我数组开的 <span class="math inline">\(50000\times 782\)</span> 于是 <code>memcpy</code> 炸复杂度了……改完交了两发（有一发优化错了）一共经过7次提交终于过60分了，真是艰难。</p>
+<p>最后1个多小时继续刚T2，然而除了 <span class="math inline">\(K=1\)</span> 的特判和答案小于 <span class="math inline">\(M\)</span> 的网络流以外都不会，我好菜啊……最后还是写了这两档一共25分，然而不明原因得了40分，而且9~11测试点还是WA的。好玄学，不过也没时间做什么了。</p>
+<p>结果是GG了，100+40+60=200，rank 7。一看怎么大家都会T2，惨啊……果然T1大家都会，T3也有很多60。</p>
+<p>于是就成了T2最低分选手。。。我做的题还是太少啊。。。</p>
+<h4 id="看完题解之后-1">看完题解之后</h4>
+<p>cy的T1正解是 <span class="math inline">\(O(2^nn^2p)\)</span> 的，好像比较麻烦。。。（反正我没去想就是了）不过似乎 <span class="math inline">\(3^{17-1}\)</span> 和 <span class="math inline">\(2^{17}\times 17^2\)</span> 运行效率差不多的样子？</p>
+<p>yjqqqaq表示他的T2是NOI第一题难度，想想我NOI2016 D2T1的分数……</p>
+<p>T2正解是贪心+结论，最后一步用数据结构优化。然而我不仅没看出只要判断连续 <span class="math inline">\(K\)</span> 个数的结论，还没看出有解时答案为最大值的结论，更没有看出答案不超过 <span class="math inline">\(2M\)</span>……可以说我是完全不会。<strong>另外好像直接输出最大值好像就有很多分？？？</strong></p>
+<p>matthew99的T3竟然真的是WC讲的Berlekamp-Massey算法……yyt16384 AC了好劲啊。</p>
+<p>有空的时候我也学一学这个算法。</p>
+<hr>
+<h3 id="集训队互测-round-3围观">集训队互测 Round 3（围观）</h3>
+<p>因为这场由immortalCO、fateice和我出题，所以我不是参赛者而是观察者……</p>
+<p>我出的是T3，一道槽点一大堆的提交答案题。</p>
+<p>其实也没什么想说的吧。当然这场被很多人当成辣鸡比赛= =</p>
+<p>不少人整场疯狂交T2（10个点，时限8s的题），有一段时间评测队列卡了五六个Waiting，卡评测严重。主要原因是这题 <span class="math inline">\(n\le 20,000\)</span>，数据组数 <span class="math inline">\(t\le 5\)</span>，<span class="math inline">\(\sum n\le 70,000\)</span>，于是大家都想用 <span class="math inline">\(O(n^2)\)</span> 卡常数过掉……</p>
+<p>由于我的T3下发的checker直接告诉了分数，于是大家不怎么提交，一般都是最后再交。不过悲催的是yyt16384最后没交上去，惨。。。</p>
+<p>最后就是我的题估分大爆炸。当时给fateice验题的时候，fateice一小时做了6个点，当时还觉得现场好几个小时大家应该很容易上60的，结果。。。没人上60。。。【一定是fateice太强啦！</p>
+<p>不知道会不会给人一种“FJ卡常队”的印象……去年AKF的集训队互测也有人被卡常数，今年呢，T1没人写正解就不说了，T2卡常数，T3也有人被卡了常数……T3 57分（最高分）xumingkuan有的点被卡了些结点个数的常数，于是少了点分，惨……</p>
+<p>选个时间把这场放到UOJ上让大家玩一玩？</p>
+<hr>
+<h3 id="集训队互测-round-4">集训队互测 Round 4</h3>
+<p>开场看了下三题，觉得T1好像很可做，先跑一遍Manacher在每次指针右移的时候记下区间，就可以转化成每次询问右下角有多少个点。。。开始写的时候突然发现这个做法是错的。。。</p>
+<p>然后开始fix，脑补了各种回文串的性质无果；转成后缀数组的每个后缀维护一个集合，区间插入一个数，发现集合难合并；考虑维护所有不同回文串的最左出现位置，不断删第一个字母，看起来很靠谱结果复杂度是错的……总之一共想了2个多小时还是一无所获。哎。</p>
+<p>算了去想后面的题，第二题一开始想到 <span class="math inline">\([a,b]\)</span> 的一个左子结点 <span class="math inline">\([a,c]\)</span> 被覆盖的条件是 <span class="math inline">\(l\le a\le c\le r &lt; b\)</span>，写了个暴力交上去只有10分，原来我 <span class="math inline">\(type=0\)</span> 的也异或上一次答案了。。。算了我想想稍微不暴力点的做法。</p>
+<p>发现这是个三维偏序，不资磁！不过 <span class="math inline">\(a\le b &lt; c\)</span> 是个好性质，我们转化一下，答案是满足 <span class="math inline">\(1\le a\le c\le r\)</span> 的个数减去满足 <span class="math inline">\(1\le a\le b\le r\)</span> 的个数，再转化一下就是区间长度（<span class="math inline">\(r-l+1\)</span>）减去 <span class="math inline">\(l\le a\le b\le r\)</span> 的非叶结点 <span class="math inline">\([a,b]\)</span> 个数，就变成了二维偏序了。写了一下发现结论没错，好像能做。</p>
+<p>然而又要在线又要带修改……强上两个log吧。线段树套线段树？不资磁，空间是 <span class="math inline">\(O(n\log^2 n)\)</span> 的。那就线段树套……平衡树？虽然时间还是 <span class="math inline">\(O(n\log^2n)\)</span> 但空间只有 <span class="math inline">\(O(n\log n)\)</span> 了，效果也许不错？</p>
+<p>于是就陷入了深坑。</p>
+<p>15点多开始线段树套平衡树，到16点半的时候调出来了，交上去，60分。一看，被卡了8个点的内存。</p>
+<p>惨。</p>
+<p>我就在想，<span class="math inline">\(64\texttt{MB}\)</span> 可以开 <span class="math inline">\(1.6\times 10^7\)</span> 个 <code>int</code>，<span class="math inline">\(200000\times 20\)</span> 个结点，每个节点大概长这样：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">snode</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> val,siz;</span><br><span class="line">	snode*fa,*ch[<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果每个节点是 <span class="math inline">\(8\)</span> 个 <code>int</code> 大小，那就起码 <span class="math inline">\(128\texttt{MB}\)</span>，有点崩。然而明明只要查后缀区间为什么要写线段树？写个树状数组就行了啊期望还能省一半内存= =</p>
+<p>于是又花了20多分钟改成了树状数组套平衡树，交上去，还是60分。。。</p>
+<p>想了好久还是不知道怎么优化。至今不明白为什么连 <span class="math inline">\(64\texttt{MB}\)</span> 都卡不进去。</p>
+<p>一看比赛只剩1h了，得赶紧写掉剩下两题暴力。</p>
+<p>于是先写了T3的 <span class="math inline">\(O(n\min\{n,m\})\)</span> 暴力，一开始写错了一次，调了一会儿过了35。</p>
+<p>又写了T1的 <span class="math inline">\(O(n^2\log n+qn\log n)\)</span> 暴力，20分。</p>
+<p>最后又想多rush T3的分又想优化T2的内存，结果都没成功。</p>
+<p>于是20+60+35=115滚粗。。。T2一堆100，只有我一个60。。。然而T2分这么低居然还有rank 4。。。</p>
+<p>immortalCO T2标算AC，太强啦！</p>
+<p>fateice T2神奇算法AC，太强啦！</p>
+<h4 id="看完题解之后-2">看完题解之后</h4>
+<p>philipsweng的T1正解是回文树+分块，然而我不会回文树，哎我怎么这么菜啊</p>
+<p>srwudi的T2确实带给选手们无与伦比的<del>卡内存</del>做题体验啊……不过说到底还是我自己的问题，我还！是！不！会！分！析！问！题！性！质！推了个二维偏序就不管了，最后GG……</p>
+<p>线段树结点和普通区间相比有明显的规律啊，覆盖区间的结点一定是一段递增一段递减，然而我怎么就把问题给一般化了，问题一般化就丢性质了。。。immortalCO教导得是啊。</p>
+<p>yyt16384的T3看起来不可做，当然也可能是我太弱了。</p>
+<hr>
+<h3 id="集训队互测-round-5">集训队互测 Round 5</h3>
+<p>血崩。</p>
+<p>由于晚上熬夜出题，状态不好，看到题啥思路都没有。于是想想T1，好像是后缀自动机，然而我不会，于是写了后缀Trie的35分。又想想T2，好像可以FWT，结果细节考虑不清楚，怎么都是错的，最后调来调去弄了30分，不知道为什么2、3过了4没过。然后又去看T3，觉得是三合一的恶心题，没啥写的欲望。然后花了很久才写掉了第一个subtask。回头准备试着写SAM，然而考场上确实不应该写不熟悉的算法，还是放弃了。T2感觉造数据很麻烦，就盯着代码看，没看出问题。。。GG。。。T3的第二个subtask好像可以均摊搞搞，写着写着开始怀疑人生，觉得复杂度爆炸，于是不写了。。。最后还是把subtask3的裸暴力写了，然而前面的点莫名其妙地WA了，又没法Rejudge，就只剩25分了。</p>
+<p>结果#9滚大粗。。。35+30+25=90。。。膜immortalCO 170分#1。</p>
+<p>最后一次互测考成这样我对自己已经没什么信心了。大概我就只有rank 9的水平吧。况且最近也没时间刷题了，只能CTSC坐等GG同时围观immortalCO怒拿rank 1进国家队了。</p>
+<h4 id="看完题解之后-3">看完题解之后</h4>
+<p>SkyDec的T1是继sone3之后的又一道神字符串题，不想做。然而把我的后缀Trie换成后缀自动机就有60分了啊……我一定要想办法学会后缀自动机。</p>
+<p>qiaoranliqu的T2感觉自己状态好的话完全是可以想出来的，因为我前段时间学过FWT了。。。然而自己傻逼到盯着50分一直码写挂了还懒得调感觉我心态实在太糟糕。。。（也可能是晚上睡太少了）</p>
+<p>sunyaofeng的T3后两个subtask正解好复杂啊，可是immortalCO说敢写暴力就能AC，orz……我纠结了好久的错误复杂度光荣滚粗……</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/03/mutualtest2017/" data-id="cjegzidg9001ndf1letmd029e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/集训队互测/">集训队互测</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/23/fjoi2017-r2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          FJOI2017滚粗记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/03/51nod-23/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">51nod算法马拉松23</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

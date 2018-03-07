@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>FJOI2017滚粗记 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="这场省选毁掉了我对好成绩的梦想。 8:00开场看题，T1貌似是可持久化Treap裸题，T2字符串DP似乎挺可做，T3居然是去年原题扩大数据范围，做过。 感觉这场很容易拿高分的样子，想想能A两题再写一题高分就稳了。 于是开场先做T2，求两个长度 \(n\le 500\) 的字符串的最长公共回文子序列。一开始以为直接写就行了，结果发现复杂度 \(O(n^4)\)，还10组数据，没救。 想了想直接上序列">
+<meta name="keywords" content="酱油记,FJOI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FJOI2017滚粗记">
+<meta property="og:url" content="http://yoursite.com/2017/04/23/fjoi2017-r2/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="这场省选毁掉了我对好成绩的梦想。 8:00开场看题，T1貌似是可持久化Treap裸题，T2字符串DP似乎挺可做，T3居然是去年原题扩大数据范围，做过。 感觉这场很容易拿高分的样子，想想能A两题再写一题高分就稳了。 于是开场先做T2，求两个长度 \(n\le 500\) 的字符串的最长公共回文子序列。一开始以为直接写就行了，结果发现复杂度 \(O(n^4)\)，还10组数据，没救。 想了想直接上序列">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T12:10:48.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FJOI2017滚粗记">
+<meta name="twitter:description" content="这场省选毁掉了我对好成绩的梦想。 8:00开场看题，T1貌似是可持久化Treap裸题，T2字符串DP似乎挺可做，T3居然是去年原题扩大数据范围，做过。 感觉这场很容易拿高分的样子，想想能A两题再写一题高分就稳了。 于是开场先做T2，求两个长度 \(n\le 500\) 的字符串的最长公共回文子序列。一开始以为直接写就行了，结果发现复杂度 \(O(n^4)\)，还10组数据，没救。 想了想直接上序列">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-fjoi2017-r2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/23/fjoi2017-r2/" class="article-date">
+  <time datetime="2017-04-23T10:25:41.000Z" itemprop="datePublished">2017-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      FJOI2017滚粗记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这场省选毁掉了我对好成绩的梦想。</p>
+<p>8:00开场看题，T1貌似是可持久化Treap裸题，T2字符串DP似乎挺可做，T3居然是去年原题扩大数据范围，做过。</p>
+<p>感觉这场很容易拿高分的样子，想想能A两题再写一题高分就稳了。</p>
+<p>于是开场先做T2，求两个长度 <span class="math inline">\(n\le 500\)</span> 的字符串的最长公共回文子序列。一开始以为直接写就行了，结果发现复杂度 <span class="math inline">\(O(n^4)\)</span>，还10组数据，没救。</p>
+<p>想了想直接上序列自动机似乎复杂度很不满的样子，虽然是 <span class="math inline">\(O(n^5)\)</span> 不过好像能有很多分。</p>
+<p>于是花了半个多小时码完过了样例，自己出了几组数据没问题。</p>
+<p>再做T3，写了十几分钟过了样例测了几组大数据就不管了。</p>
+<p>这时候自信T2拿到高分T3 AC了，觉得只要再AC T1就rank 1稳了。这时候9:00，然而FJOI是4h所以还剩3h= =</p>
+<p>最后决定放弃后两题的对拍开始搞T1。T1的意思是这样的，维护一个序列，支持插入、区间翻转、区间第 <span class="math inline">\(\lceil\frac{m}{2}\rceil\)</span> 个最大值下标查询、区间满足 <span class="math inline">\(a_i&gt;a_{i+1}\)</span> 的 <span class="math inline">\(i\)</span> 之和查询、区间满足 <span class="math inline">\(a_i&lt; a_{i+1}\)</span> 的 <span class="math inline">\(i\)</span> 之和查询。这种和两侧有关的信息似乎很难维护。</p>
+<p>不过还是硬着头皮开始写了，先码个可持久化Treap……嗯，要维护哪些信息呢？结点的值，子树的最大值以及最大值个数，前驱的值，后继的值，子树中满足 <span class="math inline">\(a_i&gt;a_{i+1}\)</span> 的下标之和，子树中满足 <span class="math inline">\(a_i&lt; a_{i+1}\)</span> 的下标之和，以及翻转标记。</p>
+<p>然后写 <code>pushup</code>，写写写……写完了。</p>
+<p>然后写 <code>merge</code> 和 <code>split</code>，写写写……写完了。这时候代码已经100行了。</p>
+<p>然后在前面加了个翻转 <code>rev</code> 和 <code>pushdown</code>，每次操作 <code>pushdown</code>。接着开始写修改，写着觉得常数好大，不过 <span class="math inline">\(n\)</span> 范围是 <span class="math inline">\(50000\)</span> 可能不虚。</p>
+<p>……</p>
+<p>终于写完修改、翻转、查询了～已经11:00了，然而FJOI是4h所以只剩1h了= =</p>
+<p>嗯我测一下样例，果然……没过……</p>
+<p>把树打出来看，发现几个地方写炸了，改改改，改了好久，终于调过了样例。</p>
+<p>11:30。不知道会不会出事情。</p>
+<p>于是赶紧写了T1的暴力拍，一拍就错。</p>
+<p>手算了下发现暴力写挂了，还好。</p>
+<p>改完暴力继续拍，又拍出错了，而且错在十几行。</p>
+<p>这回真的是正解写挂了。</p>
+<a id="more"></a>
+<p>11:45。宣布离比赛结束还有15min了。</p>
+<p>不知所措。</p>
+<p>把树打出来，结果等到WA的时候树已经巨大了，看不出错误原因。</p>
+<p>最后纠结了很久要怎么办，决定把我花了2h+的可持久化Treap扔了，交暴力。感觉失去了希望。</p>
+<p>又一次死于数据结构。</p>
+<p>出考场，听说T1有人写正解有人写暴力，T2大家都写我这个做法，T3大家都能A。完了这么一来我真的要被翻了。</p>
+<p>等成绩。</p>
+<p>……</p>
+<p>成绩出来了。</p>
+<p>赶紧看看我的成绩。看到时我就傻眼了——</p>
+<p>110。</p>
+<p>第1题10分……暴力分……</p>
+<p>第2题居然爆0了？虽然我写的暴力但怎么小点都WA？？？至今不知哪里写错。</p>
+<p>第3题大家都A了。</p>
+<p>于是10+0+100=110滚了个大粗。</p>
+<p>整场花很多时间写的代码都没分，所有分加起来只用了大概半小时。</p>
+<p>出榜发现我果然被翻了，zhshr 180实力当队长，ditoly T1 90分，总共180，果然是数据结构大神啊。女队aufeas 200分最高分！！！！！！！！！！太强了！！！！！！！！！然而我只有女队的一半左右，这场rank 10，掉队既视感。</p>
+<p>chentong 130分翻盘进队，runzhe2000 100分有点惨不过压线进队了。dick32165401和wzt惨啊……被线卡……（<strong>UPD：dick32165401卡线进队了</strong>）</p>
+<p>后来和其他人交流了一下发现他们T2写我的那个 <span class="math inline">\(O(n^5)\)</span> 做法有90分，那肯定是我太SB了哪里写挂了，手抖一下90分没了，rank 1就这么送人了……话说我参加的两年省选二试T2都是这种子序列题，去年我没时间写，爆0，今年我写了结果挂了，爆0。<del>讲大话很简单，我完全有能力得到200分。问题是做到了吗？</del></p>
+<p>好在总成绩还有rank 2……想想我一试高分其实也是因为运气……运气好T1水过去多拿了60分，再加上一试后两题都是水题，区分度很迷。然而到了二试，题目难度科学了，我的辣鸡水平马上暴露了——前两题加起来才拿到10分。不能怪题目，只能怪自己弱。我的实力大概就省队的后几名吧，本来还指望今年CTSC滚粗以后再去NOI冲集训队，冲候选队，再冲国家队的，现在看来真是荒唐，我能进集训队都算运气好了。没有强的实力却每次都想RP爆发考好真是一个笑话，如果我再像之前那样天天颓，真的就要退役了，嗯，多刷Codeforces、Codechef、TopCoder，才能提高思维能力和代码能力，争取做题都能有思路，代码题都能快速写对。</p>
+<hr>
+<p>UPD：</p>
+<p>人生中最后一次省选被我糟蹋成这样实在是太不爽了。</p>
+<p>每年都是一试的优势被二试浪翻，坑在一道代码题上近3h，导致没时间写或检查T2。去年滚粗后希望今年二试能考好，没想到今年又是同样的结局，真是可笑。</p>
+<p>省选二试前rank 1，省选二试看到题自信满满，1h内写完后两题觉得剩下3h写T1稳了。然而梦想是美好的，现实是残酷的。为了省出时间我放弃对拍后两题，只手出了几组小数据，导致本来能90分的T2写挂爆0。更何况，由于我糟糕的代码能力，T1我并没有调出来，如果调出来的话能得到60~90的分数，就不会这么惨。最后，花费大量时间的前两题几乎没分，保持排名的梦想彻底毁灭。</p>
+<p>教练cy在看到题目时，说T2和去年题类似，大家做过去年的题，应该属于强项。没想到，我们学校出了我这样一个害群之马，在大家都拿到70~90的分数的情况下居然爆0。真是对不起immortalCO，对不起教练，对不起学校。</p>
+<p>总是高估自己的实力，有着我能AK的错觉，却忘记自己名字就是WrongAnswer，各种题写不对。在我前面，确有不少实力很强的选手：队长zhshr、女队aufeas、T1 90的ditoly，初三选手fjzzq2002，以及这次省选同样没考好的fateice、pyz5715、victbr……弱者不配拥有梦想，明知我只写过一次Treap却要花近3h在T1上，真是愚昧无知。如果及时想到放弃T1，或许就是另外一种结果。</p>
+<p>下一个目标是APIO2017。<del>但愿APIO2017不要这样滚粗了。</del>UPD：APIO再次滚粗，惨啊</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/23/fjoi2017-r2/" data-id="cjegzidev0015df1lvz0w15y6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/26/zjoi2017-record/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ZJOI2017做题纪录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/03/mutualtest2017/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">集训队互测2017记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

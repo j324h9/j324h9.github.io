@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>NOI2016考前刷题记录 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="先挖个坑。 以下是吐槽时间 原以为自己实力还行，结果省队集训3次考挂让我明白了什么- - 说白了还是自己太弱了2333 既然弱那NOI当然是滚粗咯 [UPDATE 7/12 16:00] 12号校内训练又被immortalCO和lightning虐成垫底了，一道CF的图象识别题居然不知道有给样例，完全不会搞，最后高二神犇immortalCO、lightning，高一神犇dick32165401都A">
+<meta name="keywords" content="题解,记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOI2016考前刷题记录">
+<meta property="og:url" content="http://yoursite.com/2016/07/12/before-noi2016/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="先挖个坑。 以下是吐槽时间 原以为自己实力还行，结果省队集训3次考挂让我明白了什么- - 说白了还是自己太弱了2333 既然弱那NOI当然是滚粗咯 [UPDATE 7/12 16:00] 12号校内训练又被immortalCO和lightning虐成垫底了，一道CF的图象识别题居然不知道有给样例，完全不会搞，最后高二神犇immortalCO、lightning，高一神犇dick32165401都A">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T10:28:01.743Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOI2016考前刷题记录">
+<meta name="twitter:description" content="先挖个坑。 以下是吐槽时间 原以为自己实力还行，结果省队集训3次考挂让我明白了什么- - 说白了还是自己太弱了2333 既然弱那NOI当然是滚粗咯 [UPDATE 7/12 16:00] 12号校内训练又被immortalCO和lightning虐成垫底了，一道CF的图象识别题居然不知道有给样例，完全不会搞，最后高二神犇immortalCO、lightning，高一神犇dick32165401都A">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-before-noi2016" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/12/before-noi2016/" class="article-date">
+  <time datetime="2016-07-12T07:56:48.000Z" itemprop="datePublished">2016-07-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NOI2016考前刷题记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先挖个坑。</p>
+<h2 id="以下是吐槽时间">以下是吐槽时间</h2>
+<p>原以为自己实力还行，结果省队集训3次考挂让我明白了什么- -</p>
+<p>说白了还是自己太弱了2333 既然弱那NOI当然是滚粗咯</p>
+<p>[UPDATE 7/12 16:00] 12号校内训练又被immortalCO和lightning虐成垫底了，一道CF的图象识别题居然不知道有给样例，完全不会搞，最后高二神犇immortalCO、lightning，高一神犇dick32165401都A了这题，我高一蒟蒻<strong>WA</strong>er（我真的除了<strong>WA</strong>不会别的了）WA了59个点。。。被暴踩。。。【手动垫底去了】（对着样例随便调下参就A了，日了狗了）整场研究第2题，然而第1题是个std才200b的水题。。。居然没时间想了。。。我好弱啊。。。</p>
+<del>
+要是在NOI可能连Ag都没有了
+</del>
+<p>[UPDATE 7/12 16:50] 刚去推了下第一题……卧槽真的比第二题简单不知道多少倍，半个小时就推出来了，而且确实好写不用拍交到CF上直接A了……我干嘛自己作死不想第一题啊！【我是sb</p>
+<hr>
+<h3 id="cf690a2口胡">CF690A2口胡</h3>
+<p>http://www.codeforces.com/problemset/problem/690/A2</p>
+<p>考试的时候脑补了下 <span class="math inline">\(n=1,2,3,4\)</span> 没啥规律，以为是道不可做题就扔了= =事实证明这题相当简单</p>
+<p>假设有 <span class="math inline">\(k\)</span> 个物品分给 <span class="math inline">\(n\)</span> 个人，显然 <span class="math inline">\(n\le 2\)</span> 时第 <span class="math inline">\(n\)</span> 个人自己同意就能获得全部 <span class="math inline">\(k\)</span> 个，<span class="math inline">\(n=3\)</span> 时要让一个人同意就得给 <span class="math inline">\(1\)</span> 一个，<span class="math inline">\(n=4\)</span> 时要让一个人同意就给给 <span class="math inline">\(2\)</span> 一个（如果要给 <span class="math inline">\(1\)</span> 就得给两个，不划算），类推得到 <span class="math inline">\(n=3,5,...,2k+1\)</span> 时要给 <span class="math inline">\(1,3,...,n-2\)</span> 各一个，<span class="math inline">\(n=4,6,...,2k+2\)</span> 时要给 <span class="math inline">\(2,4,...,n-2\)</span> 各一个。</p>
+<del>
+其实是我考试的时候手工列完表然后瞎以为答案是 <span class="math inline">\(\frac{n}{2}\)</span> 后来被自己叉了就觉得答案很复杂不可做
+</del>
+<p>事实告诉我们要坚持下去啊！【要从被坑的经历中吸取教训</p>
+<a id="more"></a>
+<p>当 <span class="math inline">\(n=2k+3\)</span> 时，显然没办法让自己以外 <span class="math inline">\(k+1\)</span> 个人同意，于是只能死，类似的 <span class="math inline">\(k\)</span> 继续增加也只能死，但是这个情况会发生改变：编号在 <span class="math inline">\(2k+2\)</span> 以后的人为了活会同意，所以每次如果让前 <span class="math inline">\(2k+2\)</span> 人中的 <span class="math inline">\(k\)</span> 个同意（由 <span class="math inline">\(n=2k+2\)</span> 时的唯一情况可知这显然可行），那么就有 <span class="math inline">\(n-(2k+2)+k\)</span> 人同意了，只要 <span class="math inline">\(2[n-(2k+2)+k]=n\)</span> 即 <span class="math inline">\(n=2k+4\)</span> 就不会死了。</p>
+<p>如果 <span class="math inline">\(n=2k+m\)</span> 不会死，那么下一个满足 <span class="math inline">\(2[n-(2k+m)+k]=n\)</span> 的 <span class="math inline">\(n=2k+2m\)</span>，所以结论是条件为 <span class="math inline">\(n\le 2k+2\)</span> 或存在正整数 <span class="math inline">\(t\)</span>，<span class="math inline">\(n=2k+2^t\)</span>。</p>
+<p>那么 <span class="math inline">\(n\)</span> 是奇数显然只能满足前者了，<span class="math inline">\(k\)</span> 的最小值为 <span class="math inline">\(\frac{n-1}{2}\)</span>，<span class="math inline">\(n\)</span> 是偶数就可以是后者，要使 <span class="math inline">\(k=\frac{n}{2}-2^{t-1}\)</span> 最大，就要 <span class="math inline">\(t\)</span> 最大，取 <span class="math inline">\(n\)</span> 的二进制最高位减掉除以 <span class="math inline">\(2\)</span> 就是答案。</p>
+<h3 id="cf690e2口胡">CF690E2口胡</h3>
+<p>http://www.codeforces.com/problemset/problem/690/E2</p>
+<p>一道拼图的AI题，一开始觉得不可做，想了想觉得关键在于哪些边界接在一起比较合适。</p>
+<p>对图像的 <span class="math inline">\(k\)</span> 个部分中的每两个 <span class="math inline">\(i,j\)</span>，计算 <span class="math inline">\(j\)</span> 放在 <span class="math inline">\(i\)</span> 下方的不和谐程度 <span class="math inline">\(w(i,j)\)</span>，不和谐程度越小的放置方法越优，那么就可以建立 <span class="math inline">\(k\)</span> 个点的有向图，从 <span class="math inline">\(i\)</span> 到 <span class="math inline">\(j\)</span> 的边权等于不和谐程度 <span class="math inline">\(w(i,j)\)</span>，用状压DP求最小权哈密顿路径即可。</p>
+<del>
+然后我被卡在了设计权函数上……
+</del>
+<p>我是把两个边界的灰度求差的平方然后加起来，然后发现被干扰了就取靠近边界的 <span class="math inline">\(6\times 6\)</span> 矩阵的灰度和来作差……效果极差无比……由于自己傻逼以为题目说的样例文件是一堆图片并不知道有 <code>in</code> 和 <code>out</code> 就不懂怎么调参（我还sb直接把图拿出来手工模拟做了一半弃疗了根本做不下去）最后脸滚键盘弄了个 <span class="math inline">\(6\)</span> 的常数……然后狂WA……全校只有我一个人没AC囧</p>
+<p>事实上改成 <span class="math inline">\(3\times 3\)</span>、<span class="math inline">\(1\times 6\)</span> 都能AC，效果比 <span class="math inline">\(6\times 6\)</span> 不知道好到哪里去了，大概是由于噪点并不是特别多，没必要用太大的矩阵模糊否则反而误差更大吧= =<strong>更重要的是要认真找样例文件，这种题不调参绝对是RP游戏</strong></p>
+<hr>
+<p>[UPDATE 7/12 20:30] 卧槽紫荆花之恋居然有人写了不到1KB就A了……好可怕……</p>
+<p>[UPDATE 7/12 22:00] 看了下今天NOIP福建夏令营的题，有一题我居然不会做= =我真该补一补NOIP知识了</p>
+<p>[UPDATE 7/13 11:00] BZOJ最后一页后面的题简直不可做，没有一题想得出来，我好弱。（orz SHUXK）</p>
+<p>[UPDATE 7/13 20:00] lightning太强啦！出了一道神题！我搞了好久还只是接近AC=-=</p>
+<p>研究UER2的B题【信息的交换】终于研究出来了……真是一道好题啊，研究了估计有一个月了才做出来【要是在考场上绝对10分滚粗了，UER2我去打肯定要挂】，中间绕了好多弯路掉了好几次坑，写完以后没过样例以为哪里错了……还好调出来了没问题2333</p>
+<hr>
+<h3 id="uoj114口胡">UOJ114口胡</h3>
+<p>http://uoj.ac/problem/114</p>
+<p>很神的题。</p>
+<p>对于一个图 <span class="math inline">\(G\)</span>，考虑构出的序列是啥（这个一开始就卡了挺久），发现DFS过程实际上是按编号从小到大构了个DFS树 <span class="math inline">\(T\)</span>，至于树上是按什么顺序呢……手动模拟了各种情况，发现如果从 <span class="math inline">\(i\)</span> 开始，每次令 <span class="math inline">\(i=a_i\)</span>，所经过的 <span class="math inline">\(i\)</span> 的序列是 <span class="math inline">\(T\)</span> 按编号从大到小的DFS序（正好相反）。</p>
+<p>然后考虑有多少个图具有这样的性质（这个卡了更久），即已知 <span class="math inline">\(T\)</span> 按编号从大到小顺序的DFS序 <span class="math inline">\(L\)</span> 还原图的方案数。一开始想的是DFS的过程记下当前DFS到了哪个结点，即 <span class="math inline">\(f(i)\)</span> 表示当前已经确定 <span class="math inline">\(L_1,...,L_i\)</span>，确定剩下结点的连边情况的方案数，然而这做不了!0=0!因为一个点可以往祖先连边，而且连边条件还是它要比祖先的子节点大，如果把链上的情况记在状态里面就指数级了6666</p>
+<p>又是纠结了很长时间，<strong>事实告诉我们研究DP的时候正、反都得考虑一发</strong>，考虑DFS树的反向边不要在子节点考虑而要在父节点考虑。</p>
+<p><span class="math inline">\(f(i,j)\)</span> 表示序列区间 <span class="math inline">\(L_i,...,L_j\)</span> 构树的方案数，这一步考虑根节点往子节点的连边，转移时枚举编号最大的子节点为根的子树区间 <span class="math inline">\([l,r]\)</span>，区间内有 <span class="math inline">\(k\)</span> 个比 <span class="math inline">\(L_i\)</span> 大的，就乘上 <span class="math inline">\(2^k\)</span>。这样状态就真的只和区间有关了。</p>
+<p>最后用一个区间DP完美地解决了这个问题，复杂度只要 <span class="math inline">\(O(n^3)\)</span>。</p>
+<del>
+我比较弱都想不出题，偶尔能想出一题都非常爽
+</del>
+<hr>
+<p>[UPDATE 7/20] 昨天晚上打了场CF，虽然没FST，但还是炸到113名……</p>
+<h2 id="cf-363-div.2-爆炸记">CF 363 Div.2 爆炸记</h2>
+<p>我很弱，现在还只能打Div.2。</p>
+<p>开场的时候网络卡得要命，根本进不去，过了十几分钟才进到网页里面去看题。</p>
+<p>开始看C（就是Div1.A），想了下觉得是个线性复杂度的DP。</p>
+<p>然而数据范围为何是 <span class="math inline">\(n\le 100\)</span>？难道我理解错题目了？</p>
+<p>想了好久觉得没问题，最后交了个<del>很可能会FST的</del> <span class="math inline">\(O(n)\)</span> 程序上去</p>
+<p>22分钟了。</p>
+<p>然后再去看D（Div1.B），是求把基环外向树改成树至少要动几条边？</p>
+<p>好像有几个基环外向树就要动几条边吧……哦不，如果已经有一个是自环就要减1。</p>
+<p>这样结论似乎挺资兹的？写了一发过样例交上去。</p>
+<p>39分钟了。</p>
+<p>然后去看E（Div1.C）。</p>
+<p>首先搞明白LRU就花了我老半天。<del>我不会说我参考了百度百科</del></p>
+<p>然后开始推，发现暴力DP复杂度会炸。</p>
+<p>怎么优化？</p>
+<p>没什么好的思路。</p>
+<p>再去看F（Div1.D）。</p>
+<p>感觉题目太坑爹简直不可做。算了，直接放弃。</p>
+<p>回来看E。</p>
+<del>
+我可是研究了两年的奥拉星的怎么现在连频率这一基本概念都忘了
+</del>
+<p>开始推个频率的式子……</p>
+<p><span class="math inline">\(t\)</span> 时刻 <span class="math inline">\(i\)</span> 不在 cache 里的条件是 <span class="math inline">\(t\)</span> 之前第一次访问 <span class="math inline">\(i\)</span> 到现在出现了至少 <span class="math inline">\(k\)</span> 个不同的元素</p>
+<p>然后SB历程开始——枚举上次 <span class="math inline">\(i\)</span> 到现在多少时间，然后用个式子去算？</p>
+<p>复杂度会炸。不行。</p>
+<p>1个小时了。感觉这样下去吃枣药丸。</p>
+<p>去做B，一个大裸题我居然写了2遍才对……</p>
+<p>65分钟了。</p>
+<p>再去做A，理解题意花了一段时间……写的话真的很快……</p>
+<p>78分钟了。</p>
+<p>回来全力搞E（Div1.C）。</p>
+<p>一开始想用个DP来容斥，发现推不出有用的东西。</p>
+<p>快2个小时过去了。</p>
+<p>最后……</p>
+<p><strong>我特么为何要去枚举时间 <span class="math inline">\(t\)</span> ？</strong></p>
+<p><strong>直接DP求出每个子集出现的概率不就好了吗？</strong></p>
+<p>于是开始DP求从空集开始每次放一个东西进来直到出现 <span class="math inline">\(i\)</span>，最后得到的每一种集合的概率。</p>
+<p>好不容易写完了，剩1分钟。</p>
+<p>交一发……</p>
+<p>Wrong answer on pretest 2</p>
+<p>卧槽！！</p>
+<p>自己测了一发样例，发现样例二挂了。</p>
+<p>没特判0。然后程序就跪了，输出了nan。</p>
+<p>赶紧改了一发，准备交的时候就结束了。</p>
+<p>悲剧。</p>
+<p>于是最后就只有rank 113……被暴踩……</p>
+<p>后来把改后的程序交上了CF，就AC了。</p>
+<p>算下如果我昨天能交上去，就能排到rank 2了。</p>
+<p>rank 2 → rank 113</p>
+<p>论如何从rank2掉到rank113。</p>
+<p>我好弱。</p>
+<p>于是现在rating依旧没上1900。<strong>我就是传说中的打了两场CF依旧是Div.2的逗比。</strong></p>
+<p>下一次打CF就是NOI滚粗以后的事情了。估计下一次打CF就是我第一次掉rating了。希望第4场CF带我上Div.1。</p>
+<hr>
+<h3 id="cf698c-口胡">CF698C 口胡</h3>
+<p>http://www.codeforces.com/contest/698/problem/C</p>
+<p>有 <span class="math inline">\(n\)</span> 个元素 <span class="math inline">\(1,2,...,n\)</span>，<span class="math inline">\(i\)</span> 的访问概率为 <span class="math inline">\(p_i\)</span>，其中 <span class="math inline">\(\sum_{i=1}^np_i=1\)</span>。</p>
+<p>有一个初始为空的序列 <span class="math inline">\(S\)</span>，以及一个限制 <span class="math inline">\(k\)</span>。</p>
+<p>每次随机从 <span class="math inline">\(1,2,...,n\)</span> 中访问一个元素，访问的元素为 <span class="math inline">\(i\)</span> 的概率为 <span class="math inline">\(p_i\)</span>，访问 <span class="math inline">\(i\)</span> 时，若 <span class="math inline">\(i\)</span> 不在序列中，则将 <span class="math inline">\(i\)</span> 加入 <span class="math inline">\(S\)</span> 的头部（若加入前 <span class="math inline">\(S\)</span> 中已满 <span class="math inline">\(k\)</span> 个元素，则去掉 <span class="math inline">\(S\)</span> 末尾的元素），若 <span class="math inline">\(i\)</span> 在序列中，则将 <span class="math inline">\(i\)</span> 移到 <span class="math inline">\(S\)</span> 的头部。</p>
+<p>不断这样操作下去，求每个元素在 <span class="math inline">\(S\)</span> 中的时间占总时间的比例。</p>
+<del>
+这就是我早期研究游戏攻略时常用的频率分析法
+</del>
+<del>
+然而这题我单纯这样想就掉坑了2333
+</del>
+<p>考虑计算 <span class="math inline">\(i\)</span> 在 <span class="math inline">\(S\)</span> 中的时间比例。</p>
+<p>随机取一个时刻 <span class="math inline">\(t\)</span>，则 <span class="math inline">\(i\)</span> 不在 <span class="math inline">\(S\)</span> 中当且仅当 <span class="math inline">\(i\)</span> 从上次加入 <span class="math inline">\(S\)</span> 到现在，头部被插入至少 <span class="math inline">\(k\)</span> 个元素。</p>
+<p>我们取出从时刻 <span class="math inline">\(t\)</span> 往前直到第一次出现 <span class="math inline">\(i\)</span> 的操作序列 <span class="math inline">\(L\)</span>。</p>
+<p><span class="math inline">\(L\)</span> 是随机生成的，可以这样理解：一开始 <span class="math inline">\(L\)</span> 为空，每次从 <span class="math inline">\(1,2,...,n\)</span> 中随机取一个元素 <span class="math inline">\(j\)</span> 加入 <span class="math inline">\(L\)</span>，<span class="math inline">\(j=x\)</span> 的概率为 <span class="math inline">\(p_x\)</span>，直到 <span class="math inline">\(j=i\)</span> 时停止。</p>
+<p>用 <span class="math inline">\(P(A)\)</span> 表示存在一个时刻 <span class="math inline">\(L\)</span> 中元素组成的集合为 <span class="math inline">\(A\)</span> 的概率，容易得到</p>
+<p><span class="math display">\[P(A)=\sum_{x\in A}P(A-\{x\})\frac{p_x}{1-\mathrm{sum}(A-\{x\})}\]</span></p>
+<p>其中 <span class="math inline">\(\mathrm{sum}(A)\)</span> 表示 <span class="math inline">\(A\)</span> 中元素的和。</p>
+<p>这样就能得到最终得到 <span class="math inline">\(L\)</span> 的元素集合为 <span class="math inline">\(A\)</span> 的概率为 <span class="math inline">\(P(A)\frac{p_i}{1-\mathrm{sum}(A)}\)</span>。</p>
+<del>
+最后枚举所有满足 <span class="math inline">\(|A|\ge k\)</span> 且 <span class="math inline">\(i\not\in A\)</span> 的集合 <span class="math inline">\(A\)</span> 统计答案，答案就是 <span class="math inline">\(\mathrm{ans}_i=1-\sum_{|A|\ge k,i\not\in A}P(A)\frac{p_i}{1-\mathrm{sum}(A)}\)</span>。
+</del>
+<p><strong>UPD：其实可以更简单：<span class="math inline">\(\mathrm{ans}_i=\sum_{|A| &lt; k,i\not\in A}P(A)\frac{p_i}{1-\mathrm{sum}(A)}\)</span>（orz qmqmqm）</strong></p>
+<p>该算法复杂度为 <span class="math inline">\(O(2^nn)\)</span>。</p>
+<p>显然当 <span class="math inline">\(p_i&gt;0\)</span> 时，对任意 <span class="math inline">\(i\not\in A\)</span> 有 <span class="math inline">\(\mathrm{sum}(A)&lt; 1\)</span>。然而当 <span class="math inline">\(p_i=0\)</span> 时，可能出现 <span class="math inline">\(\mathrm{sum}(A)=1\)</span> 于是分母为 <span class="math inline">\(0\)</span>，出现错误。注意到 <span class="math inline">\(p_i=0\)</span> 时显然有 <span class="math inline">\(\mathrm{ans}_i=0\)</span>，特判输出即可。</p>
+<p>另外CF貌似计算inf/nan特别慢？</p>
+<hr>
+<p>然后发现好多神犇昨晚也打挂了？</p>
+<p>不过还是要膜一下IOI大爷kfdong，不到1小时把Div1.C给A了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/12/before-noi2016/" data-id="cjegzidcw000idf1linhcoywn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/记录/">记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/20/unr1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          UOJ NOI Round 1 滚粗记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/04/fjtrain2016/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">直播FJ省队集训大爆炸</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

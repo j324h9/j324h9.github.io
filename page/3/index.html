@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta property="og:type" content="website">
+<meta property="og:title" content="oi_loser&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="oi_loser&#39;s blog">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-hnoi2017-record" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/26/hnoi2017-record/" class="article-date">
+  <time datetime="2017-04-26T02:15:14.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/26/hnoi2017-record/">HNOI2017做题记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>除了迷之D2T2以外难度十分正常，不会太难，D1具有可AK性。代码量也很正常，都在1KB到2KB之间。<del>虽然D1考点有点偏？不过反正比HNOI2016好</del></p>
+<h4 id="d1t1单旋">D1T1：单旋</h4>
+<p>这题本来很简单的，然而我卡了很久= =因为我读错题了！以为要旋任意结点，然后思博了一个多小时，越想越复杂……等我写了个暴力，考虑暴力怎么卡的时候，才发现只要求旋最小/最大就行了。。。</p>
+<p>那么就是个线段树/树状数组练习题。。。</p>
+<p>考虑几个操作对树的形态和深度的变化：</p>
+<p>插入 <span class="math inline">\(x\)</span>，则 <span class="math inline">\(x\)</span> 的深度为其父结点加 <span class="math inline">\(1\)</span>。</p>
+<p>把最小/最大值结点 <span class="math inline">\(x\)</span> 旋到根，相当于 <span class="math inline">\(x\)</span> 的父结点到根这一段看成一个结点，旋转 <span class="math inline">\(x\)</span> 一次。那么 <span class="math inline">\(x\)</span> 的深度变成 <span class="math inline">\(1\)</span>，<span class="math inline">\(x\)</span> 子树内结点深度不变，其余结点深度加 <span class="math inline">\(1\)</span>。</p>
+<p>删除根 <span class="math inline">\(x\)</span>，则所有结点的深度减 <span class="math inline">\(1\)</span>。</p>
+<p>将所有的键值 <span class="math inline">\(key\)</span> 排序，根据二叉排序树的性质，不论怎么旋转，树的中序遍历都是 <span class="math inline">\(key\)</span> 的递增序。并且在中序遍历中，一个子树对应一段连续区间，因此对所有结点的 <span class="math inline">\(key\)</span> 递增序建线段树或树状数组，即可维护结点深度。</p>
+<p>另外考虑一个问题，如何确定插入结点 <span class="math inline">\(x\)</span> 的父结点 <span class="math inline">\(y\)</span>。假如 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(y\)</span> 的左子结点，那么 <span class="math inline">\(y\)</span> 是最小的比 <span class="math inline">\(x\)</span> 大的结点；反之，<span class="math inline">\(y\)</span> 是最大的比 <span class="math inline">\(x\)</span> 小的结点。用线段树维护当前树上结点，支持查询前驱后继即可。我比较懒直接拉了个STL的 <code>set</code>……</p>
+<p>复杂度 <span class="math inline">\(O(m\log m)\)</span>。注意特判根的情况（如果用比较好的写法可能不用判）。代码有点长，快2KB了：</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/26/hnoi2017-record/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/26/hnoi2017-record/" data-id="cjegzidfq001gdf1l3ntx2o2d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-zjoi2017-record" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/26/zjoi2017-record/" class="article-date">
+  <time datetime="2017-04-26T02:15:14.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/26/zjoi2017-record/">ZJOI2017做题纪录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这套题好难……暂时只想出一题。</p>
+<h4 id="d2t2线段树">D2T2：线段树</h4>
+<p>记得上次被srwudi的题卡内存的经历……启发我们不能满足于表面性质，要发掘更深入的性质！！！</p>
+<p>注意到区间定位就是 <span class="math inline">\(l-1\)</span> 到LCA的右子结点加上 <span class="math inline">\(r-1\)</span> 到LCA的左子结点（<span class="math inline">\(l\)</span> 和 <span class="math inline">\(r\)</span> 有一个和LCA端点重合的特判掉），于是对每个点维护它到根的路径的左/右子结点集合即可。</p>
+<p>然而集合很大，而我们只需要知道距离和，所以只要维护集合中的结点个数以及结点深度和即可。</p>
+<p>查询的时候用前缀相减的思想即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> n,tot,L[<span class="number">400010</span>],mid[<span class="number">400010</span>],R[<span class="number">400010</span>],leaf[<span class="number">400010</span>],</span><br><span class="line">	fa[<span class="number">400010</span>],ls[<span class="number">400010</span>],rs[<span class="number">400010</span>],dep[<span class="number">400010</span>],val[<span class="number">400010</span>][<span class="number">2</span>],</span><br><span class="line">	siz[<span class="number">400010</span>],son[<span class="number">400010</span>],top[<span class="number">400010</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> vals[<span class="number">400010</span>][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=++tot;</span><br><span class="line">	L[x]=l;R[x]=r;</span><br><span class="line">	<span class="keyword">if</span>(l&lt;r)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,mid+x);</span><br><span class="line">		fa[ls[x]=read(l,mid[x])]=x;</span><br><span class="line">		fa[rs[x]=read(mid[x]+<span class="number">1</span>,r)]=x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> leaf[l]=x;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(top[i]!=top[j])dep[top[i]]&gt;dep[top[j]]?i=fa[top[i]]:j=fa[top[j]];</span><br><span class="line">	<span class="keyword">return</span> dep[i]&lt;dep[j]?i:j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dis</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> dep[i]+dep[j]<span class="number">-2</span>*dep[lca(i,j)];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">getsum</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> x,<span class="keyword">bool</span> ty)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=lca(u,x);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">0</span>;</span><br><span class="line">	res+=vals[x][ty]-vals[a][ty]+<span class="number">1l</span>l*(dep[u]<span class="number">-2</span>*dep[a])*(val[x][ty]-val[a][ty]);</span><br><span class="line">	res+=<span class="number">1l</span>l*(dep[u]+<span class="number">2</span>)*val[a][ty]-vals[a][ty];</span><br><span class="line">	<span class="keyword">if</span>(u==a||x==a)<span class="keyword">return</span> res;</span><br><span class="line">	<span class="keyword">while</span>(fa[u]!=a)&#123;</span><br><span class="line">		<span class="keyword">if</span>(top[u]==top[a])u=son[a];</span><br><span class="line">		<span class="keyword">else</span> u=top[u];</span><br><span class="line">		<span class="keyword">if</span>(fa[u]!=a)u=fa[u];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>((u==rs[a])==ty)res-=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=lca(leaf[l],leaf[r]);</span><br><span class="line">	<span class="keyword">if</span>(l==L[a]&amp;&amp;r==R[a])<span class="keyword">return</span> dis(u,a);</span><br><span class="line">	<span class="keyword">if</span>(l==L[a])<span class="keyword">return</span> dis(u,ls[a])+getsum(u,leaf[r+<span class="number">1</span>],<span class="number">0</span>)-getsum(u,rs[a],<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(r==R[a])<span class="keyword">return</span> dis(u,rs[a])+getsum(u,leaf[l<span class="number">-1</span>],<span class="number">1</span>)-getsum(u,ls[a],<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> getsum(u,leaf[r+<span class="number">1</span>],<span class="number">0</span>)-getsum(u,rs[a],<span class="number">0</span>)+getsum(u,leaf[l<span class="number">-1</span>],<span class="number">1</span>)-getsum(u,ls[a],<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	read(<span class="number">1</span>,n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;i++)dep[i]=dep[fa[i]]+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=tot;i++)&#123;</span><br><span class="line">		val[i][<span class="number">0</span>]=val[fa[i]][<span class="number">0</span>]+(i==rs[fa[i]]);</span><br><span class="line">		val[i][<span class="number">1</span>]=val[fa[i]][<span class="number">1</span>]+(i==ls[fa[i]]);</span><br><span class="line">		vals[i][<span class="number">0</span>]=vals[fa[i]][<span class="number">0</span>]+(i==rs[fa[i]]?dep[i]:<span class="number">0</span>);</span><br><span class="line">		vals[i][<span class="number">1</span>]=vals[fa[i]][<span class="number">1</span>]+(i==ls[fa[i]]?dep[i]:<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=tot;i;i--)siz[fa[i]]+=++siz[i],siz[i]&gt;siz[son[fa[i]]]?son[fa[i]]=i:<span class="number">1</span>;</span><br><span class="line">	top[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=tot;i++)top[i]=i==son[fa[i]]?top[fa[i]]:i;</span><br><span class="line">	<span class="keyword">int</span> m,u,l,r;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;m);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;u,&amp;l,&amp;r);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,query(u,l,r));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>做出这题以后顺便把srwudi的互测题也A掉了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/26/zjoi2017-record/" data-id="cjegzidho002fdf1lx6qzbbsz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-fjoi2017-r2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/23/fjoi2017-r2/" class="article-date">
+  <time datetime="2017-04-23T10:25:41.000Z" itemprop="datePublished">2017-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/23/fjoi2017-r2/">FJOI2017滚粗记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这场省选毁掉了我对好成绩的梦想。</p>
+<p>8:00开场看题，T1貌似是可持久化Treap裸题，T2字符串DP似乎挺可做，T3居然是去年原题扩大数据范围，做过。</p>
+<p>感觉这场很容易拿高分的样子，想想能A两题再写一题高分就稳了。</p>
+<p>于是开场先做T2，求两个长度 <span class="math inline">\(n\le 500\)</span> 的字符串的最长公共回文子序列。一开始以为直接写就行了，结果发现复杂度 <span class="math inline">\(O(n^4)\)</span>，还10组数据，没救。</p>
+<p>想了想直接上序列自动机似乎复杂度很不满的样子，虽然是 <span class="math inline">\(O(n^5)\)</span> 不过好像能有很多分。</p>
+<p>于是花了半个多小时码完过了样例，自己出了几组数据没问题。</p>
+<p>再做T3，写了十几分钟过了样例测了几组大数据就不管了。</p>
+<p>这时候自信T2拿到高分T3 AC了，觉得只要再AC T1就rank 1稳了。这时候9:00，然而FJOI是4h所以还剩3h= =</p>
+<p>最后决定放弃后两题的对拍开始搞T1。T1的意思是这样的，维护一个序列，支持插入、区间翻转、区间第 <span class="math inline">\(\lceil\frac{m}{2}\rceil\)</span> 个最大值下标查询、区间满足 <span class="math inline">\(a_i&gt;a_{i+1}\)</span> 的 <span class="math inline">\(i\)</span> 之和查询、区间满足 <span class="math inline">\(a_i&lt; a_{i+1}\)</span> 的 <span class="math inline">\(i\)</span> 之和查询。这种和两侧有关的信息似乎很难维护。</p>
+<p>不过还是硬着头皮开始写了，先码个可持久化Treap……嗯，要维护哪些信息呢？结点的值，子树的最大值以及最大值个数，前驱的值，后继的值，子树中满足 <span class="math inline">\(a_i&gt;a_{i+1}\)</span> 的下标之和，子树中满足 <span class="math inline">\(a_i&lt; a_{i+1}\)</span> 的下标之和，以及翻转标记。</p>
+<p>然后写 <code>pushup</code>，写写写……写完了。</p>
+<p>然后写 <code>merge</code> 和 <code>split</code>，写写写……写完了。这时候代码已经100行了。</p>
+<p>然后在前面加了个翻转 <code>rev</code> 和 <code>pushdown</code>，每次操作 <code>pushdown</code>。接着开始写修改，写着觉得常数好大，不过 <span class="math inline">\(n\)</span> 范围是 <span class="math inline">\(50000\)</span> 可能不虚。</p>
+<p>……</p>
+<p>终于写完修改、翻转、查询了～已经11:00了，然而FJOI是4h所以只剩1h了= =</p>
+<p>嗯我测一下样例，果然……没过……</p>
+<p>把树打出来看，发现几个地方写炸了，改改改，改了好久，终于调过了样例。</p>
+<p>11:30。不知道会不会出事情。</p>
+<p>于是赶紧写了T1的暴力拍，一拍就错。</p>
+<p>手算了下发现暴力写挂了，还好。</p>
+<p>改完暴力继续拍，又拍出错了，而且错在十几行。</p>
+<p>这回真的是正解写挂了。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/23/fjoi2017-r2/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/23/fjoi2017-r2/" data-id="cjegzidev0015df1lvz0w15y6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mutualtest2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/03/mutualtest2017/" class="article-date">
+  <time datetime="2017-04-03T03:46:44.000Z" itemprop="datePublished">2017-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/03/mutualtest2017/">集训队互测2017记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>马上就要FJOI二试和CTSC了。然而FJOI二试迷之延时至下旬。CTSC就是下个月的事情。比较紧张。</p>
+<h3 id="集训队互测-round-1">集训队互测 Round 1</h3>
+<p>开场看T1，感觉得推什么复杂的式子，不知道有没结论，于是先写个随机模拟打个表再说，然后发现 <span class="math inline">\(k=1\)</span> 时答案全是 <span class="math inline">\(0\)</span>。看下子任务居然有 <span class="math inline">\(k\le 1\)</span> 的部分分，难道是我写错了？再看 <span class="math inline">\(k=2\)</span> 的，发现是 <span class="math inline">\(\frac{m(n-1)}{n^2}\)</span>，这个应该有分……好我写一写，交。</p>
+<p>交上去居然是 <code>Invisible</code>，这不科学啊一定是OJ的问题……于是OJ修了一会儿看到结果，才5分= =然而怎么右边显示了标准输出？趁着工作人员修OJ的时候调代码，然后发现期望忘记除以方案总数了。。。接着又看了看表看出 <span class="math inline">\(k=3\)</span> 是 <span class="math inline">\(\frac{m(n-1)(n-2)}{n^3}\)</span> 感觉挺稳，觉得答案应该就是 <span class="math inline">\(\frac{m(n-1)(n-2)\cdots(n-k+1)}{n^k}\)</span>，接着发现 <span class="math inline">\(k\ge 4\)</span> 就挂了……</p>
+<p>算了先交 <span class="math inline">\(k=3\)</span>。看到得了45分就放心了。然后试着推通用的式子，然而每次计算是 <span class="math inline">\(O(m)\)</span> 的，而且怎么都化简不了。先放一边。</p>
+<p>接着去看T2，这题不出意外一定是JOHNKRAM的题，联想到WC时的仙人掌计数……已经不打算想正解了，那就写 <span class="math inline">\(O(n^2)\)</span> 吧。</p>
+<p>推了一下好像得预处理 <span class="math inline">\(i\)</span> 个点的强连通图个数？然后就开始想，想到后面以为只要求这个了，又想到清华集训2014的主旋律，然而我并没有A。。。然后又是线上比赛，不如找一份std对着写？点开以后意识到问题并不是这么简单……</p>
+<p>继续推，发现主旋律做法还是有用的，然而接着处于掉坑状态，想了非常久还是没想出怎么做。后来干脆考虑每种图会被枚举到多少次，接着就好像会 <span class="math inline">\(O(n^2)\)</span> 了，只要DP出每种点数的和合法图个数，然后枚举源点集合大小加起来就是答案了。</p>
+<p>写到210min的时候终于写完，居然对了。70分到手，有点开心。</p>
+<p>最后看T3，好像是个比较麻烦的题，感觉我不可能做出来了，就写了个15分暴力交上去。交完以后发现 <span class="math inline">\(K\le 5000\)</span> 可以离散化啊= =就写了离散化交上去，发现前面WA掉了。。。原来是数组开小了2333</p>
+<p>改完以后想多捞点分，就想 <span class="math inline">\(q=0\)</span> 可不可做，似乎只要找出每一列最后一次被染色的时刻然后按这个顺序做一遍，不需要什么复杂的数据结构就搞定了，不过不太确定能否写对。不过还是试着写写吧……</p>
+<p>最后10min终于调过样例，交上去。后来看到自己这题得了50分，挺满意的了。</p>
+<p>然后还想rush一下T1的另外15分，结果没时间了。</p>
+<p>最后45+70+50=165，出榜以后发现我这一堆暴力加起来居然有rank 2……有点爽。再看下其他人，好多大爷都是刚某道题没时间做别的题，然后送了我这个机会……所以我实力还是不行的。</p>
+<h4 id="看完题解之后">看完题解之后</h4>
+<p>xumingkuan的T1好神奇啊。题解里讲了“有可能出现的情况是找出 <span class="math inline">\(k=3\)</span> 的答案公式，与 <span class="math inline">\(k=2\)</span> 时的答案公式形式相似，试图推出一个普适的规律，然而发现 <span class="math inline">\(k=4\)</span> 时这个规律就挂了”，这不就是我的情况吗2333</p>
+<p>也许学过stirling相关知识这题就能多做一些分？我的姿势水平还需要提高。。。</p>
+<p>JOHNKRAM的T2我可能需要多花一些时间理解。</p>
+<p>zsyzssoft的T3可能细节偏多？然而场上2人AC，可能我还是没跟上大家的水平啊。</p>
+<hr>
+<h3 id="集训队互测-round-2">集训队互测 Round 2</h3>
+<p>还是开场看T1，以为直接状压就行了，结果 <span class="math inline">\(O(3^nn^2)\)</span> 写完一交才4分，好气啊，暴力分真少。优化一发，好像只要考虑包含某个点的集合就行了，再交，20分。分数这么低一定是我想偏了。</p>
+<p>然后发现这题 <span class="math inline">\(p=17\)</span> 居然是给出的，一定是有什么很妙的算法，想到了Codechef的BIKE。那就只要一开始把所有式子DFT一下，乘的时候只要 <span class="math inline">\(O(p)\)</span>，最后IDFT回来就行了。不过不太确定能否AC。</p>
+<p>当然由于时间效率是 <span class="math inline">\(3^{16}\times 17=7.3\times 10^8\)</span>，<span class="math inline">\(3\texttt{s}\)</span> 还是跑出来了……<span class="math inline">\(O(3^np)\)</span> 能过看来这题肯定大家都会。接着看T2。</p>
+<p>然后就说明了我有多弱……一开始没注意到对 <span class="math inline">\(M\)</span> 取模，然后觉得好像可以网络流，正在想怎么建图的时候发现了要对 <span class="math inline">\(M\)</span> 取模，于是瞬间不会了。原本想二分贪心，结果发现二分也是错的。脑补了好几种贪心，结果全是错的，然后一点思路都没有了。</p>
+<p>接着放弃T2去想T3了。一开始觉得条件有点复杂，不过如果枚举了 <span class="math inline">\(m\)</span> 就可以压位高斯消元了，<span class="math inline">\(O(\frac{n^4}{w})\)</span>，这大概有30分。不过要跑 <span class="math inline">\(n\)</span> 次高斯消元，可能我有些性质没用上？</p>
+<p>于是仔细分析了一下性质，发现 <span class="math inline">\(m\)</span> 每增加 <span class="math inline">\(1\)</span>，就少一个约束，多一个变量，好像处理起来不方便。如果 <span class="math inline">\(m\)</span> 减少 <span class="math inline">\(1\)</span>，就多一个约束，少一个变量，直接把最后一列删掉，然后用前面的行消这一行，这样复杂度就优化到 <span class="math inline">\(O(\frac{n^3}{w})\)</span> 了？不知道能不能60分的说。。。</p>
+<p>接着开始写，写了挺久的，写完过了两个样例交上去，一直Waiting，就继续想第二题，还是没想出来。</p>
+<p>测出来了，0分。点进去一看，全都是WA和TLE。</p>
+<p>样例怎么这么弱啊，怎么过了两个样例都能爆0。。。难道是系统差？自定义测试一发，过了。</p>
+<p>那肯定是我写挂了。写了个 <span class="math inline">\(O(2^nn^2)\)</span> 暴力拍，拍了一会儿拍出一个问题，改完以后过了对拍。交。继续想第二题，还是没想出来。</p>
+<p>测出来了，0分。点进去一看，全都是WA和TLE。</p>
+<p>这就尴尬了……无论如何都拍不出错怎么交上去就是0分？难道是我题目理解错了？</p>
+<p>把 <span class="math inline">\(O(2^nn^2)\)</span> 暴力特判 <code>if(n&gt;20)return 0;</code> 交上去。</p>
+<p>测出来了，0分。点进去一看，全都是WA，而且都是0s。不可能跑这么快啊？难道是……数据……犹豫了一会儿把暴力的 <code>gets(a)</code> 换成 <code>scanf(&quot;%s&quot;,a)</code>，交上去，10分了。估计是<del>毛爷爷用Windows造的数据导致</del>文件末有多余字符 <code>gets</code> 会挂，惨啊= =</p>
+<p>再把原来的代码交上去，40分，中间TLE了。好像被卡常数了，开始优化。接着发现我数组开的 <span class="math inline">\(50000\times 782\)</span> 于是 <code>memcpy</code> 炸复杂度了……改完交了两发（有一发优化错了）一共经过7次提交终于过60分了，真是艰难。</p>
+<p>最后1个多小时继续刚T2，然而除了 <span class="math inline">\(K=1\)</span> 的特判和答案小于 <span class="math inline">\(M\)</span> 的网络流以外都不会，我好菜啊……最后还是写了这两档一共25分，然而不明原因得了40分，而且9~11测试点还是WA的。好玄学，不过也没时间做什么了。</p>
+<p>结果是GG了，100+40+60=200，rank 7。一看怎么大家都会T2，惨啊……果然T1大家都会，T3也有很多60。</p>
+<p>于是就成了T2最低分选手。。。我做的题还是太少啊。。。</p>
+<h4 id="看完题解之后-1">看完题解之后</h4>
+<p>cy的T1正解是 <span class="math inline">\(O(2^nn^2p)\)</span> 的，好像比较麻烦。。。（反正我没去想就是了）不过似乎 <span class="math inline">\(3^{17-1}\)</span> 和 <span class="math inline">\(2^{17}\times 17^2\)</span> 运行效率差不多的样子？</p>
+<p>yjqqqaq表示他的T2是NOI第一题难度，想想我NOI2016 D2T1的分数……</p>
+<p>T2正解是贪心+结论，最后一步用数据结构优化。然而我不仅没看出只要判断连续 <span class="math inline">\(K\)</span> 个数的结论，还没看出有解时答案为最大值的结论，更没有看出答案不超过 <span class="math inline">\(2M\)</span>……可以说我是完全不会。<strong>另外好像直接输出最大值好像就有很多分？？？</strong></p>
+<p>matthew99的T3竟然真的是WC讲的Berlekamp-Massey算法……yyt16384 AC了好劲啊。</p>
+<p>有空的时候我也学一学这个算法。</p>
+<hr>
+<h3 id="集训队互测-round-3围观">集训队互测 Round 3（围观）</h3>
+<p>因为这场由immortalCO、fateice和我出题，所以我不是参赛者而是观察者……</p>
+<p>我出的是T3，一道槽点一大堆的提交答案题。</p>
+<p>其实也没什么想说的吧。当然这场被很多人当成辣鸡比赛= =</p>
+<p>不少人整场疯狂交T2（10个点，时限8s的题），有一段时间评测队列卡了五六个Waiting，卡评测严重。主要原因是这题 <span class="math inline">\(n\le 20,000\)</span>，数据组数 <span class="math inline">\(t\le 5\)</span>，<span class="math inline">\(\sum n\le 70,000\)</span>，于是大家都想用 <span class="math inline">\(O(n^2)\)</span> 卡常数过掉……</p>
+<p>由于我的T3下发的checker直接告诉了分数，于是大家不怎么提交，一般都是最后再交。不过悲催的是yyt16384最后没交上去，惨。。。</p>
+<p>最后就是我的题估分大爆炸。当时给fateice验题的时候，fateice一小时做了6个点，当时还觉得现场好几个小时大家应该很容易上60的，结果。。。没人上60。。。【一定是fateice太强啦！</p>
+<p>不知道会不会给人一种“FJ卡常队”的印象……去年AKF的集训队互测也有人被卡常数，今年呢，T1没人写正解就不说了，T2卡常数，T3也有人被卡了常数……T3 57分（最高分）xumingkuan有的点被卡了些结点个数的常数，于是少了点分，惨……</p>
+<p>选个时间把这场放到UOJ上让大家玩一玩？</p>
+<hr>
+<h3 id="集训队互测-round-4">集训队互测 Round 4</h3>
+<p>开场看了下三题，觉得T1好像很可做，先跑一遍Manacher在每次指针右移的时候记下区间，就可以转化成每次询问右下角有多少个点。。。开始写的时候突然发现这个做法是错的。。。</p>
+<p>然后开始fix，脑补了各种回文串的性质无果；转成后缀数组的每个后缀维护一个集合，区间插入一个数，发现集合难合并；考虑维护所有不同回文串的最左出现位置，不断删第一个字母，看起来很靠谱结果复杂度是错的……总之一共想了2个多小时还是一无所获。哎。</p>
+<p>算了去想后面的题，第二题一开始想到 <span class="math inline">\([a,b]\)</span> 的一个左子结点 <span class="math inline">\([a,c]\)</span> 被覆盖的条件是 <span class="math inline">\(l\le a\le c\le r &lt; b\)</span>，写了个暴力交上去只有10分，原来我 <span class="math inline">\(type=0\)</span> 的也异或上一次答案了。。。算了我想想稍微不暴力点的做法。</p>
+<p>发现这是个三维偏序，不资磁！不过 <span class="math inline">\(a\le b &lt; c\)</span> 是个好性质，我们转化一下，答案是满足 <span class="math inline">\(1\le a\le c\le r\)</span> 的个数减去满足 <span class="math inline">\(1\le a\le b\le r\)</span> 的个数，再转化一下就是区间长度（<span class="math inline">\(r-l+1\)</span>）减去 <span class="math inline">\(l\le a\le b\le r\)</span> 的非叶结点 <span class="math inline">\([a,b]\)</span> 个数，就变成了二维偏序了。写了一下发现结论没错，好像能做。</p>
+<p>然而又要在线又要带修改……强上两个log吧。线段树套线段树？不资磁，空间是 <span class="math inline">\(O(n\log^2 n)\)</span> 的。那就线段树套……平衡树？虽然时间还是 <span class="math inline">\(O(n\log^2n)\)</span> 但空间只有 <span class="math inline">\(O(n\log n)\)</span> 了，效果也许不错？</p>
+<p>于是就陷入了深坑。</p>
+<p>15点多开始线段树套平衡树，到16点半的时候调出来了，交上去，60分。一看，被卡了8个点的内存。</p>
+<p>惨。</p>
+<p>我就在想，<span class="math inline">\(64\texttt{MB}\)</span> 可以开 <span class="math inline">\(1.6\times 10^7\)</span> 个 <code>int</code>，<span class="math inline">\(200000\times 20\)</span> 个结点，每个节点大概长这样：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">snode</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> val,siz;</span><br><span class="line">	snode*fa,*ch[<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果每个节点是 <span class="math inline">\(8\)</span> 个 <code>int</code> 大小，那就起码 <span class="math inline">\(128\texttt{MB}\)</span>，有点崩。然而明明只要查后缀区间为什么要写线段树？写个树状数组就行了啊期望还能省一半内存= =</p>
+<p>于是又花了20多分钟改成了树状数组套平衡树，交上去，还是60分。。。</p>
+<p>想了好久还是不知道怎么优化。至今不明白为什么连 <span class="math inline">\(64\texttt{MB}\)</span> 都卡不进去。</p>
+<p>一看比赛只剩1h了，得赶紧写掉剩下两题暴力。</p>
+<p>于是先写了T3的 <span class="math inline">\(O(n\min\{n,m\})\)</span> 暴力，一开始写错了一次，调了一会儿过了35。</p>
+<p>又写了T1的 <span class="math inline">\(O(n^2\log n+qn\log n)\)</span> 暴力，20分。</p>
+<p>最后又想多rush T3的分又想优化T2的内存，结果都没成功。</p>
+<p>于是20+60+35=115滚粗。。。T2一堆100，只有我一个60。。。然而T2分这么低居然还有rank 4。。。</p>
+<p>immortalCO T2标算AC，太强啦！</p>
+<p>fateice T2神奇算法AC，太强啦！</p>
+<h4 id="看完题解之后-2">看完题解之后</h4>
+<p>philipsweng的T1正解是回文树+分块，然而我不会回文树，哎我怎么这么菜啊</p>
+<p>srwudi的T2确实带给选手们无与伦比的<del>卡内存</del>做题体验啊……不过说到底还是我自己的问题，我还！是！不！会！分！析！问！题！性！质！推了个二维偏序就不管了，最后GG……</p>
+<p>线段树结点和普通区间相比有明显的规律啊，覆盖区间的结点一定是一段递增一段递减，然而我怎么就把问题给一般化了，问题一般化就丢性质了。。。immortalCO教导得是啊。</p>
+<p>yyt16384的T3看起来不可做，当然也可能是我太弱了。</p>
+<hr>
+<h3 id="集训队互测-round-5">集训队互测 Round 5</h3>
+<p>血崩。</p>
+<p>由于晚上熬夜出题，状态不好，看到题啥思路都没有。于是想想T1，好像是后缀自动机，然而我不会，于是写了后缀Trie的35分。又想想T2，好像可以FWT，结果细节考虑不清楚，怎么都是错的，最后调来调去弄了30分，不知道为什么2、3过了4没过。然后又去看T3，觉得是三合一的恶心题，没啥写的欲望。然后花了很久才写掉了第一个subtask。回头准备试着写SAM，然而考场上确实不应该写不熟悉的算法，还是放弃了。T2感觉造数据很麻烦，就盯着代码看，没看出问题。。。GG。。。T3的第二个subtask好像可以均摊搞搞，写着写着开始怀疑人生，觉得复杂度爆炸，于是不写了。。。最后还是把subtask3的裸暴力写了，然而前面的点莫名其妙地WA了，又没法Rejudge，就只剩25分了。</p>
+<p>结果#9滚大粗。。。35+30+25=90。。。膜immortalCO 170分#1。</p>
+<p>最后一次互测考成这样我对自己已经没什么信心了。大概我就只有rank 9的水平吧。况且最近也没时间刷题了，只能CTSC坐等GG同时围观immortalCO怒拿rank 1进国家队了。</p>
+<h4 id="看完题解之后-3">看完题解之后</h4>
+<p>SkyDec的T1是继sone3之后的又一道神字符串题，不想做。然而把我的后缀Trie换成后缀自动机就有60分了啊……我一定要想办法学会后缀自动机。</p>
+<p>qiaoranliqu的T2感觉自己状态好的话完全是可以想出来的，因为我前段时间学过FWT了。。。然而自己傻逼到盯着50分一直码写挂了还懒得调感觉我心态实在太糟糕。。。（也可能是晚上睡太少了）</p>
+<p>sunyaofeng的T3后两个subtask正解好复杂啊，可是immortalCO说敢写暴力就能AC，orz……我纠结了好久的错误复杂度光荣滚粗……</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/03/mutualtest2017/" data-id="cjegzidg9001ndf1letmd029e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/集训队互测/">集训队互测</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-51nod-23" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/03/51nod-23/" class="article-date">
+  <time datetime="2017-04-03T03:46:44.000Z" itemprop="datePublished">2017-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/03/51nod-23/">51nod算法马拉松23</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这场比赛做得很不及时。</p>
+<p>4月1日听到同学讨论才想起有51nod比赛，然后点进去看已经有9个AK了……赚钱基本是没戏了。那就试着做一下呗。点进去第一题，觉得是结论题，然后自信有解就把 <span class="math inline">\(x=\frac{\pi}{6}\)</span> 代入，直接找出循环节，然后写了几个 <code>if</code> 不检查直接交就A掉了……挺送分。那么再看第二题，好像推个式子就行了然而 <span class="math inline">\(m\le 10^7\)</span>？输入有点爆炸唉我先码个输入优化，码码码，OK了，然后推了个 <span class="math inline">\(\frac{1}{m}\sum_ia_i\)</span> 的式子交上去结果只过了第一个点……囧……</p>
+<p>这么短代码要错肯定是结论错咯。看下题发现题意理解错，每次生成都要加进答案，再推了一波让人难以置信的是答案居然和输入的 <span class="math inline">\(a_i\)</span> 无关。。。？？？然后读入两个 <span class="math inline">\(n,m\)</span> 输出 <span class="math inline">\(\frac{n(n-1)}{2m}\)</span> 就过了？就过了？输入优化都没删。。。怎么都是纯数学题啊2333【讲道理这种题出在数学考试都是可以的</p>
+<p>然后看第三题，一开始理解错以为要枚举小的对大的分段，好像还得分块，还不能处理图的情况，觉得做不了。immortalCO问我答案是不是就是次大值，我当时想到某道CF题觉得不太可能吧看了下那道CF题，发现一个条件 <span class="math inline">\(a_i &gt; a_j\)</span>。。。靠，读错题了。那看来真的是严格次大值无误。然而想了很久还是搞不清楚怎么对每个点 <span class="math inline">\(v\)</span> 求能到 <span class="math inline">\(v\)</span> 的点权中比 <span class="math inline">\(v\)</span> 的值小的最大值，好难啊先扔了。</p>
+<p>这时候dick32165401他们好像在刚D题，就去看D。</p>
+<p>一开始觉得状态要记原点到6个点的最短路，这样状态数至少 <span class="math inline">\(O(m^6)\)</span> 了……思考了一会儿明白了相邻两格最短路差不超过1，那就是 <span class="math inline">\(100^2\times 3^5\)</span> 级别的状态数了挺能接受，转移的时候就枚举下一列的状态，总共 <span class="math inline">\(100^2\times 3^5\times 2^6\)</span> 好像能过，就写了一会儿写完了。交上去WA掉。发现 <span class="math inline">\(n,m\)</span> 又打反，尼玛我怎么老是犯这种毛病啊QAQ第二次就过了。</p>
+<p>这时候好像有10人AK了。惨。</p>
+<p>E题一开始想分治之类的东西结果毫无进展，一定是我想复杂了。然后看着式子联想到一道自己出过（其实是我出完以后在BZOJ看到一模一样的题）的区间逆序数，好像只能分块搞，不过这题离线所以写个莫队+BIT好像能卡过去……然后写了一会儿写出来，接着你们懂的本SB又是过了样例WA飞了，为啥？immortalCO：你输出的时候 <code>unsigned long long</code> 开了没？我：没……</p>
+<p>感觉正式比赛出这种情况就真的毁前途。看F。一开始想了想暴力怎么写，然后写完交上去想验证暴力正确性结果除了第一个点全是大数据，我去。。。不过样例和第一个点过了应该就没错了。接着开始用莫比乌斯反演推式子，推了一会儿推出一个 <span class="math inline">\(\sum_{i=1}^n\sum_{j=1}^n[(i,j)=1]\)</span> 状物，我想这应该就是 <span class="math inline">\(2\varphi(n)-1\)</span> 吧，验证了下好像是对的。接着式子就变成了分段求区间次大因数和以及区间 <span class="math inline">\(\varphi\)</span> 和，后一个好像有原题上个<del>杜教筛</del>容斥就行，<span class="math inline">\(O(n^\frac{2}{3})\)</span>，问题是前一个怎么求不是很会= =</p>
+<p>然后想暴力该怎么写，就是埃氏筛法，好像和筛法函数长得很像？接着就开始推筛法函数的DP，推了几步发现中间某一步要求 <span class="math inline">\(\sum_{i=1}^ni^K\)</span>，<span class="math inline">\(n\)</span> 又很大，好像只能强上插值了……于是目前的想法是“插值+容斥+DP”三合一，感觉会很难写很难调。</p>
+<p>然而好像拉格朗日插值没逆元，还是写 <span class="math inline">\(O(K^2)\)</span> 的牛顿插值吧，然而并不会牛顿插值的式子，上网搜了一堆资料结果半懂不懂的，决定自己推，然后推对了……RP不错，接着开始写，写完一测发现萎了。。。怎么回事？调调调。。。卧槽我的方法用到了除以阶乘然而阶乘不一定有逆元，日。。。</p>
+<p>最后还是只好质因数分解保平安了2333写完以后开始写容斥求 <span class="math inline">\(\varphi(x)\)</span> 前缀和，由于一开始忘记预处理 <span class="math inline">\(\varphi(1)=1\)</span> 导致怎么都是错，也费了好多时间。终于开始写筛法函数了，一开始还把定义搞错把质数也筛掉了，后来觉得不妙才改了，然而还是出一堆问题。接着两三个小时发现一堆bug，一个个改完以后终于过样例了，然后第一个点WA了，又调了一下发现丢了一个 <code>pow</code>。</p>
+<p>结局是艰难地过掉了F。。。感觉这种难度的题我还得折腾这么久我这迟早要完啊。。。</p>
+<p>然后C还是不会做。。。4月2日起来继续想，想了很久一直往强连通分量去想，结果不知道怎么提取第一个比自己小的权值，还是做不出来。最后想出枚举权值区间floodfill再把这个权值的点去掉，求出每个点能到达它的不等于自己的最大权值，又想想觉得不对= =于是改成floodfill搞出每个点能到达它的最大和次大权值，这样就靠谱了。于是12点多把C题过了。论最后想出来的是C题是一种怎样的体验2333</p>
+<p>最后rank14 GG，可能我早点开始打也不太能进前10。</p>
+<h4 id="看完题解之后">看完题解之后</h4>
+<p>C题原来缩强连通分量以后直接递推一发就做完了，不知道我当时在想什么</p>
+<p>E题分块做好像就能不带log了，当然莫队把BIT换成分块维护好像也能优化掉log（不过好像更难写就懒得优化了）</p>
+<p>F题居然可以多设几个函数来搞，不用插值了……不过不知道常数会不会大</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/03/51nod-23/" data-id="cjegzida10001df1lt5rhe8k5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-51nod-22" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/06/51nod-22/" class="article-date">
+  <time datetime="2017-03-06T01:57:03.000Z" itemprop="datePublished">2017-03-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/06/51nod-22/">51nod算法马拉松22</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>又一次RP爆发卡线rank 10……有点爽……</p>
+<hr>
+<p>由于周五是我出的校内训练，所以等21:30讲完题回家路上才开始看题。</p>
+<p>路上用手机看题。A题看完以后想到FJOI2016一试T3，其实就是Codechef原题FRBSUM。看起来很复杂，其实注意到一个核心性质：把 <span class="math inline">\(S\)</span> 中的元素排序得到 <span class="math inline">\(a_1\le a_2\le\cdots\le a_n\)</span> 以后，最小的满足 <span class="math inline">\(a_i &gt; 1+\sum_{j=1}^{i-1}a_j\)</span> 的 <span class="math inline">\(i\)</span> 对应的 <span class="math inline">\(\sum_{j=1}^{i-1}a_j\)</span> 就是 <span class="math inline">\(S\)</span> 的优美值。</p>
+<p>因为当 <span class="math inline">\(0 &lt; i&#39; &lt; i\)</span> 时，如果 <span class="math inline">\(\{a_1,\cdots,a_{i&#39;-1}\}\)</span> 能配出的数为 <span class="math inline">\([0,\sum_{j=1}^{i&#39;-1}a_j]\)</span>，那么 <span class="math inline">\(\{a_1,\cdots,a_{i&#39;}\}\)</span> 就能配出 <span class="math inline">\([0,\sum_{j=1}^{i&#39;-1}a_j]\cup[a_{i&#39;},\sum_{j=1}^{i&#39;}a_j]=[0,\sum_{j=1}^{i&#39;}a_j]\)</span>。而<strong>由于 <span class="math inline">\(a_i\)</span> 已排序</strong>，所以 <span class="math inline">\(a_{i&#39;} &gt; 1+\sum_{j=1}^{i-1}(i&#39;\ge i)\)</span>，因此 <span class="math inline">\(1+\sum_{j=1}^{i-1}\)</span> 配不出来。这样求优美值就很简单了：排序以后，一开始 <span class="math inline">\(\mathrm{sum}=0\)</span>，从小到大把 <span class="math inline">\(a_i\)</span> 加入 <span class="math inline">\(\mathrm{sum}\)</span>，一旦加入前发现 <span class="math inline">\(a_i\not\in[0,1+\mathrm{sum}]\)</span> 就得到答案了。<em>（FJOI原题是多次询问区间答案，做法是用可持久化线段树加速查询 <span class="math inline">\([0,\mathrm{sum}+1]\)</span> 区间内的数，因为一次可以把多个数加进 <span class="math inline">\(\mathrm{sum}\)</span>，所以 <span class="math inline">\(\mathrm{sum}\)</span> 只会增加 <span class="math inline">\(O(\log\sum a_i)\)</span> 次）</em></p>
+<p>想到这里，这题差不多就会做了，从小到大选 <span class="math inline">\(S_1\)</span> 中的元素，如果 <span class="math inline">\(S_1\)</span> 中没有 <span class="math inline">\([0,\mathrm{sum}+1]\)</span> 内的元素（<span class="math inline">\(\mathrm{sum}\)</span> 为已选元素之和），那么就从 <span class="math inline">\(S_2\)</span> 中贪心选出尽量大的数加入 <span class="math inline">\(S_3\)</span>（因为答案是选出数的和，所以不贪心取最大的话可以调整成更大的数更优），直到 <span class="math inline">\(S_1\)</span> 和 <span class="math inline">\(S_2\)</span> 剩下元素都大于 <span class="math inline">\(1+\mathrm{sum}\)</span> 或 <span class="math inline">\(|S_3|=k\)</span>。于是我直接在手机上写完，交上去，TLE。</p>
+<p>然而我的复杂度是 <span class="math inline">\(O(nm\log m+Tm)\)</span> 啊，应该不会TLE的？回头看一遍数据范围发现这题输入了 <span class="math inline">\(10^6\)</span> 个数，不加输入优化没什么救，然后就在刚到家的时候把输入优化码完，AC了。</p>
+<p>回家上电脑接着看了后几题。B题一开始以为是个无聊的卡精度马尔可夫过程，思考了一下才明白决策是自己选的，然后列出来就是最小化一个带一堆 <span class="math inline">\(\min\)</span> 的奇怪式子，不会了。C题题目不是很懂，一大堆 <span class="math inline">\(e\)</span> 看起来很丧。D题让我想到了UOJ #176，然而这题我并不会做，惨啊……</p>
+<p>不过好像D可做？用UOJ那题的题解里提到的Boruvka算法，建Trie维护一下可能就OK了？问题是要计数。接着想了一些办法，首先是相同点权构成的点集 <span class="math inline">\(S\)</span> 连的是边权 <span class="math inline">\(0\)</span> 的完全图，一定全部被连起来，方案数是 <span class="math inline">\(|S|^{|S|-2}\)</span>。缩完相同点权以后，相同边权的边就没有公共点了，意味着MST唯一？好像很资磁。</p>
+<p>于是快要0:00开始写Boruvka，写完一测样例果然萎了。原来……我太SB了，虽然相同边权的边没有公共点但是在缩的时候会把这些边的端点缩到一块去……看样子这么做下去并没有前途。</p>
+<p>先去睡觉了。</p>
+<p>纠结于5题刚不出来的我冷静了一晚上，感觉好像理解了C题的意思。于是第二天一起来去刚C题。</p>
+<p>推了一发式子——</p>
+<p><span class="math display">\[[f(x)-e^x]^2=\sum_{i=0}^Na_i^2x^{2i}+2\sum_{i=0}^{N-1}\sum_{j=i+1}^Na_ia_jx^{i+j}-2\sum_{i=0}^Na_ix^ie^x\]</span></p>
+<p><span class="math display">\[(x^i)&#39;=ix^{i-1}\Rightarrow\int_0^1x^i\mathrm{d}x=\frac{1}{i+1}1^{i+1}-\frac{1}{i+1}0^{i+1}=\frac{1}{i+1}\]</span></p>
+<p>然后并没有想清楚 <span class="math inline">\(x^ie^x\)</span> 定积分怎么求，就开始手算小数据：</p>
+<p><span class="math display">\[(x^ie^x)&#39;=(ix^{i-1}+x^i)e^x\]</span></p>
+<p><span class="math display">\[\Rightarrow [(x-1)e^x]&#39;=xe^x\]</span></p>
+<p><span class="math display">\[\Rightarrow [(x^2-2x+2)e^x]&#39;=x^2e^x\]</span></p>
+<p><span class="math display">\[\Rightarrow [(x^3-3x^2+6x-6)e^x]&#39;=x^3e^x\]</span></p>
+<p>这样归纳一下好像就推出来了：</p>
+<p><span class="math display">\[(e^x\sum_{i=0}^n(-1)^iA_n^ix^{n-i})&#39;=x^ne^x\Rightarrow\int_0^1x^ne^x\mathrm{d}x=e\sum_{i=0}^n(-1)^iA_n^i-(-1)^nn!\]</span></p>
+<p>这么看来原式应该就等于</p>
+<p><span class="math display">\[\sum_{i=0}^N\frac{1}{2i+1}a_i^2+2\sum_{i=0}^{N-1}\sum_{j=i+1}^N\frac{1}{i+j+1}a_ia_j-2\sum_{i=0}^N[e\sum_{j=0}^i(-1)^jA_i^j-(-1)^ii!]a_i\]</span></p>
+<p>只有二次诶，那只要对每个 <span class="math inline">\(a_i\)</span> 令偏导为 <span class="math inline">\(0\)</span> 就行了，就能得到一个 <span class="math inline">\(N+1\)</span> 元一次方程组（<strong>UPD</strong>）：</p>
+<p><span class="math display">\[\frac{2}{2i+1}a_i+2\sum_{0\le j\le N,j\ne i}\frac{1}{i+j+1}a_j-2[e\sum_{j=0}^i(-1)^jA_i^j-(-1)^ii!]=0\]</span></p>
+<p>用高斯消元解方程组就做完了，可是 <span class="math inline">\(a_i=\sum_{j=0}^\infty p_{ij}\cdot e^j\)</span> 什么鬼？？难道要把多项式放进去消元，这个是要炸的呀。看了下方程组发现系数矩阵 <span class="math inline">\(A\)</span> 的数都是有理数，那么解方程 <span class="math inline">\(Ax=b\)</span>（<span class="math inline">\(x,b\)</span> 为列向量）得到 <span class="math inline">\(x=A^{-1}b\)</span>，而 <span class="math inline">\(b\)</span> 中的数都能表示成 <span class="math inline">\(p_0+p_1e\)</span> 的形式，所以答案 <span class="math inline">\(x\)</span> 也能表示成 <span class="math inline">\(p_0+p_1e\)</span> 的形式。</p>
+<p>出题人真坑，明明答案是 <span class="math inline">\(p_0+p_1\)</span> 的形式，只有 <span class="math inline">\(p_{i0},p_{i1}\)</span> 是有用的，题面偏要写成 <span class="math inline">\(\sum_{j=0}^\infty p_{ij}\)</span> 误导别人存整个多项式。然后又只要输出有用的那两个数。坑爹！！</p>
+<p>推导这里就开始写，写完之后测了下样例 <span class="math inline">\(N=0\)</span> 过了，<span class="math inline">\(N=1\)</span> 的WA了。开始怀疑算法有没错。或者是哪一步推导错了。好虚啊。</p>
+<p>手算了一边发现算法是对的，调一发程序，是程序把某个式子算错了= =b</p>
+<p>改改改。</p>
+<p>终于过样例了。</p>
+<p>终于过了C。</p>
+<p>看了下榜已经一堆人过5题了，而我只有约四十名。我开始做B题。</p>
+<p>一开始想枚举每个点的前继然后怎么搞，觉得好像有反例（？）就犹豫了好长时间。不过想了一会儿还是找到了正确的思路：先确定 <span class="math inline">\(0\)</span> 个星的时候的决策，显然升级概率越大越好，再确定 <span class="math inline">\(1\)</span> 个星时候的决策……</p>
+<p>因此，记 <span class="math inline">\(f_i\)</span> 为当前有 <span class="math inline">\(i\)</span> 个星，按照最优策略，第一次变成 <span class="math inline">\(i+1\)</span> 星的期望花费，则枚举选择的魔法石 <span class="math inline">\(j\)</span>，有 <span class="math inline">\(1-\mathrm{prob}(i,j)\)</span> 概率失败，失败的话就要从 <span class="math inline">\(i-\mathrm{lose}(i,j)\)</span> 星逐步转移到 <span class="math inline">\(i+1\)</span> 星，因此 <span class="math inline">\(f_i=\min_j\{C_j+[ 1 - \mathrm{prob}(i,j) ]\sum_{k=i-\mathrm{lose}(i,j)}^if_k\}\)</span>。</p>
+<p>移项得到 <span class="math inline">\(f_i=\min_j\{\frac{C_j}{\mathrm{prob}(i,j)}+[\frac{1}{\mathrm{prob}(i,j)}-1]\sum_{k=i-\mathrm{lose}(i,j)}^{i-1}f_k\}\)</span>。直接DP会有精度问题吗？</p>
+<p>那我写一下交个看看。写完没过样例因为我把 <span class="math inline">\(C_i\)</span> 写丢了（还查了好一会儿），过了样例交上去。结果，居然直接AC了，完全没有卡精度的迹象。</p>
+<p>我也不知道为什么没有出精度问题，也许是运气好吧。上次在51nod做同一个出题人出的马尔可夫过程题还卡了好久的精度呢。</p>
+<p>再看D的时候D的通过人数已经好多了。这题一定不难，只是我想复杂了。</p>
+<p>于是手工模拟了一遍点集 <span class="math inline">\(\{0,1,2,3,4,5,6,7,8\}\)</span> 的Kruskal过程，整个过程如下：</p>
+<p><span class="math display">\[\{0\},\{1\},\{2\},\{3\},\{4\},\{5\},\{6\},\{7\}\]</span></p>
+<p><span class="math display">\[\{0,1\},\{2,3\},\{4,5\},\{6,7\}\]</span></p>
+<p><span class="math display">\[\{0,1,2,3\},\{4,5,6,7\}\]</span></p>
+<p><span class="math display">\[\{0,1,2,3,4,5,6,7\}\]</span></p>
+<p>我好像发现了什么……是按二进制位从低到高合并的！</p>
+<p>如果在Trie树上呢？连边 <span class="math inline">\((u,v)\)</span> 的时候，<span class="math inline">\((u,v)\)</span> 的权值最高位就是 <span class="math inline">\(u,v\)</span> 在Trie上的LCA高度。因此对Trie树 <span class="math inline">\(T\)</span> 模拟Kruskal的方法是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Kruskal(T):</span><br><span class="line">	若 T 的左子树非空: Kruskal(T 的左子树)</span><br><span class="line">	若 T 的右子树非空: Kruskal(T 的右子树)</span><br><span class="line">	// 以上两步之后最多只剩左右子树两个连通块，并且这两步过程中连的边权都比剩下可能连的边小，因此是正确的</span><br><span class="line">	若 T 的左子树 T1 和右子树 T2 均非空（假设 |T1| &lt; |T2|）:</span><br><span class="line">		x = Infinity, c = 0</span><br><span class="line">		DFS 枚举 T1 节点 u，DFS 过程中在 T2 中贪心地找点 v 使得 a[u] xor a[v] 最小: // 由于缩了相同点，每个 u 对应的 v 唯一</span><br><span class="line">			若 a[u] xor a[v] = x: c += 1</span><br><span class="line">			若 a[u] xor a[v] &lt; x: x = a[u] xor a[v], c = 1</span><br><span class="line">	最小生成树边权和加 x，方案数乘 c</span><br></pre></td></tr></table></figure>
+<p>这个问题的性质就是左右子树独立，注意到这一点以后就变地简单多了。然后我把原来写的错误的Trie树Boruvka算法删了一大半，改成直接在树上DFS，过了样例，交上去也过了。</p>
+<p>过D的时候12:00多。昨晚觉得B、C、D都一副不可做的样子，不过现在都做出来了，有点爽。</p>
+<p>还剩E、F两题。</p>
+<p>下午开始搞E。有点像个大代码数据结构题，不过如果真是这样的话不虚，因为时间充足，呵呵。</p>
+<p>一开始题目看错了，以为是链上插入一个元素，查询过一个点的元素中前 <span class="math inline">\(k\)</span> 小的异或。我想这不就是把链拆成到根的路径以后转成查子树区间 <span class="math inline">\(k\)</span> 小吗，可持久化线段树就搞定了。E题肯定不是这么简单！又读了遍题目，才明白真正的题目意思是：每个点 <span class="math inline">\(i\)</span> 维护一个初值为 <span class="math inline">\(0\)</span> 的数组 <span class="math inline">\(c_i\)</span>，每个操作 <span class="math inline">\((u,v,a,b)\)</span> 把链 <span class="math inline">\((u,v)\)</span> 上所有点 <span class="math inline">\(i\)</span> 的 <span class="math inline">\(c_i[b]\)</span> 增加 <span class="math inline">\(a\)</span>，查询的是 <span class="math inline">\(c_w\)</span> 数组中 <span class="math inline">\(c_w[i]\)</span> 前 <span class="math inline">\(k\)</span> 小的 <span class="math inline">\(i\)</span> 的异或。</p>
+<p>这下就不太一样了，因为用可持久化线段树虽然可以对每个 <span class="math inline">\(b\)</span> 查出 <span class="math inline">\(c_w[b]\)</span>，却不能查出 <span class="math inline">\(c_w[b]\)</span> 前 <span class="math inline">\(k\)</span> 大的 <span class="math inline">\(b\)</span>。不给力。</p>
+<p>可能我需要换个想法。如果不是树而是序列呢？那就只要按顺序扫一遍过去，维护一个 <span class="math inline">\(c\)</span> 数组，遇到操作的左端点就把 <span class="math inline">\(c[b]\)</span> 加 <span class="math inline">\(a\)</span>，遇到右端点就 <span class="math inline">\(c[b]\)</span> 减 <span class="math inline">\(a\)</span>。用线段树维护每个 <span class="math inline">\(x\)</span> 对应的满足 <span class="math inline">\(c[i]=x\)</span> 的 <span class="math inline">\(i\)</span> 个数就能查前 <span class="math inline">\(k\)</span> 小了。可是一样多的按 <span class="math inline">\(i\)</span> 排序怎么搞？</p>
+<p>那就把每个 <span class="math inline">\((c[i],i)\)</span> 表示成一个数 <span class="math inline">\(c[i]\cdot B+i\)</span>。</p>
+<p>值域好像很大的样子，线段树要动态开节点- -那么如果是树呢？树剖一下？</p>
+<p>于是一个操作被拆成了 <span class="math inline">\(O(\log n)\)</span> 个，每次要改线段树，复杂度变成 <span class="math inline">\(O(\log^2 n)\)</span> 了- -</p>
+<p>不知道能不能过，而且觉得空间会爆炸的样子。不过空间好像不是 <span class="math inline">\(O(m\log^2 n)\)</span> 而是 <span class="math inline">\(O(m\log n)\)</span>？我写下。……写完了，调一发。……过样例了。</p>
+<p>然后在51nod上运行了第一个点，MLE。</p>
+<p>数组改小。</p>
+<p>MLE。</p>
+<p>再改小。</p>
+<p>MLE。</p>
+<p>再改小。</p>
+<p>RE。</p>
+<p>想放弃。</p>
+<p>然后记起51nod好像是64位机？如果我把指针改成 <code>int</code> 下标呢？改。</p>
+<p>改完。</p>
+<p>测一下。</p>
+<p>第一个点过了。</p>
+<p>交。</p>
+<p>WA</p>
+<p>WA</p>
+<p>WA</p>
+<p>……</p>
+<p>那应该是我写挂了。回去和暴力拍小数据，怎么都拍不WA，又拍了好多组大数据也拍不WA。这就很尴尬了QAQ</p>
+<p>最后还是死于线段树的区间：<code>right = m * 10000000000ll</code> 打成了 <code>right = 10000000000ll</code>。这个小数据不太可能拍出来……</p>
+<p>挣扎了一下午，终于在17:00前用两个 <span class="math inline">\(\log\)</span> 把这题卡过去了。</p>
+<p>有希望。</p>
+<p>现在剩下F。</p>
+<p>所有LCS的和？我只会求 <span class="math inline">\(|s_2|\)</span> 遍LCS。可是显然过不去。</p>
+<p>或者是需要一些特殊的状态设计？于是开始设计新的DP，结果不管怎么改都要 <span class="math inline">\(O(|s_1||s_2|^2)\)</span>。GG。总觉得自己是想复杂掉坑了，可是又总是找不到可行的方法。</p>
+<p>最后还是在rank 1的AKF帮助下才得救……AKF表示这题是“All Substring LCS”，是论文题。于是我就去看了论文，然而由于我太菜鸡了，看了很久才看懂。。。</p>
+<p>所以到了第二天的下午才搞掉F。一看排行榜，刚好rank 10。有点感动。</p>
+<hr>
+<p>这场比赛还是有一些收获的。</p>
+<p>A题的贪心算法还是比较妙的，虽然如果做过Codechef原题以后就没什么难度了- -</p>
+<p>B题给我的启发是：形如 <span class="math inline">\(f(i)=a_i+\sum_{j=0}^{i+1}c_{i,j}f(j)\)</span>（其中 <span class="math inline">\(\sum_{j=0}^{i+1}c_{i,j}=1,c_{i,i}\ne 1\)</span>）这样的方程，可以按照 <span class="math inline">\(i=0,1,2,\cdots\)</span> 的顺序递推，这样的好处是，每个 <span class="math inline">\(f(i)\)</span> 可以表示为 <span class="math inline">\(f(i+1)+p_i\)</span> 的形式，可以归纳证明：</p>
+<p><span class="math display">\[f(i)=a_i+\sum_{j=0}^{i-1}c_{i,j}[f(i)+\sum_{k=j}^{i-1}p_k]+c_{i,i}f(i)+c_{i,i+1}f(i+1)\]</span></p>
+<p><span class="math display">\[\Rightarrow f(i)=a_i+(1-c_{i,i+1})f(i)+\sum_{j=0}^{i-1}\sum_{k=j}^{i-1}p_k+c_{i,i+1}f(i+1)\]</span></p>
+<p><span class="math display">\[\Rightarrow f(i)=\frac{1}{c_{i,i+1}}(a_i+\sum_{j=0}^{i-1}\sum_{k=j}^{i-1}p_k)+f(i+1)\]</span></p>
+<p>即 <span class="math inline">\(p_i=\frac{1}{c_{i,i+1}}(a_i+\sum_{j=0}^{i-1}\sum_{k=j}^{i-1}p_k)\)</span>，若已知 <span class="math inline">\(f(n)=0\)</span>，按 <span class="math inline">\(i=0,1,2,\cdots,n-1\)</span> 顺序递推 <span class="math inline">\(p_i\)</span> 可以求出所有的 <span class="math inline">\(f(i)\)</span>。另外我还是很好奇这题为什么要注意精度，直接写应该就过了吧？</p>
+<p>C题的收获是求 <span class="math inline">\(x^ie^x\)</span> 的积分以及用偏导求多元二次函数的最值（其实原理和初中学的二次函数一模一样）<del>以及克服看到一大坨数学公式时的畏难情绪</del>。</p>
+<p>D题的思路很不错，也是<strong>容易想错</strong>的题，主要是容易往基尔霍夫矩阵等复杂算法考虑，却解决不了。<strong>能深入理解Kruskal这一个算法，比涉猎各种复杂的图论算法（如基尔霍夫矩阵等）有意义得多。</strong></p>
+<p>E题后来immortalCO给我讲了一个更简单的做法：按照我之前的想法拆链之后，不用可持久化线段树前缀和来查询，而是对每个节点维护子树的 <span class="math inline">\(c\)</span> 数组以及对应的排序列表，用平衡树启发式合并来维护。这样虽然时间也是 <span class="math inline">\(O(n\log^2n)\)</span> 的，但空间是 <span class="math inline">\(O(n)\)</span> 的，不需要强行优化内存常数。想想我去年做一道Codechef的启发式合并题想了好几天才想到正解。可见我还需要加强数据结构的灵活变通能力。</p>
+<p>F题的收获是学习了一个新的算法ALCS，这个算法思想是很不错的，利用特殊的单调性来改变状态设计。希望能找到这类问题的更多应用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/06/51nod-22/" data-id="cjegzid9l0000df1l7ajei99i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-thutrain2016-record" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/24/thutrain2016-record/" class="article-date">
+  <time datetime="2017-02-24T03:32:11.000Z" itemprop="datePublished">2017-02-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/24/thutrain2016-record/">清华集训2016订正记录（待更新）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UOJ上终于有了清华集训2016的题，喜闻乐见。于是乎，本人开始考后订正了。</p>
+<p>这里是本人参加清华集训2016留下的各种遗憾：http://wronganswer.blog.uoj.ac/blog/2161</p>
+<hr>
+<h2 id="day-1">Day 1</h2>
+<h3 id="t1alice和bob又在玩游戏">T1：Alice和Bob又在玩游戏</h3>
+<p>http://uoj.ac/problem/266</p>
+<h4 id="考场情况">考场情况</h4>
+<p>这题我的考场情况是这样的：</p>
+<p>一眼作业题，我会 <span class="math inline">\(O(n^2)\)</span>，很快码完60分。然后不是很会，之后思考的时候通过打表找规律，但没有发现任何有意义的性质，研究了几种构造性的方法但都是错误的。花费1h以上，没做出来。</p>
+<p>怎么办？回到原来的式子，强行用个数据结构维护每个子树的所有转移？这样看来就是个Trie树合并？好像会做了。</p>
+<p>写了1h，最后10min写完，连样例都没过，没时间调。</p>
+<p>最后得分：60。就是开场提交的暴力分。</p>
+<h4 id="考后分析">考后分析</h4>
+<p>这种博弈论问题属于我最经常掉坑的各类问题之一。显然可以想到一种基于Sprague-Grundy定理的暴力算法：用 <span class="math inline">\(T_v\)</span> 表示以 <span class="math inline">\(v\)</span> 为根的子树，记 <span class="math inline">\(g(v)\)</span> 为 <span class="math inline">\(T_v\)</span> 的Grundy值，转移时枚举选择的点 <span class="math inline">\(x\)</span>，设 <span class="math inline">\(T_v\)</span> 中与 <span class="math inline">\(x\)</span> 到 <span class="math inline">\(v\)</span> 的路径相邻的点集为 <span class="math inline">\(S_{v,x}\)</span>，那么选择 <span class="math inline">\(x\)</span> 转移到的状态Grundy值为 <span class="math inline">\(\bigoplus_{u\in S_{v,x}}g(u)\)</span>。从而 <span class="math inline">\(T_v\)</span> 的所有操作转移到的状态的Grundy值集合 <span class="math inline">\(G_v\)</span> 为</p>
+<p><span class="math display">\[G_v=\{\bigoplus_{u\in S_{v,x}}g(u)\lvert x\in T_v\}\]</span></p>
+<p>可得 <span class="math inline">\(g(v)=\mathrm{mex}G_v\)</span>。设根节点集合为 <span class="math inline">\(R\)</span>，那么先手必胜当且仅当 <span class="math inline">\(\bigoplus_{v\in R}g(v)&gt;0\)</span>。关键在于如何快速计算所有的 <span class="math inline">\(g(v)\)</span>。</p>
+<p>这个问题直接做就行了。用 <span class="math inline">\(C_v\)</span> 表示 <span class="math inline">\(v\)</span> 的子节点集合，设 <span class="math inline">\(x_v=\bigoplus_{u\in C_v}g(u)\)</span>。如果选择的点 <span class="math inline">\(x=v\)</span>，那么转移到的状态Grundy值为 <span class="math inline">\(x_v\)</span>。如果选择的点 <span class="math inline">\(x\ne v\)</span>，那么 <span class="math inline">\(x\)</span> 就在以某个 <span class="math inline">\(u\in C_v\)</span> 为根的子树内。枚举这个 <span class="math inline">\(u\)</span>，那么对于一个 <span class="math inline">\(x\in C_u\)</span>，<span class="math inline">\(x\)</span> 到 <span class="math inline">\(v\)</span> 的路径分成 <span class="math inline">\(x\)</span> 到 <span class="math inline">\(u\)</span> 一段以及 <span class="math inline">\(v\)</span> 单点这两部分。和 <span class="math inline">\(x\)</span> 到 <span class="math inline">\(u\)</span> 这段路径相邻的点集 <span class="math inline">\(S_{u,x}\)</span> 的Grundy值为 <span class="math inline">\(\bigoplus_{y\in S_{u,x}}g(y)\)</span>，和 <span class="math inline">\(v\)</span> 相邻的点集的Grundy值为 <span class="math inline">\(x_v\oplus g(u)\)</span>，因此</p>
+<p><span class="math display">\[G_v=\{x_v\}\cup\bigcup_{u\in C_v}\{\left(\bigoplus_{y\in S_{u,x}}g(y)\right)\oplus x_v\oplus g(u)\lvert x\in C_u\}=\{x_v\}\cup\bigcup_{u\in C_v}\{g&#39;\oplus x_v\oplus g(u)\lvert g&#39;\in G_u\}\]</span></p>
+<p>同样地 <span class="math inline">\(g(v)=\mathrm{mex}G_v\)</span>。暴力求出所有集合 <span class="math inline">\(G_v\)</span> 以得到所有 <span class="math inline">\(g(v)\)</span> 复杂度仍然是 <span class="math inline">\(O(n^2)\)</span> 的，可以用数据结构来维护集合。这里的操作是，对每个 <span class="math inline">\(v\)</span> 将所有子节点 <span class="math inline">\(u\in C_v\)</span> 的 <span class="math inline">\(G_u\)</span> 集合中所有数异或上一个数 <span class="math inline">\(x_v\oplus g(u)\)</span>，然后求出这些集合的并，再加入一个数 <span class="math inline">\(x_v\)</span>。把每个 <span class="math inline">\(G_v\)</span> 建成一个二进制Trie树，整体异或可以用标记实现，查询 <span class="math inline">\(g(v)=\mathrm{mex}G_v\)</span> 可以在树上二分以 <span class="math inline">\(O(\log n)\)</span> 的时间求出。合并集合时，用Trie树合并可以在 <span class="math inline">\(O(n\log n)\)</span> 的时间内完成所有合并。</p>
+<p>这样总复杂度就是 <span class="math inline">\(O(Tn\log n)\)</span>，得分100。代码实现并不复杂，主要在于要想清楚，注重思维。</p>
+<h4 id="总结">总结</h4>
+<p>这题的得分情况是：现场大多数人AC了这道题，少数（不足20个）没有AC这题的人也有大多数是因为正解写挂导致的。我没能做出此题可以说是很不应该的。可以看出我平时有一大思维误区：做博弈论题不管三七二十一先打个表再说。对于这种没有太多性质、直接用数据结构就能维护的问题，打表并没有什么卵用，反而浪费了太多时间，用朴素的想法去考虑是必不可少的。</p>
+<!--readmore-->
+<h3 id="t3数据交互">T3：数据交互</h3>
+<p>待填</p>
+<hr>
+<h2 id="day-2">Day 2</h2>
+<h3 id="t1如何优雅地求和">T1：如何优雅地求和</h3>
+<p>http://uoj.ac/problem/269</p>
+<h4 id="考场情况-1">考场情况</h4>
+<p>首先观察题目，记 <span class="math inline">\(g(n)=Q(f,n,x)\)</span>，如果 <span class="math inline">\(f(k)=k\)</span>，那么 <span class="math inline">\(g(n)=nx\)</span>。打表找规律以后猜想，如果 <span class="math inline">\(f(k)\)</span> 是别的多项式，<span class="math inline">\(g(n)\)</span> 仍然是 <span class="math inline">\(n\)</span> 的不超过 <span class="math inline">\(m\)</span> 次多项式。</p>
+<p>那么只要求出 <span class="math inline">\(g(0..m)\)</span>，然后线性插值一下就可以了。</p>
+<p>然而，虽然插值可以做到 <span class="math inline">\(O(m)\)</span>，但把 <span class="math inline">\(n=0,1,\cdots,m\)</span> 代入 <span class="math inline">\(g(n)\)</span> 需要 <span class="math inline">\(O(m^2)\)</span> 的时间，而且没想到如何优化。于是就写了 <span class="math inline">\(O(m^2)\)</span>。</p>
+<p>最后得分：95。</p>
+<h4 id="考后分析-1">考后分析</h4>
+<p>事实上把 <span class="math inline">\(n=0,1,\cdots,m\)</span> 代入 <span class="math inline">\(g(n)\)</span> 就是算一个卷积：</p>
+<p><span class="math display">\[g(n)=\sum_{k=0}^na_k{n\choose k}x^k(1-x)^{n-k}=\sum_{k=0}^n{a_kn!x^k(1-x)^{n-k}\over k!(n-k)!}=n!\sum_{k=0}^n{a_kx^k\over k!}\cdot{(1-x)^{n-k}\over(n-k)!}\]</span></p>
+<p>令</p>
+<p><span class="math display">\[A_i={a_ix^i\over i!}\]</span></p>
+<p><span class="math display">\[B_i={(1-x)^i\over i!}\]</span></p>
+<p>用FFT计算 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 卷积，即可 <span class="math inline">\(O(m\log m)\)</span> 求得 <span class="math inline">\(n=0,1,\cdots,m\)</span> 的 <span class="math inline">\(g(n)\)</span>。这样就能通过100分了。</p>
+<p>当然，这道题可以直接推导而不需要先猜想“<span class="math inline">\(g(n)\)</span> 是不超过 <span class="math inline">\(m\)</span> 次多项式”的结论。</p>
+<p>根据组合数的意义可得</p>
+<p><span class="math display">\[g(n)=\sum_{k_1=0}^1\sum_{k_2=0}^1\cdots\sum_{k_n=0}^1f(k_1+k_2+\cdots+k_n)x^{k_1+k_2+\cdots+k_n}(1-x)^{n-k_1-k_2-\cdots-k_n}\]</span></p>
+<p><span class="math display">\[=\sum_{k_1=0}^1x^{k_1}(1-x)^{1-k_1}\sum_{k_2=0}^1x^{k_2}(1-x)^{1-k_2}\cdots\sum_{k_n=0}^1x^{k_n}(1-x)^{1-k_n}f(k_1+k_2+\cdots+k_n)\]</span></p>
+<p>我们希望把 <span class="math inline">\(f(k_1+k_2+\cdots+k_n)\)</span> 表示出来。</p>
+<p>为满足 <span class="math inline">\(f(0)=a_0\)</span>，可以构造 <span class="math inline">\(f(x)=a_0\)</span>。</p>
+<p>在此基础上，为满足 <span class="math inline">\(f(1)=a_1\)</span>，可以构造 <span class="math inline">\(f(x)=a_0+(a_1-a_0)x\)</span>。</p>
+<p>在此基础上，为满足 <span class="math inline">\(f(2)=a_2\)</span>，可以构造 <span class="math inline">\(f(x)=a_0+(a_1-a_0)x+{a_2-2a_1+a_0\over 2}x(x-1)\)</span>。</p>
+<p>在此基础上，为满足 <span class="math inline">\(f(3)=a_3\)</span>，可以构造 <span class="math inline">\(f(x)=a_0+(a_1-a_0)x+{a_2-2a_1+a_0\over 2}x(x-1)+{a_3-3a_2+3a_1-a_0\over 6}x(x-1)(x-2)\)</span>。</p>
+<p>……</p>
+<p>由于 <span class="math inline">\({x\choose i}={(x-1)(x-2)\cdots(x-i+1)\over i!}\)</span>，考虑把 <span class="math inline">\(f(x)\)</span> 表示为</p>
+<p><span class="math display">\[f(x)=\sum_{i=0}^mc_i{x\choose i}\]</span></p>
+<p>则应满足</p>
+<p><span class="math display">\[a_i=\sum_{j=0}^i{i\choose j}c_j\]</span></p>
+<p>二项式反演（容斥）可得</p>
+<p><span class="math display">\[c_i=\sum_{j=0}^i(-1)^{i-j}{i\choose j}a_j\]</span></p>
+<p>假如已经求出了所有的 <span class="math inline">\(c_i\)</span>，那么原式等于</p>
+<p><span class="math display">\[\sum_{k_1=0}^1x^{k_1}(1-x)^{1-k_1}\sum_{k_2=0}^1x^{k_2}(1-x)^{1-k_2}\cdots\sum_{k_n=0}^1x^{k_n}(1-x)^{1-k_n}\sum_{i=0}^mc_ii!(k_1+k_2+\cdots+k_n)^\underline{i}\]</span></p>
+<p>这里 <span class="math inline">\(x^\underline{i}\)</span> 表示下降幂 <span class="math inline">\(x(x-1)(x-2)\cdots(x-i+1)\)</span>。考虑 <span class="math inline">\((k_1+k_2+\cdots+k_n)^\underline{i}\)</span> 的展开式（仍然用下降幂表示），就是从 <span class="math inline">\(i\)</span> 个 <span class="math inline">\(k_1+k_2+\cdots+k_n\)</span> 中各取出一个 <span class="math inline">\(k_j\)</span> 组合起来，得到 <span class="math inline">\(n^i\)</span> 个项；在一项中，如果 <span class="math inline">\(k_j\)</span> 取了 <span class="math inline">\(c\)</span> 个，那么得到的项 <span class="math inline">\(k_j\)</span> 的幂次就是 <span class="math inline">\(k_j^\underline{c}\)</span>。</p>
+<p>显然，如果某一项包含因子 <span class="math inline">\(k_j^\underline{2}\)</span>，那么无论 <span class="math inline">\(k_j=0,1\)</span>，该项的值均为 <span class="math inline">\(0\)</span>，故只考虑 <span class="math inline">\(i\)</span> 个因子互不相同的项。</p>
+<p>这样的项显然有 <span class="math inline">\(n^\underline{i}\)</span> 个，用 <span class="math inline">\(U_i\)</span> 表示这些项的可重集合，<span class="math inline">\(I(k_1,k_2,\cdots,k_n)\)</span> 表示项 <span class="math inline">\(I\)</span> 代入 <span class="math inline">\(k_1,k_2,\cdots,k_n\)</span> 的结果，则原式等于</p>
+<p><span class="math display">\[\sum_{k_1=0}^1x^{k_1}(1-x)^{1-k_1}\sum_{k_2=0}^1x^{k_2}(1-x)^{1-k_2}\cdots\sum_{k_n=0}^1x^{k_n}(1-x)^{1-k_n}\sum_{i=0}^mc_ii!\sum_{I\in U}I(k_1,k_2,\cdots,k_n)\]</span></p>
+<p><span class="math display">\[=\sum_{i=0}^mc_ii!\sum_{I\in U_i}\sum_{k_1=0}^1x^{k_1}(1-x)^{1-k_1}\sum_{k_2=0}^1x^{k_2}(1-x)^{1-k_2}\cdots\sum_{k_n=0}^1x^{k_n}(1-x)^{1-k_n}I(k_1,k_2,\cdots,k_n)\]</span></p>
+<p>每个 <span class="math inline">\(I\in U_i\)</span> 恰为 <span class="math inline">\(i\)</span> 个 <span class="math inline">\(k_j\)</span> 相乘得到，例如 <span class="math inline">\(I=k_1k_2\cdots k_i\)</span>：</p>
+<p><span class="math display">\[\sum_{k_1=0}^1x^{k_1}(1-x)^{1-k_1}\sum_{k_2=0}^1x^{k_2}(1-x)^{1-k_2}\cdots\sum_{k_n=0}^1x^{k_n}(1-x)^{1-k_n}k_1k_2\cdots k_i=\prod_{j=1}^ix\cdot\prod_{j=i+1}^n(1-x+x)=x^i\]</span></p>
+<p>所以原式等于</p>
+<p><span class="math display">\[\sum_{i=0}^mc_ii!n^\underline{i}x^i\]</span></p>
+<p>因此只要计算出所有的 <span class="math inline">\(c_i\)</span> 就能得到上式的结果了。</p>
+<p>不难发现 <span class="math inline">\(c_i\)</span> 也是卷积的形式：</p>
+<p><span class="math display">\[c_i=\sum_{j=0}^i(-1)^{i-j}{i\choose j}a_j=i!\sum_{j=0}^i{a_j\over j!}\cdot{(-1)^{i-j}\over(i-j)!}\]</span></p>
+<p>同样可以FFT优化，在 <span class="math inline">\(O(m\log m)\)</span> 时间内通过本题。</p>
+<h4 id="总结-1">总结</h4>
+<p>这个模型挺基础的，这题现场有8个人AC，并且这题有不少类似的原题，需要熟练掌握。</p>
+<p>当然考场上为了节省时间选择打 <span class="math inline">\(O(m^2)\)</span> 暴力也是可行的选择。</p>
+<h3 id="t2工厂">T2：工厂</h3>
+<p>待填</p>
+<h3 id="t3连通子树">T3：连通子树</h3>
+<p>题目太丧，不打算填</p>
+<hr>
+<h2 id="day-3">Day 3</h2>
+<h3 id="t1石家庄的工人阶级队伍比较坚强">T1：石家庄的工人阶级队伍比较坚强</h3>
+<p>http://uoj.ac/problem/272</p>
+<h4 id="考场情况-2">考场情况</h4>
+<p>这题我在考场上一开始写了个10分暴力并用矩阵快速幂优化到20分，然而这个分数太低了。</p>
+<p>觉得这题很难做就去做后面的题，在我第2题钻研失败以后回来想这题时剩大概1h，为了发现性质，我把矩阵打出来看有没规律，发现矩阵类似循环矩阵。再想想，就发现了转移矩阵 <span class="math inline">\(A\)</span> 的 <span class="math inline">\(t\)</span> 次幂中，如果 <span class="math inline">\(x\ominus y=z\)</span>（这里 <span class="math inline">\(\ominus\)</span> 表示三进制不进退位减法），则 <span class="math inline">\(A^t_{x,y}=A^t_{z,0}\)</span>，因此只要计算矩阵的第一列即可。于是我把矩阵优化成只有一列的以后测了下过不了 <span class="math inline">\(m=7\)</span>，于是只有35分。</p>
+<p>继续观察，注意到矩阵里只有 <span class="math inline">\(\frac{(m+1)(m+2)}{2}\)</span> 个数，那么好像矩阵可以继续缩小？发现了当 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 中0的个数和1的个数分别相等时，<span class="math inline">\(A^t_{a,0}=A^t_{b,0}\)</span>。于是矩阵里面只要记每种0的个数和1的个数的数即可。然而由于考场上时间不多没法细想，没想出这种矩阵怎么乘法……更何况缩完以后还要对每个 <span class="math inline">\(0\le x &lt; n\)</span> 枚举1的个数 <span class="math inline">\(c_1\)</span>、2的个数 <span class="math inline">\(c_2\)</span>，统计把 <span class="math inline">\(x\)</span> 中 <span class="math inline">\(c_1\)</span> 个位置减1，<span class="math inline">\(c_2\)</span> 个位置减2（都是不进退位的）得到的数 <span class="math inline">\(y\)</span> 的 <span class="math inline">\(f_{0,y}\)</span> 之和，也没有什么思路。</p>
+<p>之后的思路卡在了 <span class="math inline">\(\frac{(m+1)(m+2)}{2}\)</span> 的矩阵的做法上，没有进展。考试就结束了。</p>
+<p>最后得分：35。</p>
+<h4 id="考后分析-2">考后分析</h4>
+<p>以下是我考后继续研究这个问题的过程：</p>
+<p>记矩阵 <span class="math inline">\(A_{x,y}=b_{W(x,y),L(x,y)}\)</span>，那么 <span class="math inline">\(A^t_{x,y}\)</span> 表示 <span class="math inline">\(f_{t,x}\)</span> 中 <span class="math inline">\(f_{0,y}\)</span> 的系数，即</p>
+<p><span class="math display">\[\begin{pmatrix}f_{t,0}\\\cdots\\f_{t,n-1}\end{pmatrix}=A^t\begin{pmatrix}f_{0,0}\\\cdots\\f_{0,n-1}\end{pmatrix}\]</span></p>
+<p>矩阵 <span class="math inline">\(A\)</span> 的乘法显然要优化。用 <span class="math inline">\(\ominus\)</span> 表示三进制不进退位减法，<span class="math inline">\(\mathrm{count}_1(x)\)</span> 和 <span class="math inline">\(\mathrm{count}_2(x)\)</span> 表示 <span class="math inline">\(x\)</span> 的三进制表示中1和2的个数，显然 <span class="math inline">\(A\)</span> 有两个性质：（1）对任意 <span class="math inline">\(k\)</span>，<span class="math inline">\(A_{x,y}=A_{x\ominus k,y\ominus k}\)</span>；（2）若 <span class="math inline">\(\mathrm{count}_1(x)=\mathrm{count}_1(y),\mathrm{count}_2(x)=\mathrm{count}_2(y)\)</span>，则 <span class="math inline">\(A_{x,0}=A_{y,0}\)</span>。</p>
+<p>用数学归纳法还可以证明 <span class="math inline">\(A^t\)</span> 也是满足这两个性质的：</p>
+<p><span class="math display">\[A^t_{x,y}=\sum_{z=0}^{n-1}A^{t-1}_{x,z}A_{z,y}=\sum_{z=0}^{n-1}A^{t-1}_{x\ominus k,z}A_{z,y\ominus k}=A^t_{x\ominus k,y\ominus k}\]</span></p>
+<p>设函数 <span class="math inline">\(\theta(x)\)</span> 将 <span class="math inline">\(\overline{x_0x_1\cdots x_{m-1}}\)</span> 变换为 <span class="math inline">\(\overline{x_{p_0}x_{p_1}\cdots x_{p_{m-1}}}\)</span>，<span class="math inline">\(\{p_i\}\)</span> 为 <span class="math inline">\(0,1,\cdots,m-1\)</span> 的一个排列，则</p>
+<p><span class="math display">\[A^t_{x,0}=\sum_{z=0}^{n-1}A^{t-1}_{x\ominus z,0}A_{z,0}=\sum_{z=0}^{n-1}A^{t-1}_{\theta(x)\ominus z,0}A_{z,0}=A^t_{\theta(x),0}\]</span></p>
+<p>而如果 <span class="math inline">\(\mathrm{count}_1(x)=\mathrm{count}_1(y),\mathrm{count}_2(x)=\mathrm{count}_2(y)\)</span>，则一定存在排列 <span class="math inline">\(\{p_i\}\)</span> 满足 <span class="math inline">\(\theta(x)=y\)</span>。</p>
+<p>因此只需记 <span class="math inline">\(A&#39;^t_{c_1,c_2}=A^t_{x,0}\)</span>，其中 <span class="math inline">\(\mathrm{count}_1(x)=c_1,\mathrm{count}_2(x)=c_2\)</span>。<span class="math inline">\(A&#39;^t\)</span> 的空间只有 <span class="math inline">\(\frac{(m+1)(m+2)}{2}\)</span>，看起来非常不错的样子。然而——该怎么求 <span class="math inline">\(A&#39;^t\)</span>？</p>
+<p>好的那我就继续推。<span class="math inline">\(A^t_{x,0}=\sum_{z=0}^{n-1}A^i_{x\ominus z,0}A^{t-i}_{z,0}\)</span>，要对 <span class="math inline">\(O(m^2)\)</span> 个 <span class="math inline">\(x\)</span> 计算这个式子，这样可以由 <span class="math inline">\(A^i\)</span> 在 <span class="math inline">\(O(3^mm^2)\)</span> 时间内推出 <span class="math inline">\(A^{i+1}\)</span> 或 <span class="math inline">\(A^{2i}\)</span>，但还是很慢……等等，既然 <span class="math inline">\(A_{x,0}\)</span> 只和 <span class="math inline">\(\mathrm{count}_1(x),\mathrm{count}_2(x)\)</span> 有关，那能否不枚举 <span class="math inline">\(z\)</span> 而枚举 <span class="math inline">\(\mathrm{count}_1(z)\)</span> 和 <span class="math inline">\(\mathrm{count}_2(z)\)</span>？</p>
+<p>接着我推了下……失败了……因为我并不知道 <span class="math inline">\(x\ominus z\)</span> 中各个数位个数= =不过好像还是可以做的？枚举 <span class="math inline">\(x\)</span> 的0,1,2每一种数位在 <span class="math inline">\(z\)</span> 中0,1的个数（枚举两种数的个数可以确定剩下一种），这样 <span class="math inline">\(z\)</span> 和 <span class="math inline">\(x\ominus z\)</span> 中各种数位个数都确定了，满足这个条件的 <span class="math inline">\(z\)</span> 的个数是若干个组合数的积（写起来比较复杂），加的时候乘上这个积作为系数即可。现在的复杂度是啥……<span class="math inline">\(O(m^2)\)</span> 种 <span class="math inline">\(c_0,c_1\)</span> 以及 <span class="math inline">\(O(m^6)\)</span> 的枚举？<span class="math inline">\(O(m^8)\)</span>？这其实就是方程</p>
+<p><span class="math display">\[c_{00}+c_{01}+c_{02}+c_{10}+c_{11}+c_{12}+c_{20}+c_{21}+c_{22}=m\]</span></p>
+<p>的非负整数解组数，即 <span class="math inline">\(C_{m+8}^8\le C_{20}^8=125970\)</span>，再乘一个 <span class="math inline">\(\log_2 t\)</span> 也挺快的嘛……</p>
+<p>现在已经求出了 <span class="math inline">\(A&#39;^t\)</span>，也就得到了 <span class="math inline">\(A^t\)</span> 矩阵第一列。记 <span class="math inline">\(g_x=A^t_{x,0}\)</span>，那么 <span class="math inline">\(f_{t,x}=\sum_{y=0}^{n-1}f_{0,y}g_{x\ominus y}\)</span>。这是啥？就是一个类似卷积的东西？记 <span class="math inline">\(\oplus\)</span> 为三进制不进位加法，那么需要做的事情就是对所有的 <span class="math inline">\(x,y\in\{0,1,\cdots,n-1\}\)</span>，把 <span class="math inline">\(f_{t,x\oplus y}\)</span> 加上 <span class="math inline">\(f_{0,x}g_y\)</span>。</p>
+<p>这一步做完，这题就做完了。可是……</p>
+<p>卷积……FFT？这数据范围，<span class="math inline">\(3^{12}=531441\)</span> 不像能FFT？异或卷积……FWT？好像以前写过二进制版本的，可是三进制的并不会啊，再说FWT好久没写我也有点忘了QAQ</p>
+<p><span class="math inline">\(g\)</span> 序列有性质吗？似乎有很多相等的数。然后想了想01（二进制）多项式卷积也得FFT，就觉得可能唯一的做法就是FWT了。于是就开始脑（hui）补（yi）FWT怎么写，一开始想先把两个式子做一个什么变换，然后乘起来最后变换回去，问题是想了半天还是不会那个变换。</p>
+<p>接着就弃疗去想分治乘法了。</p>
+<p>用 <span class="math inline">\(f_0g\)</span> 表示序列 <span class="math inline">\(f_0,g\)</span> 三进制异或卷积结果，即 <span class="math inline">\(f_t=f_0g\)</span>。把 <span class="math inline">\(f_0,g,f_t\)</span> 序列都分成 <span class="math inline">\([0,3^{m-1}),[3^{m-1},2\cdot 3^{m-1}),[2\cdot 3^{m-1},3^m)\)</span> 三段，记为 <span class="math inline">\(A_0,A_1,A_2\)</span>、<span class="math inline">\(B_0,B_1,B_2\)</span>、<span class="math inline">\(T_0,T_1,T_2\)</span>。那么就可以看出（说明：序列的 <span class="math inline">\(+,-\)</span> 表示逐位对应相加/减，<span class="math inline">\(kA\)</span> 表示序列 <span class="math inline">\(A\)</span> 逐位乘 <span class="math inline">\(k\)</span> 得到的序列）：</p>
+<p><span class="math display">\[T_0=A_0B_0+A_1B_2+A_2B_1\]</span></p>
+<p><span class="math display">\[T_1=A_0B_1+A_1B_0+A_2B_2\]</span></p>
+<p><span class="math display">\[T_2=A_0B_2+A_1B_1+A_2B_0\]</span></p>
+<p>要优化复杂度显然不能每个 <span class="math inline">\(A_iB_j\)</span> 暴力递归算。回忆了下二进制的做法好像是构造了 <span class="math inline">\(C_0=(A_0+A_1)(B_0+B_1)\)</span> 和 <span class="math inline">\(C_1=(A_0-A_1)(B_0-B_1)\)</span>，然后用 <span class="math inline">\(C_0\)</span> 和 <span class="math inline">\(C_1\)</span> 线性组合表示出 <span class="math inline">\(T_0,T_1\)</span>。所以？三进制的话，是不是也要构造类似的式子？</p>
+<p>经过了很久的尝试，发现好像怎么配系数都配不出来，想放弃的时候，想到如果构造 <span class="math inline">\((A_0+xA_1+yA_2)(B_0+xB_1+yB_2)\)</span> 的话，那么 <span class="math inline">\(A_0B_0,A_1B_2,A_2B_1\)</span> 的系数分别是 <span class="math inline">\(1,xy,xy\)</span>，<span class="math inline">\(A_0B_1,A_1B_0,A_2B_2\)</span> 的系数分别是 <span class="math inline">\(x,x,y^2\)</span>，<span class="math inline">\(A_0B_2,A_1B_1,A_2B_0\)</span> 的系数分别是 <span class="math inline">\(y,x^2,y\)</span>（容易证明，序列的异或卷积满足分配律 <span class="math inline">\(A(B+C)=AB+AC\)</span>）。如果要使得 <span class="math inline">\(T_0,T_1,T_2\)</span> 每一类三个系数相等，就要满足 <span class="math inline">\(xy=1\)</span>，<span class="math inline">\(x=y^2\)</span>，<span class="math inline">\(y=x^2\)</span>。所以？<span class="math inline">\(x^3=1\)</span>，想到了什么？三次单位根？</p>
+<p>好像是可以的诶，如果记三个三次单位根为 <span class="math inline">\(1,\omega,\omega^2\)</span>，取 <span class="math inline">\(x=\omega\)</span>，就会发现 <span class="math inline">\(y=x^2\)</span> 是另一个根 <span class="math inline">\(\omega^2\)</span>，那我就三个式子带入三个单位根吧：</p>
+<p><span class="math display">\[C_i=(A_0+\omega^iA_1+\omega^{2i}A_2)(B_0+\omega^iB_1+\omega^{2i}B_2)\]</span></p>
+<p>那么如果计算出了 <span class="math inline">\(C_0,C_1,C_2\)</span>，该怎么还原出 <span class="math inline">\(T_0,T_1,T_2\)</span> 呢？由于 <span class="math inline">\(C_0=T_0+T_1+T_2\)</span>，<span class="math inline">\(C_1=T_0+\omega T_1+\omega^2 T_2\)</span>，<span class="math inline">\(C_2=T_0+\omega^2 T_1+\omega T_2\)</span>，设 <span class="math inline">\(T_i=k_{i,0}C_0+k_{i,1}C_1+k_{i,2}C_2\)</span>，则</p>
+<p><span class="math display">\[\begin{pmatrix}k_{0,0}&amp;k_{0,1}&amp;k_{0,2}\\k_{1,0}&amp;k_{1,1}&amp;k_{1,2}\\k_{2,0}&amp;k_{2,1}&amp;k_{2,2}\end{pmatrix}\begin{pmatrix}1&amp;1&amp;1\\1&amp;\omega&amp;\omega^2\\1&amp;\omega^2&amp;\omega\end{pmatrix}=\mathbf{E}_3\]</span></p>
+<p>一个喜闻乐见的结论是，因为 <span class="math inline">\(\omega^3=1\)</span> 且 <span class="math inline">\(1+\omega+\omega^2=0\)</span>，所以</p>
+<p><span class="math display">\[\begin{pmatrix}1&amp;1&amp;1\\1&amp;\omega^2&amp;\omega\\1&amp;\omega&amp;\omega^2\end{pmatrix}\begin{pmatrix}1&amp;1&amp;1\\1&amp;\omega&amp;\omega^2\\1&amp;\omega^2&amp;\omega\end{pmatrix}=3\mathbf{E}_3\]</span></p>
+<p>好的问题马上解决了，已经可以还原出 <span class="math inline">\(T_i\)</span> 了：</p>
+<p><span class="math display">\[T_i=\frac{1}{3}(C_0+\omega^{2i}C_1+\omega^iC_2)\]</span></p>
+<p>这样就能比较快地计算两个长度为 <span class="math inline">\(3^m\)</span> 的序列 <span class="math inline">\(A,B\)</span> 的三进制异或卷积了：把两个序列均等分成三段 <span class="math inline">\(A_0,A_1,A_2\)</span> 和 <span class="math inline">\(B_0,B_1,B_2\)</span>，构造并递归计算 <span class="math inline">\(C_0,C_1,C_2\)</span>，然后算出 <span class="math inline">\(T_0,T_1,T_2\)</span>，最后 <span class="math inline">\(T_0,T_1,T_2\)</span> 连接得到的结果就是 <span class="math inline">\(AB\)</span>。复杂度的话，<span class="math inline">\(T(m)=3T(m-1)+3^m\)</span>，从而 <span class="math inline">\(T(m)=3^mm\)</span>。这个复杂度完全可以接受。</p>
+<p>问题是三次单位根是复数意义下的，模 <span class="math inline">\(p\)</span> 意义下要怎么办？一种简单粗暴的做法是把每个数表示为 <span class="math inline">\(a+b\mathrm{i}\)</span> 的形式，<span class="math inline">\(a,b\)</span> 是实数，然后就会发现实数也不一定能在模意义下表示，这就很尴尬了= =b</p>
+<p>回头看下乘法涉及的 <span class="math inline">\(\omega\)</span> 是个啥，其实是 <span class="math inline">\(-\frac{1}{2}+\frac{\sqrt 3}{2}\mathrm{i}\)</span>。猜想运算过程中 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(\frac{b}{\sqrt 3}\)</span> 都是有理数，因此换一种表示方法，不用 <span class="math inline">\(a+b\mathrm{i}\)</span>，而用 <span class="math inline">\(a+b\sqrt 3\mathrm{i}\)</span> 如何？易证形如 <span class="math inline">\(a+b\sqrt 3\mathrm{i},a,b\in\mathbf{Q}\)</span> 的数对于加法和乘法都是封闭的：</p>
+<p><span class="math display">\[(a+b\sqrt 3\mathrm{i})+(c+d\sqrt 3\mathrm{i})=(a+c)+(b+d)\sqrt 3\mathrm{i}\]</span></p>
+<p><span class="math display">\[(a+b\sqrt 3\mathrm{i})(c+d\sqrt 3\mathrm{i})=(ac-3bd)+(ad+bc)\sqrt 3\mathrm{i}\]</span></p>
+<p>值得一提的是不仅需要乘法，还需要支持除以2和除以3的操作。看到题目对 <span class="math inline">\(p\)</span> 有一个奇葩的保证了没？不存在 <span class="math inline">\(x,y\in\mathbf{N^ * }\)</span> 使得 <span class="math inline">\(\frac{1}{x}+\frac{1}{y}=\frac{3}{p}\)</span>，那么 <span class="math inline">\(2\)</span> 和 <span class="math inline">\(3\)</span> 都不整除 <span class="math inline">\(p\)</span>。因为：</p>
+<p>（1）如果 <span class="math inline">\(2\)</span> 整除 <span class="math inline">\(p\)</span>，那么令 <span class="math inline">\(x=\frac{1}{2}p,y=p\)</span>，则 <span class="math inline">\(\frac{1}{x}+\frac{1}{y}=\frac{3}{p}\)</span>；</p>
+<p>（2）如果 <span class="math inline">\(3\)</span> 整除 <span class="math inline">\(p\)</span>，那么令 <span class="math inline">\(x=y=\frac{2}{3}p\)</span>，则 <span class="math inline">\(\frac{1}{x}+\frac{1}{y}=\frac{3}{p}\)</span>。</p>
+<p>这样 <span class="math inline">\(2\)</span> 和 <span class="math inline">\(3\)</span> 模 <span class="math inline">\(p\)</span> 都有逆元，就能完成模意义下的除以 <span class="math inline">\(2\)</span> 和除以 <span class="math inline">\(3\)</span> 操作了。</p>
+<p>于是，把异或卷积涉及到的元素都改成 <span class="math inline">\(a+b\sqrt 3\mathrm{i},a,b\in\mathbf{Q}\)</span> 的形式，<span class="math inline">\(a,b\)</span> 均在模 <span class="math inline">\(p\)</span> 意义下，就做完了。</p>
+<p>不过常数比较大……我一开始写完极限数据 <span class="math inline">\(2\texttt{s}\)</span> 跑不过去……然后immortalCO帮我优化了一发常数，把递归过程的乘 <span class="math inline">\(\frac{1}{3}\)</span> 操作去掉，改成输出时乘 <span class="math inline">\(\frac{1}{3^m}\)</span>，于是成功在UOJ垫底了。</p>
+<p>http://uoj.ac/submission/130962</p>
+<p>通过本人打表找规律发现，题目对 <span class="math inline">\(p\)</span> 的保证等价于 <span class="math inline">\(p\)</span> 的质因数分解式 <span class="math inline">\(p=p_1^{c_1}p_2^{c_2}\cdots p_k^{c_k}\)</span> 中，所有的 <span class="math inline">\(p_i\equiv 1\pmod 6,i=1,2,\cdots,k\)</span>。并且，异或卷积中涉及到的 <span class="math inline">\(\omega\)</span> 实际上要满足的两个条件是 <span class="math inline">\(\omega^3=1\)</span> 和 <span class="math inline">\(1+\omega+\omega^2=0\)</span>，如果用具有相同性质的模 <span class="math inline">\(p\)</span> 意义下的 <span class="math inline">\(x\)</span> 代替 <span class="math inline">\(\omega\)</span>，算法仍然是正确的，继续打表找规律发现，所有满足这个条件的 <span class="math inline">\(p\)</span> 都存在整数 <span class="math inline">\(x\)</span> 使得 <span class="math inline">\(x^3\equiv 1\pmod p\)</span> 且 <span class="math inline">\(1+x+x^2\equiv 0\pmod p\)</span>。</p>
+<p>如果能找出这个 <span class="math inline">\(x\)</span>，用它代替 <span class="math inline">\(\omega\)</span>，那么就不需要把数表示成 <span class="math inline">\(a+b\sqrt 3\mathrm{i}\)</span> 的形式了！问题来了，这个 <span class="math inline">\(x\)</span> 怎么找？</p>
+<p>……我好像知道质数怎么找诶？如果 <span class="math inline">\(p\)</span> 是质数（从而 <span class="math inline">\(p\ge 7\)</span>），那么找出 <span class="math inline">\(p\)</span> 的原根 <span class="math inline">\(g\)</span>，因为 <span class="math inline">\(p\equiv 1\pmod 6\)</span>，所以取 <span class="math inline">\(x=g^\frac{p-1}{3}\)</span> 就能满足条件了，这是由于 <span class="math inline">\(x^3\equiv g^{p-1}\equiv 1\pmod p\)</span> 且 <span class="math inline">\(1+x+x^2\equiv\frac{(1+x+x^2)x-(1+x+x^2)}{x-1}\equiv 0\)</span>。可是，如果 <span class="math inline">\(p\)</span> 是合数，连原根都不一定有了，不会了啊……</p>
+<p>于是就去看题解= =</p>
+<p>题解的做法是：先将 <span class="math inline">\(p\)</span> 质因数分解 <span class="math inline">\(p=p_1^{c_1}p_2^{c_2}\cdots p_k^{c_k}\)</span>，然后对每个 <span class="math inline">\(p_i^{c_i}\)</span> 求出三次单位根 <span class="math inline">\(x_i\)</span>，则满足 <span class="math inline">\(\forall i=1,2,\cdots,k,x\equiv x_i\pmod p_i\)</span> 的 <span class="math inline">\(x\)</span> 就是 <span class="math inline">\(p\)</span> 的三次单位根，用中国剩余定理合并即可。每个 <span class="math inline">\(p_i^{c_i}\)</span> 可以用之前的方法求原根解决。然后由于本人是SB，不知道合数的原根定义是啥，看了题解才明白只要把之前的 <span class="math inline">\(p-1\)</span> 换成 <span class="math inline">\(\phi(p)\)</span> 就能支持形如 <span class="math inline">\(p_i^{c_i}\)</span> 的模数了。经过实测验证发现这种做法确实能求出满足要求的 <span class="math inline">\(p\)</span> 的三次单位根。</p>
+<p>OK，用这个 <span class="math inline">\(x\)</span> 代替原来的复数，交到UOJ，运行时间立刻缩短了。</p>
+<p>http://uoj.ac/submission/131266</p>
+<h4 id="总结-2">总结</h4>
+<p>这题考场上有多人得到85分以上的分数，因此并不像本人看到题时所想象的那样不可做。当然，从考后分析来看，即使考场上给本人更多的时间，也不太可能得到多于40的分数，主要是由于本人在FWT方面的知识缺陷导致的。</p>
+<p>这题只有35分只能说我实力不足吧。从考场上这题得分情况来看，FWT已经是十分普及的了，如果不会FWT就很不应该了。不得不说这题是一道好题，涉及代数和数论的多个知识点综合应用，同时我也通过这题发现了自己的知识缺陷，收获还是不小的。</p>
+<h4 id="更多问题">更多问题</h4>
+<p>这题可以说是我折腾了非常久的一道题。不过还是有一些问题有待思考：</p>
+<p>1、对 <span class="math inline">\(p\)</span> 求三次单位根的做法依赖的一些性质我不太会证明。如何证明形如 <span class="math inline">\(p^c\)</span>（<span class="math inline">\(p\)</span> 为质数，<span class="math inline">\(p\equiv 1\pmod 6\)</span>，<span class="math inline">\(c\in\mathbf{N^ * }\)</span>）的数用这种方法都能求出满足 <span class="math inline">\(x^3\equiv 1\pmod{p^c}\)</span> 且 <span class="math inline">\(1+x+x^2\equiv 0\pmod{p^c}\)</span> 的 <span class="math inline">\(x\)</span>？另外，<span class="math inline">\(p\)</span> 的所有质因子模 <span class="math inline">\(6\)</span> 余 <span class="math inline">\(1\)</span> 是否为不存在 <span class="math inline">\(x,y\in\mathbf{N^ * }\)</span> 使 <span class="math inline">\(\frac{1}{x}+\frac{1}{y}=\frac{3}{p}\)</span> 的充分必要条件？为什么？</p>
+<p>2、仔细看FWT的实现过程，发现和FFT有极其相似的地方，能否说明FWT是一种特殊的FFT？这种算法能否扩展到更复杂的情况（如多维数组的卷积）？</p>
+<h3 id="t2你的生命已如风中残烛">T2：你的生命已如风中残烛</h3>
+<p>http://uoj.ac/problem/273</p>
+<h4 id="考场情况-3">考场情况</h4>
+<p>考场上，我首先写了个 <span class="math inline">\(O(m!\cdot m)\)</span> 的暴力，写完以后出了几组数据找规律，但除了发现当 <span class="math inline">\(n=2\)</span> 时答案为 <span class="math inline">\(w_0+w_1\)</span> 以外，没发现任何别的规律。（为了方便起见，之后的叙述不考虑 <span class="math inline">\(0\)</span> 的排列方案数，即答案都被除以了 <span class="math inline">\((m-n)!\)</span>）</p>
+<p>然后开始推性质。之前做过类似这种 <span class="math inline">\(n\)</span> 远小于 <span class="math inline">\(m\)</span> 的排列计数问题有一种思想：先枚举 <span class="math inline">\(n\)</span> 个元素的排列，然后枚举有多少种将排列放置在序列中的方案。于是我就这么考虑：将长度为 <span class="math inline">\(m\)</span> 的序列位置依次标号为 <span class="math inline">\(0,1,\cdots,m-1\)</span>，序列枚举的排列为 <span class="math inline">\(1,2,\cdots,n\)</span>，其中元素依次为 <span class="math inline">\(w_0,w_1,\cdots,w_{n-1}\)</span>，若 <span class="math inline">\(p_i\)</span> 为 <span class="math inline">\(i\)</span> 放置的位置，那么需要满足的条件是对任意 <span class="math inline">\(i\)</span>，<span class="math inline">\(p_i\le w_1+w_2+\cdots+w_{i-1}\)</span>，否则前 <span class="math inline">\(p_i\)</span> 个位置的元素和小于 <span class="math inline">\(p_i\)</span>，不满足要求。</p>
+<p>记 <span class="math inline">\(f(i,j)\)</span> 为已经确定了 <span class="math inline">\(0,1,\cdots,i\)</span> 这些元素的位置，将剩余元素排在 <span class="math inline">\(S_j=w_0+w_1+\cdots+w_{j-1}\)</span> 之后位置的方案数。转移时枚举 <span class="math inline">\((S_j,S_{j+1}]\)</span> 这一段放置数的个数 <span class="math inline">\(k\)</span>，则有</p>
+<p><span class="math display">\[f(i,j)=\begin{cases}\sum_{k=0}^{n-i-1}C_{w_j}^kf(i+k,j+1),&amp;j\le i &lt; n-1\\1,&amp;i=n-1\\0,&amp;\mathrm{otherwise}\end{cases}\]</span></p>
+<p>答案是所有排列的 <span class="math inline">\(f(0,0)\)</span> 和，这样复杂度是 <span class="math inline">\(O(n!\cdot n^3)\)</span>，有30分。可是枚举排列太暴力了，我试下能不能改成状压DP。</p>
+<p>于是就设计出了这样一种状压DP：记 <span class="math inline">\(U=\{0,1,\cdots,n-1\}\)</span>，<span class="math inline">\(f(S,T)\)</span> 为已经确定集合 <span class="math inline">\(S\)</span> 中元素的位置，将剩余元素排在 <span class="math inline">\(\sum_{i\in T}w_i\)</span> 之后位置的方案数，其中 <span class="math inline">\(T\subseteq S\subseteq U\)</span>，转移时枚举 <span class="math inline">\((\sum_{i\in T}w_i,\sum_{i\in S}w_i]\)</span> 这一段放置的位置集合 <span class="math inline">\(S&#39;\)</span>，则有</p>
+<p><span class="math display">\[f(S,T)=\begin{cases}\sum_{S&#39;\subseteq U-S,S&#39;\ne\varnothing}C_{\sum_{i\in S-T}w_i}^{|S|}f(S+S&#39;,S),&amp;S\ne U\\1,&amp;S=U\end{cases}\]</span></p>
+<p>复杂度 <span class="math inline">\(O(4^n)\)</span>，遗憾的是这样还是只有30分。</p>
+<p>接着优化……？能否状态里面只记一个集合？然后不管怎么设计状态都有后效性，好惨。或者……如果我记一下上一段 <span class="math inline">\(w\)</span> 的和呢？复杂度好像更差。然后掉进优化DP的坑一直出不来= =</p>
+<p>后面再想能否从小的 <span class="math inline">\(n\)</span> 开始考虑问题，<span class="math inline">\(n=3\)</span> 答案是啥？用那种枚举排列的方法好像可以证明它是关于 <span class="math inline">\(w_0,w_1,w_2\)</span> 的多项式，不过貌似有好多项。暴力DP出这个多项式然后代入？接着再次想错，认为 <span class="math inline">\(n=15\)</span> 时的项数为 <span class="math inline">\(C_{28}^{14}\)</span>，复杂度不能接受。</p>
+<p>因此花了这么多时间没有半点进展。交了 <span class="math inline">\(O(4^n)\)</span> 状压DP上去。</p>
+<p>最后得分：30。</p>
+<h4 id="考后分析-3">考后分析</h4>
+<p>实际上由 <span class="math inline">\(O(n!n^3)\)</span> 枚举排列DP推出的状压DP完全可以优化到 <span class="math inline">\(O(2^nn^3)\)</span>。</p>
+<p>我在考完以后听说不少人这题写了50分的状压DP，同样是状压，为何别人能得50而我只能得30？一定是我复杂度太糟糕了。于是考后我又继续思考了很长时间的优化，然而还是没想出哪怕是优化到 <span class="math inline">\(O(3^n)\)</span> 的做法。看了题解发现复杂度居然不是 <span class="math inline">\(O(3^n)\)</span> 而是 <span class="math inline">\(O(2^nn^3)\)</span>，然而并不是很能理解题解中的50分做法，只好自己再研究一段时间。</p>
+<p>后来研究了一下午= =发现优化其实挺简单的。</p>
+<p>首先如果已经确定了 <span class="math inline">\(n\)</span> 个元素的排列顺序 <span class="math inline">\(0,1,\cdots,n-1\)</span>，记 <span class="math inline">\(S_i=\sum_{j=0}^{i-1}w_j\)</span>，则满足“对于所有的 <span class="math inline">\(i\)</span>，位置在 <span class="math inline">\((S_i,S_{i+1}]\)</span> 内的元素个数为 <span class="math inline">\(c_i\)</span>”的排列数为</p>
+<p><span class="math display">\[\prod_{i=0}^{n-2}C_{w_i}^{c_i}\]</span></p>
+<p>原先的做法，枚举排列之后的DP，是直接枚举将多少个数加入序列，也就是当加入 <span class="math inline">\((S_j,S_{j+1}]\)</span> 的元素确定以后才乘上 <span class="math inline">\(C_{w_j}^{c_j}\)</span>。这个做法扩展到集合DP就不得不枚举子集，但是我们可以做一点调整：在 <span class="math inline">\(j\)</span> 加入序列的时候就确定 <span class="math inline">\((S_j,S_{j+1}]\)</span> 中的元素个数 <span class="math inline">\(c_j\)</span> 并乘上 <span class="math inline">\(C_{w_j}^{c_j}\)</span>，这就相当于<strong>一边加入元素，一边确定后面部分元素的位置</strong>。DP状态需要加入一维表示还有几个数的位置已确定。</p>
+<p>记 <span class="math inline">\(f(S,k)\)</span> 为已经确定序列的 <span class="math inline">\(n\)</span> 个元素 <span class="math inline">\(U=\{0,1,\cdots,n-1\}\)</span> 中的前 <span class="math inline">\(|S|\)</span> 个元素集合为 <span class="math inline">\(S\)</span>，且已经确定了前 <span class="math inline">\(|S|+k\)</span> 个元素的位置，剩下元素都在 <span class="math inline">\((\sum_{i\in S}w_i,m)\)</span> 内的位置方案数，其中 <span class="math inline">\(S\subseteq U\)</span>。转移时，如果 <span class="math inline">\(k&gt;0\)</span>，枚举第 <span class="math inline">\(|S|+1\)</span> 个元素 <span class="math inline">\(i\)</span> <strong>以及 <span class="math inline">\((\sum_{x\in S}w_x,\sum_{x\in S}w_x+w_i]\)</span> 这一段内的元素个数 <span class="math inline">\(j\)</span></strong>，那么就能决定 <span class="math inline">\((\sum_{x\in S}w_x,\sum_{x\in S}w_x+w_i]\)</span> 这一段的 <span class="math inline">\(j\)</span> 个元素的放置方案数，为 <span class="math inline">\(C_{w_i}^j\)</span>；如果 <span class="math inline">\(k=0\)</span>，那么无法继续放置元素，可以得到</p>
+<p><span class="math display">\[f(S,k)=\begin{cases}\sum_{i\in U-S}\sum_{j=0}^{n-|S|-k}C_{w_i}^jf(S+\{i\},k+j-1),&amp;S\ne U,k&gt;0\\1,&amp;S=U\\0,&amp;\mathrm{otherwise}\end{cases}\]</span></p>
+<p>答案为 <span class="math inline">\(f(\varnothing,1)\)</span>（显然，一开始只确定了 <span class="math inline">\([0,0]\)</span> 内放了一个元素）。复杂度为 <span class="math inline">\(O(2^nn^3)\)</span>，可以得50分。</p>
+<p>事实上，问题可以从另外一种不同的角度来分析。</p>
+<p>我之前在考场上发现答案是关于 <span class="math inline">\(w_0,w_1,\cdots,w_{n-1}\)</span> 的 <span class="math inline">\(n\)</span> 次多项式，这显然是正确的，可以从上述DP的分析中看出来：枚举每一段内的元素个数之后，方案数是若干个组合数的积，而组合数 <span class="math inline">\(C_{w_i}^{c_i}\)</span> 是关于 <span class="math inline">\(w_i\)</span> 的 <span class="math inline">\(c_i\)</span> 次多项式，而多项式的乘法和加法结果也是多项式。问题在于这个多项式的项可以包含 <span class="math inline">\(w_0,w_1,\cdots,w_{n-1}\)</span> 的任何次幂，所以项数是指数级的。</p>
+<p>暴力算这个多项式 <span class="math inline">\(n=15\)</span> 都过不了，但问题并不是我所想象的那样毫无办法。</p>
+<p>一方面，如果暴力DP求多项式的时候不去展开多项式而是保留组合数的形式，不需要多项式乘多项式，问题会方便很多。这样的多项式每一项实际上形如 <span class="math inline">\(k\prod_{i=0}^{n-1}C_{w_i}^{c_i}\)</span>，其中 <span class="math inline">\(\sum_{i=0}^{n-1}c_i=n-1\)</span>。</p>
+<p>当然这样的话项数是 <span class="math inline">\(\sum_{i=0}^{n-1}(c_i+1)=2n-1\)</span> 的非负整数解个数，即 <span class="math inline">\(C_{2n-2}^{n-1}\)</span>，仍然不能接受哪怕是 <span class="math inline">\(n=15\)</span> 的数据。</p>
+<p>不过再稍微思考一下就会发现有一个强有力的优化（我怎么这么SB没有想到这一步就直接弃疗了呢，虽然好像就算想到了也没时间写了）：不妨设答案中，<span class="math inline">\(\prod_{i=0}^{n-1}C_{w_i}^{c_i}\)</span> 这一项的系数为 <span class="math inline">\(k_{c_0,c_1,\cdots,c_{n-1}}\)</span>，若 <span class="math inline">\([c_0,c_1,\cdots,c_{n-1}]=[c_0&#39;,c_1&#39;,\cdots,c_{n-1}&#39;]\)</span>，则 <span class="math inline">\(k_{c_0,c_1,\cdots,c_{n-1}}=k_{c_0&#39;,c_1&#39;,\cdots,c_{n-1}&#39;}\)</span>，这里 <span class="math inline">\([]\)</span> 符号表示可重集。举个例子，<span class="math inline">\(C_{w_0}^1C_{w_1}^2\)</span> 和 <span class="math inline">\(C_{w_0}^2C_{w_1}^1\)</span> 的系数是相同的。</p>
+<p>这个优化意味着什么？只需要计算所有和小于 <span class="math inline">\(n\)</span> 的正整数可重集对应项的系数了！打个表，看看和小于 <span class="math inline">\(40\)</span> 的正整数可重集有多少个……只有 <span class="math inline">\(177970\)</span> 个！</p>
+<p>是不是非常愉快呢，现在咱们考虑下怎么算系数。这里沿用朴素的“枚举排列DP求方案数”（30分做法）的思路。</p>
+<p>记 <span class="math inline">\(\mathrm{Perm}(U)\)</span> 为 <span class="math inline">\(U=\{0,1,\cdots,n-1\}\)</span> 的全排列。先枚举这些元素的排列，记当前枚举到的排列为 <span class="math inline">\(&lt; p_0,p_1,\cdots,p_{n-1} &gt;\)</span>。先把我考场上推的30分式子拉下来：</p>
+<p><span class="math display">\[f(i,j)=\begin{cases}\sum_{k=0}^{n-i-1}C_{w_{p_j}}^kf(i+k,j+1),&amp;j\le i &lt; n-1\\1,&amp;i=n-1\\0,&amp;\mathrm{otherwise}\end{cases}\]</span></p>
+<p>要知道 <span class="math inline">\(f(0,0)\)</span> 中项 <span class="math inline">\(I\)</span> 的系数（<span class="math inline">\(I\)</span> 就是那个一坨组合数乘起来的玩意），用 <span class="math inline">\(I_0\)</span> 表示单位元（即 <span class="math inline">\(1\)</span>），可以这样做：记 <span class="math inline">\(f&#39;(i,j,I)\)</span> 表示 <span class="math inline">\(f(i,j)\)</span> 中 <span class="math inline">\(I\)</span> 的系数，则</p>
+<p><span class="math display">\[f&#39;(i,j,I)=\begin{cases}\sum_{k=0}^{n-i-1}f&#39;(i+k,j+1,\frac{I}{C_{w_{p_j}}^k}),&amp;j\le i &lt; n-1,C_{w_{p_j}}^k|I\\1,&amp;i=n-1,I=I_0\\0,&amp;\mathrm{otherwise}\end{cases}\]</span></p>
+<p>不难发现，上面的 <span class="math inline">\(i\)</span> 这一维是没有用的。记 <span class="math inline">\(I\)</span> 的次数为 <span class="math inline">\(|I|\)</span>（例如当 <span class="math inline">\(I\)</span> 为 <span class="math inline">\(C_{w_0}^2C_{w_1}^1\)</span> 时，<span class="math inline">\(|I|=3\)</span>），那么 <span class="math inline">\(i=n-|I|-1\)</span>，因此可以写成这样：</p>
+<p><span class="math display">\[f&#39;(I,j)=\begin{cases}\sum_{k=0}^{|I|}f&#39;(\frac{I}{C_{w_{p_j}}^k},j+1),&amp;j\le n-|I|-1 &lt; n-1,C_{w_{p_j}}^k|I\\1,&amp;I=I_0\\0,&amp;\mathrm{otherwise}\end{cases}\]</span></p>
+<p>用 <span class="math inline">\(F\)</span> 表示组合数项的集合，<span class="math inline">\(I(p_0,\cdots,p_{n-1})\)</span> 表示项 <span class="math inline">\(I\)</span> 中用 <span class="math inline">\(w_{p_0},\cdots,w_{p_{n-1}}\)</span> 代入 <span class="math inline">\(w_0,\cdots,w_{n-1}\)</span> 得到的结果，那么答案就是</p>
+<p><span class="math display">\[\sum_{&lt; p_0,\cdots,p_{n-1} &gt;\in\mathrm{Perm}(U)}\sum_{I\in F}f&#39;(I,0)I(p_0,\cdots,p_{n-1})=\sum_{I\in F}f&#39;(I,0)\sum_{&lt; p_0,\cdots,p_{n-1} &gt;\in\mathrm{Perm}(U)}I(p_0,\cdots,p_{n-1})\]</span></p>
+<p>根据前文提到的优化，只需对每个可重集 <span class="math inline">\(J\)</span> 求出系数集为 <span class="math inline">\(J\)</span> 的项 <span class="math inline">\(I\)</span> 的个数和这样的项的 <span class="math inline">\(f&#39;(I,0)\)</span> 的乘积——不妨下文直接记 <span class="math inline">\(f(J)\)</span> 为系数集为 <span class="math inline">\(J\)</span> 的项 <span class="math inline">\(I\)</span> 的个数和这种项的 <span class="math inline">\(f&#39;(I,0)\)</span> 值的积（我知道这里 <span class="math inline">\(f\)</span> 重名了）。只需预处理所有和小于 <span class="math inline">\(n\)</span> 的正整数可重集构成的集合 <span class="math inline">\(S\)</span>，将 <span class="math inline">\(S\)</span> 中元素从 <span class="math inline">\(0\)</span> 到 <span class="math inline">\(|S|-1\)</span> 标号，然后对每个 <span class="math inline">\(J\in S\)</span> 和正整数 <span class="math inline">\(k &lt; n\)</span> 预处理出 <span class="math inline">\(J+\{k\}\)</span> 在 <span class="math inline">\(S\)</span> 中的标号，再通过将上述DP改成顺推的形式（用 <span class="math inline">\(f&#39;(I,j)\)</span> 更新 <span class="math inline">\(f&#39;(I\cdot C_{w_{p_j}}^k,j+1)\)</span>），项全用系数可重集代替，就能在 <span class="math inline">\(O(|S|n^2)\)</span> 的时间内求出所有 <span class="math inline">\(J\in S\)</span> 的 <span class="math inline">\(f(J)\)</span> 了。</p>
+<p>你会发现，满足 <span class="math inline">\(J\)</span> 这个集合的 <span class="math inline">\(I\in F\)</span> 有多少个，<span class="math inline">\(f(J)\)</span> 就是多少倍的 <span class="math inline">\(f&#39;(I,0)\)</span>，可以归纳证明（不信话把DP式子暴力展开，就会发现它相当于枚举了所有的组合数项）。这样答案就是</p>
+<p><span class="math display">\[\sum_{J\in S}f(J)\sum_{&lt; p_0,\cdots,p_{n-1} &gt;\in\mathrm{Perm}(U)}I_J(p_0,\cdots,p_{n-1})\]</span></p>
+<p>这里 <span class="math inline">\(I_J\)</span> 表示任意一个以 <span class="math inline">\(J\)</span> 作为系数可重集的项。最后的问题：<span class="math inline">\(\sum_{&lt; p_0,\cdots,p_{n-1} &gt;\in\mathrm{Perm}(U)}I_J(p_0,\cdots,p_{n-1})\)</span> 怎么求？</p>
+<p>可以设计一个类似的DP来求这个东西。记 <span class="math inline">\(g(i,J)=\sum_{p\in\mathrm{Perm}(\{0,1,\cdots,i-1\})}I_J(p)\)</span>，枚举 <span class="math inline">\(w_{i-1}\)</span> 的次数 <span class="math inline">\(k\)</span>，可得</p>
+<p><span class="math display">\[g(i,J)=\sum_{k=0}^{n-1}\mathrm{count}_J(k)C_{w_{i-1}}^kg(i-1,J-[k])\]</span></p>
+<p>其中 <span class="math inline">\(\mathrm{count}_J(k)\)</span> 表示 <span class="math inline">\(J\)</span> 中包含多少个 <span class="math inline">\(k\)</span>。同样可以写成顺推的形式，用 <span class="math inline">\(g(i,J)\)</span> 更新 <span class="math inline">\(g(i+1,J+[k])\)</span>。另外可以不乘 <span class="math inline">\(\mathrm{count}_J(k)\)</span>，而是在最后统计答案的时候乘若干个阶乘。</p>
+<p>答案为 <span class="math inline">\(\sum_{J\in S}f(J)g(n,J)\)</span>，复杂度 <span class="math inline">\(O(|S|n^2)\)</span>，其中 <span class="math inline">\(|S|\le 177970\)</span>。实测可以通过 <span class="math inline">\(n=40\)</span> 的数据。程序实现起来并不复杂，但需要考虑清楚转移细节。</p>
+<p>由于之前都是假设不考虑 <span class="math inline">\(0\)</span> 的排列而计算的，所以输出时答案需要乘 <span class="math inline">\((m-n)!\)</span>。</p>
+<p>另外，对于这道题有一种十分简单的做法（在此orz考场上唯一AC此题的yjqqqaq）：计算 <span class="math inline">\(\frac{m!}{m-n+1}\)</span>，该值就是答案。复杂度 <span class="math inline">\(O(m)\)</span>，比之前的做法都要快得多。</p>
+<p>由于本人暂时不会证明此做法的正确性，故本人尚未写这种做法。</p>
+<h4 id="总结-3">总结</h4>
+<p>这题现场有20人得到50分以上，也就是说50分做法并不难，但我没有想到，这可以说是我的一个很大问题。</p>
+<p>优化DP的方法有很多，但我一直卡在简化状态或者优化转移复杂度上，没有往转移原理方面考虑——如果在放置元素时乘上方案数，无论如何复杂度都要多一个指数级，但是在放置元素时确定它对应的序列区间内的元素方案数，就只要记还允许放几个就够了。DP遇到困难时一定要多变通。</p>
+<p>另外100分做法涉及一类特殊状态DP，这种问题我还很不熟悉，以后需要加深这种特殊状态DP的钻研。</p>
+<h3 id="t3温暖会指引我们前行">T3：温暖会指引我们前行</h3>
+<p>http://uoj.ac/problem/274</p>
+<h4 id="考场情况-4">考场情况</h4>
+<p>一开始看题，很快就分析出最大字典序路径在最大生成森林上。</p>
+<p>然后很快写完25分暴力。随后发现测试点6~14所有的find事件都在move事件之前，意味着最大生成森林的形态不会变，因此预处理LCA以后 <span class="math inline">\(u,v\)</span> 路径长度就是 <span class="math inline">\(\mathrm{dep}_u+\mathrm{dep}_v-2\mathrm{dep}_{\mathrm{LCA}(u,v)}\)</span>。修改边权相当于子树深度加一个数，用BIT维护。这样就有70分了。</p>
+<p>最后30分树的形态会变，好像要LCT？然而并不是很懂LCT那一套理论于是就不会了……然后就弃疗了。</p>
+<p>最后得分：70</p>
+<h4 id="考后分析-4">考后分析</h4>
+<p>考后补了一下LCT，然后才会做这题。</p>
+<p>首先答案路径在最大生成森林上这个性质是对的，证明不再赘述。</p>
+<p>当有加边操作时，最大生成森林会发生怎样的变化呢？考虑图 <span class="math inline">\(G\)</span> 和图 <span class="math inline">\(G+e\)</span>（<span class="math inline">\(e\)</span> 为新加入的边）的最大生成森林 <span class="math inline">\(T\)</span> 和 <span class="math inline">\(T&#39;\)</span> 的差别，在 Kruskal 算法的过程中，加入 <span class="math inline">\(t\)</span> 值比 <span class="math inline">\(e\)</span> 大的边时，<span class="math inline">\(T\)</span> 和 <span class="math inline">\(T&#39;\)</span> 相同，加入 <span class="math inline">\(e=(u,v)\)</span> 时，如果 <span class="math inline">\(T\)</span> 中 <span class="math inline">\(u,v\)</span> 连通，那么这条边不被加入，最后 <span class="math inline">\(T&#39;=T\)</span>；如果 <span class="math inline">\(u,v\)</span> 分在两个不同的连通块 <span class="math inline">\(A,B\)</span> 中，那么 <span class="math inline">\(e\)</span> 会被加入 <span class="math inline">\(T&#39;\)</span>，接下来有两种情况，一种是最后 <span class="math inline">\(T\)</span> 中 <span class="math inline">\(A,B\)</span> 没被连起来，这种情况 <span class="math inline">\(T&#39;=T+e\)</span>，另一种是最后 <span class="math inline">\(T\)</span> 中 <span class="math inline">\(A,B\)</span> 被连起来，记 <span class="math inline">\(G\)</span> 中将 <span class="math inline">\(A,B\)</span> 连起来的边是 <span class="math inline">\(e&#39;\)</span>，则 <span class="math inline">\(e&#39;\)</span> 不会被加入 <span class="math inline">\(T&#39;\)</span>，加入之后接下来的过程就相同了，这时候 <span class="math inline">\(T&#39;=T+e-e&#39;\)</span>。</p>
+<p>于是加入 <span class="math inline">\(e=(u,v)\)</span>，如果 <span class="math inline">\(u,v\)</span> 不连通就直接把 <span class="math inline">\(e\)</span> 加入最大生成森林，否则找出 <span class="math inline">\(u,v\)</span> 路径上 <span class="math inline">\(t\)</span> 最小的边 <span class="math inline">\(e&#39;\)</span>，这条边就是在求 <span class="math inline">\(G\)</span> 的最大生成森林时最后连通 <span class="math inline">\(u,v\)</span> 的边，如果 <span class="math inline">\(e&#39;\)</span> 的 <span class="math inline">\(t\)</span> 值比 <span class="math inline">\(e\)</span> 小，在 Kruskal 过程中 <span class="math inline">\(e&#39;\)</span> 在 <span class="math inline">\(e\)</span> 之后处理，不会被加入，因此加入 <span class="math inline">\(e\)</span>，删掉 <span class="math inline">\(e&#39;\)</span>；如果 <span class="math inline">\(e&#39;\)</span> 的 <span class="math inline">\(t\)</span> 值比 <span class="math inline">\(e\)</span> 大，它在 <span class="math inline">\(e\)</span> 之前处理，则 Kruskal 过程中 <span class="math inline">\(e\)</span> 加入时 <span class="math inline">\(u,v\)</span> 已连通，从而 <span class="math inline">\(e\)</span> 不会被加入，因此不加入 <span class="math inline">\(e\)</span> 即可。</p>
+<p>这里需要进行的操作是维护生成森林，支持询问链上最大的边、链上的边权和，以及加边和删边。这些操作可以用 LCT 进行维护，时间复杂度 <span class="math inline">\(O(m\log n)\)</span>，可以得到 100 分。</p>
+<p>值得一提的是，LCT可以修改点权以及查询链上最大点权以及点权和，如何用于实现修改边权和查询链上边权？对于树上的边 <span class="math inline">\(e=(a,b)\)</span>，在LCT中不连 <span class="math inline">\(e\)</span> 这条边，而是对于边 <span class="math inline">\(e\)</span> 建立一个节点 <span class="math inline">\(v_e\)</span>，令 <span class="math inline">\(v_e\)</span> 的点权为 <span class="math inline">\(e\)</span> 的边权（原有的点权都是 <span class="math inline">\(0\)</span>），然后连边 <span class="math inline">\((a,v_e)\)</span> 和 <span class="math inline">\((b,v_e)\)</span>。显然这样得到的图仍然是森林，并且对于两点 <span class="math inline">\(u,v\)</span>，若原树上删去边 <span class="math inline">\(e\)</span> 会使 <span class="math inline">\(u,v\)</span> 不连通，则新树上删去点 <span class="math inline">\(v_e\)</span> 同样会使 <span class="math inline">\(u,v\)</span> 不连通，反之亦然。因此新树上 <span class="math inline">\(u\)</span> 到 <span class="math inline">\(v\)</span> 的路径点权序列就是原树上 <span class="math inline">\(u\)</span> 到 <span class="math inline">\(v\)</span> 的路径边权序列插入一些无用的 <span class="math inline">\(0\)</span>。这样，把边用点来维护，无论查询最大边权还是查询边权和都是查询链上最大点权以及点权和问题，LCT直接维护就行了。</p>
+<h4 id="总结-4">总结</h4>
+<p>这题在现场是一道20人AC的题，且没AC的人大多是由于写挂导致的，并不是不会做，正如immortalCO所说的这题是一道“模板题”。然而我模板题都不会还能说什么呢，只能说自己水平实在太差了。</p>
+<p>看来还是要多练一些模板，比如LCT、FWT之类的。</p>
+<hr>
+<h2 id="day-4">Day 4</h2>
+<h3 id="t2汽水">T2：汽水</h3>
+<p>http://uoj.ac/problem/276</p>
+<h4 id="考场情况-5">考场情况</h4>
+<p>看完题，先写了个 <span class="math inline">\(O(n^2)\)</span> 的第一档暴力20分程序交上去，然后去做下一题了。</p>
+<p>离比赛剩不到90min的时候回来搞这题，看到和平均值有关的问题联想到二分答案，二分一个 <span class="math inline">\(M\)</span>，判断是否存在一条路径，记经过的边为 <span class="math inline">\(\{e_i\}_{i=0}^{L-1}\)</span>，使得 <span class="math inline">\(\lvert\frac{\sum_{i=0}^{L-1}w_{e_i}}{L}-k\rvert &lt; M\)</span>，即</p>
+<p><span class="math display">\[\begin{cases}(k+M)L-\sum_{i=0}^{L-1}w_{e_i}&gt;0\\ \sum_{i=0}^{L-1}w_{e_i}+(M-k)L&gt;0\end{cases}\]</span></p>
+<p>这就是对于每条边 <span class="math inline">\(e\)</span> 定义两个新权值 <span class="math inline">\(a_e=k+M-w_e\)</span>，<span class="math inline">\(b_e=w_e+M-k\)</span>，则需要判断是否存在一条路径 <span class="math inline">\(\{e_i\}_{i=0}^{L-1}\)</span> 使得 <span class="math inline">\(\sum_{i=0}^{L-1}a_{e_i} &gt; 0\)</span> 且 <span class="math inline">\(\sum_{i=0}^{L-1}b_{e_i} &gt; 0\)</span>。</p>
+<p>然后我只想到了树分治……那就来点分治，分治完相当于求有多少对 <span class="math inline">\(u,v\)</span> 满足 <span class="math inline">\(u,v\)</span> 不在同一个子树内，且 <span class="math inline">\(A_u+A_v &gt; 0,B_u+B_v &gt; 0\)</span>，其中 <span class="math inline">\(A_u,B_u\)</span> 表示根到 <span class="math inline">\(u\)</span> 的路径上 <span class="math inline">\(a,b\)</span> 权值和，然后好像就能搞出来了可是似乎不太好写……</p>
+<p>看了下剩下的时间决定放弃写树分治，还是敲几个部分分保底。发现第二档和第四档部分分，只要二分完以后离散化BIT判一判就行了，这样应该就有60分了吧。</p>
+<p>最后得分：40。怎么回事挂了20分？？？</p>
+<h4 id="考后分析-5">考后分析</h4>
+<p>后来调之前的代码的时候，才发现我把链的的程序复制到菊的程序里面结果菊的程序里面把 <span class="math inline">\(a_i\)</span> 和 <span class="math inline">\(-a_i\)</span> 都加进离散化数组里了，可是数组只开了 <span class="math inline">\(n\)</span> 于是这20分全没了。</p>
+<p>以下是考后写、调这题的过程：</p>
+<p>首先码了个点分治，然后二分答案 <span class="math inline">\(M\)</span>，预处理出重心 <span class="math inline">\(g\)</span> 到每个点 <span class="math inline">\(v\)</span> 的路径上 <span class="math inline">\(a\)</span> 权值和 <span class="math inline">\(A_v\)</span>、<span class="math inline">\(b\)</span> 权值和 <span class="math inline">\(B_v\)</span>、所在的子树编号 <span class="math inline">\(c_v\)</span>（一个子树就是删掉 <span class="math inline">\(g\)</span> 关联的边之后的一个连通块，<span class="math inline">\(g\)</span> 单独在一个子树）。</p>
+<p>现在复杂度已经2个log了，然后是不是接着得线性才能过？开始分析：如果枚举了路径的一个点 <span class="math inline">\(u\)</span>，那么要找另一个 <span class="math inline">\(v\)</span> 使得 <span class="math inline">\(A_v &gt; -A_u,B_v &gt; -B_u,c_v\ne c_u\)</span>。好像就算没有最后一个条件也得对某一维排序对另一维求最大值= =能不能在预处理的时候排好序？意识到这是错的，思考了一会儿没什么希望好像只能3个log……</p>
+<p>3个log的做法很好想，就是用一个数据结构维护一个点集 <span class="math inline">\(S\)</span>，然后遍历逐个子树，对子树的每个点 <span class="math inline">\(u\)</span> 查询是否存在 <span class="math inline">\(v\in S\)</span> 使得 <span class="math inline">\(A_v &gt; -A_u,B_v &gt; -B_u\)</span>，如果存在就表示二分的这个 <span class="math inline">\(M\)</span> 可行，直接退出；如果不存在，就把这个子树的点加进 <span class="math inline">\(S\)</span> 中。如果扫完所有点还是找不到，说明这样的路径不存在，二分的这个 <span class="math inline">\(M\)</span> 不可行。</p>
+<p>至于怎么维护点集 <span class="math inline">\(S\)</span>，这只需离散化 <span class="math inline">\(A\)</span> 之后用BIT维护后缀 <span class="math inline">\(B\)</span> 的最大值即可。记 <span class="math inline">\(W=\min\{|w_i-k|\}\)</span>，复杂度 <span class="math inline">\(O(n\log^2 n\log W)\)</span>。</p>
+<p>写完过了样例。这个复杂度很爆炸，本机测了 <span class="math inline">\(n=50000\)</span>，<span class="math inline">\(k=1\)</span>，所有 <span class="math inline">\(w_i=10^{13}\)</span> 的数据并不能在 <span class="math inline">\(5\texttt{s}\)</span> 内出解。接着加了一些常数优化，如分治到小范围时 <span class="math inline">\(n\log^2 n\log W\)</span> 比 <span class="math inline">\(n^2\)</span> 还大得多，这时候改用 <span class="math inline">\(O(n^2)\)</span> 暴力，等等。</p>
+<p>接着对拍随机数据居然拍WA了，这样例该是有多弱……然后把调试语句输出了一堆，手画了好久，看了好久才看出打错了几个下标。</p>
+<p>总之这题折腾了好久，最后还是过了。花的时间早已超过了90min，幸好考试的时候没去写树分治否则绝对调不出来。</p>
+<h4 id="总结-5">总结</h4>
+<p>这题的得分情况是：一半以上的选手得到75分以上，其中接近20个100分。40分的成绩是很糟糕的，平均分都没有上。</p>
+<p>考场上我完全可以得到60分的。这题反映出的情况是我的代码能力不足，会做的分没法拿到手，根本原因是平时题目写太少。</p>
+<h4 id="更多问题-1">更多问题</h4>
+<p>据说这题有复杂度为 <span class="math inline">\(O(n\log n\log W)\)</span> 的2个log的树分治做法，但我仍然不知道怎样优化成2个log。想找题解发现找不到，所以很想知道2个log怎么做。</p>
+<p>immortalCO写了个二分答案之后用Splay启发式合并的做法。据说Splay的启发式合并是均摊 <span class="math inline">\(O(n\log n)\)</span> 的？然而我并不会证明或证否。如果能证明是 <span class="math inline">\(O(n\log n)\)</span> 的话就找到了另一种复杂度 <span class="math inline">\(O(n\log n\log W)\)</span> 的算法。</p>
+<h3 id="t3">T3：</h3>
+<p>待更</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/24/thutrain2016-record/" data-id="cjegzidh40023df1lu787ft0y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-wc2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/08/wc2017/" class="article-date">
+  <time datetime="2017-02-08T13:15:04.000Z" itemprop="datePublished">2017-02-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/08/wc2017/">WC2017 暴力之战</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于我太狭隘了并不知道别的东西有哪些值得写，我就讲下自己这次参加WC比赛的状态吧。</p>
+<p>考前几天刷了一波题：http://wronganswer.blog.uoj.ac/blog/2314 ，尽管改变不了我是无实力选手的事实。</p>
+<hr>
+<p>8:35，终于开考了。</p>
+<p>首先开场的时候看了下三道题。第一题看起来是个要推性质的题，我这种辣鸡水平就别想做出来了。第二题是个卡常数题，感觉很丧病。第三题是个构造类提交答案题，不太确定自己能搞多少分。</p>
+<p>于是开场看第1题，发现有 10 分 <span class="math inline">\(n\le 8\)</span>，开个 <span class="math inline">\(8^7\)</span> 的数组暴力 DFS 就过了，再看下面 <span class="math inline">\(m=n-1\)</span> 有 10 分，树上以 <span class="math inline">\(0\)</span> 为起点的路径只有 <span class="math inline">\(n\)</span> 条，DFS 枚举路径然后更新答案。后面还有 20 分 <span class="math inline">\(m=n\)</span>，基环外向树，那么路径肯定是从起点往环上走，绕几圈，再往下走到终点，那么把起点和终点都移到根，去掉 <span class="math inline">\(0\)</span>，看下环是不是循环同构的。</p>
+<p>这样分三个 <code>namespace</code> 写就有 <span class="math inline">\(40\)</span> 分了，写完以后把树和暴力拍，过了，很开心，然后把基环外向树和暴力拍，WA 了，调了好久发现我只判了环是循环同构的，没判剩下树的部分相同，改完就过了。</p>
+<p>接着再想有没别的部分分拿，想想网格图感觉就是个八数码，这不是 NP-Hard 的？又想了想每条边最多属于一个环的，发现两个环相接的不会处理，就放弃了。</p>
+<p>这样第1题正常情况下就有 <span class="math inline">\(40\)</span> 了，接着看第2题。</p>
+<p>第2题是个三合一，第一个Subtask是把 <span class="math inline">\(n\)</span> 个小于 <span class="math inline">\(2^{32}\)</span> 的非负整数排序，我会Radix Sort，不知效率如何。然后我就用链表写了个Radix Sort，写的时候发现指针数组 <code>next</code> 和存答案的数组 <code>b</code> 开了以后就爆内存了，就把输出答案的函数拷到了主程序里面一边遍历一边输出。写完过了测试点1，运行下测试点2，结果……</p>
+<p>跑了10+s。</p>
+<p>怎么办？我想一定是数组访问不连续导致这么慢。那就在Radix Sort之前先求出每个radix的出现次数，然后开一个连续的数组，算出每个radix对应的区间实现类似不定长数组来替代链表，改完以后WA了。调了好久才发现我原本是倒着 <code>for</code>，改写法以后要正着 <code>for</code>。这样测试点2跑进2s，测试点3……跑不过去。</p>
+<p>觉得自己很没救就看子任务2，看起来像卷积，想FFT发现不会处理区间询问，如果再怎么处理一下复杂度就炸。这个点做法应该是压位？于是写了很久的压位，还调了很久，终于调出各种诸如 <code>&lt;&lt;</code> 和 <code>&gt;&gt;</code> 打反之类的错误，终于过了测试点4，却过不了测试点5。想加优化，结果不管怎么优化都要跑十几秒。暴力分即视感。</p>
+<p>感觉我真是逗比得不行，明明分没多，我干嘛去写细节巨狗的压位啊= =b</p>
+<!-- readmore -->
+<p>最后看子任务3，好像是Sereja的一道Codeforces题，那题正解好像就是 <span class="math inline">\(O(n^2)\)</span> 的，因此并没有犹豫就开始写暴力DP，开了滚动数组并且限制了有效的转移区间，常数挺小吧？然后样例WA了，就和不滚动的拍，意识到遇到 <code>(</code> 的时候直接右移指针是错的，要把边界设成 <span class="math inline">\(0\)</span>。这样就过了测试点6,7,8，然而9还是超时了一点。也懒得去卡这个常数了。</p>
+<p>好像这样一共就有52分了。</p>
+<p>比赛剩2h我才去看第3题，提交答案题。</p>
+<p>由于时间不够，第3题我在做的时候完全处于一种手忙脚乱的状态。回想我去年CTSC二试的前半场也是这样，提交答案题一直刚不出多少分，但随着我搞出第二个点，以及用DAG骗到后面的点很高分以后就不虚了。然而今天……</p>
+<p>先观察测试点1，直接把 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(P_i\)</span> 连就能满足条件了，搞到6分。测试点2好像可以搜索，果断写暴搜，结果花了半小时一直调不出来，真是虚炸了。</p>
+<p>由于之前吸取过经验教训，这种题应该写个通用贪心给每个点跑个部分分，然后想到了三天前杜教讲的一种 <span class="math inline">\(O(n)\)</span> 层排序网络，用这个给每个点骗了一些分，好像有19分了。可是只剩1h了……怎么办？</p>
+<p>继续调第2个点，总之细节折腾了很久，好在最后终于调对了，然而也只跑出5分……汗。<span class="math inline">\(n=9\)</span> 就跑不出了，严重怀疑自己姿势有问题。</p>
+<p>我浏览了一遍每个点，有的点明明知道性质却不会构造，深刻感受到自己是多么菜鸡。用暴搜似乎还能多跑过一两分。最后我还是专攻最后一个点。这个点的性质是每个排列都是把 <span class="math inline">\(1,2,...,n\)</span> 的 <span class="math inline">\(n\)</span> 和任意一个 <span class="math inline">\(i\)</span> 交换得到的排列。直接构造的 <span class="math inline">\(num\)</span> 和时间都是 <span class="math inline">\(n-1\)</span>，第二组数据都过不了，那么我要把每个排列的 <span class="math inline">\(n\)</span> 聚集在一起，如果先连 <span class="math inline">\((1,2)(3,4)...\)</span> 就能把时间差不多减半了，好像第二组数据能过了，于是写完 <code>checker</code> 一下，居然WA了。</p>
+<p>百思不得其解，对着数据和方案看了很久，没发现问题，无奈手写了个 <code>checker</code> 输出方案发现跪了，原因是 <span class="math inline">\(n-1\)</span> 和 <span class="math inline">\(n\)</span> 交换导致非 <span class="math inline">\(n\)</span> 的数交换了。因此fix了一下构造，一开始不交换 <span class="math inline">\(n-1,n\)</span>，后面再交换。终于正确了，然而仅仅多搞了1分。</p>
+<p>再想想发现这其实可以做到 <span class="math inline">\(O(\log n)\)</span>，就是类似BIT的构造。最后10min写出这个做法，然后，由于常数太大，这个点只有4分。</p>
+<p>看了看我第3题才搞了28分，完了，滚粗了。</p>
+<p>最后检查了下前2题，就这么遗憾地离开了考场。</p>
+<p>我这一整场，根本没有搞出什么有意义的分数。</p>
+<p>第一题，不过写了三个暴力罢了。</p>
+<p>第二题，并没有卡过哪个难卡过的点。</p>
+<p>第三题，只有28的低分。</p>
+<p>而且还不知道会写挂哪个题，第三题不太可能写挂，如果第一题和第二题有一个挂了，那么100分都上不了。</p>
+<p>被提交答案题虐惨。</p>
+<p>GG。</p>
+<p>出了考场，听说了一些事情。</p>
+<p>听说matthew99第1题得到60+高分。</p>
+<p>听说GD神犇第2题得到70-80的高分。</p>
+<p>听说fateice第3题得了高分。</p>
+<p>这么一来，我就算一题都没挂，40+52+28也会被虐得好惨。</p>
+<p>最后去看成绩，一分没挂，40+52+28=120。也是挺幸运的吧。</p>
+<p>xumingkuan第1题70分，而且改一改就能AC了。cy第2题79分，过了子任务2，好劲啊。fateice第3题38分，还有好多人第3题得了30以上。matthew99 130+，yyt16384 140+。讲题的时候matthew99表示自己开考半个小时就想到了第1题 <span class="math inline">\(O(n^5)\)</span> 的做法，然而我第1题啥思路都没有，还以为是 NP-Hard 的。果然实力差距太大根本比不上啊。</p>
+<p>都高二了还是只会打暴力，提交答案题完全做不动。深刻感受到我的实力还有待加强。</p>
+<hr>
+<p>这个猫老师immortalCO。。。强行把我也变成猫，感觉都有人误认为我和immortalCO一样都是猫了。。。我很不开心呐。。。</p>
+<p>暴力%猫</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span>*Solve_NP_Hard_Problem=<span class="string">"#~_!vk%NP"</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">9</span>;i++)<span class="built_in">putchar</span>(<span class="number">10</span>-Solve_NP_Hard_Problem[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以下是闭幕式以后的更新部分。</p>
+<p>看了颁奖，最后我们学校的结果是：immortalCO和我进了候选队，非集训队1金1银4铜。dick32165401确实挺稳，Au了。wzt有点惨，由于第1题没打满暴力只得了10分，离Au线差了10分。ziqian、Paladin、3A17K、chentong都没有拿到基本分，Cu。</p>
+<p>首先感觉这场的基本分还是有的。第1题暴力有40分，即使没有immortalCO这么强的实力5min写一个程序解决40分，也可以像我这种SB一样写三个程序做三档部分分同样得到40分。第2题就算没听课的话21分也很好搞，如果加一些优化就能得到40以上的分数。第3题的第1个点规律很容易看出，6分应该是很基本的了，如果有听课会 <span class="math inline">\(O(n)\)</span> 深度的排序网络的话能得到更高的分数。</p>
+<p>如果40+21+6=67就有Ag了，如果再多得一些分就有Au了。WC这种比赛就是<strong>暴力之战</strong>，暴力打挂是没什么希望的。（其实也只是我运气比较好罢了，WC前几天一直写挂题一直写挂题，然后到了WC就莫名其妙不挂了……不过这样的运气肯定不会持久下去）</p>
+<p>其次关于比赛的不确定性，这个我早在NOI2016的时候就已深刻感受到了，不少比我强得多的大神考挂了。实力超强的C_SUNSHINE，WC垫底了（我只是开个玩笑，事实是他出国了而没法回国参加WC）。NOI前几名的AcrossTheSky有点惨，WC考挂差了几名退役了。isdkfj也挺遗憾的，WC 100+分并没有翻回来。FJOI一试rank1的zhshr和集训队的victbr也意外地考挂了。另外集训队也有些曾获得WC Au的神犇因为失误而没达到Au线[蜡烛]</p>
+<p>不少人吐槽题目坑，尤其是第2题的卡常数。不过好像好多年WC都有人喷吧……比如WC2015的T2坑爹的“随堂测验”题，T3是个传统题十合一，已有不少人抗议；WC2016的T3也被点了很多差评，等等。当然今年T2的丧病底层优化常数题确实是我第一次见到= =（我比较好奇这题如果搬到UOJ，时限该怎么调，呵呵）这种题个人感觉也不会发展下去。</p>
+<p>当然大多数的神犇都得到了很高的成绩。这里是我的个人看法：尽管有不少人吐槽WC的题不合理之类的，但区分度还是有的，集训队的成绩普遍比非集训队高，Au选手往往都有较高的实力，可以从NOIP成绩中看出来（当然NOIP考挂并不代表实力不强）。</p>
+<p>最后，尽管我WC并没有什么遗憾，并没有写挂题，但我也明白自己的水平和真正的神犇之间还是有相当大距离的。接着就是第二轮作业、互测、论文答辩了，打算多刷一些Codeforces题，接触一些新知识点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/08/wc2017/" data-id="cjegzidhl002ddf1lr9u1b9i5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WC/">WC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-before-wc2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/03/before-wc2017/" class="article-date">
+  <time datetime="2017-02-03T12:53:53.000Z" itemprop="datePublished">2017-02-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/03/before-wc2017/">WC2017前的刷题记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>就要WC了，然而我还是一堆简单题不会做。人弱就要多刷题，于是就刷了一些<del>我觉得很难的</del>题。</p>
+<p>如果大家发现有什么问题欢迎提出。</p>
+<hr>
+<h3 id="目录">目录</h3>
+<ul>
+<li>1、Codeforces 717A</li>
+<li>2、TCO2014 Round 3B Div1 1000</li>
+<li>3、Codeforces 722E</li>
+<li>4、Codeforces 713D</li>
+<li>5、Codeforces 762F</li>
+<li>6、UOJ #54</li>
+<li>7、Codeforces 715C</li>
+<li>8、LYDSY 3451</li>
+<li>9、UOJ #59</li>
+</ul>
+<hr>
+<h3 id="codeforces-717a">1、Codeforces 717A</h3>
+<p>给定整数 <span class="math inline">\(k,l,r\)</span>，设 <span class="math inline">\(T\)</span> 为所有<strong>长度在 <span class="math inline">\([l,r]\)</span> 间且不存在相邻两个0的01串</strong>的集合，求从 <span class="math inline">\(T\)</span> 中取出恰好 <span class="math inline">\(k\)</span> 个<strong>长度相同</strong>的串的方案数除以 <span class="math inline">\(1,000,000,007\)</span> 的余数。<span class="math inline">\(1\le k\le 200,1\le l\le r\le 10^{18}\)</span>。</p>
+<p>http://codeforces.com/problemset/problem/717/A</p>
+<p>这场比赛我参加过，然后挂了……主要就是一开始想了很久的这一题，一直以为是矩阵快速幂，结果想了很久没能把矩阵构造出来。最后只好放弃了这题。</p>
+<p>后来看了题解才发现这题做法好神。</p>
+<p>首先，记 <span class="math inline">\(f_i\)</span> 为长度等于 <span class="math inline">\(i\)</span> 且不存在相邻两个0的01串个数，显然 <span class="math inline">\(f_0=1,f_1=2\)</span>。考虑一个长度等于 <span class="math inline">\(i\)</span> 的01串，如果第 <span class="math inline">\(i\)</span> 位是1，那么只需前 <span class="math inline">\(i-1\)</span> 位不存在两个相邻的0即可，有 <span class="math inline">\(f_{i-1}\)</span> 种，如果第 <span class="math inline">\(i\)</span> 位是0，那么第 <span class="math inline">\(i-1\)</span> 位是1，有 <span class="math inline">\(f_{i-2}\)</span> 种，即</p>
+<p><span class="math display">\[f_i=f_{i-1}+f_{i-2}\]</span></p>
+<p>不难发现这就是一个Fibonacci数列，如果记 <span class="math inline">\(F_i=\begin{cases}i,&amp;i &lt; 2,\\F_{i-1}+F_{i-2},&amp;i\ge 2\end{cases}\)</span>，那么 <span class="math inline">\(f_i=F_{i+2}\)</span>，于是答案等于</p>
+<p><span class="math display">\[\sum_{i=l}^rC_{f_i}^k=\sum_{i=l}^rC_{F_{i+2}}^k\]</span></p>
+<p>用经典的计数方法，记 <span class="math inline">\(S_n=\sum_{i=0}^{n-1}C_{F_i}^k\)</span>，则答案为 <span class="math inline">\(S_{r+3}-S_{l+2}\)</span>。</p>
+<p>前面的这些转化都很简单，问题来了，如何计算 <span class="math inline">\(S_i\)</span>？</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/02/03/before-wc2017/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/03/before-wc2017/" data-id="cjegzidd2000kdf1lc1pr2e3n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/记录/">记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-goodbye-bingshen" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/26/goodbye-bingshen/" class="article-date">
+  <time datetime="2017-01-26T10:39:35.000Z" itemprop="datePublished">2017-01-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/26/goodbye-bingshen/">记一次冒险的举动——Goodbye Bingshen</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天是Goodbye Bingshen。</p>
+<p>好久没打UOJ比赛了，于是就来打了一次。</p>
+<p>一开场看到第1题，感觉我以前思考过这个问题，于是推了个很简单的结论：如果 <span class="math inline">\(n &lt; 4\)</span>，答案是 <span class="math inline">\(1\)</span>，否则是 <span class="math inline">\(-1\)</span>。交上去以后重新想了下发现证明有问题，但重新证明以后发现结论是对的。</p>
+<p>接着看第2题，构造题，继续猜结论，每个点和 <span class="math inline">\(n\)</span> 连边，自己试到 <span class="math inline">\(n \le 9\)</span> 好像都没有反例。也就这么交了。</p>
+<p>交完以后重新想了下，发现如果 <span class="math inline">\(n\)</span> 大一点，答案是 <span class="math inline">\(2n-3\)</span>，如果先构一条 <span class="math inline">\(5\)</span> 点的链，在中点往下构一个这种树，答案是 <span class="math inline">\(3n-13\)</span>。卧槽。</p>
+<p>于是就想枚举一下树的深度，然后先构最长链，再递归下去构造。用一个类似记忆化搜索的东西求了下发现最优解深度不超过 <span class="math inline">\(70\)</span>，于是就 <span class="math inline">\(10000\times 70^2\)</span> 做完了。</p>
+<p>看了下第三题，感觉暴力做法就是对于每个询问 <span class="math inline">\((s,t)\)</span> 将 <span class="math inline">\(s\)</span> 子树的每个点对应一个平面点 <span class="math inline">\((w_i,d_i)\)</span>（<span class="math inline">\(d_i\)</span> 为 <span class="math inline">\(i\)</span> 在树中的深度）然后记 <span class="math inline">\(f(x)=\min\{d_i|w_i\ge x\}\)</span>，<span class="math inline">\(s\)</span> 到 <span class="math inline">\(t\)</span> 的最大点权为 <span class="math inline">\(w_\max\)</span>，答案就是 <span class="math inline">\(\sum_{x=1}^{w_\max}f(x)+d_t-d_s\)</span>。这个好像可以维护一下单调栈之类的东西，然后算一下面积？不过这只是单次询问的。多次询问就把这个东西启发式合并一下……？</p>
+<p>Splay启发式合并，应该是 <span class="math inline">\(O(n\log^2n)\)</span> 的？（反正我只会证明是 <span class="math inline">\(O(n\log^2n)\)</span>）时限 <span class="math inline">\(2\texttt{s}\)</span>？看起来可以过，写一写。</p>
+<p>（<strong>UPD：后来immortalCO告诉我复杂度其实是 <span class="math inline">\(O(n\log n)\)</span></strong>）</p>
+<p>于是就开始码Splay……码了一会儿有点虚犹豫要不要码下去，于是看了后两题。</p>
+<p>第4题好神啊，似乎不太可做，先不管了。第5题……居然是个交互式证明，要理解源代码，看了下源代码巨长无比，不太容易理解，也先不管了。</p>
+<p>后两题都不太可A，好像还是搞第3题比较有救？</p>
+<p>于是继续码Splay。写完基本操作以后开始维护每个点到上一个点的类似面积的东西。代码写得很长，而且自己看着都觉得常数大有点要TLE的样子。</p>
+<p>子任务制啊，要是挂了岂不是只有暴力分了？惨！</p>
+<p>不过既然已经写了那我就把它写完吧。写完维护面积和、树上二分、插入节点以及删除左侧不在单调栈上的节点，最后写完查询，代码已经差不多4KB了。</p>
+<p>然后，测一下样例1，RE了……实现逻辑出了不少问题，改了一会儿输出了6……原来我忘了加上 <span class="math inline">\(d_t-d_s\)</span> 了。加上以后过了样例1，再测样例2，发现输出的顺序是乱的，才发现忘了离线询问顺序输出答案。加了个存答案的数组就搞定了。</p>
+<p>感觉应该差不多了。交一发。</p>
+<p>然后。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/01/26/goodbye-bingshen/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/26/goodbye-bingshen/" data-id="cjegzidfi001fdf1ltviqjrok" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta property="og:type" content="website">
+<meta property="og:title" content="oi_loser&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="oi_loser&#39;s blog">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-lydsy-3489" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/04/lydsy-3489/" class="article-date">
+  <time datetime="2017-12-04T07:45:14.000Z" itemprop="datePublished">2017-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨晚学弟问我的一个题，想了一晚上感觉想法跟网上看到的题解不太一样，就写一下。</p>
+<h3 id="题目描述">题目描述</h3>
+<p>http://www.lydsy.com/JudgeOnline/problem.php?id=3489</p>
+<h3 id="解法分析">解法分析</h3>
+<p>由于要在线，显然不能莫队。</p>
+<p>考虑更好地利用问题性质。对于位置i，区间[l,r]只包含位置i的a[i]的条件是last[i]&lt;l&lt;=i，i&lt;=r&lt;next[i]。其中</p>
+<p>last[i]=max{j|j<i,a[j]=a[i]} next[i]="min{j|j">i,a[j]=a[i]}</i,a[j]=a[i]}></p>
+<p>如果不存在，last=0，next=n+1。</p>
+<p>这样，就可以把询问(l,r)看成二维平面上的点，每个位置对应一个边平行于坐标轴的矩形，询问转化为求包含点(l,r)的所有矩形i中，a[i]的最大值。</p>
+<p>考虑用扫描线解决。按r这一维从小到大扫描，维护集合序列S，遇到一个矩形i时，将S中矩形对应的l区间的每个位置插入一个a[i]；删除矩形i时，将S中矩形对应的l区间的每个位置删除一个a[i]。</p>
+<p>如果没有删除，问题转为区间对一个数取max，单点查询，可以用永久化标记的线段树维护，修改就是将区间对应的O(log n)个结点对一个数取max。然而这题强制在线，需要可持久化线段树，把r扫到每个位置的线段树版本都存下来，查询l,r时在r版本上查l点即可。</p>
+<p>有删除时，只需把线段树结点上的永久化标记换成一个支持插入删除的数据结构，修改时在区间对应的O(log n)个结点的集合中插入/删除这个数。笔者用的是STL自带的set（常数较大），预处理复杂度是O(n log²n)。不过在可持久化线段树版本中不需要存整个set，只要存答案，即结点对应set的最大值。</p>
+<p>即：在全局维护线段树套set，修改时在全局先修改，然后修改可持久化线段树存的答案。</p>
+<p>询问仍然只要O(log n)。这样的时间复杂度是O(n log²n+m log n)，空间复杂度是O(n log n)。</p>
+<p>由于偷懒用的set常数大，LYDSY上总共要跑10s+。换了个写法把set改成priority_queue，就只要8s了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/04/lydsy-3489/" data-id="cjegzidg7001ldf1l8y8csd08" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-codeforces-443" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/29/codeforces-443/" class="article-date">
+  <time datetime="2017-10-29T09:06:16.000Z" itemprop="datePublished">2017-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>实力不足，C题做复杂了，没调出来。于是2题滚粗。居然还能涨rating。</p>
+<p>A题没什么好说的，程序对每个二进制位的功能只有4种：</p>
+<p>（1）0-&gt;0,1-&gt;0 （2）0-&gt;0,1-&gt;1 （3）0-&gt;1,1-&gt;0 （4）0-&gt;1,1-&gt;1</p>
+<p>第一种等价于AND 0，第二种等价于XOR 0，第三种等价于XOR 1，第四种等价于OR 1。于是随便构造下就好了。</p>
+<p>B题，给一个数列，每次删k个连续的相同的数，直到不能消除为止，问最后剩下几个数。数列是循环的，以循环节（长度n&lt;=10<sup>5）和循环次数m（m&lt;=10</sup>9）的形式给出。题目告诉我们删数是顺序无关的。</p>
+<p>由于顺序无关，可以对每个循环节能消除的先消除，然后再把循环节一个个加进来消除。</p>
+<p>和连续相同数字个数有关的问题可以考虑游程编码，即记录每个极长相同连续段的数值和长度：(a[1],c[1])(a[2],c[2])...(a[n],c[n])，表示a[1]个c[1]、a[2]个c[2]、a[3]个c[3]……依次连起来，c[i]&gt;0，a[i]不等于a[i+1]。这里设n是游程编码后的项数，下同。</p>
+<p>考虑两个循环节拼起来会发生什么：</p>
+<p>(a[1],c[1])(a[2],c[2])...(a[n-1],c[n-1])(a[n],c[n])(a[1],c[1])(a[2],c[2])...(a[n],c[n])</p>
+<p>如果会发生消除，只可能是a[n]=a[1]时，中间的(a[n],c[n])和(a[1],c[1])接起来发生了消除，最后会消到(c[n]+c[1]) mod k个。当(c[n]+c[1]) mod k = 0时，如果a[n-1]=a[2]，中间的(a[n-1],c[n-1])和(a[2],c[2])也会接起来发生消除。如果不断下去，依次配对消掉的有1和n、2和n-1、3和n-2……</p>
+<p>观察性质的时候到了：</p>
+<p>1、如果这个消除能消到中间，并且把中间消掉，即对所有1&lt;=i&lt;=(n+1)/2，都有a[i]=a[n+1-i]且(c[i]+c[n+1-i]) mod k = 0，那么两个序列拼起来就能把整个序列消完，即对所有1&lt;=i&lt;=n，都有a[i]=a[n+1-i]且(c[i]+c[n+1-i]) mod k = 0；</p>
+<p>这种情况下可以直接把m模2。</p>
+<p>2、如果这个消除消不到中间，即存在i&lt;=n/2，a[i]≠a[n+1-i]或(c[i]+c[n+1-i]) mod k ≠ 0，取最小的这样的i，那么把m个循环节连起来之后，除了第1个和第m个循环阶以外，每个循环节的前i-1项和后i-1项被消掉，第i项和第n-i+1项可能被改变，由于i&lt;n-i+1，前面和后面的消除不会互相影响；（这里的项均指游程编码后的）</p>
+<p>这种情况下，设两个循环节拼起来总共消掉的c为C，那么答案为mn-(m-1)C；</p>
+<p>3、如果这个消除刚好消到中间i=(n+1)/2的位置（显然此时n是奇数），但没把中间消完，那么2个循环节拼起来之后：</p>
+<p>(a[1],c[1])...(a[i],2c[i])...(a[n],c[n])</p>
+<p>m个循环节拼起来之后：</p>
+<p>(a[1],c[1])...(a[i],mc[i])...(a[n],c[n])</p>
+<p>显然中间的a[i]会被消成mc[i] mod k个，如果mc[i] mod k = 0，那么整个序列会被消完。</p>
+<p>于是这题就做完了。</p>
+<p>C题是一道有趣的题。</p>
+<p>题目说起来很复杂，实际上抽象以后题意很简单：不断加入每个人，把每个人看成一个结点，对两个点u,v，如果存在1&lt;=i&lt;=k使得s[u,i]&gt;s[v,i]，那么u-&gt;v连一条边，求有多少个点可能是一个该图的一个树形图（有向生成树）的根。</p>
+<p>也就是可以对每个除根外的节点u确定一个父结点f[u]，要求f[u]-&gt;u有边，并且父结点的关系不能有环，即每个点不断往父结点走一定能走到根。</p>
+<p>说白了就是从根出发能到所有点。</p>
+<p>当然这道题的图很有特点：对任意两个点u,v，或者u能到达v，或者v能到达u。这是因为如果s[u,1]&gt;s[v,1]，那么u能到达v，反之v能到达u。于是缩强连通分量之后的图是一条链，满足前面的点往后面的点有连边。入度为0的分量的大小就是答案。</p>
+<p>考虑暴力怎么写。注意到强连通分量只和可达性（传递闭包）有关，可以优化建图：加入点i时，对于每一维j，找出s[i,j]在s[*,j]中的前驱后继连边就行了。这样会加入一组连向i的边和一组i连出去的边。由于强连通分量构成一条链，实际上只要保留起点拓扑序最大的连向i的边(x,i)，以及终点拓扑序最小的连向i的边(i,y)。</p>
+<p>可惜每次暴力跑强连通分量是O(n^2)的，会超时。我们来优化一下。</p>
+<p>考虑加入边(x,i),(i,y)之后：</p>
+<p>1、如果x的拓扑序小于y，那么y一定在x所在分量的下一个分量（否则与任意两点可达矛盾），把i插到这两个分量之间即可。</p>
+<p>2、否则，拓扑序位于[y,x]之间的分量都会被合并成一个分量，并且i会被加入这个分量。</p>
+<p>这两步用一个set和一个并查集来维护就行了。</p>
+<p><strong>我在考场上推到了这一步，然而卡在了如何维护强连通分量序列，以及如何保留拓扑序最大的x和拓扑序最小的y上。由于set不太能简单地实现在两个元素之间插入一个元素，删除一个元素，以及查询两个数的顺序，我就写了个平衡树。结果把我后半场比赛时间全搭上了，最后还是意料之中地没调出来。</strong></p>
+<p>随便找一维比如第1维，那么s[*,1]从大到小的顺序就是强连通分量的顺序啊！直接按s[*,1]作为关键字插到set里面不就好了。真的很服自己的智商。</p>
+<p>D题居然是个简单题，考场上没看真是太亏了。</p>
+<p>题目可以抽象化为，有不超过12个变量x[1],x[2],...,x[k]，每次操作是新建一个变量的定义 x[new]=max(x[i],x[j]) 或 x[new]=min(x[i],x[j]) （使用max或者min以及i,j都是给定的），或者给一组x[1],x[2],...,x[k]的值，查询x[i]的值。</p>
+<p>每个x[i]是x[1],x[2],...,x[k]的一个函数，遗憾的是这个函数的表达式并不简单。</p>
+<p>不过很显然函数值一定是x[1],x[2],...,x[k]这k个数中的一个。</p>
+<p>由于min、max只和大小关系有关，能不能维护每一种这k个数的大小关系对应的函数值是哪一个数？即f(i,A)表示当这k个数的大小关系为A时，x[i]=x[f(i,A)]（1&lt;=f(i,A)&lt;=k）。可惜A有k!种可能，对于k=12这个规模还是太大了。</p>
+<p>更简单地，如果我只要判断是否x[i]&gt;=m，该怎么做？这时候不用存每个x了，只要记录每个x是否小于m就好了。把小于m的数换成0，其余数换成1，再维护f(i,A)表示前k个数的序列为A时，x[i]是多少。</p>
+<p>此时A只有2^k种，k=12时也只有4096种，比k!可观得多。f(i,A)可以直接用按位与/或运算（对应min/max）来得到，可以用bitset优化。</p>
+<p>查询时只要把x[1],x[2],...,x[k]从大到小排序之后一个个把A的对应二进制位设为1，直到f(i,A)=1，这个x就是答案。</p>
+<p>时间和空间复杂度都是O(2^k*q/w)，其中字长w=32或w=64（CF可能是w=32）。</p>
+<p>E题待坑。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/29/codeforces-443/" data-id="cjegzide5000vdf1lznq29rz3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-astar2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/22/astar2017/" class="article-date">
+  <time datetime="2017-10-22T01:33:28.000Z" itemprop="datePublished">2017-10-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作为无实力退役选手参加Astar玩玩，居然卡进决赛了。综合NOI排名（约47）和Astar线上赛的平均排名（约45），估计我的最终排名在40-50之间，拿奖是没希望了，就当一次旅游吧。</p>
+<h2 id="月22日">10月22日</h2>
+<p>报道等一系列行为。</p>
+<p>对欢迎仪式的认识环节感到严重不习惯。</p>
+<h2 id="月23日">10月23日</h2>
+<h3 id="开始">开始</h3>
+<p>来到考场，发完密码条，诶怎么用户名是奇怪的名字？试了下，登不进去。然后通知说登录名是前面那个数字。</p>
+<p>登进去一看，傻眼了，这个决赛居然是要我们写AI？exm？一直以为决赛和前面几轮一样传统。原来更像Codechef的Challenge啊。（后来想了想，Astar是个启发式搜索的算法，看这个名字也应该想到要考你写AI啊）然而我就打过少得可怜的几场Codechef，根本不会AI的那套理论啊，好尴尬。</p>
+<p>仔细看题目，写的是一个类似多人贪食蛇的AI。贪食蛇在二维平面上进行，但可以沿任何方向移动，不仅仅是上下左右，以及蛇可以自交（非常赞啊）。局面会随机生成食物和障碍，吃食物会加长、减速，出界或者碰障碍或者和别人的蛇撞，蛇会死。还有加速道具啥的不过我没用过。当时觉得我滚粗稳了（最后确实是这样）。</p>
+<h3 id="第一阶段测试">第一阶段测试</h3>
+<p>前三四个小时是练习赛，不计入总分。于是我就开始胡搞，想想不管怎么样也得搞出个能活一段时间的AI。怎样避开障碍呢？脑补了一会儿物理常识，如果把障碍想象成电荷，利用斥力似乎就能避开障碍了？于是yy了个引力场，设当前蛇头 <span class="math inline">\(H\)</span> 的速度为 <span class="math inline">\(v\)</span>，对每个障碍 <span class="math inline">\(O\)</span>，给 <span class="math inline">\(v\)</span> 加上一个与 <span class="math inline">\(OH\)</span> 同向，大小反比于 <span class="math inline">\(OH^2\)</span> 的速度 <span class="math inline">\(v&#39;_O\)</span>，相当于施加一个“力”，最后输出合速度 <span class="math inline">\(v+\sum_Ov&#39;_O\)</span> 方向。</p>
+<p>问题是 <span class="math inline">\(v&#39;_O={k\over OH^2}\)</span> 不会弄，就想，如果就地转弯的半径是 <span class="math inline">\(r\)</span>，那么在 <span class="math inline">\(OH=2r\)</span> 的时候令 <span class="math inline">\(v&#39;_O=v\)</span> 应该就稳了吧。这么想，推了会儿就写，写完交上去。</p>
+<p>结果第一轮测出来发现我蛇一开始就死了！撞到下方的墙了，怎么萎事？不是很懂，就打了个100*100的表输出蛇在每个方向受到的“力”，发现好像都是同一个东西。接着看代码发现我把一个距离和速度搞混了，改。改完以后又发现这个力大得有些夸张，在场地中间这个力还是那么大，很不符合常识啊。</p>
+<p>思索了一会儿发现，我的程序假设四周设满了障碍，每个障碍对蛇一个力，合力就巨大无比了，就调了参数。</p>
+<p>吃食物还没写，赶紧写。大概是，如果附近最近的食物周围没有对方的蛇或者障碍，就往食物方向走。写完交上去测第二轮。</p>
+<p>第二轮又GG了，莫名其妙往角落里面撞了。又用输出100*100的表观察，感觉速度还是有点奇怪。怀疑式子炸了，一看果然式子完全意识流了，啥都对不上，很无语。赶紧重新推，感觉没有什么问题：</p>
+<p><span class="math display">\[v=\omega r\Rightarrow r={v\over\omega}\]</span></p>
+<p><span class="math display">\[v={k\over(2r)^2}\Rightarrow k={4v^3\over\omega}\]</span></p>
+<p>然而突然我发现最后一步 <span class="math inline">\(x,y\)</span> 分量算错了，赶紧改：</p>
+<p><span class="math display">\[{v_x\over d_x}=-{v\over d}\Rightarrow v_x=-{4v^3\over \omega d^3}d_x\]</span></p>
+<p>改完以后感觉和谐了不少。三四两轮，都拿了几百分，似乎还行？然而一看别人的分数，动辄上千，就觉得很绝望。于是冷静地观察了一下自己为啥会低分。</p>
+<p>看着屏幕，我的蛇一开始非常正常地吃食物躲别的蛇，不过躲得有点保守（离别的蛇还很远就扭头就跑）。之后，障碍生成得越来越多，然后我发现，我的蛇开始不停地绕环了！原来我的蛇在一个以三个障碍为顶点的三角形内，受到引力场作用，就一直在中间转，等了好久才出来！</p>
+<p>想fix这个问题。</p>
+<h3 id="第二阶段测试">第二阶段测试</h3>
+<p>第一阶段测试结束，第二阶段开始正式计分了。</p>
+<p>一共三次测试，每两次隔半小时，每次测两轮，一共六轮。</p>
+<h4 id="第一次测试">第一次测试</h4>
+<p>思考了一会儿，觉得障碍不会动，只要靠近时绕过就行了，改成了距离太大就不算作用力，脸滚键盘弄了几个参数限制。然后局面边缘的障碍也只提取靠近的几个。</p>
+<p>然而有的人的蛇靠别人的蛇撞上就得了1000+分，感觉这规则真是玄，正常地吃食物每局难以破1000分，别人撞一次就加1000分。想试试能否卡别人赚1000分，发现根本不会弄。</p>
+<p>然后第一次测试的两轮，都中规中矩地拿了400+的大众分。观察我的蛇，发现似乎并没有什么变化，还是非常容易受障碍影响。</p>
+<p>打完大概17名左右，觉得翻盘困难。</p>
+<h4 id="第二次测试">第二次测试</h4>
+<p>又yy了一会儿怎么卡别人，无果。</p>
+<p>似乎还是要优化吃食物的效率？感觉参数还能继续调？又思索了一小会儿，发现障碍只要距离超过 <span class="math inline">\({2v\over\omega}\)</span> 就不计算作用力，效果应该最好（差不多是和引力场没关系了）。</p>
+<p>第二次测试。第三局300+，没进步，还是经常在没食物有障碍或者别的蛇的地方绕。</p>
+<p>第四局，卧槽为什么显示效果这么鬼畜？盯着一个以为是自己的蛇看，发现几秒就撞上别人的蛇死了，卧槽不会是我哪里写挂了吧？不可能啊，我的AI这么保守怎么会犯这个错？结果出分，傻眼了，居然只有10分！也就是啥都没吃到。</p>
+<p>然而看视频明明那条蛇吃东西了啊？后来通知这组显示效果挂了，蛇头和蛇身不同色，要以蛇身为准。嗯我看到的是蛇头是我的颜色蛇身不是我的颜色的蛇……可是我的蛇呢？找不到？！看到一共三个人10分，视频里看到没吃东西的蛇，策略都不像是我的啊？又数了下发现一组10个人但一开始只有9条蛇？</p>
+<p>日哦！不会遇到灵异事件了吧。</p>
+<p>至今不知道第四局怎么爆10的。</p>
+<p>这时候只有20+名了，翻盘无望。</p>
+<h4 id="第三次测试">第三次测试</h4>
+<p>又yy了一会儿怎么卡别人，无果。</p>
+<p>似乎我的蛇太怕别人的蛇了？嗯，对别人的蛇的参数还没调。可惜缺乏经验，对动的东西不是很会把握，于是继续保守向……</p>
+<p>最后突然发现自己犯了个傻逼错误！我误把 <span class="math inline">\(\omega=0.05\pi\)</span> 算成了 <span class="math inline">\(\omega=0.05\)</span>，怪不得会那么怕障碍！于是开始大幅度改参数，打出100*100速度表，发现只有靠边界两三行的地方会掉头，玛雅这不是太危险了？又调了一会儿调到一个看起来比较适中的参数。</p>
+<p>测了五六轮发现，虽然靠障碍近了些但还是浪费一大把。果然还是自己感觉太差，<span class="math inline">\(v=0.1\)</span>，<span class="math inline">\(\omega=0.05\pi\)</span> 时，<span class="math inline">\(r\)</span> 大概是 <span class="math inline">\(0.6\)</span> 到 <span class="math inline">\(0.7\)</span> 之间，离边界距离为 <span class="math inline">\(2\)</span> 不是很稳吗？</p>
+<p>说到底还是自己被自己输出的调试语句欺骗了，以为一行就是很紧，却没意识到极限掉头不需要一行的距离。</p>
+<p>这时候大概19名？</p>
+<h3 id="第三阶段测试">第三阶段测试</h3>
+<p>第三阶段测四轮，不能改代码，想想肯定要打铁滚粗了很不爽，就不看战况了。</p>
+<p>最后把判定距离调成了预期的理论值，不知道是否有用。</p>
+<p>只知道最后看的结果，4100+分，第15名。意料之中地打铁了。</p>
+<h3 id="结果">结果</h3>
+<p>何柱第一名。SkyDec、Stilwell、xllend3、小火车、AKF等IOI/候选队大佬都获奖了。而我呢，就这么空手回家了。</p>
+<p>尽管我Astar就这么滚粗了，不过也是第一次体验AI大战，看到了自己和别人的差距，也算是有不少收获了。</p>
+<h2 id="月23日-1">10月23日</h2>
+<p>旅游、颁奖。</p>
+<p>颁奖前和OI大佬们一起在墙上拼了“ysy AK IOI2018”，<del>其实我只拼了一点却莫名被采访QAQ</del></p>
+<p>啥奖都没拿到太遗憾了。</p>
+<p>技不如人，甘拜下风，加油努力，来年再战！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/22/astar2017/" data-id="cjegzidcj000fdf1lghg3ynrm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-codeforces-440" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/15/codeforces-440/" class="article-date">
+  <time datetime="2017-10-15T14:35:06.000Z" itemprop="datePublished">2017-10-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>D题想出来了没调出来，忧伤地滚粗……42名，rating只涨了15。</p>
+<p>这次的题目难度不是很大，至少如果给我的时间够多我是能做完的。可惜老年退役选手缺乏代码能力也是挺悲催的。</p>
+<p>A题很简单，问的是一个数的最大合数拆分。</p>
+<p>最小的合数是4，因此答案不会超过[n/4]。如果n mod 4 = 0，答案显然是[n/4]，因为显然拆出n/4个4最优。</p>
+<p>如果n mod 4 = 2，当n=2时无解，否则答案同样是[n/4]，因为可以拆出1个6和(n-6)/4个4。</p>
+<p>如果n mod 4 = 1或者n mod 4 = 3，情况就不太一样了，因为最小的奇合数是9，所以至少有一个大于等于9的奇数，因此答案不会超过1+[(n-9)/4]=[n/4]-1。当n mod 4 = 1且n&lt;9，或者n mod 4 = 3且n&lt;15时，不难证明无解。否则答案就是[n/4]-1，这是因为当n mod 4 = 1时，可以拆出1个9和(n-9)/4个4；当n mod 4 = 3时，可以拆出1个9、1个6和(n-15)/4个4。</p>
+<p><strong>然而n mod 4 = 3的情况一开始被我弄成了[n/4]-2，于是挂了一发！因为我没注意到15=6+9，误认为15的答案是1。WA Pretest之后我特地写了个暴力来拍，浪费了不少时间，于是在23min时才过掉这题。</strong></p>
+<p>B题也很简单，虽然题目有点吓人（？）</p>
+<p>首先，记f(i,j)=p[i] xor b[j]。我们发现，只要用2n-1次询问把所有的f(0,<em>)和f(</em>,0)询问出来，所有的f(i,j)都能确定了。这是因为</p>
+<p>f(i,j) = p[i] xor b[j] = (p[i] xor b[0]) xor (p[0] xor b[0]) xor (p[0] xor b[j]) = f(i,0) xor f(0,0) xor f(0,j)</p>
+<p>现在只需求出有多少个排列p满足已知的f(0,<em>)和f(</em>,0)。</p>
+<p>注意到元素的关系是很紧密的：b[j] = p[0] xor f(0,j)，所以O(n)枚举了p[0]之后，所有的b[j]都能得到。类似地，p[i] = b[0] xor f(i,0)，可以得到所有的p[i]。这样，只需O(n)判断p是否为排列，b是否为p的逆排列就可以了。</p>
+<p>由于数据范围n≤5000，这样的O(n²)算法是可以通过的。</p>
+<p><strong>这题我脑抽了一段时间，以及写了个check(x)函数判断p[0]=x是否满足条件的同时构造出p，然后忘记对任一满足条件的x最后调一次check(x)得到可行解，导致输出的是check(n-1)的不合法解，WA了一次。46min的时候过了。</strong></p>
+<p>C题依旧很简单，当然有点小结论。</p>
+<p>我们把每个出现过的x坐标建一个点A[x]∈V，每个出现过的y坐标建一个点B[y]∈V，对于每个点(xi,yi)，连无向边(A[xi],B[yi])∈E，得到图G=(V,E)。</p>
+<p>问题转化为有多少个点集V的子集S，使得将E中的边定向后，每个点v∈S满足deg-(v)≥1。</p>
+<p>考虑G[S]的每一个连通块G[S']，如果存在(u,v)∈E使得u∈S',v∉S'，显然v∉S，那么将(u,v)定向为v-&gt;u，构造G[S']的任意生成树并将边定向为父结点指向子结点，即可满足对任意v∈S'，deg-(v)≥1。</p>
+<p>如果G[S]的连通块G[S']没有上述这种边，也就是说，S'是G的一个连通块。如果|E(G[S'])|≥|V(G[S'])|，那么任意构造G[S']的生成树，再加上一条非树边，得到一个基环外向树，将环边按任一环的顺序定向，其余边按父结点指向子结点定向即可。</p>
+<p>剩下一种情况，G[S']是树，此时S'中所有点的deg-(v)之和只能达到|S'|-1，不可能满足条件。</p>
+<p>问题转化为：求V有多少个子集S，满足V的每个树形连通块的点集不包含于S。现在就相当简单了，每个连通块独立，答案就是每个树形连通块S'的2<sup>|S'|-1的乘积乘上每个非树形连通块S'的2</sup>|S'|的乘积。</p>
+<p><strong>这题我和暴力对拍之后忘了删文件，WA1了。还好WA1不扣分。66min的时候过了。</strong></p>
+<p>D题是我这次最遗憾的一题。</p>
+<p>显然，1和大于n/2的质数都是孤立点，我们扔掉。记V为剩下的点集。</p>
+<p>通过打表找规律，我们发现，任意两点距离不超过3。这并不难证明：记p(x)为x的最小质因子，则对任意u,v∈V，存在路径u-lcm(p(u),2)-lcm(p(v),2)-v。（当u为合数时p(u)≤√u）</p>
+<p>现在只需分别求出距离为1,2,3的点对数。</p>
+<p>距离为1的点对数很简单，就是不互质的数对个数，为i=2,3,...,n的i-1-φ(i)之和。</p>
+<p>一对互质的u,v∈V距离为2，等价于存在正整数w≤n使gcd(u,w)&gt;1，gcd(w,v)&gt;1。满足条件的最小的w=p(u)p(v)，所以距离为2等价于gcd(u,v)=1且p(u)p(v)≤n，距离为3等价于gcd(u,v)=1且p(u)p(v)&gt;n。</p>
+<p>之后想了好一会儿。</p>
+<p>距离为3的点对比较少，考虑统计这一部分。p(u)p(v)&gt;n，说明p(u)&gt;√n或p(v)&gt;√n。不妨令P={x∈V|p(x)&gt;√n}，那么显然P中的数都是质数，p(x)=x。枚举u∈P，统计满足v∈V，gcd(u,v)=1且p(u)p(v)&gt;n的v个数。gcd(u,v)=1等价于u|v，用满足p(v)&gt;n/u的v个数减去满足p(v)&gt;n/u且u|v的v个数即可。</p>
+<p>对于前者，可以O(n)统计每个p(x)对应的x个数，预处理后缀和解决。</p>
+<p>对于后者，暴力枚举u的倍数，总复杂度可估计为O(nlogn/logn)=O(n)。</p>
+<p>注意这样满足u,v∈P的点对u,v会被算两次，需要减掉C(|P|,2)。</p>
+<p><strong>然后由于我是傻逼，以为每个数对都会被算两次，就直接除以2了。由于考试时间紧，最后没调出来，这题就没分了。。。太遗憾了。</strong></p>
+<p>用C(|V|,2)减去距离为1和3的点对数就是距离为2的点对数了，就做完了。</p>
+<p>E题思维难度不大，不过细节很多。</p>
+<p>首先，根据每行0的位置可以确定每行i（i=1,2,...,k）对应的是哪个点到其余点的距离，这个点记为v[i]。</p>
+<p>假设一开始只有v[1]，我们把v[2],v[3],...,v[k]依次插入树中，同时插入这些点到v[1]路径上的所有点。</p>
+<p>考虑插入v[i]，那么点x在路径上等价于d(1,x)+d(i,x)=d(1,v[i])，这样就能得到v[1]到v[i]的路径上所有点。如果某个深度有两个点或者没有点，或者插入路径后树中出现了环，无解，否则就插入这条路径。</p>
+<p>现在树上包含了所有的点v[i]，我们可以判断所有v[i]到所有树上结点的距离是否正确。如果错误则无解，否则由插入操作的唯一性，现在树上点构成的树的形态是确定的。</p>
+<p>最后把剩下的点插入树。以v[1]为根，考虑v[i]的父结点j，显然如果对任意k，d(k,i)=d(k,j)+1，那么j就可以是i的父结点，反之不能。这样，我们只需对每个点任意找一个可能的父结点即可完成构造。这里我写了一个hash……</p>
+<p><strong>遗憾的是考场上时间不够这题连看都没看。事实上就算看了也写不完。</strong></p>
+<p><strong>考后第一次交这题又犯了对拍忘删文件的错，WA1，第二次WA5，因为我的写法在处理k=1的时候有漏洞，第三次提交才通过。</strong></p>
+<p>闫神现场怒切E题，太巨了……这题现场只有3个AC……</p>
+<p>技不如人，甘拜下风。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/15/codeforces-440/" data-id="cjegzide1000sdf1l53uapt68" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-atcoder-codefestival2017-qualb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/09/atcoder-codefestival2017-qualb/" class="article-date">
+  <time datetime="2017-10-09T13:44:30.000Z" itemprop="datePublished">2017-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>打了一局试试看，结果是过了前3题，第212名。感觉我的水平就到这了。</p>
+<h3 id="axxfestival">A：XXFESTIVAL</h3>
+<p>送分题，删掉S的最后8个字符输出。</p>
+<h3 id="bproblem-set">B：Problem Set</h3>
+<p>送分题，将所有的D和T排序，然后枚举每种值x，如果存在一个值x使得满足D[i]=x的i的个数少于满足T[i]=x的i就是NO，否则YES。</p>
+<h3 id="c3-steps">C：3 Steps</h3>
+<p>稍微试一试，就会发现如果给出的图G是二分图，不管怎么加边都是二分图。</p>
+<p>为什么呢？考虑两部为X,Y的二分图G，如果存在一条路径a-b-c-d，不妨设a∈X，b∈Y，c∈X，d∈Y，那么(a,d)也是跨X,Y两部的，所以G+(a,d)仍然是二分图。</p>
+<p>由于图G连通，对任意a∈X,b∈Y，存在一条路径a-v[1]-v[2]-...-v[k]-b，其中k为偶数。不难推出，边(a,v[1])(a,v[3])(a,v[5])...(a,v[k-1])(a,b)都是已有的或者可以加上的，也就是可以连成完全二分图。因此，当G为二分图（两部为X,Y）时，答案为|X||Y|-M。</p>
+<p>如果G不是二分图呢？不妨在完全二分图G上加一条边(u,v)，u,v∈X，那么对任意a∈X，只需任取b∈Y，可得到路径u-v-b-a，即(u,a)可加上；进而所有(x,a)都可以加上，其中x,a∈X且x≠a。对任意p,q∈Y且p≠q，存在路径p-u-v-q，所以(p,q)也是可以加上的，也就是可以连成完全图。因此，当G为非二分图时，答案为N(N-1)/2-M。</p>
+<h3 id="d101-to-010">D：101 to 010</h3>
+<p>讲一下这题我在考场上的奇葩经历吧。</p>
+<p>我一开始以为消除是顺序无关的，然后顺手一个反例11010111。之后想了想感觉奥妙重重的样子，唯一发现的性质是连续两个0把序列分成两个独立部分，之后就不太会了。不如打个表找找规律。</p>
+<p>我的打表方式是枚举n个数a[1],a[2],...,a[n]，然后构造一个串：a[1]个1，0，a[2]个1，0，……，a[n]个1，然后暴力打表观察规律。发现的一点是，当所有a[i]&gt;1时，答案是n-1+(a[1]-1)+(a[2]-2)+...+(a[n-1]-2)+(a[n]-1)-min{a[1]-1,a[2]-2,...,a[n-1]-2,a[n]-1}（*），如果a[1]=1或者a[n]=1似乎规律一样。如果中间出现a[i]=1不是很会搞，不过和1有关的操作就是把1某侧的数减1，然后和另一侧分开。这么一想，似乎可以DP，假设分界点都在1旁边，求一种最优的划分，想想觉得挺靠谱。</p>
+<p>写完以后喜闻乐见地WA了，之后发现我的做法的问题根本不是稍微改改能解决的，时间不够了，最后就没做出来。</p>
+<p>考后继续改这个DP，最后发现我的做法连（<em>）结论都是错的，对于串11011011011011011，（</em>）式的结果是7，但答案是8：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">0 11011011011011011</span><br><span class="line">1 10101011011011011</span><br><span class="line">2 01001011011011011</span><br><span class="line">3 01000101011011011</span><br><span class="line">4 01000010011011011</span><br><span class="line">5 01000010010101011</span><br><span class="line">6 01000010001001011</span><br><span class="line">7 01000010001000101</span><br><span class="line">8 01000010001000010</span><br></pre></td></tr></table></figure>
+<p>GG了。</p>
+<p>晚上继续想想，发现自己如同智障。</p>
+<p>仔细想想操作是个啥，把串按超过1个的0分成若干段，每段取出所有1连续段长度之后，一次操作相当于把两个相邻的数a,b变成a-1,1,b-1，如果a=1，那么变成1,b-1并且把a和左边分开。这么一看显然和1相关的变换可以放到最后做。</p>
+<p>而不和1相关的变换是顺序无关的，所以只要枚举哪些相邻数对做这个操作，之后给每个1确定一个方向就行了。从左到右DP一波，一边确定是否操作一边确定1的方向就好了。</p>
+<p>这样就A了。可惜这仍然是想复杂的做法。</p>
+<p>优秀的思路：根本不要提取连续段啥的（提取连续段这一步本身就是一个浪费），注意到把连续的操作序列提取出来，是01序列的一个划分，每个划分只有111...101或者101...111两种可能，直接DP划分就做完了。</p>
+<p>总结：</p>
+<p>不要啥题都只想游程编码！</p>
+<p>不要啥题都只想游程编码！</p>
+<p>不要啥题都只想游程编码！</p>
+<p>重要的话说三遍</p>
+<h3 id="epopping-balls">E：Popping Balls</h3>
+<p>这题我卡了一个上午。</p>
+<p>打表找规律除了找出前几行的规律以及发现是多项式以外没有别的结果。</p>
+<p>首先我们把删数转成加数，于是统计的是有多少个包含A个a，B个b的字符串S[0,a+b)，记A[i]为S[0,i)中A的个数，使得存在两个数s,t，对任意S[i]=b，都存在x∈{0,s,t}，A[i]≤x≤i。</p>
+<p>“存在两个数s,t”这样的条件直接做并不是很好做。观察了一下性质，区间[A[i],i]的左右端点都是递增的，所以判断是否存在s,t可以贪心选取最大的能覆盖第一个区间的s，类似地再选最大的t。然后就发现还是很难做。</p>
+<p>论思路不够广的危害性。</p>
+<p>可以贪心取最小的t，再选最小的s啊！显然也是对的。那么t就是最后一个b的位置i对应的A[i]。对于位置i∈[t,A+B)，显然A[i]≤t≤i，所以只需考虑S[0,t)的约束。同样地，s就是S[0,t)中最后一个b的位置i对应的A[i]。</p>
+<p>S[s,A+B)确定之后，S[0,s)也就确定了：S[0,s)只能是一段b接一段a，并且a、b的个数也是固定的。</p>
+<p>用f(x,y)表示S[0,t)包含x个a，y个b（x+y=t）时合法的S[0,t)有多少种，当S[x+y-1]=b时，S[x,x+y)可以随便放a和b（只要a不超过x个），S[0,x)也随之确定；S[t-1]=a的方案有f(x-1,y)种。于是f(x,y)=f(x-1,y)+C(y,0)+C(y,1)+...+C(y,a)，里面组合数的和显然可以前缀和O(1)算。</p>
+<p>于是我们可以枚举t，枚举x，那么S[0,t)的方案数为f(x,t-x)，S[t,A+B-t)包含了A-t-x个a，B-t+x个b，且S[A+B-t-1]=a，故方案数为C(A+B-1,A-t-x-1)；S[A+B-t,A)是全a的。因此所有t,x的f(x,t-x)*C(A+B-1,A-t-x-1)的和就是答案了。</p>
+<p>可能有更厉害的做法。</p>
+<h3 id="flargest-smallest-cyclic-shift">F：Largest Smallest Cyclic Shift</h3>
+<p>这题我卡了一个下午，并且做法依赖于猜想。</p>
+<p>同样各种打表找规律。一开始看X=0的部分，以b=5为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bbbbb</span><br><span class="line">bbbbbc</span><br><span class="line">bbbcbbc</span><br><span class="line">bbcbbcbc</span><br><span class="line">bbcbcbcbc</span><br><span class="line">bcbcbcbcbc</span><br><span class="line">bcbcbcbcbcc</span><br></pre></td></tr></table></figure>
+<p>感觉c近似于b的“等分点”，不过是上取整的位置。</p>
+<p>猜想第i个c前面b的个数为ceil(Yi/Z)，并验证了X=0，Y,Z≤10的数据，正确。</p>
+<p>继续看X=1的部分，规律非常显然，1个a，然后Z个c，然后Y个b。</p>
+<p>继续看X=2的部分。就没那么显然了，以b=3为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ababb</span><br><span class="line">abbbac</span><br><span class="line">acbacbb</span><br><span class="line">acbbbacc</span><br><span class="line">accbaccbb</span><br><span class="line">accbbbaccc</span><br><span class="line">acccbacccbb</span><br></pre></td></tr></table></figure>
+<p>好像一点也不规律啊，那么分析一波吧。a把串分成了两部分S[1],S[2]：aS[1]aS[2]，这个串需要满足什么性质呢？</p>
+<p>aS[1]aS[2]≤aS[2]aS[1]，即S[2]≥S[1]。</p>
+<p>这就能解释上面的现象了：当Z为奇数时，S[1]最多包含(Z-1)/2个c，在此条件下，S[2]的c比S[1]多，所以S[1]可以在c后面加所有b，仍满足S[1]&lt;S[2]；当Z为偶数时，S[1]和S[2]可以均包含Z/2个c，在此条件下，S[1]的b不能比S[2]多，于是S[1]只能包含floor(Y/2)个b。</p>
+<p>这么看来X=2的规律也找出来了，X=3呢？</p>
+<p>光看一组X=3,Y=5,Z=4的答案就已经够头疼了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acbbaccacbbb</span><br></pre></td></tr></table></figure>
+<p>a分成的三段，长度分别为3,2,4，b的个数分别为2,0,3，c的个数分别为1,2,1，啥单调性都没。</p>
+<p>观察了很久，猜了一些结论，a分成的每一段（由b,c构成的字符串）满足：</p>
+<p>1、所有c在所有b前面；（猜到这个结论时，我试着考虑如何确定每组中b,c的个数，结合打表找规律猜到以下结论）</p>
+<p>2、c的个数为[Z/X]或[Z/X]+1；（[x]表示floor(x)）</p>
+<p>3、当c的个数为[Z/X]时，b的个数为[Y/(X - Z mod X)]或[Y/(X - Z mod X)+1]；</p>
+<p>4、当c的个数为[Z/X]+1时，没有b。</p>
+<p>虽然不会证……</p>
+<p>于是可以认为串由X个这样的元件构成：（1）1个a、[Z/X]个c、[Y/(X - Z mod X)]个b；（2）1个a、[Z/X]个c、[Y/(X - Z mod X)]+1个b；（3）1个a、[Z/X]+1个c。</p>
+<p>用1、2、3表示三种元件，得到一个新的长度为X的串，由于每段的开头是唯一的最小字符a，故原串是最小的循环表示等价于新串是最小的循环表示。</p>
+<p>这样就可以递归下去做了，递归边界是X,Y,Z至少有一个为0。</p>
+<p>由于每次递归，X+Y+Z至少减少1，并且每次递归处理的复杂度O(X+Y+Z)，所以总复杂度为O((X+Y+Z)²)。可能有更低的上界。</p>
+<p>终于做完了……虽然结论都是靠观察猜的……</p>
+<p>F题似乎也有很厉害的做法？在SD_le的blog上看到一种神奇的做法：</p>
+<p>先把所有字母放到一个multiset<string>里，每回取出最小的字符串和最大的字符串拼在一起放回去，直到只剩一个字符串，输出。</string></p>
+<p>（原文链接：http://www.cnblogs.com/ezyzy/p/7641305.html）</p>
+<p>这个做法我也不会证明。</p>
+<p><strong>UPD：wxh教我F题可以用KMP直接DP，我居然没想到。。。</strong></p>
+<p>这次的后三题感觉都是妙题啊，每个题我都卡了好久。可是大家都会，并且都是考场两小时全都搞出来的。所以其实题没有那么妙……？</p>
+<p>那一定是我太菜了啊。</p>
+<p>技不如人，甘拜下风。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/09/atcoder-codefestival2017-qualb/" data-id="cjegzidcq000gdf1lucjglhas" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-51nod-29" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/04/51nod-29/" class="article-date">
+  <time datetime="2017-10-04T09:48:24.000Z" itemprop="datePublished">2017-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/04/51nod-29/">51nod算法马拉松29总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一次运气极好的51nod，用错误复杂度算法完成绝杀，rank7。</p>
+<p>我的做题顺序：F、D、C、B、A、E</p>
+<p>F题是个出乎意料的简单题。我一开始考虑了m=1，坐标范围200000的情况，发现要FFT，又考虑了m=2，坐标范围m&lt;=500的情况，二维FFT？然后想到能不能多维FFT，发现过不了……之后开始想别的做法，发现二维m&lt;=500可以不用FFT，距离只有1000种可以暴力前缀和统计。</p>
+<p>果然我有点学傻了？既然输入的数转成4进制数最大2^18，距离不超过27，就暴力记f(x,d)表示和x的曼哈顿距离为d的数的个数和，转移一开始懵逼了很久写了个错的东西，然后发现不对，就改，改成了f(i,x,d)表示允许修改x的最后i位，修改前后曼哈顿距离为d的数的个数和，转移枚举x的第i位x[i]改成哪个数k就行了，f(i,x,d)=Σf(i-1,x+(k-x[i])*4^(i-1),d-|k-x[i]|)。边界是f(0,x,0)为输入的点转成4进制以后x出现次数。</p>
+<p>时间效率：2<sup>18<em>(1+4+7+...+28)</em>4≈1.52×10</sup>8，3s时限可以过的。</p>
+<p>D题只要看懂那个代码在干什么就很简单了。随机一些数据然后运行程序打出来，就可以知道代码在干什么了。</p>
+<p>首先所有数转成二进制，将l减掉1，那么当l=r时循环结束，当l≠r时，一定是找出LCP，即最高的l、r不同的位i（显然第i位l为0，r为1）， 如果r在第i位后面有1，每次循环会消掉一个1，如果没有，就看r的第i位去掉以后是l=r还是l&lt;r，对于前者就结束，对于后者就把第i位改成0，其后面的全变成1，继续循环。</p>
+<p>于是循环次数可以分为三部分：r在LCP后面1的个数、l的最低1右边的0的个数（如果最低1在LCP之后）、l在LCP到最低1之间每个0到最右边的距离和。</p>
+<p>于是用数位DP统计满足0≤l&lt;r≤n的二进制整数对(l,r)的以上信息即可，状态记录LCP是否出现以及最低位1是否出现，转移写起来有点长。</p>
+<p>把n转成二进制需要O(log²n)的时间，剩余部分复杂度O(log n)，所以总复杂度为O(log²n)。</p>
+<p>C题，我看完题以后直接想到的做法是这样的：对每个集合开一个bitset f，f[i]表示i是否是该集合的某个子集和，那么往集合加入一个数的操作为f=f|f&lt;&lt;x。合并集合A,B用启发式合并，不妨设|A|≤|B|，暴力把A中的元素拆出来加入B并更新B的bitset，然后新的B就是原来A,B的并集。时间效率：1000×log_2 1000×10<sup>5/64≈1.6×10</sup>7。</p>
+<p>这题有另一种做法：离线把并查集的树建出来，那么一个询问集合就是一个子树，对应DFS序的一段连续区间。然后用f(i,j)表示最小的l，使得DFS序中[l,i]这一段有j这个子集和，询问可以暴力。时间效率略差一些，是2000×10<sup>5=2×10</sup>8。</p>
+<p>B题是一道神奇的题。这题我一开始想网络流，感觉有些不对，看了下样例发现所有点都属于A。</p>
+<p>之后随机生成了很多的图，惊讶地发现所有图的最优解都是或者全属于A或者全属于B！</p>
+<p>然后直接计算全属于A和全属于B的答案取个最大值，交上去就AC了。</p>
+<p>看了题解发现标算是网络流，由于我并不会证明所有点属于同一个集合是对的，目前认为网络流是唯一正解。以A中的完美度为例，在网络流图中定义S部为A集，T部为B集，对于原图中的边(u,v)（u&lt;v），连容量为v的边(S,u)，容量为u的边(u,T)，容量为v-u的边(u,v)，那么当u,v∈S时割为u，u,v∈T时割为v，u∈S,v∈T时割为u+(v-u)=v，u∈T,v∈S时割为v，即当u,v∈S时割减少v-u。B部分类似。</p>
+<p><strong>UPD：事实上全属于A或全属于B的结论是错的，本人把随机生成器增大到生成10000组数据发现一个反例：</strong></p>
+<h4 id="input">input</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">6 6</span><br><span class="line">1 3</span><br><span class="line">1 5</span><br><span class="line">1 6</span><br><span class="line">3 5</span><br><span class="line">3 6</span><br><span class="line">5 6</span><br></pre></td></tr></table></figure>
+<h4 id="output">output</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">19</span><br></pre></td></tr></table></figure>
+<p><strong>这组数据中，设V={1,2,3,4,5,6}，如果令A=V，那么完美度为2+4+5+2+3+1=17，如果令B=V，那么完美度为1+3+1+2+3+4+1+1+2=18，但最优解为A={1,3,5,6}，B={2,4}，完美度为2+4+5+2+3+1+2=19。</strong></p>
+<p><strong>所以说这题反例确实挺稀少的。orz wxh！</strong></p>
+<p>A题我的解题过程很曲折。</p>
+<p>看到题没啥思路，就打了个暴力，结果只能跑到n&lt;=8，打出来n=1,2,...,8的答案是0,1,1,1,2,1,1,1。然后先猜n=1,5是唯一反例，其余n的答案都是1，交上去，WA了。</p>
+<p>想了一会儿感觉没救，又开始猜结论，猜答案不超过2，之后写了个复杂度更优的暴力，跑到了n&lt;=14，打出来是0,1,1,1,2,1,1,1,2,1,1,2,2,2。想了想发现n是三角形数（形如x(x+1)/2，x∈N的数）或者三角形数加1的情况答案都是1，那么n=15,16的答案也是1。</p>
+<p>之后又猜除了1以外，三角形数或者三角形数加1的情况答案为1，否则为2，结果8挂了。把方案打出来，原来8可以这样操作：[1,2,3,4,5],6,[7,8]。之后假设只有这三种情况答案是1，否则2，交上去虽然多过了一些点，仍然WA。</p>
+<p>接着就想答案为1对应的n的集合能否手推出来，开始了漫长的证明过程（主要是我数学太烂）：</p>
+<div class="figure">
+<img src="https://i.loli.net/2018/03/07/5a9fb7e9c0468.png">
+
+</div>
+<div class="figure">
+<img src="https://i.loli.net/2018/03/07/5a9fb7ee088b7.png">
+
+</div>
+<div class="figure">
+<img src="https://i.loli.net/2018/03/07/5a9fb7f5369a7.png">
+
+</div>
+<div class="figure">
+<img src="https://i.loli.net/2018/03/07/5a9fb7fbcbfe6.png">
+
+</div>
+<div class="figure">
+<img src="https://i.loli.net/2018/03/07/5a9fb7ff3f2b9.png">
+
+</div>
+<div class="figure">
+<img src="https://i.loli.net/2018/03/07/5a9fb802bf4b1.png">
+
+</div>
+<div class="figure">
+<img src="https://i.loli.net/2018/03/07/5a9fb8052a9c7.png">
+
+</div>
+<p>最后终于发现(1+2+...+(c-1))=((c+1)+(c+2)+...+n)-1的情况漏了……加上去就AC了。</p>
+<p>然而这题至今仍然不会，因为我不会证明一次称不出来的情况只要两次……求大佬指点……</p>
+<p>E题是一道水很深的题。</p>
+<p>首先如何求一个串的第K小子串？ 我们可以把所有子串按字典序排序，然后取第K个。等等……字符串排序的正确姿势是什么？当然是建Trie树啦！</p>
+<p>子串等价于后缀的前缀，于是可以对串的每一个后缀，将其所有的前缀插入Trie树。每个后缀的所有前缀对应Trie树上的一条从根往下的链，插入则相当于将该后缀对应的链上每个结点的出现次数加1。</p>
+<p>查询时，在Trie树上DFS，按照DFS序，每个结点出现几次就输出几次，就可以把所有子串进行排序。</p>
+<p>当然直接做复杂度是爆炸的……子串就有Θ(n²)个。不过串的后缀只有n个，不妨先求出串的后缀数组，然后把n个后缀对应的n个Trie结点建一个虚树，那么虚树上只有2n-1个结点，查询时在虚树的DFS序上二分，复杂度就可以接受了。</p>
+<p>而这题的任务是每次询问一个后缀的第K小子串，这时候，我们可以将问题动态化，即一开始为空串，Trie为空，不断地在字符串左边加入字符，更新对应的Trie树（每加一个字符，就把新的后缀对应的链上所有结点加1），在加入的过程中给出一些询问，每次询问时在Trie的DFS序上二分。这里的Trie可以在最终串的Trie的虚树上模拟就行了。我们要想办法维护这个树，支持两个操作：</p>
+<p>1、将某点到根的链加1</p>
+<p>2、在DFS序上二分第一个不小于x的位置</p>
+<p>不过这题更复杂一些，有强制在线。我们可以将这个数据结构<strong>可持久化</strong>。</p>
+<p>现在的问题是要怎么维护呢？我的最初想法是求后缀数组及虚树之后，对虚树进行树链剖分，用可持久化线段树维护，然后发现如果按照树链剖分的顺序，它并不是顺着DFS序的，而如果顺着DFS序剖分，即强制重链往左子节点走（虚树是二叉树），那么复杂度是不对的，遇到所有字符都相同的串就会退化成O(n²logn)。</p>
+<p>不过幸好数据水，我写的错误复杂度的树链剖分线段树AC了。</p>
+<p>靠谱的做法是分块（orz ccz181078）。同样地，我们从右往左加入字符，对每个i预处理出后缀[i,n)的Trie每个结点的出现次数，不过不能对每个i都把这个信息记录下来（信息量是O(n²)的），考虑分块，令B为√n级别的一个数，那么就对形如[kB,n)的后缀记录Trie的信息，这样的信息量是O(n^1.5)的。询问后缀l时，找出最小的k满足kB≥l，那么后缀l的Trie相当于后缀kB插入l,l+1,...,kB-1，之后在DFS序上二分时考虑后缀kB对应Trie的权值前缀和以及后缀l,l+1,...,kB-1这些后缀的权值，可以把后缀l,l+1,...,kB-1在Trie上的链建一个虚树以方便查询前缀和。</p>
+<p>（以上做法只是我yy的，并没有写过，不保证正确性）</p>
+<p>F题思路在FFT上停留太长时间，可见思维灵活度不够，仅仅把问题特殊化为“坐标范围的m次方不大”，没有很好地结合坐标范围4的条件。</p>
+<p>D题编写及调试时间比较长。联想到之前做UNR2 D2T2也花费了3h，可见我的数位DP细节处理不够熟练。</p>
+<p>E题花费比较长时间并且没有得到正确算法，暴露了数据结构功底不足。</p>
+<p>A题至今尚有不解，希望得到大神帮助。</p>
+<p>最后纪念我的51nod巅峰成绩，因为我预感到以后就要拿银牌了。</p>
+<div class="figure">
+<img src="https://i.loli.net/2018/03/07/5a9fb83a58cc7.png">
+
+</div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/04/51nod-29/" data-id="cjegzidbd0007df1lftcosfla" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-codeforces-830b" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/23/codeforces-830b/" class="article-date">
+  <time datetime="2017-09-23T02:16:23.000Z" itemprop="datePublished">2017-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/23/codeforces-830b/">CF830B 题解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="题意">题意</h3>
+<p>http://codeforces.com/problemset/problem/830/B</p>
+<p>Vasily有一叠由 n 张纸牌构成的牌叠，每张牌上有一个 1 到 100,000 之间的整数。有些牌可能有相同的整数。</p>
+<p>Vasily决定对这些牌进行排序。他会不断地从牌叠顶部取一张牌，如果这张牌上的数字等于当前牌叠中所有牌的数字的最小值，那么他就会将这张牌移出牌叠，否则，他将把这张牌放到牌叠底部。重复此过程，直到牌叠中没有牌了，该过程就会结束。</p>
+<p>你的任务是求出Vasily在整个过程中从顶部取牌的总次数。注意：你可以假设Vasily总是知道剩下的牌叠中所有牌的数字的最小值，但不知道这张牌（或这些牌）在哪里。</p>
+<h3 id="题解">题解</h3>
+<p>这题彻底地暴露了我的逗逼本质。</p>
+<p>首先，我们可以知道依次被取走的数在什么位置。我们开100,000个链表，第i个链表按牌叠中的位置顺序存储数值为i的牌。那么取的过程显然是先取完1，再取完2，再取完3……最后取完100,000。</p>
+<p>假设m是所有牌的数值最小值，那么数值为m的牌一定是严格按位置从小到大取的，而对于i&gt;m，数值为i的牌取的第一张则是在取i之前取的最后一张的第一个后继，之后仍然按编号顺序，不过要循环一圈。例如：</p>
+<p>位置 1 2 3 4 5 6 7 8 9</p>
+<p>数值 4 2 1 4 2 1 3 2 3</p>
+<p>那么链表的存储是</p>
+<p>1: [3, 6]</p>
+<p>2: [2, 5, 8]</p>
+<p>3: [7, 9]</p>
+<p>4: [1, 4]</p>
+<p>而取的时候是这样：</p>
+<p>1: 3, 6</p>
+<p>2: 8, 2, 5（位置6的下一个2是位置8，所以从位置8开始循环）</p>
+<p>3: 7, 9（位置5的下一个3是位置7）</p>
+<p>4: 1, 3（位置9的下一个4是位置1，注意整个序列是循环的）</p>
+<p>所以取的过程就是3, 6, 8, 2, 5, 7, 9, 1, 3。</p>
+<p>很好，到这里都没有任何问题。</p>
+<p>如果模拟把牌取出来，后面的牌要往前移一格，不好做。</p>
+<p>因此我们改一改：把取出牌换成在牌上打标记，最后只统计摸到没有标记的牌的次数。</p>
+<p>假设取的过程的位置排列是p[1], p[2], ..., p[n]，那么可以这样做：</p>
+<p>1、统计1到p[1]位置的牌有多少张没有标记，然后给p[1]位置打上标记；</p>
+<p>2、统计p[1]+1到p[2]位置的牌有多少张没有标记，然后给p[2]位置打上标记；</p>
+<p>……</p>
+<p>n、统计p[n-1]+1到p[n]位置的牌有多少张没有标记，然后给p[n]位置打上标记。</p>
+<p>每次统计的结果加起来就是答案。</p>
+<p>其中，如果l≤r，统计l到r就是[l,r]这个区间，否则，统计l到r是[l,n]和[1,r]这两个区间。</p>
+<p>这就相当于一个长度为1的数列，初始为0，打标记相当于单点加1，统计相当于区间求和。</p>
+<p>树状数组或者线段树实现即可，O(nlogn)。</p>
+<p>之后，我准备把这题出到校内模拟赛。出的时候想，这题能不能做到O(n)？</p>
+<p>然后看着上面的做法，想了一会儿感觉像求逆序数，似乎只能O(nlogn)……</p>
+<p>然后考虑别的做法，能不能对每张牌求被摸了多少次？那么从p[i-1]到p[i]，就相当于把p[i-1]+1到p[i]所有大于等于a[p[i-1]]的位置加1，非常不给力……然后就放弃了……</p>
+<p>嗯，所以我是一个逗逼。</p>
+<p>整个过程相当于一轮一轮地从左到右遍历整个序列，如果第i张牌是第t[i]轮取到的，那么答案就是所有t[i]的和。如果p[i]&gt;p[i-1]，那么i和i-1在同一轮，否则i在i-1的下一轮，因此这个t[i]只要简单地统计轮数就好了。</p>
+<p>这个问题就O(n)解决了！</p>
+<p>代码很短：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100000</span>;</span><br><span class="line"><span class="keyword">int</span> n,a[MAX+<span class="number">5</span>],fir[MAX+<span class="number">5</span>],nxt[MAX+<span class="number">5</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> s;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,a+i);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n;i;i--)nxt[i]=fir[a[i]],fir[a[i]]=i;</span><br><span class="line">	<span class="keyword">int</span> la=<span class="number">1</span>,t=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,x;i&lt;=MAX;i++)<span class="keyword">if</span>(x=fir[i])&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=x;j;j=nxt[j])<span class="keyword">if</span>((j-la+n)%n&lt;(x-la+n)%n)x=j;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=x;j;j=nxt[la=j])s+=j&lt;la?++t:t;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=fir[i];j!=x;j=nxt[la=j])s+=j&lt;la?++t:t;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>http://codeforces.com/contest/830/submission/30628707</p>
+<p>我已经不知道多少次想到接近正解却只差一步。</p>
+<p>事实上，之前的任何一个思路继续做下去都可以做到线性。</p>
+<p>考虑第一种做法，在模拟取牌过程时统计答案。</p>
+<p>我们不要每取走一张牌统计一次，因为统计1到p[1]、p[1]+1到p[2]，p[2]+1到p[3]……每次统计需要用树状数组或者线段树。</p>
+<p>然而1到p[1]、p[1]+1到p[2]，p[2]+1到p[3]……这些东西连起来是怎样的？还是一轮一轮地从左到右遍历这个序列！</p>
+<p>所以我们把一个个统计换成一轮轮统计，设s[i]为前i轮取走了多少牌，那么答案就是(n-s[1])+(n-s[2])+(n-s[3])+...</p>
+<p>复杂度O(n)。</p>
+<p>再考虑第二种做法，每次把p[i-1]+1到p[i]内大于等于a[p[i-1]]位置加1。还是对这个例子模拟一下：</p>
+<p>位置 1 2 3 4 5 6 7 8 9</p>
+<p>数值 4 2 1 4 2 1 3 2 3</p>
+<p>不好转化就先模拟一下，每次加的区间是这样的：</p>
+<div class="figure">
+<img src="https://i.loli.net/2018/03/07/5a9fb6c9dbfdf.png">
+
+</div>
+<p>于是性质暴露无遗，覆盖每个数的线段是一列一列的，答案就是所有“高度”的和。</p>
+<p>高度就是这个数第几轮被取走，可以线性统计。复杂度O(n)。</p>
+<p>随随便便一个做法都能优化到O(n)……这我居然还想不出来？</p>
+<p>行吧我们来讲讲校内训练这题情况。</p>
+<p>这题7人100分，4人80<sub>95分，其中80</sub>95分的程序均为正确算法写挂。</p>
+<p>11个正确算法中，有6个线段树，3个树状数组。</p>
+<p>其中，wzt（APIO全国第7名）、nealchen、3chenruiyang等一流大佬写的都是线段树/树状数组。</p>
+<p>另外还有2个人写线性算法。</p>
+<p>这2个人都是女生。</p>
+<p>太逆天了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/23/codeforces-830b/" data-id="cjegzidea000xdf1l8byh299n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-lydsy-1029" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/21/lydsy-1029/" class="article-date">
+  <time datetime="2017-09-21T03:24:48.000Z" itemprop="datePublished">2017-09-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/21/lydsy-1029/">LYDSY P1029 题解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="题目描述">题目描述</h3>
+<p>http://www.lydsy.com/JudgeOnline/problem.php?id=1029</p>
+<h3 id="分析">分析</h3>
+<p>从暴力入手。假如已经 <span class="math inline">\(O(2^N)\)</span> 枚举了准备修理的建筑集合 <span class="math inline">\(S\)</span>，如何判断 <span class="math inline">\(S\)</span> 中的所有建筑能修理完？</p>
+<p>我们发现，必然存在最优解，使得对于修理序列中任意相邻两个建筑 <span class="math inline">\(i,j\in S\)</span>，<span class="math inline">\(i\)</span> 在 <span class="math inline">\(j\)</span> 前面，均有 <span class="math inline">\(T_2[i]\le T_2[j]\)</span>。</p>
+<p>这是因为，如果最优解中存在 <span class="math inline">\(i,j\in S\)</span>，<span class="math inline">\(i\)</span> 在 <span class="math inline">\(j\)</span> 前面但 <span class="math inline">\(T_2[i]&gt;T_2[j]\)</span>，可以交换 <span class="math inline">\(i\)</span>、<span class="math inline">\(j\)</span> 顺序，使 <span class="math inline">\(j\)</span> 在 <span class="math inline">\(i\)</span> 前面。由于 <span class="math inline">\(j\)</span> 的完毕时间从 <span class="math inline">\(T+T_1[i]+T_1[j]\)</span> 变成了 <span class="math inline">\(T+T_1[j]\)</span>（<span class="math inline">\(T\)</span>为原来 <span class="math inline">\(i\)</span> 之前的用时），有 <span class="math inline">\(T+T_1[j]\le T+T_1[i]+T_1[j]\le T_2[j]\)</span>；<span class="math inline">\(i\)</span> 的完毕时间从 <span class="math inline">\(T+T_1[i]\)</span> 变成了 <span class="math inline">\(T+T_1[i]+T_1[j]\)</span>，有 <span class="math inline">\(T+T_1[i]+T_1[j]\le T_2[j]&lt;T_2[i]\)</span>，所以交换后得到另一个最优解。</p>
+<p>经过有限次交换之后就能得到满足 <span class="math inline">\(T_2\)</span> 不降的最优解了。</p>
+<p>因此，将所有建筑按 <span class="math inline">\(T_2\)</span> 从小到大排序，那么最优解一定是排序后的一个子序列（可以不连续）。</p>
+<p>有了顺序我们不妨尝试DP。一种比较显然的想法是：记 <span class="math inline">\(f(i,j)\)</span> 为已经确定 <span class="math inline">\(1,2,...,i\)</span> 建筑是否修理，已用 <span class="math inline">\(j\)</span> 的时间，之后最多能修理多少个建筑。转移时，枚举建筑 <span class="math inline">\(i\)</span> 是否修理，可以得到</p>
+<p><span class="math display">\[f(i,j)=\begin{cases}\max\{f(i+1,j),f(i+1,j+T_1[i+1])+1\},&amp;\mathrm{if\ }j+T_1[i+1]\le T_2[i+1],\\f(i+1,j),&amp;\mathrm{otherwise}\end{cases}\]</span></p>
+<p>这样的最大问题是复杂度太高。<span class="math inline">\(j\)</span> 这一维可以达到 <span class="math inline">\(T_2\)</span> 的范围（INT_MAX），然而 <span class="math inline">\(f(i,j)\)</span> 的值域只有 <span class="math inline">\(0\)</span> 到 <span class="math inline">\(n\)</span>。换一种DP姿势吧。</p>
+<p>仿照LIS问题的处理思路，我们把参数和函数值意义交换一下：<span class="math inline">\(f(i,j)\)</span> 表示建筑 <span class="math inline">\(1,2,...,i\)</span> 修理 <span class="math inline">\(j\)</span> 个，至少需要的时间，如果修理不了 <span class="math inline">\(j\)</span> 个则 <span class="math inline">\(f(i,j)=+\infty\)</span>。转移类似：</p>
+<p><span class="math display">\[f(i,j)=\begin{cases}\min\{f(i-1,j),f(i-1,j-1)+T_1[i]\},&amp;\mathrm{if\ }j&gt;0\mathrm{\ and\ }f(i-1,j-1)+T_1[i]\le T_2[i],\\f(i-1,j),&amp;\mathrm{otherwise}\end{cases}\]</span></p>
+<p>边界是 <span class="math inline">\(f(0,0)=0\)</span>，<span class="math inline">\(f(0,j)=+\infty\)</span>（<span class="math inline">\(j&gt;0\)</span>）。答案就是最大的 <span class="math inline">\(j\)</span> 使得 <span class="math inline">\(f(N,j)\ne +\infty\)</span>。</p>
+<p>现在的复杂度已经是 <span class="math inline">\(O(N^2)\)</span> 了，多项式级别，很好。然而 <span class="math inline">\(N\)</span> 的范围是 <span class="math inline">\(150000\)</span>，还是过不去。</p>
+<p>我一开始想对着这样一个DP方程设计出数据结构维护的办法，但由于想法姿势不正确于是想不出。后来我灵机一动，想到了之前想过的一个问题：</p>
+<p>给定 <span class="math inline">\(n\)</span> 个正整数 <span class="math inline">\(a_1,a_2,...,a_n\)</span>，对每个 <span class="math inline">\(k=1,2,...,n\)</span> 求出从这些数中取 <span class="math inline">\(k\)</span> 个数的和的最小值。</p>
+<p>我们可以DP，<span class="math inline">\(f(i,j)\)</span> 表示前 <span class="math inline">\(i\)</span> 个数取 <span class="math inline">\(j\)</span> 个的最小和，则</p>
+<p><span class="math display">\[f(i,j)=\begin{cases}\min\{f(i-1,j),f(i-1,j-1)+a_i\},&amp;\mathrm{if\ }j&gt;0,\\f(i-1,j),&amp;\mathrm{if\ }j=0\end{cases}\]</span></p>
+<p>稍微有点常识的人都知道这样做复杂了，可以直接把 <span class="math inline">\(a\)</span> 从小到大排序，答案就是前 <span class="math inline">\(k\)</span> 个数的和。</p>
+<p>回到原问题。道理不是一样的吗？如果不考虑 <span class="math inline">\(T_2\)</span> 的限制，那么 <span class="math inline">\(f(i,j)\)</span> 就是前 <span class="math inline">\(i\)</span> 个建筑的集合 <span class="math inline">\(S_i\)</span> 按 <span class="math inline">\(T_1\)</span> 排序后前 <span class="math inline">\(j\)</span> 小的 <span class="math inline">\(T_1\)</span> 之和。</p>
+<p>如果考虑了 <span class="math inline">\(T_2\)</span>，由于当 <span class="math inline">\(f(i-1,j)\ne +\infty\)</span> 时，<span class="math inline">\(f(i,j)\le f(i-1,j)\le T_2[i-1]\le T_2[i]\)</span>，故该限制只会对每个 <span class="math inline">\(i\)</span> 的非无穷大的最大 <span class="math inline">\(f(i,j)\)</span> 造成影响。即我们可以对集合 <span class="math inline">\(S_i\)</span> 进行修改：</p>
+<p><span class="math display">\[S_0=\varnothing\]</span></p>
+<p><span class="math display">\[S_i=\begin{cases}S_{i-1}\cup\{i\},&amp;\mathrm{if\ }\sum_{j\in S_{i-1}}T_1[j]+T_1[i]\le T_2[i],\\S_{i-1}\cup\{i\}-\{j\},&amp;\mathrm{otherwise}\end{cases}(i &gt; 0)\]</span></p>
+<p>那么 <span class="math inline">\(f(i,j)\)</span> 就是 <span class="math inline">\(S_i\)</span> 的前 <span class="math inline">\(j\)</span> 小 <span class="math inline">\(T_1\)</span> 之和，当 <span class="math inline">\(j&gt;|S_i|\)</span> 时 <span class="math inline">\(f(i,j)=+\infty\)</span>。</p>
+<p><span class="math inline">\(S\)</span> 可以用优先队列维护，即在第 <span class="math inline">\(i\)</span> 步把 <span class="math inline">\(i\)</span> 插入优先队列，如果插入后优先队列中元素的 <span class="math inline">\(T_1\)</span> 和超过了 <span class="math inline">\(T_2[i]\)</span>，则将优先队列中 <span class="math inline">\(T_1\)</span> 最大的元素弹出来。</p>
+<p>最后优先队列中元素个数 <span class="math inline">\(|S_N|\)</span> 就是答案。</p>
+<p>于是问题被我们高效地解决了，时间复杂度 <span class="math inline">\(O(N\log N)\)</span>，可以通过。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/21/lydsy-1029/" data-id="cjegzidg3001jdf1lg73v7vxt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-codeforces-434" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/18/codeforces-434/" class="article-date">
+  <time datetime="2017-09-18T01:45:46.000Z" itemprop="datePublished">2017-09-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/18/codeforces-434/">Codeforces Round 434 总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>果然又滚粗了，rank116。。。还好这场unrated了否则不知道要掉多少。</p>
+<p>A题是个无聊题，题意是求在一个字符串中插入最少的空格，使得不存在连续三个字符是不全相同的辅音字母。O(len)贪心实在太显然了。</p>
+<p>然而我居然被这题卡住了！我写了个很短的程序交上去，WA on Pretest 7。然后没查出错。这么短代码我怎么可能写得错？一定是我又看错题了。然后把题又仔细读了两三遍，还是没问题，一脸懵逼。这时候还是学弟cry752264997帮我调的，问题很简单，就是：<strong>加了空格以后忘记清空前面部分了！</strong></p>
+<p>这么短代码我都能写错，唉，我的智商呢。。。</p>
+<p>B题是个送分题，从题意到做法都很显然。用一个hash表或者STL的map维护每个子串的出现次数，我写的是STL的map。查询一个串时，把这个串的子串从map中扣掉，然后找出这个串最短的在map中count为0的子串，之后再加回去，就可以求出所有答案了。</p>
+<p>C题是个细节恶心题。这题和我给正睿OI出的NOIP模拟赛第一题《文件改名》有点类似之处，不过有区别。</p>
+<p>首先我们猜一个性质，答案等于名称错误的文件个数——每次改名一定可以把名称不是1～e的样例文件改成1～e，或者把名称不是e+1～n的非样例文件改成e+1～n。</p>
+<p>这个性质能否证明呢？我们试一下。</p>
+<p>假设1～e这些文件名没有占满，并且名称为e+1～n的文件中有样例文件，那么就可以把这个文件改名为1～e中的某个数。类似的，若e+1～n没占满并且1～e有非样例也可以改。</p>
+<p>如果不是这两种情况呢？假如1～e和e+1～n都没占满，那么1～n的文件名都是正确的。假如1～e没占满而e+1～n占满，那么e+1～n都是非样例，1～e只能都是样例，也是正确的。假如1～e占满而e+1～n没满，同样是正确的。因此这些情况只需要不断把除1～n外的名称的文件改名为正确的文件名（样例1～e，非样例e+1～n）即可。</p>
+<p>最后还有一种情况：1～n都满了，但有名称错误的文件。这种情况你会发现第一步只能把某个文件名改成除e+1～n外的文件名，并不满足性质——事实上这是唯一的反例情况。这种情况下要多进行1次改名：先把某个名称错误的文件改名为一个随机字符串，这样1～n就不满了，可以用之前的方式解决了。</p>
+<p>这题写起来很烦，当然也有可能是我比较菜鸡。</p>
+<p>D题直接暴露了我构造水平低的事实。</p>
+<p>这题我考场上先猜了个结论答案是每个连通块ceil(|E|/2)的和，之后想能不能删一个点，然后发现删完以后图可能分成若干个不连通的块，就不会了。。。又脑补了一会儿DFS树（这东西我都想到了居然还能错过正解。。。）和欧拉回路啥的，也没推出好东西，感觉又是什么构造神题就扔一边了。</p>
+<p>结果考完发现又是全世界AC，完全不知道我在想啥。</p>
+<p>既然我推出的结论有连通块这个东西，那就说明生成树（尤其是DFS树）很有可能就是突破口啊，为啥就不继续想下去呢？挺服自己的智商的。对每个连通块DFS搞个生成树，然后从下往上删V。先考虑最下面一层的每个叶结点v，如果deg(v)为偶数就把v的所有出边两两配对消掉（v成为孤立点离开连通块），否则把v关联的非树边两两配对消掉。考虑再上面一层的叶结点v，如果deg(v)为偶数就把v的所有出边两两配对消掉，否则把v关联的非树边以及连向子结点的边两两配对消掉。重复这个操作，那么做到第i（i&gt;1）层时，只可能剩下层数不超过i的点，做到第1层（根）时，由于没有父边可以消，所以最后最多可以剩下2个点1条边。</p>
+<p>而且这题我以前在BZOJ见过一个不用输出方案的版本，我当时还推出结论A掉了！怎么做过的题都能忘……唉，想想NOI D1T3、D2T2一题我做过类似的一题我出过类似的，结果我两题都没做出来，加起来才44分。退役了我还是这么逗逼。</p>
+<p>E题O(nlog^2n)的做法还是比较常规的，可惜由于时间不够并没有写出来。</p>
+<p>考虑z[a]=∑r(a,b)，其中r(a,b)=∑[x∈sub(b)][rank(x)≤rank(a)]。如果没有rank(x)≤rank(a)这个条件那么非常简单，只需查a到根的路径上r的和就可以了。</p>
+<p>有rank(x)≤rank(a)以后仍然不难。一开始我尝试转化这个式子无果，之后就考虑能不能动态加点，发现可以。做法是按照rank从小到大把点一层一层加到树中，同时维护R(x)为x的下属个数；加入rank(x)=i的所有点之后，计算当前满足rank(x)=i的点x的z[x]值，它等于z的上级到根的链上所有点b的R(b)之和。</p>
+<p>加入点x：将x的上级到根的路径上所有点的R(x)增加1。</p>
+<p>查询x的答案：求x的上级到根的路径上所有点的R(x)之和。</p>
+<p>这两个操作容易用树链剖分+BIT维护。</p>
+<p>至于这题是否存在更优复杂度算法我也不知道……不过O(nlog^2)已经可以过了。</p>
+<p>这题我在手机上写完的时候已经结束了，考后我把写完的程序交上去，TLE on 21。后来上电脑查错，发现n=500000的随机数据随便跑出来，然而n=500000的链根本跑不出来。随后发现我的树剖写炸了，top[son[i]]=top[i]打成了top[son[i]]=son[i]……</p>
+<p>这次CF的5题我想出4题，过了3题。感觉CF好难啊，过不去Pretest的时候让人非常手足无措，不一定能查得出来，进而影响整场的心态。上次B、C看错题，这次A愚蠢地漏写了一个东西。以及我到现在还是不怎么会构造题，CodeM已经死于构造题了，CF又死于构造题，真是无语。OI已经考挂退役了，CF再打不好我就真的很绝望了。</p>
+<p>求高手指点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/18/codeforces-434/" data-id="cjegziddx000qdf1lw2cf6605" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-codeforces-433" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/07/codeforces-433/" class="article-date">
+  <time datetime="2017-09-07T02:49:17.000Z" itemprop="datePublished">2017-09-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/07/codeforces-433/">Codeforces Round 433 总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这场打挂了，只过了A和C，rank271，掉了112的rating。</p>
+<p>A题是个简单贪心，只需按c[i]从大到小顺序给每个c[i]找一个没使用过的最小的t[i]即可，这是因为如果t[i]用了比能用的更大的t[j]（其中c[j]≤c[i]），交换t[i]和t[j]的值，由于c<a href="t%5Bj%5D-i">i</a>+c<a href="t%5Bi%5D-j">j</a>≥c<a href="t%5Bi%5D-i">i</a>+c<a href="t%5Bj%5D-j">j</a>，所以答案不会变差。排序+并查集可以O(nlogn)解决这个题。</p>
+<p>然而这题我的第一想法并不是将c排序，而是在想依次确定t[1],t[2],...,t[n]或者t[n],t[n-1],...,t[1]，直到想到我出的某道题时才推出正解，导致花了20分钟才通过这题，给失败埋下了伏笔。</p>
+<p>B题是个简单的two-pointers，先将所有flight按d值排序，然后枚举集合时间段的右端点，并单调维护左端点，用左端点左侧每个i的i-&gt;0的c最小值之和加上右端点右边每个i的0-&gt;i的c最小值之和更新答案即可，做法比较暴力。复杂度O(mlogm)。</p>
+<p>然而这题我FST了，原因是看错题了。我看成了每个人用k的时间，这些时间是独立的，而实际上是所有人一起用k的时间。最后WA在了Test 24。</p>
+<p>后来看对题以后改，结果改完以后还是WA，WA在了Test 38，然后一直看代码调了40min调不出来。最后发现我有个数组下标打错了。果然我的代码能力一日不如一日了。</p>
+<p>C题比较模板，只是实现稍微复杂一些。首先可以用所有C(n,2)个矩形减去不和询问矩形相交的矩形，不和询问矩形相交的矩形可以分为4类（注意这4类有相交）：完全在l左侧、完全在r右侧、完全在d下方、完全在u上方。相交部分又有4类（这回没有相交了）：在(d,l)左下方、在(d,r)右下方、在(u,l)左上方、在(u,r)右上方。每一类的矩形个数等于C(x,2)，其中x是这一类点的个数。这里的描述均不包含同一行列。</p>
+<p>之后问题转成询问子矩形内点数，可以转成二维偏序来解决，如子矩形(l,d,r,u)内的点数等于(u+1,r+1)左下方点数减去(u+1,l)左下方点数减去(d,r+1)左下方点数加上(d,l)左下方点数，离线询问之后可以用树状数组解决询问。</p>
+<p>然后，我又！看！错！题！了！我把“in column i he has marked a square at row p[i]”看成了“in row i he has marked a square at column p[i]”，然后样例刚好又是对称的，于是我过了样例以后交上去WA在Pretest 4，然后和两个暴力对拍都拍不出错。之后我怀疑看错题的时候只看了题目描述，感觉没啥问题。最后又看了一遍输入格式整个人都不好了！</p>
+<p>过掉这个题比赛只剩十几分钟了。</p>
+<p>D题做法似乎不止一种，可惜由于B、C两题给自己挖的坑太大，D来不及写了。</p>
+<p>我的想法是，假如有两个1000，前一个没付全，后一个付全了，那么交换这两个1000付的钱答案一定不会变劣，也就是说所有的1000中，付全的（也就是获得bonus的）是一个前缀。同理，2000的付全的也是一个前缀。</p>
+<p>枚举这两个前缀哪一个右端点更右（两种情况），我们用1表示更左的一种，2表示更右的一种。接着我们枚举1前缀的右端点i，然后找到最小的j，使得1的(0,i]和2的(0,j]获得的bonus不足以支付1的(i,j]（这个j可以用单调栈上二分来找到）。那么当2前缀的右端点p在j左边时，可以简单用</p>
+<p>sum1[n]+sum2[n]-min{(sum1[i]+sum2[p])/10,sum1[n]-sum1[i]+sum2[n]-sum2[p]}</p>
+<p>来计算费用，其中sum1[],sum2[]是1和2的前缀和。min的左边随p单调递增，右边随p单调递减，所以min里面的最大值可以二分。</p>
+<p>当2前缀的右端点p在j右边时，首先可以算出(0,j]这一段的费用，然后记f(i)为后缀(i,n]的最小费用是多少，答案再加上f(j)即可。两部分取个较小值更新答案。</p>
+<p>f(i)的求法类似，同样找到最小的j使得2的(i,j]不能支付1的(i,j]（直接单调栈，二分都不用），然后右端点在j左边就二分，右端点在j右边就用f(j)来转移，两部分取个较小值作为f(i)。</p>
+<p>复杂度是O(nlogn)的，但是常数很大，并且代码实现起来比较复杂，我考后花了40min才过掉这个题。</p>
+<p>然后和QQ群的其他人交流以后发现我做复杂了。</p>
+<p>大家都说只要暴力DP，f(i,j)表示做完前i项，bonus为j*100，最小费用是多少。然后j限制在30以内就过了。我还觉得这是什么鬼玩意啊，220000个1000最优解不是先200000个1000全付，再用bonus付最后20000个1000吗？结果这居然就是正解！</p>
+<p>原来220000个1000不仅可以先把j加到200000再减到0，还可以每11个分一组，每组攒10然后全用掉。</p>
+<p>但为什么30可以过我还是不懂，看了题解感觉证明好复杂。可是大家都会做并且很快秒掉了。</p>
+<p>这场CF的最大失误在于看错题。B题看错直接导致FST，C题看错直接导致浪费半个小时。读题不能放过任何一个细节，不仅要读题目描述，还要读输入格式和输出格式。</p>
+<p>以及B题考后仍然花了很多时间调试，这是很不应该的。CF不像OI有足够长的时间可供对拍，要提高代码一次写对的能力，否则以后还是会被挂Pretest和FST卡得rating上不去。</p>
+<p>还有就是A题的贪心，我以前是出过类似题的，但是看到A题的时候我却没有及时反应过来，浪费十几分钟。这也说明我在贪心方面比较薄弱（NOI的时候就因为贪心不好而没能及时推出D2T2），做过的题和出过的题有时候也需要复习一下。</p>
+<p>至于D题我也没啥办法了，那个j≤30我现在还不会证，然而……唉，人外有人，天外有天，在我看来的神题在别人眼里都是那么简单。想想CodeM复赛的第5题，那个构造我考场上想不出来，看了题解还是觉得自己不可能独立想出来，然而事实是那题A了一大片。NOI2017的D1T3和D2T2，AC和高分也是一堆堆，我却两题都脑抽了，最后只拿了一点点分（虽然那两题考后我都发现是水题）。</p>
+<p>以后还得加油了，现在我的rating离我的目标还有500之差，希望在将来的某一天能够达到目标。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/07/codeforces-433/" data-id="cjegziddk000odf1lmh5l6sjq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

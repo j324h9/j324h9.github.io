@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta property="og:type" content="website">
+<meta property="og:title" content="oi_loser&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="oi_loser&#39;s blog">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-noi2015-epic" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/25/noi2015-epic/" class="article-date">
+  <time datetime="2016-06-25T06:31:45.000Z" itemprop="datePublished">2016-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/25/noi2015-epic/">NOI2015 荷马史诗 题解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目描述">题目描述</h2>
+<p>http://uoj.ac/problem/130</p>
+<h2 id="解法分析">解法分析</h2>
+<p>由于串不能有前缀包含关系，可以构造 Trie 树来解决此问题，这样结点深度可以用来表示串长. 难点在于如何构造才能使得解最优，需要通过对问题的深入分析.</p>
+<h2 id="详细题解">详细题解</h2>
+<p>问题转化为构造一个含 <span class="math inline">\(n\)</span> 个叶结点的 <span class="math inline">\(k\)</span> 叉 Trie 树，给 <span class="math inline">\(n\)</span> 个叶结点分配上权值 <span class="math inline">\(w_1,w_2,...,w_n\)</span>. 叶结点定义为子结点个数为 <span class="math inline">\(0\)</span> 的结点，这样就满足了对任意串 <span class="math inline">\(s_i\)</span>，不存在 <span class="math inline">\(j\ne i\)</span> 使串 <span class="math inline">\(s_i\)</span> 是 <span class="math inline">\(s_j\)</span> 的前缀（即 <span class="math inline">\(i\)</span> 的子树不含 <span class="math inline">\(i\)</span> 以外的任何结点）.</p>
+<p>记第 <span class="math inline">\(i\)</span> 个结点（即分配权值 <span class="math inline">\(w_i\)</span> 的结点）深度为 <span class="math inline">\(d_i\)</span>（根结点深度为 <span class="math inline">\(0\)</span>），则串的总长为 <span class="math display">\[W=\sum_{i=1}^n d_iw_i\]</span> 最长字符串的长度为 <span class="math display">\[H=\max\{d_i|i=1,2,...,n\}\]</span> 现在的任务是构造树 <span class="math inline">\(T\)</span>，使得 <span class="math inline">\(W\)</span> 最小的前提下 <span class="math inline">\(H\)</span> 最小.</p>
+<p>不难发现以下性质：</p>
+<p><strong>性质1</strong> 存在最优解 <span class="math inline">\(T\)</span>，使得对任意非叶结点 <span class="math inline">\(v\)</span>，满足 <span class="math inline">\(v\)</span> 的子结点个数在 <span class="math inline">\([2,k]\)</span> 内.</p>
+<p><strong>证明</strong> 反证法，假设存在非叶结点 <span class="math inline">\(v\)</span> 恰有 <span class="math inline">\(1\)</span> 个子结点 <span class="math inline">\(u\)</span>，则删掉 <span class="math inline">\(v\)</span>，把 <span class="math inline">\(v\)</span> 换成以 <span class="math inline">\(u\)</span> 为根的子树. 不妨设以 <span class="math inline">\(u\)</span> 为根的子树中所有叶结点集合为 <span class="math inline">\(V_u\)</span>，则 <span class="math inline">\(V_u\)</span> 中所有结点深度减少 <span class="math inline">\(1\)</span>，<span class="math inline">\(W\)</span> 的值变为</p>
+<p><span class="math display">\[W&#39;=\sum_{i\in V_u}(d_i-1)w_i+\sum_{i\not\in V_u}d_iw_i=\sum_{i=1}^nd_iw_i-\sum_{i\in V_u}w_i\]</span></p>
+<p>因任意 <span class="math inline">\(w_i&gt;0\)</span>，显然有 <span class="math inline">\(W&#39;&lt; W\)</span>，这样得到了更优解，矛盾.</p>
+<p>所以任意非叶结点 <span class="math inline">\(v\)</span> 的子结点至少有 <span class="math inline">\(2\)</span> 个，且由于 <span class="math inline">\(T\)</span> 为 <span class="math inline">\(k\)</span> 叉 Trie 树，子结点不超过 <span class="math inline">\(k\)</span> 个，故子结点个数在 <span class="math inline">\([2,k]\)</span> 内.</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/06/25/noi2015-epic/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/25/noi2015-epic/" data-id="cjegzidgf001qdf1lhd17gbi5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NOI/">NOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-apio2016" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/09/apio2016/" class="article-date">
+  <time datetime="2016-05-09T09:48:41.000Z" itemprop="datePublished">2016-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/09/apio2016/">APIO2016酱油记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一直听说APIO是个神奇的比赛【以前似乎有CTSC Au的神犇挂APIO？】于是更加紧张了233</p>
+<p>事实证明我实力还是不足最后200都没上</p>
+<p>——————————</p>
+<p>5月5日。</p>
+<p>APIO前有个练习赛，在网上进行。练习赛有两道题，一道是交互题network，一道是传统题sequence。</p>
+<p><strong>今年APIO有交互题！然而我交互题巨弱无比怎么办？</strong></p>
+<p>其他同学都A了一题我才登进网站去做- -第一题network看起来似乎挺可做的？</p>
+<p>第一题network，题目给一个无向无权图 <span class="math inline">\(G=(V,E)\)</span> 以及两点 <span class="math inline">\(s,t\in V\)</span>，要求给出从 <span class="math inline">\(s\)</span> 到 <span class="math inline">\(t\)</span> 的任意一条最短路，其中可以调用 <code>ping(i, j)</code> 询问 <span class="math inline">\(i\)</span> 到 <span class="math inline">\(j\)</span> 的最短路长度。不管先敲了个 <span class="math inline">\(O(n^2)\)</span> 的大暴力再说，25分……一看怎么里面的点有的AC有的WA？</p>
+<p><strong>子任务制就是好（sang）啊！可以在一个子任务里塞一大堆点，然后卡各种方面的细节，只要有一点小问题就可以卡到0分。</strong></p>
+<p>后来强行优化并逐个通过了这些子任务（一共交了4次）。这题被大神犇 <span class="citation">@lightning</span> 吐槽为大水题（<span class="citation">@lightning</span>：原来是这么水的APIO！<span class="citation">@immortalCO</span>：XXX嫌APIO题水啊！后来@lightning在APIO的时候真的A了交互题，巨强）</p>
+<p>第二题sequence是个算（xi）法（jie）好（keng）题，给一个长度为 <span class="math inline">\(K\)</span> 的十进制数字序列 <span class="math inline">\(a_0,a_1,...,a_{K-1}\)</span> ，求最小的 <span class="math inline">\(N\)</span> 使得对任意整数 <span class="math inline">\(0\le i&lt; K\)</span>，<span class="math inline">\(N+i\)</span> 的十进制表示包含数字 <span class="math inline">\(a_i\)</span>。</p>
+<p>这题 <span class="citation">@immortalCO</span>、<span class="citation">@y0rkl1u</span>、<span class="citation">@dick32165401</span> 等大神交流了一段时间以后都想出了AC做法，就我还傻呆呆地不会。</p>
+<p>一开始完全没思路。想了很久发现问题具有递归性质？枚举 <span class="math inline">\(N\)</span> 的个位就可以得到一个规模为原来 <span class="math inline">\(\frac{1}{10}\)</span> 的子问题，问题缩小到 <span class="math inline">\(K\le 2\)</span> 就可以贪心了。但是细节很多，要判0什么的，推导了很久，最后还WA了一发因为预处理 <span class="math inline">\(10^i\)</span> 没处理满第二次才AC。<del>【那时候是5月5日22点，第二天练习赛就关闭了，还好我及时</del></p>
+<p><strong>另外APIO能多次提交确实是个好东西不然就爆0了</strong></p>
+<p><strong>然后刷了点别的题练手，<span class="citation">@immortalCO把UR10的世界线A了</span>，而我一直调不出来了，完蛋了我交互题真的要狗带了</strong></p>
+<p>——————————</p>
+<p>5月6日。</p>
+<p>第一天培训。讲的比我想象中的有意思。</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/05/09/apio2016/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/09/apio2016/" data-id="cjegzidc5000cdf1lpdxjo5mk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/APIO/">APIO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ctsc2016" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/05/ctsc2016/" class="article-date">
+  <time datetime="2016-05-05T02:23:47.000Z" itemprop="datePublished">2016-05-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/05/ctsc2016/">CTSC2016提答记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>神犇的CTSC：怒A数据结构题，狂虐DP题，吓傻出题人。</p>
+<p>蒟蒻的CTSC：捞点部分分，磕提交答案题，依赖出题人的良心。</p>
+<p>我就是蒟蒻啊- -两天CTSC得分最多的题都是提交答案题……</p>
+<p>先祝贺一下咱们学校的神犇 <span class="citation">@kfdong</span> 过关斩将进了IOI！神犇 <span class="citation">@immortalCO</span> A掉第1天第1题，直冲rank8！</p>
+<p>——————————</p>
+<p>Day 0。</p>
+<p>5月1日，早早地赶上了到北京的飞机。（心想还有好多题不会，真是无比虚啊）</p>
+<p>和 <span class="citation">@immortalCO</span> 交流了一些算法。</p>
+<p>由于比较早，比较困，所以大多数时间都在休息<strong>【老师：今天的主要任务是休息</strong></p>
+<p>我依旧处于颓废状态于是晚上也没刷什么题不到22点就去睡觉了233333（另外宾馆不错）</p>
+<p>——————————</p>
+<p>Day 1。</p>
+<p>设了6:30的闹铃但事实上不到6:30就醒了，然后开始紧张上午的比赛<del>（Day 1就那么紧张干吗）</del></p>
+<p>吃完早饭进考场脑子一片空白，盯着时间看，8:25，8:26，8:27，8:28，8:29，<del>8:29:30，……</del></p>
+<p>开始了。</p>
+<p>（由于我比较逗比先看到的不是试卷上的题目而是文件夹）</p>
+<p>travel，suffix，noip。</p>
+<p>前两个看样子是传统题，第三题noip就比较有亮点了（我猜它一定叫“NOIP十合一”），看样子是一道有趣的提交答案题。</p>
+<p>看题。</p>
+<p>第一题好长，似乎是一道码农数据结构题，先写个暴力吧，等下……</p>
+<p>第二题不长，但一看就完全没有思路，似乎是一道巨丧的DP题，先写个暴力吧，等下……</p>
+<p>第三题果然名称叫“NOIP十合一”，似乎比前两题都可搞。先开始做这题吧！</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/05/05/ctsc2016/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/05/ctsc2016/" data-id="cjegzideh0010df1lldz564g3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-apio2013-tasksauthor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/26/apio2013-tasksauthor/" class="article-date">
+  <time datetime="2016-04-26T02:56:11.000Z" itemprop="datePublished">2016-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/26/apio2013-tasksauthor/">APIO2013 TASKSAUTHOR 题解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目描述">题目描述</h2>
+<p>http://uoj.ac/problem/109</p>
+<h2 id="解法分析">解法分析</h2>
+<p>要区分两个程序 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span>，就要知道 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 各自的优缺点.</p>
+<h3 id="sssp">1. SSSP</h3>
+<p>FloydWarshall 的运行效率取决于点数 <span class="math inline">\(V\)</span>，通过代码可以发现 <span class="math inline">\(\mathrm{counter}=V^3\)</span>，与询问数 <span class="math inline">\(Q\)</span> 无关.</p>
+<p>OptimizedBellmanFord 通过多轮松弛求出最短路，从代码中可以看出，每轮按照边在输入文件中的顺序松弛，当 <span class="math inline">\(s\)</span> 出发的最短路恰好沿着输入边的顺序时，一轮松弛就能求出最短路，但如果恰好逆着这个顺序，则要松弛 <span class="math inline">\(V-1\)</span> 次才能求出最短路.</p>
+<p>ModifiedDijkstra 当边权均为正时就是复杂度有保证的 Dijkstra 算法，而当有负边权时类似贪心的 SPFA. 不难发现当从 <span class="math inline">\(s\)</span> 出发的最短路第一条边不是 <span class="math inline">\(s\)</span> 边权最小的出边时，可能有大量无用的松弛操作.</p>
+<h3 id="mystery">2. Mystery</h3>
+<p>Gamble 为题目设计所用，不考虑.</p>
+<p>RecursiveBacktracking 为暴力迭代深搜求解图的色数的程序，复杂度指数级，随便的图就能使其 TLE，要使其不 TLE 就要构造答案接近于程序的枚举顺序的图.</p>
+<h2 id="详细题解">详细题解</h2>
+<h3 id="测试点1">测试点1</h3>
+<p>问题为 SSSP，<span class="math inline">\(A\)</span> 为 ModifiedDijkstra，<span class="math inline">\(B\)</span> 为 FloydWarshall，<span class="math inline">\(T=107\)</span>.</p>
+<p>要使 FloydWarshall 程序 TLE，只需令 <span class="math inline">\(\mathrm{counter}=V^3&gt;10^6\)</span>，即 <span class="math inline">\(V&gt;100\)</span>. 由于输入文件不能包含超过 <span class="math inline">\(107\)</span> 个数，只要生成 <span class="math inline">\(V=101\)</span> 的空图（没有边）以及任意 <span class="math inline">\(1\)</span> 组询问即可.</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/04/26/apio2013-tasksauthor/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/26/apio2013-tasksauthor/" data-id="cjegzidbv000adf1lale9213i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/APIO/">APIO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-fjoi2016" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/10/fjoi2016/" class="article-date">
+  <time datetime="2016-04-10T09:28:54.000Z" itemprop="datePublished">2016-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/10/fjoi2016/">FJOI2016二试爆炸记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天福建省选二试。果然，还是我太弱了，完美爆炸。</p>
+<p>[以下是废话部分]</p>
+<p>早上起床迟了，7点才起来，然后由于自己作死把手机掉床缝里面去了找了好久才找到（还好找到了）。</p>
+<p><span class="citation">@Paladin100100</span> 进宿舍催感觉很急于是匆忙吃了个早饭检查了下证就出发了，车上一直看考生须知，感觉就怕哪里看错了- -</p>
+<p>来的时候和 <span class="citation">@immortalCO</span> 大神交流了一些算法（呸只是聊一聊啥都没交流）接着就入场了。</p>
+<p>各种紧张。</p>
+<p>[以下是正题]</p>
+<p>“估计今天的题会很丧。”我想。</p>
+<p>7点55分，电脑右下角时间居然是7:50，卧槽居然不能调？（接着监考老师叫我们把手表摘了于是考试的时候只能把时间加5来推算了2333）</p>
+<p>发卷。</p>
+<p>一看到题，本人立马傻掉了。</p>
+<p>第一题“树的平均路长问题”，题目一开始就是个带sigma的公式，感觉相当不可做，再看后面，靠，居然是红黑树，一堆定义看得好晕。</p>
+<p>总之第一题看完就先跳过了- -</p>
+<p>第二题“所有最长公共上升子序列问题”，是求两个序列有多少个最长公共上升子序列，这不是和一试的题类似吗？再看数据范围，卧槽，序列长度n,m&lt;=5200，元素范围20000，似乎套不了一试的那种做法，先放弃- -</p>
+<p>第三题“n点游戏问题”，等等这是大爆搜的节奏吗？跑了下n&lt;=6都跑不出于是直接弃疗。</p>
+<p>第四题“密码破解问题”，树的路径计数，这……点分治应该能过吧。</p>
+<p>感觉第一题输入一个数输出两个数而且输入的n&lt;=5000似乎可以打表。试试？</p>
+<p>噫……总算看明白了题意，求的是n个节点的红黑树所有点的深度之和的最小值和最大值，推了个O(n^3)的式子，写了一发试了下样例过了！那就打表吧，要求最大值和最小值，那就先打最大值吧，开打……</p>
+<p>接着……该写哪题呢？</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/04/10/fjoi2016/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/10/fjoi2016/" data-id="cjegzideq0013df1l9oe2t82k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

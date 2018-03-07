@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>记第二次CTSC&amp;APIO——CTSC2017&amp;APIO2017 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="如此重要的比赛一定得开个帖写一写。 第二次参加CTSC&amp;amp;APIO，考得不好，我还是太弱了。  CTSC2017 练习赛出了NOI2016原题，预示着CTSC2017会出原题？好像是的。 Day1 看完三题，感觉T1很可做，T2挺好理解，T3有点复杂。然后发现T1的下发输入库不见了，就在一直看T3，感觉也比较可做。于是等T1的库下发（居然要手打，差评）以后就把T1写掉了。接着研究T2，一开始">
+<meta name="keywords" content="酱油记,APIO,CTSC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记第二次CTSC&amp;APIO——CTSC2017&amp;APIO2017">
+<meta property="og:url" content="http://yoursite.com/2017/05/16/ctsc2017-apio2017/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="如此重要的比赛一定得开个帖写一写。 第二次参加CTSC&amp;amp;APIO，考得不好，我还是太弱了。  CTSC2017 练习赛出了NOI2016原题，预示着CTSC2017会出原题？好像是的。 Day1 看完三题，感觉T1很可做，T2挺好理解，T3有点复杂。然后发现T1的下发输入库不见了，就在一直看T3，感觉也比较可做。于是等T1的库下发（居然要手打，差评）以后就把T1写掉了。接着研究T2，一开始">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T13:41:37.139Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记第二次CTSC&amp;APIO——CTSC2017&amp;APIO2017">
+<meta name="twitter:description" content="如此重要的比赛一定得开个帖写一写。 第二次参加CTSC&amp;amp;APIO，考得不好，我还是太弱了。  CTSC2017 练习赛出了NOI2016原题，预示着CTSC2017会出原题？好像是的。 Day1 看完三题，感觉T1很可做，T2挺好理解，T3有点复杂。然后发现T1的下发输入库不见了，就在一直看T3，感觉也比较可做。于是等T1的库下发（居然要手打，差评）以后就把T1写掉了。接着研究T2，一开始">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ctsc2017-apio2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/16/ctsc2017-apio2017/" class="article-date">
+  <time datetime="2017-05-16T14:20:35.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记第二次CTSC&amp;APIO——CTSC2017&amp;APIO2017
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如此重要的比赛一定得开个帖写一写。</p>
+<p>第二次参加CTSC&amp;APIO，考得不好，我还是太弱了。</p>
+<hr>
+<h3 id="ctsc2017">CTSC2017</h3>
+<p>练习赛出了NOI2016原题，预示着CTSC2017会出原题？好像是的。</p>
+<h4 id="day1">Day1</h4>
+<p>看完三题，感觉T1很可做，T2挺好理解，T3有点复杂。然后发现T1的下发输入库不见了，就在一直看T3，感觉也比较可做。于是等T1的库下发（居然要手打，差评）以后就把T1写掉了。接着研究T2，一开始以为是一道AKF出过校内训练的TC题，然而那题我并不会做，而且复杂度还过不去。当时就写了个 <span class="math inline">\(O(n^2d)\)</span>（<span class="math inline">\(d\)</span> 为树的深度）的25分暴力，由于代码能力太糟糕，写了很久。接着觉得似乎能二分，然而对于所有点对的约束并不会判定。后来想到去年IOI题，然后发现题目不太一样，当时以为加边两端点都在直径上是错的，就觉得不一样，扔了。</p>
+<p>最后推T3，由于没认真读题就开始想，一开始想成求满足条件的概率，然后写了很久的线段树维护概率，也写了很久。写到快写完时发现不对，是求满足条件下的期望。这时候我有点懵逼，不过把转移看成图，就变成求带重边两点间路径长度的平均值，用线段树维护路径条数和路径长度和就行。</p>
+<p>写完T3过掉样例只剩1h-了。感觉精度有点虚，不过出了几组数据都没炸精，也不知道怎么卡，就当得分玄学吧。最后稍微拍了下T1，另两题也没拍就结束了。</p>
+<p>出考场fateice说T2结论就是在直径上，哎我好菜啊为什么不出几组数据找找规律。matthew99做出了T2，然后表示T3很容易炸精度，好方啊。</p>
+<p>看成绩100+25+100=225。。。这个T3居然过了。。。然后看到matthew99 AK了（原来是matthew99以为数据里有0和1然而实际上题目保证了没有，<del>好像还有别的原因</del>），yjqqqaq 250，还有几个和我同分的。T3好像一点也不卡精，确实直接写就能过。</p>
+<p>immortalCO有点惨，T3以为会卡精度改成暴力结果掉了30。。。fateice更惨，好像挂在了和去年wwx一样的地方，一个地方没看long long，T2挂成0分，T3数组开小挂了20，悲伤的故事。<del>当时我非常庆幸我在测T2样例时在后面补了几个0</del></p>
+<p>讲题时听说T2把直径结论搞出来就是IOI原题了，感觉如果我能看出这个结论可能可以多拿25分以上。</p>
+<p>感觉今天T1、T3加起来再加上T2暴力分属于大众分吧，没啥好说。</p>
+<p>下午开始感觉身体有点乏，开始担心明后天的表现。</p>
+<h4 id="论文答辩">论文答辩</h4>
+<p>答辩自我感觉还行，然而出成绩#13滚粗，让人心碎。也不想说什么了。</p>
+<p>晚上和immortalCO一起看了几道题，结果我没想出来一题，immortalCO倒是都做出来了。尽管暂时成绩单上我是#3，但和前后几名的分差相当小，做好了明天被打回原形掉出前6的准备。</p>
+<p>和immortalCO一起很早就睡了。</p>
+<!-- readmore -->
+<h4 id="day2">Day2</h4>
+<p>看了看题，T1直接上Lucas可以证明 <span class="math inline">\({a\choose b}\equiv 1\pmod 2\)</span> 的条件是 <span class="math inline">\(a\)</span> 的二进制表示下1的集合包含了 <span class="math inline">\(b\)</span> 的。接着觉得可以大力分治优化DP，发现好像要FMT复杂度炸了，就换成分块优化DP。复杂度 <span class="math inline">\(O(n\sqrt{n\log n})\)</span>（假装 <span class="math inline">\(a\)</span> 的范围也是 <span class="math inline">\(n\)</span>），卡了卡常数过了样例就不管了。</p>
+<p>接着想想后两题，T2一开始没啥思路就先跳过去看T3，看样子乱搞能搞过去。一开始看第一档分，用个旋转扫描线 <span class="math inline">\(O(n^2\log n)\)</span> 似乎就行了，然后写了不知道多久。然后看第二档 <span class="math inline">\(n\le 1000\)</span>，第三档 <span class="math inline">\(n\le 20\)</span> 以为第三档更可搞，就花了很多时间写了第三档的分段爬山+费用流，试图搞过去，事实证明我的姿势不对。。。搞了很久还是和样例差一点但不能过。</p>
+<p>只剩不到2h了，感觉进前6没希望了。于是顿时失去了梦想，也没去搞第二档部分分，就在一直调第三档的参，然而没啥效果，然而明知没啥效果却没有停手。最后，还是准备打T2暴力，想到DP状态里记个LIS的DP，一直觉得能优化却没心思去想，最后一直处于打暴力状态，随机了几组大数据测效率，也没拍暴力，一直盯着代码看，神智也不是很清楚，一直都在做无用功。最后几分钟干脆关掉代码对着空屏幕看等着结束，感觉掉出前6是稳了。</p>
+<p>出来听说immortalCO打了T2的费用流，我怎么就没有去想呢……最好今天直接挂掉几题掉出前6算了。</p>
+<p>immortalCO还说T1复杂度是 <span class="math inline">\(O(n\sqrt n)\)</span> 的，跑得飞快。还说有一种 <span class="math inline">\(3^{18}\)</span> 的做法也能过还很好写。我好菜啊为啥只有我写了个这么复杂的东西。</p>
+<p>看成绩，100+5+30=135，T2意料之中地挂了20，T3第一档居然没挂。感觉很害怕，要是不小心掉进了第5、6名怎么办。</p>
+<p>这时候CY教练告诉我#4了？？？奥妙重重。滚粗成这样居然还能卡线，真是没想到。</p>
+<p>以为immortalCO会比我高很多，问了一下发现100+40+0=140，T1复杂度比我优，T3却挂了，最后由于两天T3的挂分而没进队，惨。（后来才知道原来他T3整题写了个模拟退火，没特判第一档子任务，最后全炸了）fateice和我同分。</p>
+<p>dick32165401好强啊，100+5+50=155，T3模拟退火搞了50。了解了一下情况，他第三题搞过了第一档和第二档的两个点。然后想想，第二档判定只要排序，第三档要二分图最大权匹配，前者比后者情况更简单，似乎更容易搞过去。</p>
+<p>（后来发现其实是我爬山的step忘了减小！！）</p>
+<p>（后来改完上述bug发现还是过不去。。。10组就挂1组，改成不挂的就TLE。。。）</p>
+<p>仔细想想还是有点儿后悔的，如果我考场上以前4为目标的话可能会更尽力地去拿分，不至于滚成135吧。</p>
+<p>不过人生真是难以预料，滚成这样竟然进了#4。</p>
+<p>然后就开始准备面试了，结果面试还是过度紧张，感觉真是在大众面前丢脸【我的脸呢？】总之面试自我感觉实在糟糕。</p>
+<p>面试完如释重负吃完饭看闭幕式，czt 435分非集训队#1真是太巨了。今年分数线好高啊，Au线255创历史新高。非集训队好劲啊，我这个360分在非集训队进不了前4。</p>
+<p>不过既然进了IOI又有什么可抱怨的呢？再说还有不少神犇CTSC失利了，immortalCO巨神挂了，chentong和runzhe2000 Ag了，wzt挂成Cu了，zhshr队长和初三Au的pyz5715也意外考挂了。看到immortalCO的QQ签名“AFO”，实力远在我之上的大爷却没能进队，感觉真是十分遗憾。</p>
+<p>后来和教练谈了一下，决定我放弃省队名额。于是我成为了非省队选手。祝贺Au爷dick32165401进入省队。</p>
+<h3 id="apio2017">APIO2017</h3>
+<p>这个试机赛，原题+时间短+网络不好+交上去测不出来，写了前两题交上去结果都是错的，交UOJ结果十分感人地27+0+0=27，连去年的Cu线都没到，胸牌既视感。T1数组开小，T2每次合并完去掉最后一段是错的，以及有个函数没开64位。还好APIO有即时反馈不然就要像CTSC Day2那样大自爆了。</p>
+<p>然后APIO果然就滚粗了。</p>
+<p>开场看三道题，居然有两道交互，害怕。花了一会儿看题，T1看样子可以想出来，T2挺复杂，还那么多子任务，估计是拉区分度的难题，T3看起来是二分+最短路的套路题。</p>
+<p>于是先切T3，由于个人比较傻逼，Floyd最短路都能写错，用了半个多小时才调对，50min的时候才过，我好菜啊。</p>
+<p>接着开始想T1，一开始的想法是考虑snake的运动轨迹把询问矩形划分成的区域，然后想不清楚，而且运动轨迹本身可以连得很复杂。重新想。</p>
+<p>下一个思路类似NOI2016的grid，把地图的每一行所有空地组成的连续段提取出来，每段建一个点，相邻两行有相交的段连一条边，每次询问就是把询问矩形包含的点和边取出来看有多少个连通块。</p>
+<p>然后开始掉坑。因为我不知道图大概长什么样，所以理所应当地认为图中有多个环。那么怎么求连通块个数呢？想到一道每次保留一个区间内的边询问连通块个数的题，然后发现这题问的不是区间而是有多维的东西，接着纠结了很久能不能用什么数据结构来维护。</p>
+<p>LCT、线段树分治、分块，没有一个能解决。</p>
+<p>有点慌地去看了下T2，然后想出了subtask1只要随便放一个1就行，subtask2一开始想法是第一轮每个地方放一个1，对方会把较大的50个取出来，第二轮把较大的50个每个地方放一个2，对方会把较大的几个取出来……然而由于我以为第二轮对方可能取33个，第三轮每个地方放3个对方可能取25个……觉得好像做不下去，想优化，但实在不会优化。再看subtask3，一开始以为只要0和1各放50个就行，发现对方可以不取，那就改成放1个，发现对方可以都取- -b感觉好难啊，还是回去搞T1吧。</p>
+<p>比赛近半的时候我才决定打T1暴力。由于我比较弱，打了一个多小时才过47分。</p>
+<p>最后也就剩一个多小时了，专攻T2。挣扎了很久subtask2，然后由于想看看规律，把每次询问的东西打出来看，发现我一开始的思路其实是可以过的= =因为算法是确定性的，第二轮对方恰好取25个，第三轮恰好取9个，第四轮就剩1个，OK了。</p>
+<p>于是写掉subtask2，看subtask3，同样用打表找规律大法，试了下把0和1放的个数在1到8之间调整总有一个能让对方恰好取了0和1中的一个，然而二分会炸次数。就随机了10000+组数据，好像区间都比较长，有些数可以不用试。最后搞着搞着把subtask3过了。</p>
+<p>再看最后两个subtask，都是要排序，似乎强上 <span class="math inline">\(O(n\log n)\)</span> 的排序可以过subtask4，还能拿到一部分subtask5的分数。然而快速排序好像会被卡常数，就用 <code>std::inplace_merge</code> 写了个归并排序，把subtask4的程序改了改作为subtask5的程序。最后subtask4过了，subtask5得了28/53。</p>
+<p>这时候离比赛结束剩10min-，想了想subtask5好像只要把快排的 <code>partition</code> 用subtask2的搞法可能可以多拿不少分（考完意识到 <code>partition</code> 的次数是99次，可以AC），然而最后几分钟我啥都写不对，于是很遗憾地没有过……</p>
+<p>最后得分47+75+100=222，一个滚粗的成绩。</p>
+<p>出来听说fateice 227，高一的wzt 211，感觉我要被好多人吊打了。</p>
+<p>考完以后yjqqqaq讲了他的T1做法和我的想法类似，然后说这样构出来的图每个连通块基本上都是树，最多有一个是基环外向树，那就只要统计点数和边数就行了，哎我的智商哪里去了。</p>
+<p>赶飞机翘了颁奖，后来得知我只有rank 5。前4名是lych_cys，RXDoi，fateice，fanzewen，比我不知道高到哪里去了。</p>
+<p>orz lych_cys AK虐场！！！</p>
+<p>wzt Au rank7，dick32165401 Au（现在3个Au），我校的希望。</p>
+<h3 id="ctscapio总结">CTSC&amp;APIO总结</h3>
+<p>这次的CTSC&amp;APIO依旧发挥得比较糟糕，当然比去年还是好不少的，去年CTSC非集训队#9，APIO#36，今年CTSC非集训队#5，APIO#5，还是有进步的。</p>
+<p>CTSC Day1发挥比较正常，T1和T3两道比较多人A的题都A了，排名也比较靠前。T2还是有一些遗憾的，考场上错误地否定了加边两端点在直径上的结论（当时觉得一定要缩短直径两端的距离，但以为往下走一段可能会更优），同时以为这题类似某道TC题（后来经过immortalCO的提醒那题是个计数题。。。）就没分析出任何性质，也就只剩暴力分。</p>
+<p>CTSC Day2比较失败。T1第一反应想到FMT优化DP，好在没花多长时间就卡过去了，考场上能过了就不需要花更多时间。（怀疑只有我想偏了）之后犯了好几个错误。一个是把乱搞当靠谱做法，我以为T3的第三个子任务 <span class="math inline">\(n\le 20\)</span> 用分段爬山十分靠谱，却没注意到它依旧是个非完美算法，不一定能搞过去。这种需要花很多时间却不一定有分的东西一定要放在最后搞。其次是一种意识上的错误，平时总以为写错会导致答案差很远，和答案差不多是因为参数调得不好或者算法不优，当我看到T3程序运行结果和答案只差一点但超出误差范围时，只调了分段的参数，没有想过去检查程序实现。其次就是考试时的心态以及判断，由于我在T3上浪费了太多时间，觉得这一场一定会爆炸。实际上从部分分就可以看出Day2的区分度不是很大，这也是我最后刚好没掉出集训队前4的原因。结果导致我既没有尝试去搞子任务2，也没有想到程序实现上的错误，也没有认真去搞T2。</p>
+<p>T2我的想法是，考虑 <span class="math inline">\(O(n\log n)\)</span> 求LIS的做法，维护了一个栈 <span class="math inline">\(S\)</span>，每加入一个元素 <span class="math inline">\(a\)</span> 时，将 <span class="math inline">\(S\)</span> 中不大于 <span class="math inline">\(a\)</span> 的最大值改成 <span class="math inline">\(a\)</span>。那么就在DP中状压当前LIS的栈，很容易转移，<span class="math inline">\(k=2\)</span> 时这个栈内最多两个元素，所以可以做到 <span class="math inline">\(O(n^3)\)</span>，优化之后是 <span class="math inline">\(O(n^2\log n)\)</span>。把转移过程建图就可以跑网络流了。由于没有检查，我除了第一个点以外全部写挂，也没想去构网络流的图，最后只有5分。</p>
+<p>感觉今年的CTSC比较看脸（当然matthew99这样的大神除外）。immortalCO Day1挂30，我Day2挂20，最后我卡线了，immortalCO挂了。讲道理immortalCO的实力是在我之上的。</p>
+<p>APIO也发挥得不理想。主要的问题在于T1想复杂了，一开始分析问题时意识到Snake是一个四连通块，然而分析到后面忽略了这个条件，以至于当我建出图以后没意识到最多只有一个环。如果遇到瓶颈以后回头看题目性质，或者模拟几组数据，就能发现图中不可能有两个环。以及一开始没有仔细想T2也是一个失误，这题我完全是可以搞出来的。</p>
+<hr>
+<p>准备把CTSC2017&amp;APIO2017的坑填了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/16/ctsc2017-apio2017/" data-id="cjegzidem0011df1lvpyfw5v6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/APIO/">APIO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/02/51nod-25/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          失败者的辣鸡本质——记51nod算法马拉松25
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/01/51nod-24/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">51nod算法马拉松24</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

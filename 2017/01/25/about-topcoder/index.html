@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>做TopCoder题的一些总结 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="集训队第一次作业结束了。作业是TopCoder的156题（我完成了154题，理论上8分完成分我可以得到7.8分）。虽然我在提交的时候出了各种问题，感觉作业分会爆炸。然而我并不想退役QAQ 以下是我做TopCoder的一些总结。  1、题目形式 TopCoder和大多数OJ的题不太一样，大多数OJ都是使用用标准输入输出，而TopCoder只需实现一个关键的类（class）中的一个函数即可。函数传入的">
+<meta name="keywords" content="TopCoder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="做TopCoder题的一些总结">
+<meta property="og:url" content="http://yoursite.com/2017/01/25/about-topcoder/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="集训队第一次作业结束了。作业是TopCoder的156题（我完成了154题，理论上8分完成分我可以得到7.8分）。虽然我在提交的时候出了各种问题，感觉作业分会爆炸。然而我并不想退役QAQ 以下是我做TopCoder的一些总结。  1、题目形式 TopCoder和大多数OJ的题不太一样，大多数OJ都是使用用标准输入输出，而TopCoder只需实现一个关键的类（class）中的一个函数即可。函数传入的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T11:43:07.626Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="做TopCoder题的一些总结">
+<meta name="twitter:description" content="集训队第一次作业结束了。作业是TopCoder的156题（我完成了154题，理论上8分完成分我可以得到7.8分）。虽然我在提交的时候出了各种问题，感觉作业分会爆炸。然而我并不想退役QAQ 以下是我做TopCoder的一些总结。  1、题目形式 TopCoder和大多数OJ的题不太一样，大多数OJ都是使用用标准输入输出，而TopCoder只需实现一个关键的类（class）中的一个函数即可。函数传入的">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-about-topcoder" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/25/about-topcoder/" class="article-date">
+  <time datetime="2017-01-25T02:17:36.000Z" itemprop="datePublished">2017-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      做TopCoder题的一些总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>集训队第一次作业结束了。作业是TopCoder的156题（我完成了154题，理论上8分完成分我可以得到7.8分）。虽然我在提交的时候出了各种问题，感觉作业分会爆炸。然而我并不想退役QAQ</p>
+<p>以下是我做TopCoder的一些总结。</p>
+<hr>
+<h3 id="题目形式">1、题目形式</h3>
+<p>TopCoder和大多数OJ的题不太一样，大多数OJ都是使用用标准输入输出，而TopCoder只需实现一个关键的类（<code>class</code>）中的一个函数即可。函数传入的参数和返回值取代了标准输入输出。</p>
+<p>TC的输入输出规模比较小，大多数题的数据范围都在 <span class="math inline">\(50\)</span> 以内，这是因为太大的数据点超出了Arena的容纳范围。事实上数据范围只有 <span class="math inline">\(50\)</span> 的题仍然颇有难度，这一点在之后会提到。</p>
+<p>大多数的题目和日常做的OI题还是很类似的，但侧重点不一样。TC的组合计数以及组合优化类问题比较多，大多数题的主要难点在于思维上（当然也不乏代码题），很多题都是“暴力是指数级复杂度，难点在于想出一个多项式算法”，例如SRM 577的500，只要想到DP状态如何设计，很高的复杂度都能通过。当然也有一些 <span class="math inline">\(O(n^3)\)</span> 卡 <span class="math inline">\(O(n^4)\)</span> 之类的题，通常需要用特殊的方式进行输入（如输入字符串解密数字，输入随机数种子递推出随机数）。</p>
+<h3 id="解题遇到的困难">2、解题遇到的困难</h3>
+<p>TC题比较难（当然是对我而言，对于C_SUNSHINE、matthew99、immortalCO等神犇来说应该是比较容易的？），我在做的时候遇到了不少的困难。</p>
+<p>有一类问题，一开始看到的时候毫无思路，经过长时间多种方向的尝试最后才解决。</p>
+<p>SRM 562的1000是一道有结论的树形DP问题，这题我研究了很久，终于推出了两种不同情况下的结论。其中一种情况是：<span class="math inline">\(2k &gt; n\)</span> 时，排列 <span class="math inline">\(p_0,p_1,...,p_{n-1}\)</span> 合法当且仅当：①<span class="math inline">\(p_{n-k},p_{n-k+1},...,p_{k-1}\)</span> 这 <span class="math inline">\(2k-n\)</span> 个点构成一个连通块；②将该连通块删掉后，如果 <span class="math inline">\(p_i,p_j\)</span> 位于同一连通块，那么或者 <span class="math inline">\(i,j &lt; n-k\)</span>，或者 <span class="math inline">\(i,j\ge k\)</span>；③对任意 <span class="math inline">\(i &lt; n-k\)</span>，<span class="math inline">\(p_i,p_{i+1},...,p_{n-k-1}\)</span> 构成连通块，以及对任意 <span class="math inline">\(i\ge k\)</span>，<span class="math inline">\(p_k,p_{k+1},...,p_{i-1}\)</span> 构成连通块。想到这个结论以后我开始尝试用树形DP求出有多少个连通块大小恰为 <span class="math inline">\(2k-n\)</span>，用树形背包的经典算法容易把满足③的排列个数也算进来，但是，对于每种选连通块的方案，贡献为满足②的把点分成 <span class="math inline">\(i &lt; n-k\)</span> 和 <span class="math inline">\(i\ge k\)</span> 两类的方案数，这个我并不会统计。绕了不少弯路才发现其实是不从“对每个 <span class="math inline">\([n-k,k)\)</span> 求有多少个 <span class="math inline">\([0,n-k)\)</span> 和 <span class="math inline">\([k,n)\)</span> 以及它们的排列方案数”考虑而是从“对每个 <span class="math inline">\([0,n-k)\)</span>、<span class="math inline">\([n-k,k)\)</span>、<span class="math inline">\([k,n)\)</span> 求有多少个排列方案数”，也就是DP时把位于中间和位于两边的点数都计入状态。这样问题就得以解决了。事实证明这样的求和的问题转化思路是相当有趣的，以后可以出这类的题。</p>
+<a id="more"></a>
+<p>SRM 568的1000是我掉坑掉得比较久的一道题。由于每个半圆可以放上面或者下面，并且半圆不相交，我很快把问题转化成了：给一个圆和 <span class="math inline">\(n\)</span> 个点，给出一些连接两个点的弦，问能否把剩下的点也连起来使得每个点属于一条弦，且把相交的弦连一条边之后图是二分图。但是这样转化并没有什么卵用，依然只会解决空的点数不超过 <span class="math inline">\(12\)</span> 的情况。后来把转化的想法扔了，脑洞大开：能不能枚举已有的半圆的二分图染色情况（也就是放上面还是下面），然后判断是否存在可行解呢？推了不久我就推出了一个结论：当且仅当存在一种把点分为上下两类的方案，使得对每一测，每条圆弧里面的点都是偶数个。这就可以用经典的前缀xor建图了。把这种算法和暴力结合起来就能通过了。这个问题也让我体会到“是否存在一对(A,B)”既可以转化为“是否存在一个A，使得存在一个B”（枚举A，高效判定B）也可以转化为“是否存在一个B，使得存在一个A”（枚举B，高效判定A）。</p>
+<p>SRM 579的1000是一个策略问题，但是这题的特点是“对方以一定方式随机，我方可以根据之前的结果决定之后的策略”，这类问题的解决方法我之前没有思考过，因此想了很久。事实上这一类问题还是有解决方法的：我们需要构造一个决策树 <span class="math inline">\(T\)</span>，<span class="math inline">\(T\)</span> 是一个 <span class="math inline">\(n\)</span> 层的三叉Trie树，每个节点有三条出边，边 <span class="math inline">\((u,v)\)</span> 上的字母 <span class="math inline">\(d(u,v)\)</span> 为 <code>R</code>、<code>P</code>、<code>S</code> 中的一个，目标是对每个非叶节点 <span class="math inline">\(v\)</span> 分配 <code>R</code>、<code>P</code>、<code>S</code> 三个字母中的一个作为策略 <span class="math inline">\(d(v)\)</span>，边 <span class="math inline">\((u,v)\)</span>（<span class="math inline">\(v\)</span> 为子节点）的权值定义为我方出 <span class="math inline">\(d(v)\)</span>，对方出 <span class="math inline">\(d(u,v)\)</span> 时的得分，使得对方从根开始，每次出手时根据当前节点上的字母往下走，经过的路径权值期望最大。这样只需求出每条边被经过的概率就可以对每个节点选取最优决策。虽然节点数为 <span class="math inline">\(O(3^n)\)</span> 级别，但通过数学推导可以发现一个节点 <span class="math inline">\(v\)</span> 被经过的概率只和根到 <span class="math inline">\(v\)</span> 的路径的边上 <code>R</code>、<code>P</code>、<code>S</code> 的个数有关，从而设计 <span class="math inline">\(O(n^4)\)</span> 的DP去解决它。决策树的思想是我在WC2016时讲的IOI2015 scales的解法中学到的，知识不是死的而是活的，只有灵活运用才能解决更多的问题。</p>
+<p>等等。（可能会不定期补充）</p>
+<p>还有一些问题，难点在细节以及实现上，有些问题花费了我大量的时间才解决。</p>
+<p>SRM 549的950是一道做法很暴力的枚举题，需要枚举所有 <span class="math inline">\(n(n\le 6)\)</span> 个点的分层图，对每个分层图使用网络流和状压DP（或者直接枚举）来判断是否合法。思想很简单，但枚举分层图、网络流、状压DP每一步都有细节，因此如果全都写完再调试比较难调。遗憾的是我就是全都写完再调，调不出来。事实上分部调试程序的方法是比较高效的，因为可以针对每一部分找出问题，而不是主要花费时间在遇到问题以后查哪里错了。最后这题写了一下午，调过样例的时间比写的时间长。所幸调过样例以后AC了，不知道是样例足够强还是运气比较好。这题我写了3KB左右，对我来说算比较长的了。</p>
+<p>SRM 574的1050是一道看起来很可怕的题。首先这个问题需要找性质，并且这个性质极！其！容！易！推！错！反正我一开始就想错了。immortalCO跟我说他第一次也把性质推错，写了错误算法WA了。正确的性质是，网格内和网格外的每个连通块是一条路径 <span class="math inline">\(u\rightarrow v\)</span>，可以缩成一条边 <span class="math inline">\((u,v)\)</span>，要求在网格外加一些边，使得不会有 <span class="math inline">\(a &lt; b &lt; c &lt; d\)</span> 的边 <span class="math inline">\((a,c),(b,d)\)</span> 出现，且每条路径深度是递增的（对于网格内的路径 <span class="math inline">\((u,v)\)</span>，若 <span class="math inline">\(x_u &lt; x_v\)</span>，则定向为 <span class="math inline">\(u\rightarrow v\)</span>，反之亦然，若 <span class="math inline">\(x_u = x_v\)</span> 则不定向）。一条路径不相邻的点在网格中也不相邻，实际上是限制了部分格子不能连。问题转化后可以用一个 <span class="math inline">\(O(n^3)\)</span> 的DP解决掉。但是前面部分把网格转化为连边的模型有有相当多的细节要讨论，一不小心就错了，并且这种题难以对拍（没有什么好写的暴力）。我调了很久的样例，终于调过以后交上去还是WA了。这题一共FST了两次，两次都是细节实现上的问题。这种细节多的题我暂时还没想到什么好的方法来应对。</p>
+<h3 id="学习的算法">3、学习的算法</h3>
+<p>做TC题的过程中遇到了一些知识盲点，学习了一些新的算法。</p>
+<p>SRM 551的1000一开始看起来就是一个生成树计数问题，但是是带约束的，不能直接上prüfer编码解决。一种暴力做法是从点权非负的点集 <span class="math inline">\(S\)</span> 内枚举一个点权和不超过限制的子集 <span class="math inline">\(T\)</span>，然后强制 <span class="math inline">\(\forall v\in T,\exists u\in T,(u,v)\in E\)</span> 且 <span class="math inline">\(\forall v\in S-T,u\in S,(u,v)\not\in E\)</span>。注意到集合个数只和 <span class="math inline">\(S\)</span> 中的点数有关，用Meet-in-the-middle统计每种大小的集合个数即可，并且前面一个限制可以通过容斥原理去掉，这样问题就转化为统计一个图 <span class="math inline">\(G=(V,E)\)</span> 中有两个点集 <span class="math inline">\(S,T\)</span>，<span class="math inline">\((u,v)\not\in E\)</span> 当且仅当 <span class="math inline">\(v\in S-T,u\in S\)</span> 或 <span class="math inline">\(u\in S-T,v\in S\)</span>。这是一个生成树计数问题，看似没有高效的解决方法。不过有一个很神的技巧“矩阵树定理”，可以很高效的解决这个问题。于是我学习了矩阵树定理在 <span class="math inline">\(O(n^3)\)</span> 时间内通过求行列式进行生成树计数，之后便解决了这个问题。</p>
+<p>SRM 584的900根据题目意思可以转化为这样一个问题：给定图 <span class="math inline">\(G=(V,E)\)</span> 和 <span class="math inline">\(r\in V\)</span>，要从 <span class="math inline">\(E\)</span> 中选出权值和最小的边集 <span class="math inline">\(E&#39;\)</span> 使得图 <span class="math inline">\(G&#39;=(V,E&#39;)\)</span> 中 <span class="math inline">\(r\)</span> 能到达所有点。如果是无向图就是最小生成树，有向图呢？应该就是算法竞赛入门经典训练指南里面的“最小有向生成树”，即“最小树形图”。可惜当时我只是了解了它的概念，并不会求出一个图的最小树形图。为了完成这题，我学习了如何用朱刘算法求解最小树形图，当然由于第一次写的时候不熟练而FST了两次。</p>
+<p>待补充。</p>
+<h3 id="写错过的题">4、写错过的题</h3>
+<p>由于我的代码能力不足，有超过10%的题没有一次通过系统测试，即第一次提交时Failed System Test（FST）了。<del>事实上我的TC用户名为WAonSystemTest就是因为我老是过了样例交上去WA</del></p>
+<p>SRM 548的450，看错题目，以为不可以填0，于是就错了，主要是没有看清楚题意导致的。</p>
+<p>SRM 548的1000，我把组合数预处理到 <span class="math inline">\(N^2\times K\)</span>，然而在程序用到了 <span class="math inline">\(C_i^2\)</span>，于是 <span class="math inline">\(K &lt; 2\)</span> 的时候挂了。可见虽然从题目上看大多数时候 <span class="math inline">\(K\ge 2\)</span>，但还是要注意一些边界情况。</p>
+<p>SRM 549的600，写的是三进制状压，由于想偷懒而开了 STL 的 <code>map</code>，但是我并不知道 <code>map</code> 的每个元素有 <span class="math inline">\(24\texttt{B}\)</span> 的空间（不知道是不是，反正很大），这样开两个 <span class="math inline">\(3^{13}\)</span> 大小的 <code>map</code> 内存就超过 <span class="math inline">\(64\texttt{MB}\)</span> 了。最后改成数组才过。不少 STL 容器的内存都会比数组大，使用的时候要小心。</p>
+<p>SRM 550的300，调了很久的样例，发现是题目理解有误，最后终于调过了，然而提交以后发现一个 <code>&lt;=</code> 打成了 <code>&lt;</code>，FST了。对于简单题也不要一调过样例就交，要多检查几遍代码看有没犯低级错误。</p>
+<p>SRM 550的850，问题转化完以后相当于有不超过 <span class="math inline">\(11\)</span> 个 <span class="math inline">\(\{0,1,2\}\)</span> 中的数，允许经过不超过 <span class="math inline">\(m\)</span> 次操作，每次可以选取一个 <span class="math inline">\(x\)</span> 把它变成 <span class="math inline">\((x+1)\bmod 3\)</span>，求把所有数变成 <span class="math inline">\(0\)</span> 的方案数（方案不同当且仅当操作次数不同或某次操作的结果不同）。状态中只要记录 <span class="math inline">\(0,1,2\)</span> 的个数即可。然而我又犯了个错误，DP的时候写成了从所有的 <span class="math inline">\(0\)</span> 开始变成某个给定状态的方案数，这样是有问题的，因为只满足最终状态每种数的个数不一定正确，比如 <span class="math inline">\((0,0,0,0)\)</span> 一步变成 <span class="math inline">\((0,0,0,1)\)</span> 只有 <span class="math inline">\(1\)</span> 种方案，而 <span class="math inline">\(4\)</span> 个 <span class="math inline">\(0\)</span> 一步变成 <span class="math inline">\(3\)</span> 个 <span class="math inline">\(0\)</span> 和 <span class="math inline">\(1\)</span> 个 <span class="math inline">\(1\)</span> 有 <span class="math inline">\(4\)</span> 种方案。从当前状态递推到所有数都是 <span class="math inline">\(0\)</span> 是正确的，因为全 <span class="math inline">\(0\)</span> 的状态是唯一的。出现这么大的错误只能说明我对这类DP的认识还不够深入。</p>
+<p>SRM 551的250，写了Two-Pointers然后右指针移动了左指针忘记移动了，挂掉。基本算法一定要写熟练，比如说，如果邻接表写挂了，那么树的题就可能无论怎么对拍都拍不出错。</p>
+<p>SRM 553的1000，我写的做法大概是这样：首先找环长的最小值，用差分约束系统建图跑SPFA判定，每条边是 <span class="math inline">\(M\)</span> 的一个一次函数，二分一个环长 <span class="math inline">\(M\)</span>，如果找出一个负权环，那么当负权环上 <span class="math inline">\(M\)</span> 的系数小于 <span class="math inline">\(0\)</span> 时，说明需要 <span class="math inline">\(M\)</span> 太大，需要减小 <span class="math inline">\(M\)</span>，否则需要增大 <span class="math inline">\(M\)</span>。直接二分在有解的时候不会出问题，在无解的时候可能系数为正和负的环同时存在，那么返回 <span class="math inline">\(M\)</span> 太小或者 <span class="math inline">\(M\)</span> 太大是不确定的，就会导致二分出的结果不正确。我实现的时候WA在了很后面的一个大点，调了挺久。判掉这种情况才能过。</p>
+<p>SRM 556的1000，这题我没想出来，看了题解才做的。然后写的时候忘了限制 <span class="math inline">\(a_1,a_2,b_1,b_2\)</span> 的容量为 <span class="math inline">\(2a_n\)</span> 或者 <span class="math inline">\(2b_n\)</span>，第一次交的时候FST了，调的时候发现答案的infinity溢出了，第二次再FST以后才意识到这个问题。</p>
+<p>SRM 563的1000，判断 <span class="math inline">\(a,b\)</span> 属于不同状态的时候，只判了能否使 <span class="math inline">\(a\)</span> 仍在棋盘而 <span class="math inline">\(b\)</span> 移出棋盘，没判能否使 <span class="math inline">\(b\)</span> 仍在棋盘而 <span class="math inline">\(a\)</span> 移出棋盘。这个问题用几组小数据都能查出问题，但我过了样例直接交了，导致FST。</p>
+<p>SRM 565的500，预处理质数应处理到 <span class="math inline">\(\sqrt{10^9+10^6}\)</span> 而我只处理到 <span class="math inline">\(\sqrt{10^9}\)</span>，手出极限数据无法发现这个问题（因为无法验证答案正确性），需要写的时候注意边界。</p>
+<p>SRM 567的500，一开始问题想简单了，以为就是求个集合的交，过了样例交上去挂了。在immortalCO的提醒下我才意识到我考虑不周到，没注意到若干轮之后原本非最优的会变成最优，最后的解决方法是多加几层循环。</p>
+<p>SRM 574的1050是之前提到的细节题，我在这题上犯了不少错误，既因为分类讨论一种特殊情况判错FST一次，又因为一种情况把变量名打错FST一次。暂时不知道有什么比较好的解决方法。</p>
+<p>SRM 578的250，写了个 <span class="math inline">\(O(R\cdot C\cdot(R+C))\)</span> 的BFS做法，<span class="math inline">\(R,C\le50\)</span>，然后犯了和SRM 565 500一样的错误，第一次数组只开了 <span class="math inline">\(50\times 50\times 50\)</span>，第二次数组只开了 <span class="math inline">\(50\times 50\times 100\)</span>，两次都挂了。实际上应该开 <span class="math inline">\(50\times 50\times 101\)</span>。</p>
+<p>SRM 578的1000，树形DP有一步转移要用KM算法，我把KM算法过程写成了一个模块，然后这一部分数组忘记每次清空了……于是调了很久才调出来。</p>
+<p>SRM 584的900，第一次写最小树形图，细节没有考虑清楚，找环的时候 <code>vis[j]</code> 表示编号最小的能到 <code>j</code> 的点编号，但一开始初始化时写 <code>vis[0]=1</code> 导致和1出发的点混淆于是WA了。</p>
+<p>SRM 586的250，犯了一个相当低级的错误，把 <span class="math inline">\(y\)</span> 集合从 <span class="math inline">\(n\)</span> 个点扩充成 <span class="math inline">\(2n-1\)</span> 个点的时候忘记令 <code>n=n*2-1</code> 了，这个也是随便出几组数据就能发现的问题，然而我只测了一些特殊构造的数据，对于随机数据反而没有测，导致这种容易出问题的错误没有查出来。</p>
+<h3 id="未解决的题">5、未解决的题</h3>
+<p>有的题我花费了大量时间仍然没有想出做法，最后不得不借助题解来完成。当然有的题在看了题解之后完成了，也有少量的题最后依旧没有完成。</p>
+<p>SRM 582的1000，我没有想出来。一开始看到题目觉得条件比较复杂，不是很好下手，于是打了个表找规律，发现形如 <span class="math inline">\(n=ab^c\)</span>，其中整数 <span class="math inline">\(a,b,c\)</span> 满足 <span class="math inline">\(b &gt; a\ge 1,c &gt; 1\)</span> 的 <span class="math inline">\(n\)</span> 似乎都满足 <span class="math inline">\(2\le c\le 3\)</span>，于是发现 <span class="math inline">\(N\)</span> 以内满足 <span class="math inline">\(c=2\)</span> 和 <span class="math inline">\(c=3\)</span> 的 <span class="math inline">\(n\)</span> 的个数都不难在 <span class="math inline">\(O(\sqrt[3]N\log N)\)</span> 和 <span class="math inline">\(O(\sqrt[4]N\log N)\)</span> 的时间内求出，但是这样会算重复，因为有的 <span class="math inline">\(n\)</span> 满足存在整数 <span class="math inline">\(b_1 &gt; a_1\ge 1\)</span>，<span class="math inline">\(b_2 &gt; a_2\ge 1\)</span> 使得 <span class="math inline">\(n=a_1b_1^2=a_2b_2^3\)</span>。之后一直想找出这类数有何共同点，比如能表示成 <span class="math inline">\(ab^6\)</span> 等等，但想了几个结论全是错的。同时又想能否不从推出简单结论入手，也不利用性质，强行求出满足两个约束的 <span class="math inline">\(n\)</span> 的个数，但式子一步也化简不下去。最后束手无策。</p>
+<p>最后只好去看题解，发现题解是结合了两种方法：首先使用了一个性质，如果存在整数 <span class="math inline">\(b &gt; a\ge 1\)</span> 使得 <span class="math inline">\(n=ab^3\)</span>，并且 <span class="math inline">\(b\)</span> 是所有满足条件的 <span class="math inline">\(a,b\)</span> 中最大的，那么 <span class="math inline">\(n\)</span> 不能被表示为 <span class="math inline">\(a&#39;b&#39;^2\)</span>（整数 <span class="math inline">\(b&#39; &gt; a&#39;\ge 1\)</span>）的条件是：设 <span class="math inline">\(k^2\)</span> 为 <span class="math inline">\(ab\)</span> 中最大的平方因子，则 <span class="math inline">\(\frac{ab}{k^2}\ge kb\)</span>。这样在求和的时候可以枚举一个 <span class="math inline">\(k\)</span>，然后就能转化成和 <span class="math inline">\(\gcd\)</span> 有关的式子，用莫比乌斯反演解决。这个思想十分妙。</p>
+<!--
+，大概是这样（$f_i(x)$ 表示 $x$ 是否不含 $i$ 次方因子）：
+$$\sum_{a=1}^{\lfloor\sqrt[4]{N-1}\rfloor}[f_3(a)]\sum_{b=a+1}^{\lfloor\sqrt[3]\frac{N}{a}\rfloor}\sum_{k=1}^{\lfloor\sqrt[3]a\rfloor} [ k^2 | ab ]  []$$
+-->
+<p>（待更）</p>
+<p>感谢isdkfj队长对部分公式打错进行修正。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/25/about-topcoder/" data-id="cjegzidbm0008df1l4fsl5jz3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TopCoder/">TopCoder</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/26/goodbye-bingshen/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          记一次冒险的举动——Goodbye Bingshen
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/19/fjwc2017-fjoi2017-r1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">失败的FJWC2017&amp;FJOI2017</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

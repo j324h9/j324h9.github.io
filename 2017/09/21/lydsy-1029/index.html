@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>LYDSY P1029 题解 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="题目描述 http://www.lydsy.com/JudgeOnline/problem.php?id=1029 分析 从暴力入手。假如已经 \(O(2^N)\) 枚举了准备修理的建筑集合 \(S\)，如何判断 \(S\) 中的所有建筑能修理完？ 我们发现，必然存在最优解，使得对于修理序列中任意相邻两个建筑 \(i,j\in S\)，\(i\) 在 \(j\) 前面，均有 \(T_2[i]\le">
+<meta name="keywords" content="题解,LYDSY">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LYDSY P1029 题解">
+<meta property="og:url" content="http://yoursite.com/2017/09/21/lydsy-1029/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="题目描述 http://www.lydsy.com/JudgeOnline/problem.php?id=1029 分析 从暴力入手。假如已经 \(O(2^N)\) 枚举了准备修理的建筑集合 \(S\)，如何判断 \(S\) 中的所有建筑能修理完？ 我们发现，必然存在最优解，使得对于修理序列中任意相邻两个建筑 \(i,j\in S\)，\(i\) 在 \(j\) 前面，均有 \(T_2[i]\le">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-07T09:55:54.073Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LYDSY P1029 题解">
+<meta name="twitter:description" content="题目描述 http://www.lydsy.com/JudgeOnline/problem.php?id=1029 分析 从暴力入手。假如已经 \(O(2^N)\) 枚举了准备修理的建筑集合 \(S\)，如何判断 \(S\) 中的所有建筑能修理完？ 我们发现，必然存在最优解，使得对于修理序列中任意相邻两个建筑 \(i,j\in S\)，\(i\) 在 \(j\) 前面，均有 \(T_2[i]\le">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-lydsy-1029" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/21/lydsy-1029/" class="article-date">
+  <time datetime="2017-09-21T03:24:48.000Z" itemprop="datePublished">2017-09-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LYDSY P1029 题解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="题目描述">题目描述</h3>
+<p>http://www.lydsy.com/JudgeOnline/problem.php?id=1029</p>
+<h3 id="分析">分析</h3>
+<p>从暴力入手。假如已经 <span class="math inline">\(O(2^N)\)</span> 枚举了准备修理的建筑集合 <span class="math inline">\(S\)</span>，如何判断 <span class="math inline">\(S\)</span> 中的所有建筑能修理完？</p>
+<p>我们发现，必然存在最优解，使得对于修理序列中任意相邻两个建筑 <span class="math inline">\(i,j\in S\)</span>，<span class="math inline">\(i\)</span> 在 <span class="math inline">\(j\)</span> 前面，均有 <span class="math inline">\(T_2[i]\le T_2[j]\)</span>。</p>
+<p>这是因为，如果最优解中存在 <span class="math inline">\(i,j\in S\)</span>，<span class="math inline">\(i\)</span> 在 <span class="math inline">\(j\)</span> 前面但 <span class="math inline">\(T_2[i]&gt;T_2[j]\)</span>，可以交换 <span class="math inline">\(i\)</span>、<span class="math inline">\(j\)</span> 顺序，使 <span class="math inline">\(j\)</span> 在 <span class="math inline">\(i\)</span> 前面。由于 <span class="math inline">\(j\)</span> 的完毕时间从 <span class="math inline">\(T+T_1[i]+T_1[j]\)</span> 变成了 <span class="math inline">\(T+T_1[j]\)</span>（<span class="math inline">\(T\)</span>为原来 <span class="math inline">\(i\)</span> 之前的用时），有 <span class="math inline">\(T+T_1[j]\le T+T_1[i]+T_1[j]\le T_2[j]\)</span>；<span class="math inline">\(i\)</span> 的完毕时间从 <span class="math inline">\(T+T_1[i]\)</span> 变成了 <span class="math inline">\(T+T_1[i]+T_1[j]\)</span>，有 <span class="math inline">\(T+T_1[i]+T_1[j]\le T_2[j]&lt;T_2[i]\)</span>，所以交换后得到另一个最优解。</p>
+<p>经过有限次交换之后就能得到满足 <span class="math inline">\(T_2\)</span> 不降的最优解了。</p>
+<p>因此，将所有建筑按 <span class="math inline">\(T_2\)</span> 从小到大排序，那么最优解一定是排序后的一个子序列（可以不连续）。</p>
+<p>有了顺序我们不妨尝试DP。一种比较显然的想法是：记 <span class="math inline">\(f(i,j)\)</span> 为已经确定 <span class="math inline">\(1,2,...,i\)</span> 建筑是否修理，已用 <span class="math inline">\(j\)</span> 的时间，之后最多能修理多少个建筑。转移时，枚举建筑 <span class="math inline">\(i\)</span> 是否修理，可以得到</p>
+<p><span class="math display">\[f(i,j)=\begin{cases}\max\{f(i+1,j),f(i+1,j+T_1[i+1])+1\},&amp;\mathrm{if\ }j+T_1[i+1]\le T_2[i+1],\\f(i+1,j),&amp;\mathrm{otherwise}\end{cases}\]</span></p>
+<p>这样的最大问题是复杂度太高。<span class="math inline">\(j\)</span> 这一维可以达到 <span class="math inline">\(T_2\)</span> 的范围（INT_MAX），然而 <span class="math inline">\(f(i,j)\)</span> 的值域只有 <span class="math inline">\(0\)</span> 到 <span class="math inline">\(n\)</span>。换一种DP姿势吧。</p>
+<p>仿照LIS问题的处理思路，我们把参数和函数值意义交换一下：<span class="math inline">\(f(i,j)\)</span> 表示建筑 <span class="math inline">\(1,2,...,i\)</span> 修理 <span class="math inline">\(j\)</span> 个，至少需要的时间，如果修理不了 <span class="math inline">\(j\)</span> 个则 <span class="math inline">\(f(i,j)=+\infty\)</span>。转移类似：</p>
+<p><span class="math display">\[f(i,j)=\begin{cases}\min\{f(i-1,j),f(i-1,j-1)+T_1[i]\},&amp;\mathrm{if\ }j&gt;0\mathrm{\ and\ }f(i-1,j-1)+T_1[i]\le T_2[i],\\f(i-1,j),&amp;\mathrm{otherwise}\end{cases}\]</span></p>
+<p>边界是 <span class="math inline">\(f(0,0)=0\)</span>，<span class="math inline">\(f(0,j)=+\infty\)</span>（<span class="math inline">\(j&gt;0\)</span>）。答案就是最大的 <span class="math inline">\(j\)</span> 使得 <span class="math inline">\(f(N,j)\ne +\infty\)</span>。</p>
+<p>现在的复杂度已经是 <span class="math inline">\(O(N^2)\)</span> 了，多项式级别，很好。然而 <span class="math inline">\(N\)</span> 的范围是 <span class="math inline">\(150000\)</span>，还是过不去。</p>
+<p>我一开始想对着这样一个DP方程设计出数据结构维护的办法，但由于想法姿势不正确于是想不出。后来我灵机一动，想到了之前想过的一个问题：</p>
+<p>给定 <span class="math inline">\(n\)</span> 个正整数 <span class="math inline">\(a_1,a_2,...,a_n\)</span>，对每个 <span class="math inline">\(k=1,2,...,n\)</span> 求出从这些数中取 <span class="math inline">\(k\)</span> 个数的和的最小值。</p>
+<p>我们可以DP，<span class="math inline">\(f(i,j)\)</span> 表示前 <span class="math inline">\(i\)</span> 个数取 <span class="math inline">\(j\)</span> 个的最小和，则</p>
+<p><span class="math display">\[f(i,j)=\begin{cases}\min\{f(i-1,j),f(i-1,j-1)+a_i\},&amp;\mathrm{if\ }j&gt;0,\\f(i-1,j),&amp;\mathrm{if\ }j=0\end{cases}\]</span></p>
+<p>稍微有点常识的人都知道这样做复杂了，可以直接把 <span class="math inline">\(a\)</span> 从小到大排序，答案就是前 <span class="math inline">\(k\)</span> 个数的和。</p>
+<p>回到原问题。道理不是一样的吗？如果不考虑 <span class="math inline">\(T_2\)</span> 的限制，那么 <span class="math inline">\(f(i,j)\)</span> 就是前 <span class="math inline">\(i\)</span> 个建筑的集合 <span class="math inline">\(S_i\)</span> 按 <span class="math inline">\(T_1\)</span> 排序后前 <span class="math inline">\(j\)</span> 小的 <span class="math inline">\(T_1\)</span> 之和。</p>
+<p>如果考虑了 <span class="math inline">\(T_2\)</span>，由于当 <span class="math inline">\(f(i-1,j)\ne +\infty\)</span> 时，<span class="math inline">\(f(i,j)\le f(i-1,j)\le T_2[i-1]\le T_2[i]\)</span>，故该限制只会对每个 <span class="math inline">\(i\)</span> 的非无穷大的最大 <span class="math inline">\(f(i,j)\)</span> 造成影响。即我们可以对集合 <span class="math inline">\(S_i\)</span> 进行修改：</p>
+<p><span class="math display">\[S_0=\varnothing\]</span></p>
+<p><span class="math display">\[S_i=\begin{cases}S_{i-1}\cup\{i\},&amp;\mathrm{if\ }\sum_{j\in S_{i-1}}T_1[j]+T_1[i]\le T_2[i],\\S_{i-1}\cup\{i\}-\{j\},&amp;\mathrm{otherwise}\end{cases}(i &gt; 0)\]</span></p>
+<p>那么 <span class="math inline">\(f(i,j)\)</span> 就是 <span class="math inline">\(S_i\)</span> 的前 <span class="math inline">\(j\)</span> 小 <span class="math inline">\(T_1\)</span> 之和，当 <span class="math inline">\(j&gt;|S_i|\)</span> 时 <span class="math inline">\(f(i,j)=+\infty\)</span>。</p>
+<p><span class="math inline">\(S\)</span> 可以用优先队列维护，即在第 <span class="math inline">\(i\)</span> 步把 <span class="math inline">\(i\)</span> 插入优先队列，如果插入后优先队列中元素的 <span class="math inline">\(T_1\)</span> 和超过了 <span class="math inline">\(T_2[i]\)</span>，则将优先队列中 <span class="math inline">\(T_1\)</span> 最大的元素弹出来。</p>
+<p>最后优先队列中元素个数 <span class="math inline">\(|S_N|\)</span> 就是答案。</p>
+<p>于是问题被我们高效地解决了，时间复杂度 <span class="math inline">\(O(N\log N)\)</span>，可以通过。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/21/lydsy-1029/" data-id="cjegzidg3001jdf1lg73v7vxt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/23/codeforces-830b/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CF830B 题解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/18/codeforces-434/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Codeforces Round 434 总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

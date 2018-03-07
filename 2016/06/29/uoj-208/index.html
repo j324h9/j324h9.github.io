@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>UOJ 208 UOIP十合一 口胡 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="上次来UOJ看发现UOJ多了俩题，而且好多人都A了一题，于是就准备也来A一题 一眼看起来是个模板题，DAG子图计数，然而并不会= =算了先看测试点吧 【以下是本蒟蒻自己闷声做大死的口胡做法，不保证是正解】 测试点1 \(|V|=1000\)，\(|E|=100000\)，好大，想弃疗。 不过既然是第一个点应该是个特殊点。 写了个程序验证，发现 \[\forall (u,v)\in E,u\le v">
+<meta name="keywords" content="题解,UOJ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UOJ 208 UOIP十合一 口胡">
+<meta property="og:url" content="http://yoursite.com/2016/06/29/uoj-208/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="上次来UOJ看发现UOJ多了俩题，而且好多人都A了一题，于是就准备也来A一题 一眼看起来是个模板题，DAG子图计数，然而并不会= =算了先看测试点吧 【以下是本蒟蒻自己闷声做大死的口胡做法，不保证是正解】 测试点1 \(|V|=1000\)，\(|E|=100000\)，好大，想弃疗。 不过既然是第一个点应该是个特殊点。 写了个程序验证，发现 \[\forall (u,v)\in E,u\le v">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T10:32:15.252Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UOJ 208 UOIP十合一 口胡">
+<meta name="twitter:description" content="上次来UOJ看发现UOJ多了俩题，而且好多人都A了一题，于是就准备也来A一题 一眼看起来是个模板题，DAG子图计数，然而并不会= =算了先看测试点吧 【以下是本蒟蒻自己闷声做大死的口胡做法，不保证是正解】 测试点1 \(|V|=1000\)，\(|E|=100000\)，好大，想弃疗。 不过既然是第一个点应该是个特殊点。 写了个程序验证，发现 \[\forall (u,v)\in E,u\le v">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-uoj-208" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/29/uoj-208/" class="article-date">
+  <time datetime="2016-06-29T07:00:59.000Z" itemprop="datePublished">2016-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      UOJ 208 UOIP十合一 口胡
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上次来UOJ看发现UOJ多了俩题，而且好多人都A了一题，于是就准备也来A一题</p>
+<p>一眼看起来是个模板题，DAG子图计数，然而并不会= =算了先看测试点吧</p>
+<p>【以下是本蒟蒻自己闷声做大死的口胡做法，不保证是正解】</p>
+<h2 id="测试点1">测试点1</h2>
+<p><span class="math inline">\(|V|=1000\)</span>，<span class="math inline">\(|E|=100000\)</span>，好大，想弃疗。</p>
+<p>不过既然是第一个点应该是个特殊点。</p>
+<p>写了个程序验证，发现</p>
+<p><span class="math display">\[\forall (u,v)\in E,u\le v\]</span></p>
+<p>于是答案就是 <span class="math inline">\(2^k\)</span> 的形式，很快就搞出来了。</p>
+<h2 id="测试点2">测试点2</h2>
+<p>一眼看出特殊图，每个点 <span class="math inline">\(i\)</span> 向 <span class="math inline">\([i-4,i+4]\)</span> 内的点连边，即</p>
+<p><span class="math display">\[\forall (u,v)\in E,|u-v|\le 4\]</span></p>
+<p>也就是从左到右决定每条边选不选的时候，只有最近4个点的连通性影响状态。</p>
+<p>状压4个点的传递闭包跑个DP，即设 <span class="math inline">\(f(i,S)\)</span> 为已确定点集 <span class="math inline">\(\{1,2,...,i-1\}\)</span> 内边的状态，且 <span class="math inline">\(\{i-4,...,i-1\}\)</span> 的传递闭包为 <span class="math inline">\(S\)</span>，考虑边集 <span class="math inline">\(E_i=\{(u,v)\in E|\begin{cases}u=i,\\v &lt; i \end{cases}\lor\begin{cases}u &lt; i,\\v=i\end{cases}\}\)</span> 选不选，可以得到</p>
+<a id="more"></a>
+<p><span class="math display">\[f(i,S)=\sum_{E&#39;\subseteq E_i}f(i+1,S&#39;)\]</span></p>
+<p>其中 <span class="math inline">\(S&#39;\)</span> 为加入边集 <span class="math inline">\(E&#39;\)</span> 后 <span class="math inline">\(\{i-3,...,i\}\)</span> 的传递闭包。</p>
+<del>
+不过感觉似乎做麻烦了……
+</del>
+<h2 id="测试点3">测试点3</h2>
+<p>发现还是特殊图，性质是 <span class="math inline">\(|V|=|E|\)</span>，且 <span class="math inline">\(\forall v\in V\)</span>，<span class="math inline">\(\deg^+(v)=1\)</span>。</p>
+<p>因此从任意 <span class="math inline">\(v\in V\)</span> 出发都有唯一的无限长的路径（即有环，并且环是唯一的），做法类似某NOIP题。</p>
+<del>
+其实答案形式很像第1个点
+</del>
+<h2 id="测试点4">测试点4</h2>
+<p>和测试点2类似的特殊图，每个点 <span class="math inline">\(i\)</span> 向 <span class="math inline">\([i-7,i+7]\)</span> 内的点连边，即</p>
+<p><span class="math display">\[\forall (u,v)\in E,|u-v|\le 7\]</span></p>
+<p>状压7个点的传递闭包跑个DP，唯一和测试点2不同的是数据范围变大了，不过状态不满，用hash表（<code>C++</code> 可以使用STL中的 <code>map</code>）即可优化。</p>
+<p>跑好慢不过总算能跑出来了- -</p>
+<h2 id="测试点5">测试点5</h2>
+<p><span class="math inline">\(|V|=100\)</span>，<span class="math inline">\(|E|=400\)</span>，没啥规律，<del>感觉数据是随机的</del></p>
+<p>每个连通块不大？</p>
+<p>写了个Floyd验证了一下，确实每个强连通块边数都很少。</p>
+<p>分块暴力枚举边集，最后乘积即可。</p>
+<p>这个做法可以过第2个点？（看样子真是做麻烦了）</p>
+<h2 id="测试点6">测试点6</h2>
+<p>特殊图，通过观察 <span class="math inline">\(|E|=|V|(|V|-1)\)</span> 以及程序验证，发现 <span class="math inline">\(G=(V,E)\)</span> 是一个简单图，且</p>
+<p><span class="math display">\[\forall u,v\in V,u\ne v,(u,v)\in E\]</span></p>
+<del>
+暴力找出前几项查OEIS
+</del>
+<p>这当然不是正确姿势</p>
+<del>
+吓得我赶紧去研究了下主旋律那题怎么做
+</del>
+<del>
+做过主旋律的人都知道
+</del>
+<p>是个很难想但不难写的递推，<span class="math inline">\(f(i)\)</span> 表示 <span class="math inline">\(i\)</span> 个点的简单DAG数量</p>
+<p>递推时枚举源点个数，由于会互相影响所以要容斥原理，即枚举源点个数 <span class="math inline">\(j\)</span>，则取 <span class="math inline">\(j\)</span> 个源点有 <span class="math inline">\(C_i^j\)</span> 种，<span class="math inline">\(j\)</span> 个源点间不能有边，且它们到 <span class="math inline">\(i-j\)</span> 个其它点的边可以任选，其它 <span class="math inline">\(i-j\)</span> 个点内不能有环，有</p>
+<p><span class="math display">\[f(i)=\sum_{j=1}^i(-1)^{j-1}C_i^j2^{j(i-j)}f(j)\]</span></p>
+<p>不容斥行吗？把源点数记在状态里面可以过这个点，只是复杂度比较差没法扩展到后面点的做法= =</p>
+<h2 id="测试点7">测试点7</h2>
+<p><span class="math inline">\(|V|=12\)</span>，<span class="math inline">\(|E|=66\)</span>，点很少，不过，第5个点的程序废话当然跑不出来</p>
+<p>做法和第6个点类似，<span class="math inline">\(f(S)\)</span> 表示点集 <span class="math inline">\(S\)</span> 内是DAG的方案数。</p>
+<p>递推时枚举 <span class="math inline">\(T\subseteq S\)</span> 作为源点集合，那么 <span class="math inline">\(T\)</span> 内不能有边，<span class="math inline">\(T\)</span> 到 <span class="math inline">\(S-T\)</span> 可以任选，<span class="math inline">\(S-T\)</span> 内也必须是个DAG，容斥即可，有</p>
+<p><span class="math display">\[f(S)=\sum_{T\subseteq S,T\ne\varnothing}(-1)^{|T|-1}2^{g(T,S-T)}f(S-T)\]</span></p>
+<p>其中 <span class="math inline">\(g(S,T)\)</span> 表示满足 <span class="math inline">\((u,v)\in E,u\in S,v\in T\)</span> 的边 <span class="math inline">\((u,v)\)</span> 数量。</p>
+<h2 id="测试点8">测试点8</h2>
+<p><span class="math inline">\(|V|=20\)</span>，<span class="math inline">\(|E|=190\)</span>，同测试点7。</p>
+<del>
+唯一不同的是要用一些奇技淫巧把递推优化成均摊 <span class="math inline">\(O(1)\)</span>
+</del>
+<p><span class="math inline">\(g(S,T)\)</span> 不好预处理，于是我对每个 <span class="math inline">\(S\subseteq V\)</span> 和 <span class="math inline">\(v\in V\)</span> 预处理了 <span class="math inline">\(g(S,\{v\})\)</span>，递推的时候动态推就行啦。</p>
+<p>复杂度 <span class="math inline">\(O(3^{|V|})\)</span> 看起来不到 <span class="math inline">\(1\mathrm{min}\)</span> 就能跑出来</p>
+<h2 id="测试点9">测试点9</h2>
+<p><span class="math inline">\(|V|=102\)</span>，<span class="math inline">\(|E|=201\)</span>，点变多了<del>不会</del></p>
+<p>看了一会儿发现<strong>还</strong>是个特殊图</p>
+<p>每个点 <span class="math inline">\(i\)</span> 关联 <span class="math inline">\(2\)</span> 条边与编号小于 <span class="math inline">\(i\)</span> 的点连接，不过方向不一定，即对每个点 <span class="math inline">\(i\)</span>，存在 <span class="math inline">\(j_1\ne j_2\)</span> 使得 <span class="math inline">\((i,j_1)\)</span> 与 <span class="math inline">\((j_1,i)\)</span> 至少有一个属于 <span class="math inline">\(E\)</span>，<span class="math inline">\((i,j_2)\)</span> 与 <span class="math inline">\((j_2,i)\)</span> 至少有一个属于 <span class="math inline">\(E\)</span>。</p>
+<p>这种情况显然是可以缩边的？</p>
+<p><strong>问题：给定图 <span class="math inline">\(G=(V,E)\)</span>，每条边 <span class="math inline">\(e\in E\)</span> 有两个权值 <span class="math inline">\(w_0(e)\)</span> 和 <span class="math inline">\(w_1(e)\)</span>，求 <span class="math inline">\(G\)</span> 的全部有向无环生成子图 <span class="math inline">\(G&#39;=(V,E&#39;)\)</span> 的权值积 <span class="math inline">\(\prod_{e\in E&#39;}w_1(e)\cdot\prod_{e\in E-E&#39;}w_0(e)\)</span> 之和 <span class="math inline">\(F(G)\)</span>.</strong></p>
+<p><strong>如果 <span class="math inline">\(\deg^-(i)=\deg^+(i)=1\)</span>，设 <span class="math inline">\((x,i)\in E\)</span>，<span class="math inline">\((i,y)\in E\)</span>，<span class="math inline">\(w_0(x,i)=w_0(i,y)=w_1(x,i)=w_1(i,y)=1\)</span>，考虑生成子图 <span class="math inline">\(G&#39;=(V,E&#39;)\)</span> 的两种情况，一种是 <span class="math inline">\((x,i)\in E&#39;\)</span> 且 <span class="math inline">\((i,y)\in E&#39;\)</span>，此时的和为 <span class="math inline">\(F(G-i+(x,y))\)</span>，另一种是 <span class="math inline">\((x,i)\not\in E&#39;\)</span> 或 <span class="math inline">\((i,y)\not\in E&#39;\)</span>，此时的和为 <span class="math inline">\(3F(G-i)\)</span>，因此可以缩掉这条边，即删掉点 <span class="math inline">\(i\)</span>，加入边 <span class="math inline">\((x,y)\)</span>，并且令 <span class="math inline">\(w_0(x,y)=3\)</span>，<span class="math inline">\(w_1(x,y)=1\)</span>，此时的 <span class="math inline">\(F(G)\)</span> 就是答案. 每次找出一个点 <span class="math inline">\(i\)</span> 并且缩掉，就能减小点集.</strong></p>
+<p>缩边以后变成带权边，然而缩到 <span class="math inline">\(|V|=23\)</span> 的时候其它点 <span class="math inline">\(i\)</span> 都有 <span class="math inline">\(\deg^-(i)+\deg^+(i)\ge 3\)</span> 了，<span class="math inline">\(23\)</span> 个点显然短时间跑不出来。</p>
+<del>
+通过手工
+</del>
+<p>枚举了一下其中两个点的情况，又缩了两个点，这样剩下 <span class="math inline">\(21\)</span> 个点。</p>
+<p>剩下的点懒得处理了反正点已经少了很多，那就直接套第7、8个测试点程序跑就OK</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">for each edge e = (u, v) :</span><br><span class="line">    e-&gt;w(0) = e-&gt;w(1) = 1</span><br><span class="line">s = 1</span><br><span class="line">for i = n ... 24 :</span><br><span class="line">    取出与 i 关联的两条边 e[0], e[1]，设 e[0], e[1] 关联的另一个点分别为 v[0], v[1]</span><br><span class="line">    if e[0], e[1] 均从 i 连出或均连入 i :</span><br><span class="line">        s *= 4</span><br><span class="line">    else :</span><br><span class="line">        if e[0] 指向 i:</span><br><span class="line">            swap ( v[0], v[1] )</span><br><span class="line">        构造新边 e = ( v[0], v[1] )</span><br><span class="line">        e-&gt;w(0) = 3</span><br><span class="line">        e-&gt;w(1) = 1</span><br><span class="line">        将 e 加入图中</span><br><span class="line">    将 i, e[0], e[1] 从图中删除</span><br><span class="line">    </span><br><span class="line">... // 通过类似的操作手工处理去掉 22, 23 这两个点</span><br></pre></td></tr></table></figure>
+<h2 id="测试点10">测试点10</h2>
+<p>和9有点像，每个点 <span class="math inline">\(i\)</span> 关联 <span class="math inline">\(3\)</span> 条边与编号小于 <span class="math inline">\(i\)</span> 的点连接，不过方向不一定</p>
+<p>按照测试点9的想法想下去，发现如果缩边就会出现“一条边与3个点相连”的边。好神奇。</p>
+<p>于是研究了一下这种新图的处理方法。</p>
+<p>用 <span class="math inline">\((u,v,w)\)</span> 表示连接三点 <span class="math inline">\(u,v,w\in V\)</span> 的边，一条边可能有多个选取状态，如可以选“<span class="math inline">\(u\)</span> 连到 <span class="math inline">\(v\)</span>”“<span class="math inline">\(u,v,w\)</span> 互相可达”等等，对每条边的每种选取状态（可以表示为 <span class="math inline">\(u,v,w\)</span> 三个点的传递闭包） <span class="math inline">\(S\)</span> 赋上权，得到带权图 <span class="math inline">\(G\)</span>，边 <span class="math inline">\(e\)</span> 选取状态 <span class="math inline">\(S\)</span> 的权为 <span class="math inline">\(f_S(e)\)</span>。</p>
+<p><strong>问题：求 <span class="math inline">\(G\)</span> 的所有不会出现环的选取方式 <span class="math inline">\(G&#39;\)</span> 的权值积 <span class="math inline">\(\prod_{e\in E}f_{S_{G&#39;}(e)}(e)\)</span> 之和 <span class="math inline">\(F(G)\)</span>，其中 <span class="math inline">\(S_{G&#39;}(e)\)</span> 为在选取方式 <span class="math inline">\(G&#39;\)</span> 下 <span class="math inline">\(e\)</span> 的状态.</strong></p>
+<p><strong>如果存在 <span class="math inline">\(i\in V\)</span>，使得 <span class="math inline">\(i\)</span> 在 <span class="math inline">\(G\)</span> 中恰与 <span class="math inline">\(3\)</span> 个点 <span class="math inline">\(j_1,j_2,j_3\)</span> 关联（即包含 <span class="math inline">\(i\)</span> 的所有边包含的点集的并集为 <span class="math inline">\(\{i,j_1,j_2,j_3\}\)</span>），不妨设有 <span class="math inline">\(k\)</span> 条包含 <span class="math inline">\(i\)</span> 的边 <span class="math inline">\(e_1,e_2,...,e_k\)</span>，则对每条边的每一种选择情况 <span class="math inline">\(S_1,S_2,...,S_k\)</span>，权值积的和等于从 <span class="math inline">\(G\)</span> 中去掉点 <span class="math inline">\(i\)</span> 及边 <span class="math inline">\(e_1,...,e_k\)</span> 并加入选取状态为 <span class="math inline">\(S&#39;\)</span> 的边 <span class="math inline">\(e&#39;=(j_1,j_2,j_3)\)</span> 后，在选 <span class="math inline">\(e&#39;\)</span> 的条件下的权值积的和乘以 <span class="math inline">\(\prod_{s=1}^kf_{S_s}(e_s)\)</span>，其中 <span class="math inline">\(S&#39;\)</span> 为合并 <span class="math inline">\(S_1,...,S_k\)</span> 后 <span class="math inline">\(j_1,j_2,j_3\)</span> 的传递闭包.</strong></p>
+<p><strong>因此构造边 <span class="math inline">\(e&#39;=(j_1,j_2,j_3)\)</span>，满足 <span class="math inline">\(f_S(e&#39;)\)</span> 等于所有满足 <span class="math inline">\(S_1,...,S_k\)</span> 合并后 <span class="math inline">\(j_1,j_2,j_3\)</span> 的传递闭包等于 <span class="math inline">\(S\)</span> 的 <span class="math inline">\(\prod_{s=1}^kf_{S_s}(e_s)\)</span> 之和，那么 <span class="math inline">\(F(G)=F(G-\{i\}-\{e_1,...,e_k\}+e&#39;)\)</span>.</strong></p>
+<p>不过会不会出现缩到后面一个点与 <span class="math inline">\(k(k\ge 4)\)</span> 个点相连？这样就比较麻烦了= =</p>
+<p>然后试了下，还好，一直缩到 <span class="math inline">\(|V|=3\)</span> 都没有出现一条边与 <span class="math inline">\(k(k\ge 4)\)</span> 个点相连的情况</p>
+<p>于是果断写了个 <code>struct</code> 存每条“与3个点相连的边”每一种传递闭包的权值（实质就是方案数）</p>
+<p>缩点的时候做个类似卷积的东西合并方案数</p>
+<del>
+然后发现缩一半被卡住了……什么情况？
+</del>
+<p>缩的时候会出现大量重边，需要及时去重</p>
+<p>最后剩下3个点</p>
+<del>
+就解决啦
+</del>
+<del>
+怎么一直过不了check？
+</del>
+<del>
+有个地方爆数组了……调了我好久好久……
+</del>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">for each e = ( u, v ) :</span><br><span class="line">    将 e 改成边 e = ( u, v, null ), e-&gt;f(0) = e-&gt;f(1) = 1   // 1表示只连u到v的传递闭包</span><br><span class="line">for i = n ... 4 :</span><br><span class="line">    取出与 i 关联的所有边 E&apos; = &#123; e[0], e[1], ..., e[k-1] &#125;</span><br><span class="line">    取出 i 关联的 3 个点 &#123; v[0], v[1], v[2] &#125;</span><br><span class="line">    构造新边 e&apos; = ( v[0], v[1], v[2] ), 所有的 e&apos;-&gt;f(S) = 0</span><br><span class="line">    枚举 e[0] 选择的传递闭包 S[0] :</span><br><span class="line">        枚举 e[1] 选择的传递闭包 S[1] :</span><br><span class="line">            ....</span><br><span class="line">            枚举 e[k-1] 选择的传递闭包 S[k-1] :</span><br><span class="line">                if S[0], S[1], ..., S[k-1] 合并后无环 :</span><br><span class="line">                    合并得到 v[0], v[1], v[2] 的传递闭包 S&apos;</span><br><span class="line">                    e&apos;-&gt;f(S&apos;) += e[0]-&gt;f(S[0]) * e[1]-&gt;f(S[1]) * ... * e[k-1]-&gt;f(S[k-1])</span><br><span class="line">    将点 i 与 E&apos; 从图中删除</span><br><span class="line">    if 图中存在同样连接 v[0], v[1], v[2] 的边 e :</span><br><span class="line">        构造新边 e&apos;&apos; = ( v[0], v[1], v[2] ), 所有的 e&apos;&apos;-&gt;f(S) = 0</span><br><span class="line">        枚举 e 选择的传递闭包 S :</span><br><span class="line">            枚举 e&apos; 选择的传递闭包 S&apos; :</span><br><span class="line">                if S, S&apos; 合并后无环 :</span><br><span class="line">                    合并得到 v[0], v[1], v[2] 的传递闭包 S&apos;&apos;</span><br><span class="line">                    e&apos;&apos;-&gt;f(S&apos;&apos;) += e-&gt;f(S) * e&apos;-&gt;f(S&apos;)</span><br><span class="line">        e&apos; = e&apos;&apos;</span><br><span class="line">        将边 e 从图中删除</span><br><span class="line">    将边 e&apos; 加入图中</span><br><span class="line">取出剩下的边集 E = &#123; e[0], e[1], ..., e[m-1] &#125;</span><br><span class="line">ans = 0</span><br><span class="line">枚举 e[0] 选择的传递闭包 S[0] :</span><br><span class="line">    枚举 e[1] 选择的传递闭包 S[1] :</span><br><span class="line">        ....</span><br><span class="line">        枚举 e[m-1] 选择的传递闭包 S[k-1] :</span><br><span class="line">            if S[0], S[1], ..., S[m-1] 合并后无环 :</span><br><span class="line">                ans += e[0]-&gt;f(S[0]) * e[1]-&gt;f(S[1]) * ... * e[m-1]-&gt;f(S[m-1])</span><br><span class="line">return ans</span><br></pre></td></tr></table></figure>
+<p>感觉做这种题像游戏打BOSS一样，越到后面的关越想弃疗</p>
+<p>【虽然总算做完了但考场上恐怕只能做50分了……】</p>
+<del>
+另外，做完以后去看myy的题解，最后两个点的正解居然是树分解……myy太强啦%%%树分解这玩意我听都没听说过……果然我太弱啦
+</del>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/29/uoj-208/" data-id="cjegzidhc0029df1lxrnk7oli" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/04/fjtrain2016/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          直播FJ省队集训大爆炸
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/25/noi2015-epic/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">NOI2015 荷马史诗 题解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

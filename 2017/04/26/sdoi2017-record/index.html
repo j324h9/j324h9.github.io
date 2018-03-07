@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>SDOI2017做题记录 | oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta name="description" content="先做了D2T3。 D2T3：相关分析 这种题入手，先推个式子： \[a=\frac{\sum_{i=L}^R(x_i-\overline{x})(y_i-\overline{y})}{\sum_{i=L}^R(x_i-\overline{x})^2} =\frac{\sum_{i=L}^R(x_iy_i-x_i\overline{y}-y_i\overline{x}+\overline{x}\ov">
+<meta name="keywords" content="题解,SDOI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SDOI2017做题记录">
+<meta property="og:url" content="http://yoursite.com/2017/04/26/sdoi2017-record/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="先做了D2T3。 D2T3：相关分析 这种题入手，先推个式子： \[a=\frac{\sum_{i=L}^R(x_i-\overline{x})(y_i-\overline{y})}{\sum_{i=L}^R(x_i-\overline{x})^2} =\frac{\sum_{i=L}^R(x_iy_i-x_i\overline{y}-y_i\overline{x}+\overline{x}\ov">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T13:34:18.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SDOI2017做题记录">
+<meta name="twitter:description" content="先做了D2T3。 D2T3：相关分析 这种题入手，先推个式子： \[a=\frac{\sum_{i=L}^R(x_i-\overline{x})(y_i-\overline{y})}{\sum_{i=L}^R(x_i-\overline{x})^2} =\frac{\sum_{i=L}^R(x_iy_i-x_i\overline{y}-y_i\overline{x}+\overline{x}\ov">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-sdoi2017-record" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/26/sdoi2017-record/" class="article-date">
+  <time datetime="2017-04-26T02:15:14.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SDOI2017做题记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先做了D2T3。</p>
+<h4 id="d2t3相关分析">D2T3：相关分析</h4>
+<p>这种题入手，先推个式子：</p>
+<p><span class="math display">\[a=\frac{\sum_{i=L}^R(x_i-\overline{x})(y_i-\overline{y})}{\sum_{i=L}^R(x_i-\overline{x})^2}
+=\frac{\sum_{i=L}^R(x_iy_i-x_i\overline{y}-y_i\overline{x}+\overline{x}\overline{y})}{\sum_{i=L}^R(x_i^2-2x_i\overline{x}+\overline{x}^2)}
+=\frac{\sum_{i=L}^Rx_iy_i-n^{-1}\sum_{i=L}^Rx_i\sum_{i=L}^Ry_i}{\sum_{i=L}^Rx_i^2-n^{-1}(\sum_{i=L}^Rx_i)^2}\]</span></p>
+<p>于是问题转化为询问 <span class="math inline">\(\sum_{i=L}^Rx_i\)</span>，<span class="math inline">\(\sum_{i=L}^Ry_i\)</span>，<span class="math inline">\(\sum_{i=L}^Rx_i^2\)</span>，<span class="math inline">\(\sum_{i=L}^Rx_iy_i\)</span>，就比较裸了。</p>
+<p>用线段树维护这4个和，以及维护两种标记：区间的 <span class="math inline">\(x,y\)</span> 增加量，区间是否被修改为等差数列。显然标记可以合并，注意后一个标记会覆盖前一个标记。接着考虑标记如何应用到结点信息。</p>
+<p>设 <span class="math inline">\(x_L,x_{L+1},\cdots,x_R\)</span> 应用 <span class="math inline">\(x_i\leftarrow x_i+s\)</span>，<span class="math inline">\(y_i\leftarrow y_i+t\)</span> 标记后为 <span class="math inline">\(x_L&#39;,x_{L+1}&#39;,\cdots,x_R&#39;\)</span>，则 <span class="math display">\[\sum_{i=L}^Rx_i&#39;=\sum_{i=L}^R(x_i+s)=\sum_{i=L}^Rx_i+(R-L+1)s\]</span> <span class="math display">\[\sum_{i=L}^Ry_i&#39;=\sum_{i=L}^R(y_i+t)=\sum_{i=L}^Ry_i+(R-L+1)t\]</span> <span class="math display">\[\sum_{i=L}^Rx_i&#39;^2=\sum_{i=L}^R(x_i+s)^2=\sum_{i=L}^Rx_i^2+2s\sum_{i=L}^Rx_i+(R-L+1)s^2\]</span> <span class="math display">\[\sum_{i=L}^Rx_i&#39;y_i&#39;=\sum_{i=L}^R(x_i+s)(y_i+t)=\sum_{i=L}^Rx_iy_i+t\sum_{i=L}^Rx_i+s\sum_{i=L}^Ry_i+(R-L+1)st\]</span></p>
+<p>设 <span class="math inline">\(x_L,x_{L+1},\cdots,x_R\)</span> 应用 <span class="math inline">\(x_i\leftarrow i\)</span>，<span class="math inline">\(y_i\leftarrow i\)</span> 标记后为 <span class="math inline">\(x_L&#39;,x_{L+1}&#39;,\cdots,x_R&#39;\)</span>，则 <span class="math display">\[\sum_{i=L}^Rx_i&#39;=\sum_{i=L}^Ry_i&#39;=\sum_{i=L}^Ri=\frac{(L+R)(R-L+1)}{2}\]</span> <span class="math display">\[\sum_{i=L}^Rx_i&#39;^2=\sum_{i=L}^Rx_i&#39;y_i&#39;=\sum_{i=L}^Ri^2=\frac{R(R+1)(2R+1)-L(L-1)(2L-1)}{6}\]</span></p>
+<p>于是线段树信息维护完成。复杂度 <span class="math inline">\(O(n+m\log n)\)</span>。</p>
+<p>由于我没有chentong那么强，写得比较复杂，差不多2KB……</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">double</span> X[<span class="number">100010</span>],Y[<span class="number">100010</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">info</span>&#123;</span></span><br><span class="line">	<span class="keyword">double</span> x,y,x2,xy,s,t;</span><br><span class="line">	<span class="keyword">bool</span> fa,fm;</span><br><span class="line">	info <span class="keyword">operator</span>+(<span class="keyword">const</span> info&amp;a)<span class="keyword">const</span>&#123;</span><br><span class="line">		<span class="keyword">return</span>(info)&#123;x+a.x,y+a.y,x2+a.x2,xy+a.xy,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;T[<span class="number">1</span>&lt;&lt;<span class="number">18</span>];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Def int node,int L,int R</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Mid (L+R&gt;&gt;1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Cur node,L,R</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Ls node&lt;&lt;1,L,Mid</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Rs node&lt;&lt;1|1,Mid+1,R</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_v</span><span class="params">(Def,<span class="keyword">double</span> s,<span class="keyword">double</span> t)</span></span>&#123;</span><br><span class="line">	T[node]=(info)&#123;</span><br><span class="line">		T[node].x+s*(R-L+<span class="number">1</span>),T[node].y+t*(R-L+<span class="number">1</span>),</span><br><span class="line">		T[node].x2+<span class="number">2</span>*s*T[node].x+(R-L+<span class="number">1</span>)*s*s,</span><br><span class="line">		T[node].xy+t*T[node].x+s*T[node].y+s*t*(R-L+<span class="number">1</span>),</span><br><span class="line">		T[node].s+s,T[node].t+t,<span class="number">1</span>,T[node].fm</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify_v</span><span class="params">(Def)</span></span>&#123;</span><br><span class="line">	T[node]=(info)&#123;</span><br><span class="line">		(L+R)*(R-L+<span class="number">1.0</span>)/<span class="number">2</span>,(L+R)*(R-L+<span class="number">1.0</span>)/<span class="number">2</span>,</span><br><span class="line">		(R*(R+<span class="number">1.0</span>)*(<span class="number">2</span>*R+<span class="number">1</span>)-L*(L<span class="number">-1.0</span>)*(<span class="number">2</span>*L<span class="number">-1</span>))/<span class="number">6</span>,</span><br><span class="line">		(R*(R+<span class="number">1.0</span>)*(<span class="number">2</span>*R+<span class="number">1</span>)-L*(L<span class="number">-1.0</span>)*(<span class="number">2</span>*L<span class="number">-1</span>))/<span class="number">6</span>,</span><br><span class="line">		<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(Def)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(T[node].fm)&#123;</span><br><span class="line">		modify_v(Ls);</span><br><span class="line">		modify_v(Rs);</span><br><span class="line">		T[node].fm=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(T[node].fa)&#123;</span><br><span class="line">		add_v(Ls,T[node].s,T[node].t);</span><br><span class="line">		add_v(Rs,T[node].s,T[node].t);</span><br><span class="line">		T[node].s=T[node].t=<span class="number">0</span>;T[node].fa=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(Def)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(L==R)add_v(Cur,X[L],Y[L]);</span><br><span class="line">	<span class="keyword">else</span> build(Ls),build(Rs),T[node]=T[node&lt;&lt;<span class="number">1</span>]+T[node&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Def,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">bool</span> ty,<span class="keyword">double</span> s,<span class="keyword">double</span> t)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==L&amp;&amp;r==R)&#123;</span><br><span class="line">		<span class="keyword">if</span>(ty)modify_v(Cur);</span><br><span class="line">		add_v(Cur,s,t);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		pushdown(Cur);</span><br><span class="line">		<span class="keyword">if</span>(r&lt;=Mid)add(Ls,l,r,ty,s,t);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(l&gt;Mid)add(Rs,l,r,ty,s,t);</span><br><span class="line">		<span class="keyword">else</span> add(Ls,l,Mid,ty,s,t),add(Rs,Mid+<span class="number">1</span>,r,ty,s,t);</span><br><span class="line">		T[node]=T[node&lt;&lt;<span class="number">1</span>]+T[node&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">info <span class="title">query</span><span class="params">(Def,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==L&amp;&amp;r==R)<span class="keyword">return</span> T[node];</span><br><span class="line">	pushdown(Cur);</span><br><span class="line">	<span class="keyword">if</span>(r&lt;=Mid)<span class="keyword">return</span> query(Ls,l,r);</span><br><span class="line">	<span class="keyword">if</span>(l&gt;Mid)<span class="keyword">return</span> query(Rs,l,r);</span><br><span class="line">	<span class="keyword">return</span> query(Ls,l,Mid)+query(Rs,Mid+<span class="number">1</span>,r); </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%lf"</span>,X+i);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%lf"</span>,Y+i);</span><br><span class="line">	build(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">	<span class="keyword">int</span> op,L,R;</span><br><span class="line">	<span class="keyword">double</span> S,T;</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;op,&amp;L,&amp;R);</span><br><span class="line">		<span class="keyword">if</span>(op==<span class="number">1</span>)&#123;</span><br><span class="line">			info a=query(<span class="number">1</span>,<span class="number">1</span>,n,L,R);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%.10lf\n"</span>,((R-L+<span class="number">1</span>)*a.xy-a.x*a.y)/((R-L+<span class="number">1</span>)*a.x2-a.x*a.x));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;S,&amp;T);</span><br><span class="line">			add(<span class="number">1</span>,<span class="number">1</span>,n,L,R,op&gt;<span class="number">2</span>,S,T);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/26/sdoi2017-record/" data-id="cjegzidgw0020df1lsgf2smzm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/01/51nod-24/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          51nod算法马拉松24
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/26/shoi2017-record/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SHOI2017（六省联考）做题记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

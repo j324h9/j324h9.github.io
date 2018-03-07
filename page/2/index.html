@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>oi_loser&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+  <meta property="og:type" content="website">
+<meta property="og:title" content="oi_loser&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="oi_loser&#39;s blog">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">oi_loser&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-51nod-28" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/04/51nod-28/" class="article-date">
+  <time datetime="2017-09-04T01:17:36.000Z" itemprop="datePublished">2017-09-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/04/51nod-28/">51nod算法马拉松28做题情况</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参加了51nod算法马拉松28，然后第11名滚粗了。</p>
+<p>D题，正解是Helly定理，然后我不会。。。</p>
+<p>于是看这题输出都是YES或NO就开始骗分乱搞，先打了个卡时多次随机三个凸包求交，然后发现凸包求交好难写啊，又开始瞎搞，只把顶点带进去，结果过不了样例，又加了一些奇怪位置上的点，调了很久总算过样例并且有分了。接着对着verdict调程序，试过各种枚举顺序和骗分姿势，爆了20+发OJ，好不容易乱搞搞过去了。</p>
+<p>F题囧死了，想了一天。。。</p>
+<p>我的想法是对所有满足每个数出现2次的数列求有多少种不同的拆成两个排列的方案，然后没啥思路，就打了个表，发现每个数列拆成每个排列的方案数都是2的幂，然而这和我要求的东西没关系的样子？要求的是不同的方案数。接着考虑一个排列能被这个数列accept的条件是啥，推来推去推出一个2-SAT，一脸懵逼，弃掉。</p>
+<p>接着试图找到结论，先猜每一对相同的数有两种，于是方案数是2<sup>n，然后发现反例随便找（比如0110只有(01,10)(10,01)两种，而不是4种），接着发现一对相邻的数是没有影响的不用乘2，方案数2</sup>(n-k)（k是相邻的相等数对个数），反例还是随便找（比如0101是3种(01,01)(01,10)(10,01)而不是4种），又懵了。</p>
+<p>后面又想能不能一个个数值把两个数插到两个排列里面去，如果插入时两个数之间有数就是2种，否则不好说（现在两种放法看起来一样，等后面就不一样了）。又手玩了几组数据，发现把相等的数连成弧，相交的弧看成连通，那么如果两个连通块有包含关系就只要考虑里面的，外面的每条边答案乘2，而最里面的连通块都是编号连续的。</p>
+<p>于是现在的结论是把连续连通块取出来算出答案，剩下每个数对答案乘2。应该没错了，然而连续连通块答案怎么求？又打了个表，发现连续连通块答案要么是2<sup>n要么是2</sup>n-1，并且2<sup>n-1当且仅当这些数的左右端点是单调的（如010212是单调的，012021不单调，因为1左端在2前，右端在2后）。最后结论是把左右端点单调的连续连通块取出来乘上2</sup>s-1（s是边数），其余的每种数乘2就是答案。</p>
+<p>然后要统计所有每个数出现2次的数列的这个玩意儿的和，怎么搞？一开始推了一个复杂的DP，结果n=2对，n=3错，然后发现处理左右端点单调的连续连通块处理不清楚，又改，改完以后n=2,3对，n=4错，调了很久才发现处理方法仍然有问题，然后就不会了。。。又想了想容斥，发现不太可搞。</p>
+<p>晚上回去，突然发现容斥是对的！相当于用若干个线段覆盖长度为2n的区间，每个线段乘-1，每两个空位乘2，再乘个catalan数和形如1<em>3</em>5*7...的乘积。</p>
+<p>用个n^3 DP求出每种线段个数和覆盖总长度的方案数，然后枚举线段个数和覆盖长度算一下答案，就n^3搞完了。</p>
+<p>代码20行，跑得也很快。</p>
+<p>附ABCE做法：</p>
+<p>A题就是在先序和后序遍历里递归统计出只有一个子节点的节点个数t，答案就是2^t。</p>
+<p>B题字符串hash，由于每次询问的字母等价关系不一定一样，需要对每个字母预处理hash值，判断s=t就对等价关系连成的并查集的每个连通块算出s和t的hash值，都相等就s=t。有一个字母不同也好办，二分一下看看能不能二分出来即可。O(Tσlog|s|)。</p>
+<p>C题维护两个栈S1,S2，操作0就push到栈S1，然后对S1的每个前缀记录它和前面数的max，操作1就push到栈S2，操作2如果S1非空就pop S1，否则逐个把S2中的元素pop出来加进S1。O(n)。</p>
+<p>E题，大小为s的环有2<sup>s种取法，使连通块减少i个的取法有C(s,i)+[i=s-1]-[i=s]种，不在环上的边有2种取法，使连通块减少0个或1个的取法都是1种。那么所有环∑C(s,i)x</sup>i + x^(s-1) - x<sup>s的乘积再乘上(x+1)</sup>e（e为非环边数）得到的多项式的x<sup>i系数就是n-i个连通块的生成子图个数。每次取度最小的两个多项式FFT乘起来即可。O(nlog</sup>2n)。</p>
+<p>然后！这！题！有！坑！题目求的是花费最小值的和，而不是使用魔法次数最小！也就是说，如果i个连通块费用比i+1个连通块还大，那么还不如原地用一次魔法！ 然后我没注意到就死活调不出来，拍不出错又A不了。。。所幸最后还是调出来了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/04/51nod-28/" data-id="cjegzidb50005df1lazwbo73q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="blog-ioi2017" class="article article-type-blog" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/25/ioi2017/" class="article-date">
+  <time datetime="2017-07-25T00:19:10.000Z" itemprop="datePublished">2017-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/25/ioi2017/">退役之战——IOI2017</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>退役前的最后一战。</p>
+<p>挺紧张的，毕竟我NOI只有#40+，就算把Day2挂掉的66分加上还是只有#20+。不止一题脑抽差一点想出来还是相当不爽的啊。</p>
+<p>毕竟还是运气选手唉= =</p>
+<p>以及我现在考场心态还是太糟糕。</p>
+<p>不过作为国家队的最后一名，我也没有什么太多的梦想吧。保Ag争Au吧。</p>
+<p>orz matthew99,xumingkuan,cy。</p>
+<hr>
+<h3 id="月25日">7月25日</h3>
+<p>入住酒店。</p>
+<p>刷了CEOI2016D2T1。想了一个比较复杂的做法不知道有没更简单的做法。</p>
+<p>NOI同步赛成绩单出来了，作为Day2挂成114分的国家队垫底选手，看着被一大堆人虐感觉也是很奇葩的。(然而同步赛FJ Day2最高分居然也就114?大家都考跪了?)</p>
+<p>和xumingkuan住一间。</p>
+<p>晚上宋老师带全队四人去McDonald吃了点零食，顺便和另外三人聊了些题目怎么做。深刻感觉我水平低得可怜。</p>
+<hr>
+<h3 id="月26日">7月26日</h3>
+<p>IOI前的ACM模拟赛。</p>
+<p>把自己名称改成了orz_immortalCO，暴力膜锟。</p>
+<p>A题找了好久的规律，才看出exgcd的做法。</p>
+<p>B题只会一种很暴力的DP，过不去。jiaqiyang当场AC了。</p>
+<p>C题完全不会。</p>
+<p>D题看n&lt;=17以为是傻逼题，然后想了1h还是不会，GG。</p>
+<p>E题就是个辣鸡题，研究了好久发现细节很难处理，结果暴力都WA，最后干脆交了个不考虑四点共线，A//B//C时会退化成平方log的程序上去，正确性和复杂度都不对，居然能过。xumingkuan现场写了FFT过了。</p>
+<p>最后2题滚粗。我并不能跟上国家队的平均水平。</p>
+<hr>
+<h3 id="月27日">7月27日</h3>
+<p>动员会。没什么好说的。</p>
+<hr>
+<h3 id="月28日">7月28日</h3>
+<p>在飞机上坐了大概10h，意识模糊。</p>
+<p>下午Exhibition，没什么好说的。</p>
+<hr>
+<h3 id="月29日">7月29日</h3>
+<p>练习赛。</p>
+<p>就是之前做过的题，不过只有2h，来不及AK。</p>
+<p>T1用我论文里面的独立集搜索算法拿了70分。虽然说正解更好写但是懒得写了。</p>
+<p>T2水题切了。</p>
+<p>T3水题切了。</p>
+<p>T4提答，暴搜搜出4个点，又搞了4，5两个特殊点，拿了60分。剩下的点没时间搞了。</p>
+<p>70+100+100+60=330</p>
+<p>明天就是day1了，为自己加油。</p>
+<hr>
+<h3 id="月30日">7月30日</h3>
+<p>Day1。</p>
+<p>开场看了三个题，T1是个提答，而且数据点很大不能暴搜，感觉是神奇的构造或者随机化算法，应该要留到最后去争取；T2好像很套路；T3好像一脸不可做。</p>
+<p>然后就开T2了。一开始想到费用流，然后思考了好一会儿如何优化这个费用流，发现增广路可能好几段，不太能优化。思考无果就去看T3了。</p>
+<p>T3看完题再看数据范围，n&lt;=5000，m&lt;=20000，突然又觉得这题可能才是送分题。然后开始推DP，一开始想记f(i)为从i出发会不会绕道一个有充电点的环上，然后转移有环，搞不出来。又想了想，如果A必胜，那么最优路径就会一直经过充电点，反之n步以后再也不会经过充电点。</p>
+<p>想到这里打了一个nm的DP：f(i,j)表示当前在i，走j步将经过多少个点，如果f(i,n)=f(i,2n)则i是0，否则1。虽然不会证但感觉没什么问题的样子，就写。</p>
+<p>调到考试开始1:20时过了子任务1,2,3,5，另外两个子任务TLE，38分。看起来这个做法是对的，只是被卡常数了。然后优化常数，在1:40时过了子任务4，49分。继续优化常数终于不TLE了，然而WA在了子任务5的第96个点。</p>
+<p>怀疑哪里写挂了，眼调了很久。</p>
+<p>把怀疑挂的地方改改，怎么改都过不去，始终49分，WA第96个点。然后就浪费了半个多小时（Ag flag</p>
+<p>已经2:20了，没什么救，弃疗去搞T2。</p>
+<p>一开始打了个7分暴力。感觉这个题性质奥妙重重，一定有规律。于是拿7分暴力打表找规律，看看发现每段都是一段R一段B，两段最多有一个交点。这样就可以转移了，然而这样仍然是n^2的，在3:13时写了暴力过了子任务3，一共17分。</p>
+<p>然后有一种自己这题到手了的感觉，开始想优化转移。看着式子发现是个斜率优化，然而看起来很复杂的样子。随后想想裸上决策单调性好像可以（Ag flag*2</p>
+<p>然后以为决策单调性很好写，实际花了半个多小时，调不出来。好不容易调出来发现做法有问题，想fix这个做法又花了一会儿，还是错，惨啊。</p>
+<p>这时候T1还没打，很慌，赶紧回去每个点随机输出一个极大的树拿了60分。</p>
+<p>最后30min终于决定打T2的靠谱的斜率优化了，打了大概20min。</p>
+<p>然而，没调出来（Ag flag*3</p>
+<p>最后就悲惨得滚粗了。</p>
+<p>60+30+49=139</p>
+<p>考完第一个问xmk，他说他拿了274。我一听整个人都要吓软掉了，完了，真的没救了。lzz也拿了接近200分。myy和yjq好像也考跪了。</p>
+<p>出来看榜，我#40，Ag分数，xmk#3，就要虐场。唉，这就是实力的差距。</p>
+<p>听说T3只有4个人A，xmk就是其中一个。想想我这个做法自己都不会证是不是对的居然能拿49，却不知道骗分应该及时收手，导致浪费大量时间最后没时间做T2，70分没了，活该Ag。</p>
+<p>下午回去，非常不甘心地继续调T2的斜率优化，花了大概半小时调出来了。早知道那个不靠谱的决策单调性就不要写了，省出这个时间完全足够A掉T2，70分没了，活该Ag。</p>
+<p>在车上和myy，xmk讨论T2，他们说T2不用斜率优化，前缀最值就行。我说式子里不是有一个x吗，然后盯着式子又看了两眼，发现这个x是连续段的开头，是固定的！而不是x[i]会变。要是多思考下，前缀最值比斜率优化好写不知道多少倍。</p>
+<p>调T3错误算法，搞T2决策单调性，写T2斜率优化，这三个错只要我任何一个不犯就是209分，但结局是139分。我连续这么多场比赛就没有正常发挥过，IOI又因为自己作死花大量时间在错误算法上而丢掉70分，丢掉Au，成千古罪人。想想真是太后悔了。</p>
+<p>晚上去Exhibition到很迟才回宾馆。</p>
+<hr>
+<h3 id="月31日">7月31日</h3>
+<p>Exhibition。</p>
+<p>本来很好看的，一想到D1T2就没心情了。</p>
+<p>如果是实力Ag也不觉得遗憾，然而明明会做的题却因自己作死浪费时间最后来不及调出来导致Ag，就十分遗憾了。</p>
+<hr>
+<h3 id="月1日">8月1日</h3>
+<p>Day2。</p>
+<p>还是花半小时看了三个题，T1、T2都是交互题，目测应该一道简单一道难，T3是传统题，看起来很可做。</p>
+<p>然后猜了个T3贪心的结论，答案等于每个环的长度和加上s左边非自环最右和s右边非自换最左距离的2倍，交上去，爆0了。</p>
+<p>发现写挂了，改了改交上去，又爆0了。</p>
+<p>想了一会儿发现套在一起的环可以一起走，就fix了一下，交上去，50。</p>
+<p>不错，起码s=0的对了。</p>
+<p>60min过去了，我得了50分。（Ag flag</p>
+<p>回去看T1。T1感觉i的个数大于i-1的个数的平方这个约束很奥妙重重，意味着可以用分治暴力搞出所有小于v的位置？然后随手打了个分治，交上去爆20。</p>
+<p>然后发现递归到[l,r]时询问mid询问的不是[l,mid)而是[0,mid)，接着想前缀和减减，发现mid和l，r不一定都是v类型。</p>
+<p>接着想法就是先随便询问500个位置取个最大的，然后就能判断是不是v了，不是v的只有不到500个，暴力扔掉。</p>
+<p>写完交上去，拿了97，把500调参调到480，并没有什么卵用。</p>
+<p>100min过去了，我得了147分。（Ag flag*2</p>
+<p>感觉为了剩下2分多折腾太浪费时间，就去看T2。</p>
+<p>第一感觉是高斯消元解线性方程组，接着想想发现一点也不靠谱。既然是生成树，就一定有什么性质，无环？</p>
+<p>随后我的想法是，每个环至少有一条边不属于生成树，这样就可以对每个环询问L（L为环长）次确定环上是边是否属于要求的生成树，这样就能m次询问搞定了。然而只有暴力分。</p>
+<p>优化了一会儿拿到51分，继续想，怎么想都只会m次询问的做法。</p>
+<p>180min过去了，我得了198分。（Ag flag*3</p>
+<p>之后继续搞T3，想想我的做法s不等于0为什么会错，原来s和左右端点夹住s的环不能套在一起。然后加了个贪心，先走到最近的环。</p>
+<p>交上去还是50。然后发现5,4,3,2,1,0这种情况没有两个环是嵌套的。接着推出从环A能进环B的条件是A的最左和最右点之间存在B中的点。</p>
+<p>看样子是求一个最短的包含s的区间使其能到所有环？写了个bitset+floyd+two pointers，只有12。</p>
+<p>和s=0的拍了一会儿拍出WA，手算了一下才意识到在任何位置加边使s能到所有环就行了。</p>
+<p>接着写了个复杂度不满的n^2 DP：f(l,r)表示从区间[l,r]出发至少加多少边能到所有环，用hash表存状态，过了70，最后一个Subtask TLE在第66个点。</p>
+<p>继续推发现是个最小树形图，然而这东西我只会n^2暴力，想试图观察出什么性质也没观察出来，一定是我太弱了。</p>
+<p>T2也没什么好的思路，连完全图都不会做。</p>
+<p>最后延长了半小时，然而T2、T3都做不出来，很绝望。</p>
+<p>97+51+70=218</p>
+<p>两天加起来139+218=357，Ag稳，Au不太行，好虚啊。</p>
+<p>出来问了下，xmk 250，lzz 267，myy 219，都比我高分啊。要是我Day1没丢70分就稳Au了。要是大家都会T2，T3……</p>
+<p>出来看到中间榜我貌似#23？然后不少人发祝贺？然而还不是最终榜，好虚啊。</p>
+<p>最终榜出来了，我#25，好像又卡了一次Au线啊。xmk#2，lzz#3。然而myy还是挂了，惨啊，myy在我心目中一直是最稳的，可是……为什么会这样呢？</p>
+<p>仔细想想，我现在的成就有：CTSC 0AC得到Au，NOI 0AC得到Au，IOI 0AC得到Au，感觉没有谁同时拿过这三个成就了。</p>
+<hr>
+<h3 id="月2日">8月2日</h3>
+<p>上午去water park，以为自己退役了无所畏惧了，还是被某大型水滑梯吓怕了。后来玩了几个小型的。</p>
+<p>下午Exhibition。</p>
+<hr>
+<h3 id="月3日">8月3日</h3>
+<p>闭幕式。</p>
+<p>颁奖按排名从后往前的，然后我是Au上去的第二个。</p>
+<p>又开始后悔D1T2了。</p>
+<hr>
+<h3 id="月4日">8月4日</h3>
+<p>考挂滚粗回家。</p>
+<p>退役了。</p>
+<p>很不甘心自己OI尚未取得好成绩就这么退役。不过我相信以后我还有机会，百度之星、CF、明年的APIO同步赛和NOI同步赛加油吧，不要让OI成为永远的遗憾！</p>
+<hr>
+<p><em>CJK猫，CJK强，CJK是FZYZ的红太阳</em></p>
+<p>尽管immortalCO就要上大学了，但immortalCO永远是FZYZ的红太阳。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/25/ioi2017/" data-id="cjegzidfy001idf1lbqekjl6r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOI/">IOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-noi2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/21/noi2017/" class="article-date">
+  <time datetime="2017-07-21T15:48:39.000Z" itemprop="datePublished">2017-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/21/noi2017/">NOI2017滚粗记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于省队名额让人，只好以同步赛参加NOI2017。本以为从NOI2016到现在过了一年，我的水平应该进步不少，就算拿不到前3名，起码应该比去年排名高吧。然而最后的结果差到连我自己都不敢相信。</p>
+<h3 id="day-1">Day 1</h3>
+<p>以一种能拿前几名的心态开了题。</p>
+<p>T1，目测线段树裸题，好的，开始码。</p>
+<p>一开始码的时候没有仔细想，一开始只开了 <span class="math inline">\(10^6/32\)</span> 的线段树，然后看下数据范围改成 <span class="math inline">\(10^6\)</span> 的线段树。处理位运算的细节有点多，开场1h左右才敲完。</p>
+<p>接着从第二个样例开始挂，开始狂输出调试语句，发现好多SB错误。</p>
+<p>改掉一堆错误还是过不去后两个样例，当时就有点慌，写了个暴力来对拍。拍一下结果暴力RE了，想了想好像会爆负。。。就造只加的数据，然后一个错都拍不出。</p>
+<p>这下慌了。。。</p>
+<p>再想想觉得只有可能是减的时候挂了，就仔细查了减的那段代码，发现果然有个地方爆了。</p>
+<p>调过所有样例已经2h过去了，紧张。</p>
+<p>T2目测链表+hash裸题，看完就开始码，码得很顺利，也没出什么错（flag），花1h过完样例。</p>
+<p>过完样例之后发现样例5开-m32要跑1s+，感觉过不了最大的点，要卡成80了。想了想决定等我搞完T3再回来优化一波常数。</p>
+<p>剩2h点开了T3。。。连续三年NOI D1T3都是读入O(1)的题。。。</p>
+<p>一开始以为是求全局最大子矩形，觉得不能做，再看题发现是靠边的，那就变成确定每列的高度了，貌似不难。</p>
+<p>我的想法是，如果要求那个玩意，就要用一个单调栈。那么能不能状压单调栈呢？</p>
+<p>发现好像可以，而且只要状压2sqrt(K)段的样子。。。然后就觉得N&lt;=1000，K&lt;=10的稳了，应该离正解不远了。</p>
+<p>然后想这个东西怎么优化，能不能换一种记状态的方式减少状态数？脑洞了各种奇奇怪怪的idea，总觉得这东西似乎只有O(K)的状态是有用的，但是无论如何也yy不出来。。。尝试打表找规律以及验证一些记状态方法的状态数，一无所获。</p>
+<p>然后还想容斥，枚举哪些区间会爆掉限制，用个DP来搞。结果转成这样还得记单调栈，也不行。。。</p>
+<p>于是2h都没想出来。。。唉。。。绝望啊。。。</p>
+<p>最后交了40分暴力，感觉上不了金牌线了。</p>
+<p>期望得分：100+80+40=220</p>
+<p>去年Day1都有247。。。幸亏早生一年。</p>
+<p>后来大家说T3和UNR D2T1撞题，想想发现还真是。。。人家学的是OI，我学的是什么？暴力？</p>
+<p>出成绩，和期望一样220。全世界都会T3我不会，一堆人A了T3我只有40。matthew99，fateice，RXDoi都是292，我220。pyz5715，fjzzq2002，victbr也都比我高分。</p>
+<p>T2也是什么鬼，全世界卡常，别人92~100我80，人傻自带大常数我也是没救。</p>
+<p>估计了下我的排名只有30+，比去年还糟糕。</p>
+<p>看起来想了一大堆思路，然而从头到尾思路都是从左到右确定每个高度，压根没想到枚举最小值的位置DP！而且UNR我还做过！</p>
+<p>想到UNR D2T1以后很快就想出70分做法，随后就想到100分做法了。简直日了狗了，考场上一直提示自己思路要广，也确实挣扎了很久，却怎么也跳不出思路的第一步。</p>
+<p>晚上回去把T3的正解打出来了。</p>
+<p>心情很不好。</p>
+<p>为什么这么简单的一个DP我就是想不到。</p>
+<p>为什么最大子矩形我没有除了单调栈和容斥以外的别的想法。最土的办法都没有想到。</p>
+<p>枚举第一个最小值在什么位置，求出靠底边的最大子矩形，然后沿最小值位置分开递归下去。</p>
+<p>这个可能我高一的时候都会吧。</p>
+<p>状压单调栈完全没有优化的余地，我却想了很久怎么优化。</p>
+<p>为什么做UNR的时候我都懂这个道理，在考场上就忘了。</p>
+<p>白丢60分。</p>
+<p>我的脑子去哪了？</p>
+<p>我真的是学OI的吗？</p>
+<p>曾经以为我学了这么久OI，面对题目必有高论。</p>
+<p>然而真正在题目面前，我感受到了自己是多么无力。</p>
+<p>看看周围的人，没有一个人像我这么SB，唯独我SB了。</p>
+<h3 id="day-2">Day 2</h3>
+<p>由于Day 1挂惨，想Day 2翻盘上500，不切实际地定了Day2 280的目标。</p>
+<p>带着一种渴望翻盘的心情开了题。</p>
+<p>T1看完题目就大致会做了，2^d暴力枚举x的状态2-SAT。</p>
+<p>决定先切掉T1再说。不知道为啥感觉有点难写，写了1.5h。</p>
+<p>然后造了个极限数据测，然而要跑1s+，过不了。不过至少有90分。</p>
+<p>然后简单写了个check测了下样例，一开始check写错以为样例过了，后来故意把out改错发现check还是输出OK，才发现check写错了。改完以后样例挂了，就改了改过了样例。</p>
+<p>这时候过了2h，又有点紧张了。</p>
+<p>T2看完以后感觉很可做。</p>
+<p>然后开始想，觉得这么多限制、暴力都打不出来的题总得找点贪心结论出来。。。（怎么一开始就没想网络流呢？好气啊</p>
+<p>一开始想贪心，想了一会儿的结论发现很迷。。。</p>
+<p>不对，再想结论，嗯，似乎是推出了正确的引理，可是半点用处都没有。。。</p>
+<p>半个多小时过去了还是没推出结论。考试时间过半，不过还是一直告诉自己，要冷静。</p>
+<p>冷静的结果是我想手玩一会儿样例，发现不对？</p>
+<p>然后看样例解释发现，妈呀！题目理解错了。。。原来不是每次-x，而是变质的部分是确定的。。。md浪费了一个小时。。。</p>
+<p>接着发现原先想的结论都是错的，继续想。</p>
+<p>想了一会儿感觉好像还是可以贪心的，然而有第一次+s的限制一时不知道怎么处理。由于当时只想AC，连部分分都没想打。</p>
+<p>接着又开始想别的思路，想想发现费用流好像可以做？</p>
+<p>只剩2h-，然而我还剩两个题写都没开始写，于是我又不淡定了，</p>
+<p>接着开始写费用流，写完以后过了样例1，样例2根本跑不出来。输出了下中间结果比对了下好像是对的。</p>
+<p>然后想优化费用流，想了一种思路以后发现有问题，叉掉了。。。</p>
+<p>又想贪心，然而不知道哪个地方想错了，都贪不对。</p>
+<p>剩一个多小时的时候很慌，赶紧去打了T3的20分暴力，还有20分也不难只是有点难写就先放着，回来继续想。</p>
+<p>当时十分紧张，感觉要是想不出来就GG了，结果越紧张越想不出来。大概浪了半个小时决定开始从头分析建图。</p>
+<p>于是最后半个小时终于有了思路，把图反过来建，这样所有有费用的边都和源点相连，这样模拟费用流就是贪心了。</p>
+<p>然而时间不够了，具体的贪心细节来不及想清楚，只好放弃。折腾了快三个小时交的还是暴力费用流。</p>
+<p>又想回头打T3的另外20分，但根本来不及，也只好放弃。</p>
+<p>期望得分：(90<sub>100)+(40</sub>60)+20=150~180</p>
+<p>出来发现全世界都会T2的100分或者88分，大家都能上200。。。然后immortalCO说T3动态凸包可以A。。。绝望了。。。</p>
+<p>等成绩。</p>
+<p>本以为出成绩还能给我点惊喜，没想到等来的却是一个意外。</p>
+<p>90+4+20=114。</p>
+<p>T1不是TLE而是WA了两个点？？</p>
+<p>T2挂成4分？？！</p>
+<p>完了，这下真的只剩Ag分数了。身败名裂。</p>
+<p>两天总分334。之前从来没有输得这么惨过，没想到这种事情竟然发生在我高二的NOI上。</p>
+<p>真的绝望了。</p>
+<p>在QQ群里听说Au线418？那我加上笔试434是不是要成为非集训队金牌呢？惨啊。</p>
+<p>群里出榜，看第一页，发现25名是400-分。。。等了好久出了第二页，然后我惊讶地发现。。。</p>
+<p>集训队线436，如果加上A队我439，刚好超过集训队线一点点，大概46~47名吧。。。感动。</p>
+<p>回去调题。</p>
+<p>T1发现我居然数组没清空？这居然只挂10分？</p>
+<p>T2发现我答案没开64位整数以及每天的最后一条边忘了把边权设为剩余库存，改完就60分了。挂成这样居然能过样例1和样例2的一部分，还能有4分让我不至于掉出集训队线，真是喜闻乐见。</p>
+<p>继续推了一会儿T2费用流，发现我考场上SB地多建了一层点。把图反过来建再去掉这一层点就直接变成喜闻乐见的贪心模型了。只想了十几分钟，写只要不到半小时吧。</p>
+<p>后面再把图转了一下，用线段树优化流就A了。</p>
+<p>本来考场上很简单的80分算法，却被我硬生生丢掉了20，又挂成了4分。</p>
+<p>我的脑子去哪里了？</p>
+<p>这个思想我在校内训练出过不止一次的。</p>
+<p>为什么我考场上就是没想出来？</p>
+<p>我又问了一次自己，我真的是学OI的吗？</p>
+<p>T2我考场上完全应该得到至少80分的。</p>
+<p>然而大家都拿到了，我没有。</p>
+<p>也许我考场上不是在想题，是在挣扎。</p>
+<p>害怕自己想不出来，越想越紧张。</p>
+<p>结果越挣扎越出不来。</p>
+<p>越挣扎陷越深。</p>
+<p>这时，我才真正感受到心态有多么重要。</p>
+<p>心态毁了我一整场比赛。</p>
+<p>可是，又该怎么办呢？</p>
+<h3 id="总结">总结</h3>
+<p>总结这次NOI的情况，就是：一试脑抽，损失60分，二试脑抽+心态爆炸+写挂66分，总共损失100+分，最后名次十分惨淡。</p>
+<p>一方面，我从高一到现在几乎没有进步，甚至退步。平时看起来都在努力，但颓的时间太多，而别人的努力比自己多得多。</p>
+<p>另一方面，我总以为过了这一年进步很大，考场上总以一种拿前3的目标去打，然后越想不出来，就越急，越急，思路就越乱。比如这次D2T2，参数很多，如果思路急是一定不可能想清楚的。但我由于一开始看错题浪费一个小时，导致只剩两小时左右时就紧张了，思路开始混乱。其实考场上我已经想到了优化费用流，如果我冷静下来，得到80分算法完全没有问题的。这次NOI让我第一次感受到，考场心态真的很重要。</p>
+<p>这次NOI没有一题是我得心应手的，暴露了我的实力和心态方面的诸多问题。可以说是IOI前的一次教训。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/21/noi2017/" data-id="cjegzidgp001vdf1lwxyxgrt8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NOI/">NOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-fjtrain2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/15/fjtrain2017/" class="article-date">
+  <time datetime="2017-07-15T02:52:13.000Z" itemprop="datePublished">2017-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/15/fjtrain2017/">FJ省队集训2017滚粗记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作为非省队选手参加了省队集训。。。果然被屠了。</p>
+<h4 id="day-0">Day 0</h4>
+<p>省队互测，大概是15个省队队员加我一个非省队，每人准备一道题完成讲解。（大概是看我去年进了省队但去年没互测于是就给了我这个机会，十分感动。。。于是我成为参加互测的最差选手）</p>
+<p>萌萌哒aufeas姐（额好像不能这么称呼。。）第一个上场，dp优化网络流真有趣。虽然她的题我好像不到一小时做出来了。。。</p>
+<p>张队长和初三大佬zzq的字符串题也好劲啊。作为不会****自动机的选手在听wrz和张队长题时只能当吃瓜群众。</p>
+<p>victbr的原创题也很强。表示我也掉了分块坑。</p>
+<p>闫神太巨了，出了一道神级结论题，做法是转成图论问题然后怎么怎么解决。第一步都没看出来的我表示一脸懵逼。。。</p>
+<p>猫锟强，临场讲了好几题的更优算法。（然而一直说我是猫说yhx是猫说wrz是猫是什么鬼啊。。。</p>
+<p>yhx和ct讲的都是猫锟出的模拟赛题。</p>
+<p>作为非正式选手的我最后一个讲。。。讲的是我去年出的校内模拟题。做法很sb，没用什么算法，就是打表找规律然后构造。。。感觉我是最菜的出题人。。。</p>
+<p>讲题时台下很欢乐。</p>
+<p>zzq现场切了我的题，写出来了。</p>
+<p>不得不说现在的省队爷都好劲啊，技不如人甘拜下风。整个听讲过程我不是在膜出题人就是在膜锟膜闫神膜zzq，然而只会膜不会提高自己姿势水平有什么卵用呢。就要退役了我还是啥都不会怎么办啊。</p>
+<h4 id="day-1">Day 1</h4>
+<p>出题人：猫锟（immortalCO）</p>
+<p>看了三题，T1是个字符串题，T2是个APIO2016T1的改版，好像能做，T3像之前一道校内训练的题，但是改了，题面很长没看完。</p>
+<p>先做T2，想了一会儿发现原题做法用不了，，只能用维护分段函数的做法。O(n^3)。然后花了2h才打对，我好菜啊。</p>
+<p>测了一组极限数据直接就跑不出来了，感觉600过不去只能过100。</p>
+<p>然后做T1，推推式子发现对S的每个前缀和每个后缀求出它与所有s[i]的LCP之和就做完了。由于不懂SAM的性质就打了个后缀数组+Trie+二分，3e7*log(3e6)的。</p>
+<p>又花了1.5h才打完。随机了一组极限数据又跑不出来了，把n改小了看看后缀数组循环次数，发现n=100000只循环了4轮，n=300000却循环满了，感觉像写挂了，就调了很久但无果。后来想想好像Windows的rand有奇怪的循环节就貌似明白了，没管。感觉只拿30+分。</p>
+<p>最后只剩半个小时了，T3勉强看完题没时间做，随便打了个贪心连样例都过不去，就结束了。</p>
+<p>期望得分在50到140之间吧。</p>
+<p>听说很多人都A了两题，好虚啊。</p>
+<p>成绩出来了，在期望得分之内，38+18+0=56，rank5。</p>
+<p>T2果然被卡常GG。去申诉，重测了一发T2变成31分了。还有不少人申诉，很多原来分数很低的人都翻上来了。</p>
+<p>最后成绩38+31+0=69，rank9。</p>
+<p>aufeas姐好强啊130怒拿rank1。闫神A掉T2怒拿rank2。T2脑抽了，本来只要维护一个函数，我按&lt;,=,&gt;三个符号维护了三个函数，2s时限跑了2.5s，100被卡成31，打满暴力都比这个高分。不过想想能有前10也还凑合。</p>
+<p>回去改题，T2果然换一种记状态方法直接常数除以3，就AC了。T1瓶颈在后缀数组……3e6<em>log3e6</em>2比3e7*log3e7还慢，果然后缀数组常数大如nlogn。</p>
+<p>下场加油吧。</p>
+<h4 id="day-2">Day 2</h4>
+<p>出题人：n+e（Trinkle）</p>
+<p>T1看完以后想到二分答案BIT判定，复杂度nlog²n不知道能不能过3e5。写完之后随便构了一组极限数据跑0.8s+，感觉不是很虚就扔一边了。</p>
+<p>T2是个提答，感觉正解是构造，然而想了很久还是不会构造，连个可行解都构不出来，一分都没有，就先跳过。</p>
+<p>T3就是个方格取数的简单DP，然而一副卡常数的样子。写完过了样例以后把样例的n，m改大，跑了8s+，优化了一发数组访问跑了4s+，不知道能不能A。</p>
+<p>回去搞T2，写了个贪心结果根本不能出可行解，又各种修改贪心姿势仍然无果。手玩了一会儿小数据也构造不出来。浪费了很多时间提答还是0分，非常虚。</p>
+<p>接着放弃了贪心，考虑别的做法。先想能不能状压DP，结果第一个点棋盘大小就巨大。。 又分析了一下性质，对于源点入度=0，对于汇点出度=0，其它点入度=出度&lt;=1。这样就能费用流了？</p>
+<p>怒写费用流，跑了会跑出前三个点60分，后两个点跑不出来。尝试优化费用流无果。</p>
+<p>后来打算退而求其次跑可行解骗分，也跑不出来。</p>
+<p>最后期望得分220-260之间吧。</p>
+<p>成绩出来，预计得分之内，100+60+90=250，rank2。T3被卡常数了。</p>
+<p>已经连续三场比赛被卡常数了。</p>
+<p>ditoly 296分虐场了，T2用primal dual跑了96分，不能更神。</p>
+<p>后来知道我T3为什么被卡常数了，我作死在读入的时候对输入的数做了前缀和，然后访问2.5e7大小的64位数组慢得要死。</p>
+<h4 id="day-3">Day 3</h4>
+<p>出题人：叶队长（isdkfj）</p>
+<p>第一题看完感觉出现恰好一次的数对应的区间可以化成平面矩形区域，找出每个数的下一个和它相等的数之后就可以用线段树维护了，似乎不难写。</p>
+<p>第二题看完感觉是个神题，先跳过。</p>
+<p>第三题是个提交答案题，输入文件是一个C++程序，要求给一组输入使其输出最小。似乎很好玩。</p>
+<p>于是刚了2h的第三题，觉得大概能有80分的样子。有几个点看不出怎么做就随机化乱搞。</p>
+<p>回去写掉第一题，发现n=500000极限数据要跑2.2s，有点萎。优化常数无果。可能要被卡成60了。</p>
+<p>剩下一个半小时开搞第二题。推了一会儿式子，把和式交换了下求和次序，又套了一层反演，推出一个O(n^3)算法。然而数据范围第一个点n就是2000，完蛋了要爆0了。</p>
+<p>写了O(n^3)过了样例，想继续优化复杂度但没时间了。</p>
+<p>期望得分140-190。</p>
+<p>听说有人推出T2的100分做法FFT，感觉我今天要滚粗啦。</p>
+<p>最后还是预期之内，100+0+76=176，rank1。提答有几个点小范围暴搜猜错结论掉了不少分，最后一个点随机化直接爆0。ditoly 175分，rank2，算上前两天ditoly在我前面很多的样子，感觉ditoly要win啦。</p>
+<p>fateice提答95分，跪烂。</p>
+<p>T2全场都是0分，有毒。</p>
+<h4 id="day-4">Day 4</h4>
+<p>出题人：闫神（fateice）</p>
+<p>第一题看完没有除了数据结构优化DP以外的任何想法，然后想想发现树状数组似乎不行，就写了线段树。写完测下极限数据1.4s，怕TLE，就优化了一会儿线段树的常数，又写了个输入优化卡到0.9s，感觉能过就不管了。</p>
+<p>第二题是个几何题，求包含边长为1的正n边形的最小正m边形，要求两者中心相同。感觉不是很有思路就先写了特判部分数据，剩下的分段爬山。期望50分。</p>
+<p>第三题是个类似ZJOI随机树生成器的提答，要求识别树是随机kruskal生成的还是其点分治树。手写了个生成器然后打出各种特征，发现直径的区分效果最明显，就用直径划分来判断生成了out。后来想想小数据好像有反例，又搞了很久的第一个点，加了各种特征发现和原来的输出没差别就不玩了。期望得分90-100。</p>
+<p>回去推第二题，发现了一些奥妙重重的性质，推了好久的端点，貌似取过顶点第一条线的倾斜角为π*gcd(n,m)/nm好像就行了。然而式子一直写错，直到考试最后几分钟才调出来。尽管如此还是担心卡精度不知道能不能拿到100。</p>
+<p>期望得分240-300。</p>
+<p>一开始文件不小心放在子文件夹里面，考完以后闫神问我为什么没交，才改过来。差点爆0。</p>
+<p>最后得分100+100+99=299，rank2。第一题只跑了0.3s+，第二题也没卡精度，第三题第一个点掉了1分。</p>
+<p>zzq AK了，orz。wrz第二题模拟退火过了，也是299。ct第三题A了，好强啊。</p>
+<p>看完题解发现我第三题SB了，直接判断一棵树是否可能是点分治树就行了，还面向数据找了那么久的规律，就跪了。想想我到现在还不会分析问题性质，吃枣药丸。</p>
+<h4 id="day-5">Day 5</h4>
+<p>出题人：wyf</p>
+<p>T1是求把平面点集用一条不经过任何点的直线分成两组的方案数，要求某些点集属于同一组。看完我大致想到一种做法，枚举两个点连一条直线切成两块，判断是否合法。然而线上的点要归哪一边？有点懵逼地继续想，好像可以假设线上的点归同一边。但是好像会算重，那就hash去重咯。</p>
+<p>然后就开始考虑枚举一个点，其他点极角排序以后扫描。然而这东西细节真的多。。。旋转的时候分上下有没有点考虑了各种情况。也不知道有没漏。</p>
+<p>折腾了快2h终于过样例，然后随便拍几组数据就炸了，调的时候发现bug一大堆。于是继续改改，改了好久，随机数据答案终于对了。</p>
+<p>已经2.5h了，时间过半，感觉后两题不太可能都做出来。T2是个字符串计数，T3是个纯数据结构，凭感觉估计T3是什么黑科技题，不太能做，就打了T3的暴力，之后全程刚T2。</p>
+<p>T2求的是长度和s相同的小写字符串有多少个字典序不大于s，且它的本身是其所有循环同构中字典序最小的。</p>
+<p>一开始把最小表示串打出来想找规律，结果找了很久没发现有用的性质。接着想到，这其实就是求不循环同构的字符串个数，可以burnside引理搞搞。</p>
+<p>然而字典序不会处理。又推了好久，把字典序转成了子串包含约束，然后貌似可以KMP搞搞？</p>
+<p>先写了个暴力过了样例。</p>
+<p>这时候大概剩半个多小时了，推KMP+DP各种环上细节处理不清楚。似乎想出了40～70分，结果最后还是没能写出哪怕比暴力分高一点点的做法。</p>
+<p>期望得分150。第一题可能会挂所以还是很虚。</p>
+<p>最后果然就滚粗了，0+20+30=50，rank11。T1写挂爆0。</p>
+<p>全世界都A了T3。</p>
+<p>全程刚前两题，结果一题写挂，一题没刚出来。感觉我这是回家种田的节奏。</p>
+<p>晚上调T1，看了会代码发现我犯了一个弱智错误：输入的点编号从1开始，我数组下标从0开始，忘了减1。对拍的数据不是m=0就是分组很规律而且答案很小，没发现问题。于是只可能过m=0的点，然而我m=0的点被卡常数TLE了。改完弱智错误就80分了，再写个radix sort就100分了。</p>
+<p>T2推了一晚还是只会n^3。然而T3的分块想了十分钟，打了一个多小时就A了。看来T3真的比T2可做得多，以及我真的很蠢。</p>
+<h4 id="day-6">Day 6</h4>
+<p>出题人：ExfJoe</p>
+<p>T1又是类似清华集训2015遥远的星系的题，一开始打了个并查集，结果好像会爆long long，就把并查集全删了改成DFS树。改完以后过了大样例，感觉不是很虚就扔一边了。</p>
+<p>T2是树的动态加边求连通块最大基数独立集。看完想想不会是链分治模板题吧，上次写链分治写一下午没调出来已经有心理阴影了，而且这个做法常数很大，200000 1s应该没救。看来一定有更简单做法。只是一时没想到，先跳过。</p>
+<p>T3是个十合一提答，求10份代码的输出的期望。代码不用C++用Javascript差评，虽然我看得懂。</p>
+<p>折腾了2h搞出了六七个点，也不知道有没错。看了下时间只剩一个半小时了再不做T2就来不及了。</p>
+<p>思考了一下觉得这题的性质在于最大基数，可以贪心从下往上取独立集。接着就会了一种启发式合并+暴力扫描到根的链的做法，应该能有50分，写完过了大样例。</p>
+<p>继续想这东西怎么数据结构维护，似乎记一个c表示翻转i会不会导致i的父结点状态改变就可以了？找到第一个这样的祖先，端点讨论一下。这可以用树剖线段树维护。</p>
+<p>只剩不到半小时，狂码树剖线段树以及维护独立集和c数组，然而主过程还没打，就结束了。</p>
+<p>于是乎T2只剩暴力分了。</p>
+<p>期望得分210-220。</p>
+<p>最后100+35+61=196，rank 4。T2喜闻乐见地挂了50分，然而子任务3水过去了，得分35。很多人T2都是85或者100。</p>
+<p>dick32165401虐场了。</p>
+<p>回去调代码，发现把启发式合并改成大的往小的里面合并样例就过不去了，原来是因为我记fu是u所在并查集的根，交换u，v的时候忘了重新求fu。然而样例是按子任务3（逐个添加叶结点）造的，没查出错。白丢50分。</p>
+<p>后来出题人发现T2一堆人过85分是因为数据造水了。。。然后改数据重测。惊讶地发现我T2还是35分。。。数据还是水？于是莫名其妙地rank 1了。</p>
+<h4 id="总结">总结</h4>
+<p>省队集训结束，成绩比去年还糟。我做出来的题都是一堆人A，我花大量时间想搞的题最后没有一题做出来。</p>
+<p>不是自己退步了，就是别人进步得更快。</p>
+<p>挺后悔自己高二没有认真刷题的。平时总觉得自己已经很努力了，然而一到考试才明白别人比我努力得更多。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/15/fjtrain2017/" data-id="cjegzidfb001adf1l793b929y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-codechef-june-2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/12/codechef-june-2017/" class="article-date">
+  <time datetime="2017-06-12T11:17:15.000Z" itemprop="datePublished">2017-06-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/12/codechef-june-2017/">Codechef 6月月赛总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这次月赛打得不好。传统题难度不大，就是最后一题比较码农。最后区分度主要在Challenge上，然后我Challenge切不动，就滚粗了。</p>
+<p>做的时候也几乎是倒着做的。</p>
+<hr>
+<h3 id="cloningcloneme">Cloning（CLONEME）</h3>
+<p>如果是判断两个序列排序后是否相同，这等价于判断每个数出现的次数是否相同。把每个位置上的数 <span class="math inline">\(a\)</span> 用项 <span class="math inline">\(x^a\)</span> 表示，就转成判断区间和的多项式是否相同。随机质数 <span class="math inline">\(x,p\)</span> 然后在模 <span class="math inline">\(p\)</span> 意义下判断多项式的值是否相等，取 <span class="math inline">\(2\)</span> 个模数基本上不会错了。</p>
+<p>但这题要求允许一个位置不同，怎么办呢？</p>
+<p>我的想法比较naive就是了。。。用 <span class="math inline">\(c_1[x],c_2[x]\)</span> 分别表示第一个和第二个区间中 <span class="math inline">\(x\)</span> 出现次数，那么两个区间similar的条件是或者 <span class="math inline">\(c_1,c_2\)</span> 相同，或者 <span class="math inline">\(\min\{x|c_1[x]\ne c_2[x]\}=\max\{x|c_1[x]\ne c_2[x]\}\)</span>。</p>
+<p>考虑如何快速求 <span class="math inline">\(\min\{x|c_1[x]\ne c_2[x]\}\)</span>，可以二分 <span class="math inline">\(x\)</span>，然后判断 <span class="math inline">\(c_1\)</span> 和 <span class="math inline">\(c_2\)</span> 的前 <span class="math inline">\(x\)</span> 项是否都相等，把 <span class="math inline">\(c_1\)</span> 和 <span class="math inline">\(c_2\)</span> 前 <span class="math inline">\(x\)</span> 项对应的多项式（模意义下）的值搞出来比较就行了。</p>
+<p>至于怎么搞出来呢，其实要算的是这个东西：</p>
+<p><span class="math display">\[\sum_{l\le i\le r,a_i\le k}x^{a_i}\]</span></p>
+<p>用可持久化线段树前缀和维护每个前缀的区间多项式值，将 <span class="math inline">\(r\)</span> 的线段树与 <span class="math inline">\(l-1\)</span> 的线段树相减后在其上二分即可求出 <span class="math inline">\(\min\{x|c_1[x]\ne c_2[x]\}\)</span> 和 <span class="math inline">\(\max\{x|c_1[x]\ne c_2[x]\}\)</span>。</p>
+<p>复杂度 <span class="math inline">\(O((N+Q)\log A)\)</span>。也许有更优做法……？</p>
+<hr>
+<h3 id="persistent-oakoak">Persistent oak（OAK）</h3>
+<p>一道比较裸的数据结构码农题……</p>
+<p>树枝之间构成了有根树的结构。用 <span class="math inline">\(W_v\)</span> 表示结点 <span class="math inline">\(v\)</span> 目前还能再承受的重量，初始状态下，<span class="math inline">\(W_v=w_v\)</span>。</p>
+<p>对于第1种操作，在结点 <span class="math inline">\(u\)</span> 上挂 <span class="math inline">\(x\)</span> 的重量，那么断开的结点是 <span class="math inline">\(u\)</span> 的祖先中最深的一个 <span class="math inline">\(a\)</span>，满足 <span class="math inline">\(W_a &lt; x\)</span>。断开 <span class="math inline">\(a\)</span> 相当于把以 <span class="math inline">\(a\)</span> 为根的子树内的重量清零（即对结点 <span class="math inline">\(a\)</span> 进行第2种操作）。如果没有结点断开，则 <span class="math inline">\(u\)</span> 及其所有祖先 <span class="math inline">\(v\)</span> 的 <span class="math inline">\(W_v\)</span> 值都会减少 <span class="math inline">\(x\)</span>。</p>
+<p>对于第2种操作，将以 <span class="math inline">\(u\)</span> 为根的子树清空，记目前以 <span class="math inline">\(u\)</span> 为根的子树的总重为 <span class="math inline">\(U\)</span>，即 <span class="math inline">\(U=w_u-W_u\)</span>，该操作将以 <span class="math inline">\(u\)</span> 为根的子树中的结点 <span class="math inline">\(v\)</span> 的 <span class="math inline">\(W_v\)</span> 恢复为 <span class="math inline">\(w_v\)</span>，将 <span class="math inline">\(u\)</span> 的祖先 <span class="math inline">\(v\)</span> 的 <span class="math inline">\(W_v\)</span> 增加 <span class="math inline">\(U\)</span>。</p>
+<p>这两个操作可以用树链剖分线段树来维护，复杂度 <span class="math inline">\(O(n+m\log^2n)\)</span>。由于题目要求可持久化，要用可持久化线段树。区间修改的标记最好永久化，可以省内存。（我用的 <code>unsigned</code> 自然溢出，比较两个数时判断两数的差是否不大于 <span class="math inline">\(10^7\)</span>，感觉卡不掉）</p>
+<p>写起来细节好麻烦啊……前后总共花了大概一天才切掉这题。（当然也有可能是我太菜了）</p>
+<p>（论连写两题可持久化线段树是一种怎样的体验）</p>
+<hr>
+<h3 id="chef-and-prime-queriesprmq">Chef and Prime Queries（PRMQ）</h3>
+<p>用 <span class="math inline">\(P\)</span> 表示质数集合，<span class="math inline">\(e(x,p)\)</span> 表示最大的 <span class="math inline">\(t\)</span> 使得 <span class="math inline">\(p^t|x\)</span>，则要求的式子是</p>
+<p><span class="math display">\[F(L,R,X,Y)=\sum_{i=X}^Y[i\in P]\sum_{j=L}^Re(a_j,i)=\sum_{i=X}^Y\sum_{j=L}^R[i\in P]e(a_j,i)\]</span></p>
+<p>考虑构造一个矩阵，矩阵的第 <span class="math inline">\(i\)</span> 行第 <span class="math inline">\(j\)</span> 列为 <span class="math inline">\([i\in P]e(a_j,i)\)</span>，由于 <span class="math inline">\(10^6\)</span> 以内每个数最多 <span class="math inline">\(7\)</span> 个质因数，因此矩阵中非 <span class="math inline">\(0\)</span> 的数不超过 <span class="math inline">\(7N\)</span> 个。</p>
+<p>接下来就是询问子矩形的数值和，把询问转成</p>
+<p><span class="math display">\[F(L,R,X,Y)=F(1,R,1,Y)-F(1,R,1,X-1)-F(1,L-1,1,Y)+F(1,L-1,1,X-1)\]</span></p>
+<p>就可以离线之后用树状数组做。时间的话，<span class="math inline">\((7N+4Q)\log_2a_i\le 2.2\times 10^7\)</span>，可以接受的。</p>
+<hr>
+<h3 id="pairwise-union-of-setsunionset">Pairwise union of sets（UNIONSET）</h3>
+<p>感觉很迷的一道题，数据范围这么小似乎就是个暴力题？</p>
+<p>暴力枚举两个集合 <span class="math inline">\(i,j\)</span>，<span class="math inline">\(O(len_i+len_j)\)</span> 判断两个集合并集是否为全集，总复杂度就是 <span class="math inline">\(O\left(\sum_{i=1}^N\sum_{j=1}^N(len_i+len_j)\right)=O\left(N\sum_{i=1}^Nlen_i\right)\)</span>。还可以 <span class="math inline">\(i\)</span> 枚举较大的集合，<span class="math inline">\(j\)</span> 枚举较小的集合，如果 <span class="math inline">\(len_i+len_j &lt; K\)</span> 就不判，省掉至少一半常数。</p>
+<p>什么……这就能过了？？？</p>
+<hr>
+<h3 id="tripletssumq">Triplets（SUMQ）</h3>
+<p>这题感觉很像NOIP2015普及组T3。。。</p>
+<p>做法也相当简单，稍微化简一下式子</p>
+<p><span class="math display">\[\sum_{x\in A}\sum_{y\in B}\sum_{z\in C}[x\le y][y\ge z](x+y)(y+z)\]</span></p>
+<p><span class="math display">\[=\sum_{y\in B}\sum_{x\in A,x\le y}\sum_{z\in C,z\le y}(y^2+xy+yz+xz)\]</span></p>
+<p><span class="math display">\[=\sum_{y\in B}\left(y^2\sum_{x\in A,x\le y}\sum_{z\in C,z\le y}1+y\sum_{x\in A,x\le y}x\sum_{z\in C,z\le y}1+y\sum_{z\in C,z\le y}z\sum_{x\in A,x\le y}1+\sum_{x\in A,x\le y}x\sum_{z\in C,z\le y}z\right)\]</span></p>
+<p>把三个数组从小到大排序，然后从小到大枚举 <span class="math inline">\(y\)</span>，用Two-Pointers技巧维护最大的 <span class="math inline">\(x\in A\)</span> 满足 <span class="math inline">\(x\le y\)</span> 以及最大的 <span class="math inline">\(z\in A\)</span> 满足 <span class="math inline">\(z\le y\)</span>，同时维护 <span class="math inline">\(\sum_{x\in A,x\le y}1\)</span>，<span class="math inline">\(\sum_{x\in A,x\le y}x\)</span>，<span class="math inline">\(\sum_{z\in C,z\le y}1\)</span>，<span class="math inline">\(\sum_{z\in C,z\le y}z\)</span>，就做完了。</p>
+<p>复杂度 <span class="math inline">\(O(p\log p+q\log q+r\log r)\)</span>。</p>
+<hr>
+<h3 id="chef-and-the-feastneo01">Chef and the Feast（NEO01）</h3>
+<p>这题我想了挺久的样子，<del>当然也有可能是我太弱了</del></p>
+<p>直接做不好做，先推几个结论。以下用 <span class="math inline">\((C,S)\)</span> 表示大小为 <span class="math inline">\(C\)</span>，和为 <span class="math inline">\(S\)</span> 的集合。</p>
+<p><strong>结论一：存在最优解，只有一个集合的和非负。</strong></p>
+<p><strong>证明：</strong>假设存在两个集合 <span class="math inline">\((C_1,S_1),(C_2,S_2)\)</span>，其中 <span class="math inline">\(S_1,S_2\ge 0\)</span>，合并两个集合，得到 <span class="math inline">\((C_1+C_2,S_1+S_2)\)</span>。</p>
+<p>新的带权和为 <span class="math inline">\((C_1+C_2)(S_1+S_2)=C_1S_1+C_1S_2+C_2S_1+C_2S_2\ge C_1S_1+C_2S_2\)</span>。</p>
+<p>所以可以把非负的集合两两合并，总和不会变少。</p>
+<p><strong>结论二：存在最优解，除了和非负的集合以外，每个集合最多包含一个元素。</strong></p>
+<p><strong>证明：</strong>假设存在集合 <span class="math inline">\((C,S)\)</span>，<span class="math inline">\(C&gt;1,S &lt; 0\)</span>。不妨设 <span class="math inline">\(x\)</span> 为集合中的元素，且 <span class="math inline">\(x &lt; 0\)</span>。则将集合拆分成 <span class="math inline">\((C-1,S-x)\)</span> 和 <span class="math inline">\((1,x)\)</span>。</p>
+<p>新的带权和为 <span class="math inline">\((C-1)(S-x)+x=CS-Cx-S+2x=CS+(2-C)x-S&gt;CS\)</span>。</p>
+<p>所以可以将和为负数且包含多个元素的集合中的负数拆分出来，总和不会变少。</p>
+<p><strong>推论：最优的集合划分方案一定是一个包含所有非负数和若干个负数的集合 <span class="math inline">\(X\)</span> 与其余的只包含单个元素的集合。</strong></p>
+<p>枚举 <span class="math inline">\(X\)</span> 的大小，把非负数全部放入 <span class="math inline">\(X\)</span>。接着考虑哪些数要放入 <span class="math inline">\(X\)</span>，由于放入 <span class="math inline">\(X\)</span> 的数的系数不小于 <span class="math inline">\(1\)</span>，而不放入 <span class="math inline">\(X\)</span> 的数的系数等于 <span class="math inline">\(1\)</span>，故应把最大的几个数放入 <span class="math inline">\(X\)</span>。</p>
+<p>最后写法是，将序列 <span class="math inline">\(A\)</span> 排序并预处理前缀和，然后枚举 <span class="math inline">\(X\)</span> 的大小 <span class="math inline">\(k\)</span>，把后 <span class="math inline">\(k\)</span> 个数分一组，前 <span class="math inline">\(N-k\)</span> 个数每个分一组，用前缀和 <span class="math inline">\(O(1)\)</span> 算答案。</p>
+<p>复杂度 <span class="math inline">\(O(N\log N)\)</span>。</p>
+<p>（感觉这题有更好的分析方法啊？这题只是第三题啊我怎么做得这么麻烦啊？）</p>
+<hr>
+<h3 id="xenny-and-coin-rankingsxenrank">Xenny and Coin Rankings（XENRANK）</h3>
+<p>水水的纯数学题，不想写题解了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T,U,V;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">	<span class="keyword">while</span>(T--)<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;U,&amp;V),<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,(U+V)*(U+V+<span class="number">1l</span>l)/<span class="number">2</span>+U+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="a-good-setgoodset">A Good Set（GOODSET）</h3>
+<p>水水的智商题，不想写题解了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T,n;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">	<span class="keyword">while</span>(T--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">500</span>;n--;x--)<span class="built_in">printf</span>(<span class="string">"%d%c"</span>,x,<span class="string">" \n"</span>[!n]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>刚掉这些题以后，最后剩下两题ES和SBTR。看了下题，感觉不太可做。</p>
+<h3 id="euler-sumes">Euler Sum（ES）</h3>
+<p>求 <span class="math inline">\(\sum_{i=1}^n\lfloor ei\rfloor\)</span>，<span class="math inline">\(n\le 10^{4000}\)</span>。等等——代码长度限制1KB？！FML？</p>
+<p>C++不可A，钦点我们要用Java或者Python这些自带高精度的语言。。。还好我会那么一点儿Python。。。</p>
+<p>一开始想是不是要利用 <span class="math inline">\(e\)</span> 的性质而不用求出 <span class="math inline">\(e\)</span> 的高精度近似值，后来想想觉得没救。因为如果这题能做，<span class="math inline">\(n=10^{4000}\)</span> 的答案减去 <span class="math inline">\(n=10^{4000}-1\)</span> 的答案就能得到 <span class="math inline">\(e\)</span> 的高精度近似值……嗯也许这题做法很暴力qaq</p>
+<p>继续想，感觉似乎见过类似的题，好像强上类欧几里得算法可以搞过去？</p>
+<p>接着就 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> decimal <span class="keyword">import</span> *</span><br><span class="line">getcontext().prec=<span class="number">1000</span></span><br></pre></td></tr></table></figure></p>
+<p>接着 <span class="math inline">\(e=\sum_{i=0}^k\frac{1}{i!}\)</span> 暴力算出 <span class="math inline">\(e\)</span> 的小数点后1000位，然后用类欧几里得算法搞搞搞。。。至于这么搞呢，大概就是考虑函数 <span class="math inline">\(y=kx+b\)</span> 的图象在 <span class="math inline">\(x\in[1,n]\)</span> 区域与 <span class="math inline">\(x\)</span> 轴之间的整点个数，一开始令 <span class="math inline">\(k=e,b=0\)</span>，然后每次先把 <span class="math inline">\(k,b\)</span> 模 <span class="math inline">\(1\)</span>（同时累加上模掉部分的点数），再把坐标系转90度，把原点移到原来坐标系的 <span class="math inline">\((n,\lfloor kn+b\rfloor)\)</span> 位置，一直迭代就行啦。</p>
+<p>调了很久调过样例，又调了一会儿参数轻而易举把 <span class="math inline">\(n=10^{100}\)</span> 跑过去了，正欢喜的时候测下 <span class="math inline">\(n=10^{4000}\)</span>……TLE飞了……</p>
+<p>算了先交拿个50分再说，接着想办法优化= =</p>
+<p>然后你懂得本sb干了什么事情，各种优化运算次数调精度甚至一边迭代一边把 <code>getcontext().prec</code> 改小什么的都用上了，就是要跑好几十秒，没救2333</p>
+<p>接着觉得这题不是什么类欧几里得能搞过去的，就继续想……然而并没有想出更好做法= =b</p>
+<p>然后，某天晚上突发奇想，类欧几里得的原始形式不是 <span class="math inline">\(y=\frac{ax+b}{c}\)</span>（<span class="math inline">\(a,b,c\in\mathbf{Z}\)</span>）吗？如果把 <span class="math inline">\(e\)</span> 写成分数不是就不用 <code>decimal</code> 了？而且从NOI2016上学到的知识，分数类跑得比高精度小数快……</p>
+<p>嗯！这样一定会快很多！</p>
+<p>然后重新写了一发分数版的类欧几里得算法，居然直接AC了，2333</p>
+<p>一看虽然这题时限是2s但Python时限10s，于是我的程序7s+跑过去了……感动……</p>
+<p>做完9题以后终于可以专心搞Challenge了。。。</p>
+<hr>
+<h3 id="saboteur-challengesbtr">Saboteur (Challenge)（SBTR）</h3>
+<p>唉。。。说多了都是泪。。。姿势水平不够最后只有89.918分，被fjzzq2002等大爷怒踩。。。</p>
+<p>看完题，发现如果转成补集，就是求最大点权和树形导出子图。然后看数据类型，</p>
+<p>1、<span class="math inline">\(N\le 20\)</span>，暴力。。。</p>
+<p>2、<span class="math inline">\(N\le 40\)</span>，好像暴力要加一些剪枝？</p>
+<p>3、<span class="math inline">\(M=N\)</span>，基环外向树，枚举删掉一个点？</p>
+<p>4、<span class="math inline">\(M\le N+3\)</span>，好像做法差不多？</p>
+<p>5、<span class="math inline">\(M=\frac{N(N-1)}{2}\)</span>，这不就是取一条边吗。。。</p>
+<p>6、Wheel Graph，不懂</p>
+<p>7、Random Graph，没啥思路</p>
+<p>于是开始刚 <span class="math inline">\(N\le 40\)</span>，想着想着想到我的集训队论文上去了，感觉可以只搜极大树形导出子图，用Bron-Kerbosch算法思想，维护两个集合，一个是当前选的点 <span class="math inline">\(S\)</span>，一个是剩下的允许加入的点 <span class="math inline">\(U\)</span>，每次枚举一个 <span class="math inline">\(U\)</span> 中与 <span class="math inline">\(S\)</span> 相邻的点是否加入 <span class="math inline">\(S\)</span>，如果不加入则从 <span class="math inline">\(U\)</span> 中删掉。</p>
+<p>这样可以不重不漏枚举所有树形导出子图，然而没法只搜极大……可是这并不像极大独立集那样可以找个点Pivot来优化复杂度……</p>
+<p>不管了先写一发，然后和大暴力拍没问题，很好……随机几组 <span class="math inline">\(N=40\)</span> 的数据……啊，跑了4s……</p>
+<p>然后想用点度递增序作搜索序什么的，写完发现跑更慢，GG。</p>
+<p>不是很会优化，先交吧至少能过第一个数据……卧槽爆0了？！</p>
+<p>TLE了。。。算了明天再看什么情况</p>
+<p>……</p>
+<p>第二天起来，对着代码看了一会儿，加了个优化，把 <span class="math inline">\(U\)</span> 中加入 <span class="math inline">\(S\)</span> 会成环的直接从 <span class="math inline">\(U\)</span> 中删掉，这样剪枝能剪更彻底些，然后不管怎么随机的 <span class="math inline">\(N=40\)</span> 的数据都秒出了，妙。再交……又爆0了？！</p>
+<p>WA。。。</p>
+<p>论WrongAnswer为什么叫WrongAnswer。。。查了半天的错根本没查出有错，然后判了个如果 <span class="math inline">\(K\le 40\)</span> 就跑搜索，否则直接输出0。然后，就有分了？【虽然只有1.6分并没有什么卵用】</p>
+<p>看了下评分方式才知道怎么回事——我TM又没认真读题！评分是按照每个点的答案之和的倒数给的（？），怪不得挂一个点就全WA……【不过我还是想吐槽这种奇葩评分方式】</p>
+<p>又打了个完全图的取一条边，分似乎没多的样子……</p>
+<p>感觉要多分得先把随机数据搞过去……怎么乱搞呢？就这样：把搜索改成随机贪心，用BFS，每次随机一个能扩展的点扩展，多次随机取最优。尽管我也不知道这样能不能搞到足够优的解……</p>
+<p>不过还是得试试。写了一发交上去，竟直接97分了！接着我又打了Wheel Graph和基环外向树，Wheel Graph知道是什么以后就是枚举中心取不取然后环上取最值，很好写，基环外向树统计每个子树的点权和之后删环上最小的。打完交，意料之中地分没变。</p>
+<p>然后准备打 <span class="math inline">\(M\le N+3\)</span> 的点，看起来也能用我的论文的做法解决，然后就想怎么DP，并没有好的想法设计DP，不管怎么都处理不了连通的限制。接着开始想缩边，把度为1的点往对面缩，再把度为2的点缩成链，一条链表示成一条边，要在边上记这条链上的点集，然后外面枚举关键点，里面跑个类似MST的东西，细节非常多。。。这东西immaotalCO写过，调了一晚上才调出来。我写了一个多小时以后意识到不太可写，就删了。</p>
+<p>看来这题的关键就在怎样做随机数据。</p>
+<p>接着继续搞随机图，首先是把多次随机弄了个卡时，效果似乎不错的样子= =接着我试着把卡时的时限改大本机上跑，发现会不断地出更优解，就尝试优化随机化的常数。。。当然是没用的咯，因为没啥可优化的。</p>
+<p>根据之前乱搞的经验，贪心经常比随机化优秀——比如CTSC2016D2T1，贪心每个点有3分，随机化基本没有，我考场上两种都试了一下，于是部分分拿满了2333 如果把随机化换成每次加入一个点权最大的能加入的点呢？这样只要把BFS队列换成优先队列。来，<code>std::priority_queue&lt;int&gt;</code> 走起……</p>
+<p>测了下发现怎么贪心的答案比随机化要大不少啊，有点惨啊是不是贪心比随机化更劣啊？？索性全删了。</p>
+<p>又尝试了几种乱搞姿势还是不给力。接着突然意识到我程序求的是补集，那么更大意味着更优啊？？？我的脑子呢？？？</p>
+<p>重新写了一遍优先队列贪心。交上去，分数变低了……为什么？我自己测的数据不都是贪心更优吗？</p>
+<p>不管了我两个程序各跑一段时间，交上去分数多了不到1分……但我觉得贪心应该比随机化优很多啊，并不是很懂。</p>
+<p>最后还想继续搞点分，并没有想到好的方法。前面一堆人99+分，我怎么都只能排到rank 15……</p>
+<hr>
+<p>当然，Challenge最后是有重测的。</p>
+<p>重测完我的分数变成了89.918分。</p>
+<p>当然，别人分数也变低了，于是我名次上升了。</p>
+<p>最后fjzzq2002 990.338分rank 7，我989.918分rank 9，ccz181078 989.907分rank 10，peehs_moorhsum 989.854分rank 11。rank 9~11的分差真是小，果然OI有时候需要运气……</p>
+<p>然而再怎么好的运气依旧掩盖不了我不如初中生的事实= =</p>
+<p>就要IOI了，再这么弱下去怎么行？刷的题还是太少，多刷题才能积累经验啊。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/12/codechef-june-2017/" data-id="cjegziddd000ndf1ldcl3z5q1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-51nod-25" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/02/51nod-25/" class="article-date">
+  <time datetime="2017-06-02T12:26:42.000Z" itemprop="datePublished">2017-06-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/02/51nod-25/">失败者的辣鸡本质——记51nod算法马拉松25</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>帖子公开得有点晚。</p>
+<p>可以说很失败。</p>
+<hr>
+<p>开场看A，感觉二分代码有点奇怪，不知道题目有没问题，就去看B。</p>
+<p>B一眼想到一种做法，每个数建一个点，相等的放同一层，得到一个分层图，问有多少种连边方案使得图是一条链。看了下 <span class="math inline">\(n\le 30000\)</span>，相同的数不超过 <span class="math inline">\(100\)</span> 个，也就是每层不超过 <span class="math inline">\(100\)</span> 个点，觉得挺靠谱。</p>
+<p>然后就开始推，结果被细节恶心到了。我的想法是按一层一层顺序把边加进去，状态 <span class="math inline">\(f(i,j)\)</span> 记前 <span class="math inline">\(i\)</span> 层构成 <span class="math inline">\(j\)</span> 条链的方案数。然而是链不是环，还得记前 <span class="math inline">\(i\)</span> 层有没包含起点和终点，于是搞了个这个玩意：<span class="math inline">\(f(i,j,s,t)\)</span>。</p>
+<p>然后思博了，中间填边的时候，我以为给 <span class="math inline">\(j\)</span> 条链每条确定一个前继节点一个后继节点就行了，然后发现有环，接着就懵逼了好长时间。</p>
+<p>想了好几种解决方法，可惜都是错的。</p>
+<p>于是回头看A，看了讨论知道二分代码没错，那一定是我理解错了，我平时的二分习惯相当于代码里面的 <span class="math inline">\(l\)</span> 减掉 <span class="math inline">\(1\)</span>，<span class="math inline">\(r\)</span> 加上 <span class="math inline">\(1\)</span> 的。</p>
+<p>这样就好理解了。然后又想错了，一开始想到把二分结构的线段树建出来然后DP，发现线段树的节点长度只有 <span class="math inline">\(O(\log n)\)</span> 种，准备写个STL的 <code>map</code> 来大力DP一波。</p>
+<p>于是开始写转移，写着写着突然发现不妙，题目求的是 <span class="math inline">\(r=k\)</span> 的概率，我连我要求啥都没搞清楚，靠。</p>
+<p>然后继续想，发现DP只有一条路走下去，那就只要乘法原理就行了，没必要DP。接着写完主过程发现要求 <span class="math inline">\(n!\)</span>，然而 <span class="math inline">\(n\le 10^9\)</span>……</p>
+<p>打表大法好，把 <span class="math inline">\((10^7i)!\)</span> 打出来就做完了。终于在21:30左右过了A。</p>
+<p>再去看C，这种题似曾相识的感觉（用myy的话说就是deja vu），好像强上笛卡尔树就行。然而我并不知道两个序列的笛卡尔树怎么弄。</p>
+<p>就YY了一个分治算法，<span class="math inline">\(f(l,r)\)</span> 求 <span class="math inline">\([l,r]\)</span> 内的满足条件的区间个数，如果 <span class="math inline">\([l,r]\)</span> 内 <span class="math inline">\(A\)</span> 的最大值不等于 <span class="math inline">\(B\)</span> 的最大值，沿着大的那个分成两个区间递归下去，否则，设两个最大值在 <span class="math inline">\(i,j\)</span> 位置（<span class="math inline">\(i &lt; j\)</span>），那么 <span class="math inline">\(l\le i,j\le r\)</span> 的 <span class="math inline">\([l,r]\)</span> 都满足条件，然后加上 <span class="math inline">\(f(l,j-1)+f(i+1,r)-f(i+1,j-1)\)</span>，递归下去算。</p>
+<p>以为很靠谱，然后准备写，写前想想这玩意儿复杂度是个什么东东。——糟糕，炸了。</p>
+<!-- readmore -->
+<p>如果 <span class="math inline">\(i\)</span> 很接近 <span class="math inline">\(l\)</span>，<span class="math inline">\(j\)</span> 很接近 <span class="math inline">\(r\)</span>，那么序列长度没啥变化，大概按 <span class="math inline">\(T(n)=3T(n-1)\)</span> 估计，变成指数级算法了，比暴力还辣鸡，靠。</p>
+<p>重新想，觉得只要构 <span class="math inline">\(A\)</span> 的笛卡尔树，然后对每个 <span class="math inline">\(i\)</span> 考虑 <span class="math inline">\(A\)</span> 中以 <span class="math inline">\(A_i\)</span> 为最大值的区间（即 <span class="math inline">\(i\)</span> 子树内的区间）中合法的个数。分析了一会儿意识到并不复杂，只要在 <span class="math inline">\(B\)</span> 中找到 <span class="math inline">\(i\)</span> 左右第一个大于等于 <span class="math inline">\(A_i\)</span> 及大于 <span class="math inline">\(A_i\)</span> 的 <span class="math inline">\(B_j\)</span> 就能求出答案，单调栈上二分一下？</p>
+<p>不久把C搞出来了，22:20。看了一会儿后面的题，觉得E的 <span class="math inline">\(b-a\le 10^8\)</span> 好像是区间长度相关的算法，写了一个区间筛，光荣TLE。别的题也没啥思路。</p>
+<p>接着想再折腾一下B，然而太迟了= =就先回去睡觉了。睡觉时继续脑补怎么fix这个算法。</p>
+<p>第二天起来继续刚B，注意到左边每条链有两条边连向右边的点，那就等价于在右边连一条边，这样 <span class="math inline">\(a\)</span> 个点连 <span class="math inline">\(j\)</span> 条边就是把 <span class="math inline">\(a\)</span> 个点排列成 <span class="math inline">\(a-j\)</span> 个序列，就可以转移了。但还是怀疑想复杂了，B题为什么这么麻烦。</p>
+<p>看到排行榜已经有10个人AK了，心灰意冷。</p>
+<p>然而由于起点和终点的限制很麻烦，还是写了很久。</p>
+<p>写完调样例也调了很久，发现我的DP对 <span class="math inline">\(s,t\)</span> 考虑是错的，变成起点和终点产生以后不会再和其它路径合并，然后就改。改完以后过了样例。</p>
+<p>运气不错，交上去直接过了。然而还是怀疑把题做复杂掉了，代码比较长。</p>
+<p>这时候大概10点，去做D了。</p>
+<p>一开始思路挺对，把式子推了一会儿，发现有规律，有的项消掉了，最后剩下几个 <span class="math inline">\(\sum_{i=0}^n{n\choose i}i^{k}\)</span> 形式的东西。凭借经验判断这是 <span class="math inline">\(2^n\)</span> 乘一个 <span class="math inline">\(k\)</span> 次多项式，但这个多项式并不会求。。。插值？</p>
+<p>接着就一直往插值方向去想，发现我把一个点值求出来都要至少 <span class="math inline">\(O(n)\)</span>，求 <span class="math inline">\(O(k)\)</span> 个点值完全没救。优化的话，想到FFT，但是过不了，就扔了。</p>
+<p>把表打出来看规律，发现次数不超过 <span class="math inline">\(3\)</span> 的规律很明显，次数一超过 <span class="math inline">\(3\)</span> 就各种鬼畜。联想到xumingkuan的互测题（我这题得分全场倒数），感觉不会又是什么黑科技题吧，反正没搞出来，GG。</p>
+<p>中午吃饭的时候，突然想到——</p>
+<p>诶，模数 <span class="math inline">\(m\)</span> 不是 <span class="math inline">\(10^6\)</span> 级别吗？</p>
+<p>诶，答案不是关于 <span class="math inline">\(n\)</span> 的多项式吗？</p>
+<p>把 <span class="math inline">\(n\)</span> 对 <span class="math inline">\(m\)</span> 取模就行了？</p>
+<p>吃完饭就开始写，也没去优化log，写完过了样例就交，结果WA一块TLE一块的。TLE是复杂度不对，WA呢？</p>
+<p>和暴力拍了拍，发现跑出来的结果不一样，然后把暴力的 <span class="math inline">\(n\)</span> 也模 <span class="math inline">\(m\)</span>，一样了……</p>
+<p>莫非是结论错了？？这时候我突然想到答案不是 <span class="math inline">\(n\)</span> 的多项式而是 <span class="math inline">\(2^n\)</span> 乘一个关于 <span class="math inline">\(n\)</span> 的多项式。。。那就判一判呗。</p>
+<p>12:20，D过了。</p>
+<p>看了下E和F，好像F比较可搞？就先去做F了。</p>
+<p>嗯，我比较傻逼，果然一开始想歪了。</p>
+<p>一开始想DP发现状态怎么记都要状压，没救。然后分析性质，一个区间翻两次肯定不优，那就只能翻一次，用 <span class="math inline">\(x_{l,r}\)</span> 表示 <span class="math inline">\([l,r]\)</span> 这个区间翻的次数。则最后 <span class="math inline">\(i\)</span> 点被翻的次数奇偶性就是 <span class="math inline">\(\sum_{l\le i}\sum_{r\ge i}x_{l,r}\bmod 2\)</span>。</p>
+<p>如果用 <span class="math inline">\(y_{i,j}\)</span> 表示 <span class="math inline">\(\sum_{l\le i}\sum_{r\ge j}x_{l,r}\bmod 2\)</span>，那么 <span class="math inline">\(x_{i,j}=y_{i,j}\oplus y_{i,j-1}\oplus y_{i-1,j}\oplus y_{i-1,j-1}\)</span>，这东西如果是1就要花费代价。</p>
+<p>好像可以最小割建图。</p>
+<p>然后就开始想4个变量怎么建图。2个的话很简单，4个能不能先把某3个捆绑在一起？试了试，根本建不出表示与关系的图。</p>
+<p>又想能不能设置边权满足条件，也弄不清楚。以及想到把点染色来做，然而不起作用。</p>
+<p>想了2h+，觉得实在没救。回过头来再分析一下什么条件没用上。</p>
+<p>嗯，如果翻转 <span class="math inline">\([a,b]\)</span> 和 <span class="math inline">\([a,c]\)</span>，效果就相当于翻转 <span class="math inline">\([b+1,c]\)</span>。如果把差分搞出来，消掉两个差分相当于找一条最短路？想到BZOJ3003。</p>
+<p>这样就变成求差分之间的最大权匹配，mdzz一般图最大权匹配真的可写？反正我写不出来。</p>
+<p>不过为了AC，我还是从UOJ上抠了个带花树板子下来改了改。于是就把F题过了。</p>
+<p>最后是E。</p>
+<p>由于区间筛法根本做不了，索性把 <span class="math inline">\(b-a\le 10^8\)</span> 这一辣鸡条件扔了。</p>
+<p>接着继续作大死，一开始想用筛法函数做，然后果然出问题了，一个数被小于等于 <span class="math inline">\(p\)</span> 的数筛掉不代表这个数不含大于 <span class="math inline">\(p\)</span> 的质因数。然后想到反着筛，似乎是对的。当时我还没想过复杂度是多少，觉得预处理几个东西就能做了。</p>
+<p>然后。。。</p>
+<p>写写写，调调调，好不容易调对了。一交，TLE得乱七八糟。</p>
+<p>又调了一会儿。</p>
+<p>突然意识到有一个DP第二维会爆炸！复杂度不是 <span class="math inline">\(O(n^\frac{3}{4}\log^{-1}n)\)</span> 的！</p>
+<p>惨啊！重新推重新推。</p>
+<p>接着的思路是统计 <span class="math inline">\([1,n]\)</span> 以内只包含 <span class="math inline">\(p\)</span> 以内质因数的整数个数，用 <span class="math inline">\([1,b]\)</span> 减去 <span class="math inline">\([1,a-1]\)</span> 即可。记 <span class="math inline">\(f(n,m)\)</span> 为 <span class="math inline">\([1,n]\)</span> 内只包含 <span class="math inline">\([m,p]\)</span> 以内质因数的整数个数，然后DP一波……？</p>
+<p>第二维看起来超过 <span class="math inline">\(\sqrt n\)</span> 就可以 <span class="math inline">\(O(1)\)</span> 了？这么看来就是 <span class="math inline">\(O(n^\frac{3}{4}\log^{-1}n)\)</span> 了？</p>
+<p>写了一发交上去……</p>
+<p>A了……</p>
+<p>最后是22:48:19，比rank 10晚了21h+，失败告终。</p>
+<hr>
+<p>51nod六题，题题掉坑。</p>
+<p>好几题都是花了两三个小时想甚至写出来，然后出问题，把整个算法推掉重做。</p>
+<p>A题就一乘法原理，想到奇怪的DP。</p>
+<p>B题想太复杂了，题解有更简单的考虑方法。</p>
+<p>C题一开始以为自己想到了很厉害的做法，想了很久才发现很爆炸。而且看了题解正解 <span class="math inline">\(O(n)\)</span>，我写的是 <span class="math inline">\(O(n\log n)\)</span>，还好出题人没卡= =</p>
+<p>D题都推出是多项式了，把 <span class="math inline">\(n\)</span> 对 <span class="math inline">\(m\)</span> 取模都没想到，去想插值了……想了很久才意识到。况且 <span class="math inline">\(n\)</span> 这么大就算能插值也过不了。</p>
+<p>E题搞了两三个小时的错误复杂度的筛法函数DP，最后才意识到是个简单的DP。看了题解好像 <span class="math inline">\(b-a\le 10^8\)</span> 这个条件还是有用的？可以记在DP状态里，当 <span class="math inline">\(a=b\)</span> 时节省状态数？</p>
+<p>F题搞了两三个小时的网络流最小割建图，最后才意识到是类似我做过的题。</p>
+<p>怎么说呢，尽管参加了这么多场比赛（NOIP一等奖和APIO Au都拿了两个）但我终究还是不会做题，有的题老是被第一感觉带走，然后就想歪了，回过头来一看发现是水题。。。</p>
+<p>想题思路也不是很清楚，B题如果理清思路也并不是特别复杂。。。</p>
+<p>以及E和F我都做过类似的题，怎么想了那么久都没意识过来正确思路。。。</p>
+<p>总之平时太不用功，以前刷过的题并没有好好消化。。。</p>
+<p>不过就算没掉坑也进不了前10。。。睡一觉起来就10个AK了。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/02/51nod-25/" data-id="cjegzidav0004df1lei8qgfns" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ctsc2017-apio2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/16/ctsc2017-apio2017/" class="article-date">
+  <time datetime="2017-05-16T14:20:35.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/16/ctsc2017-apio2017/">记第二次CTSC&amp;APIO——CTSC2017&amp;APIO2017</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如此重要的比赛一定得开个帖写一写。</p>
+<p>第二次参加CTSC&amp;APIO，考得不好，我还是太弱了。</p>
+<hr>
+<h3 id="ctsc2017">CTSC2017</h3>
+<p>练习赛出了NOI2016原题，预示着CTSC2017会出原题？好像是的。</p>
+<h4 id="day1">Day1</h4>
+<p>看完三题，感觉T1很可做，T2挺好理解，T3有点复杂。然后发现T1的下发输入库不见了，就在一直看T3，感觉也比较可做。于是等T1的库下发（居然要手打，差评）以后就把T1写掉了。接着研究T2，一开始以为是一道AKF出过校内训练的TC题，然而那题我并不会做，而且复杂度还过不去。当时就写了个 <span class="math inline">\(O(n^2d)\)</span>（<span class="math inline">\(d\)</span> 为树的深度）的25分暴力，由于代码能力太糟糕，写了很久。接着觉得似乎能二分，然而对于所有点对的约束并不会判定。后来想到去年IOI题，然后发现题目不太一样，当时以为加边两端点都在直径上是错的，就觉得不一样，扔了。</p>
+<p>最后推T3，由于没认真读题就开始想，一开始想成求满足条件的概率，然后写了很久的线段树维护概率，也写了很久。写到快写完时发现不对，是求满足条件下的期望。这时候我有点懵逼，不过把转移看成图，就变成求带重边两点间路径长度的平均值，用线段树维护路径条数和路径长度和就行。</p>
+<p>写完T3过掉样例只剩1h-了。感觉精度有点虚，不过出了几组数据都没炸精，也不知道怎么卡，就当得分玄学吧。最后稍微拍了下T1，另两题也没拍就结束了。</p>
+<p>出考场fateice说T2结论就是在直径上，哎我好菜啊为什么不出几组数据找找规律。matthew99做出了T2，然后表示T3很容易炸精度，好方啊。</p>
+<p>看成绩100+25+100=225。。。这个T3居然过了。。。然后看到matthew99 AK了（原来是matthew99以为数据里有0和1然而实际上题目保证了没有，<del>好像还有别的原因</del>），yjqqqaq 250，还有几个和我同分的。T3好像一点也不卡精，确实直接写就能过。</p>
+<p>immortalCO有点惨，T3以为会卡精度改成暴力结果掉了30。。。fateice更惨，好像挂在了和去年wwx一样的地方，一个地方没看long long，T2挂成0分，T3数组开小挂了20，悲伤的故事。<del>当时我非常庆幸我在测T2样例时在后面补了几个0</del></p>
+<p>讲题时听说T2把直径结论搞出来就是IOI原题了，感觉如果我能看出这个结论可能可以多拿25分以上。</p>
+<p>感觉今天T1、T3加起来再加上T2暴力分属于大众分吧，没啥好说。</p>
+<p>下午开始感觉身体有点乏，开始担心明后天的表现。</p>
+<h4 id="论文答辩">论文答辩</h4>
+<p>答辩自我感觉还行，然而出成绩#13滚粗，让人心碎。也不想说什么了。</p>
+<p>晚上和immortalCO一起看了几道题，结果我没想出来一题，immortalCO倒是都做出来了。尽管暂时成绩单上我是#3，但和前后几名的分差相当小，做好了明天被打回原形掉出前6的准备。</p>
+<p>和immortalCO一起很早就睡了。</p>
+<!-- readmore -->
+<h4 id="day2">Day2</h4>
+<p>看了看题，T1直接上Lucas可以证明 <span class="math inline">\({a\choose b}\equiv 1\pmod 2\)</span> 的条件是 <span class="math inline">\(a\)</span> 的二进制表示下1的集合包含了 <span class="math inline">\(b\)</span> 的。接着觉得可以大力分治优化DP，发现好像要FMT复杂度炸了，就换成分块优化DP。复杂度 <span class="math inline">\(O(n\sqrt{n\log n})\)</span>（假装 <span class="math inline">\(a\)</span> 的范围也是 <span class="math inline">\(n\)</span>），卡了卡常数过了样例就不管了。</p>
+<p>接着想想后两题，T2一开始没啥思路就先跳过去看T3，看样子乱搞能搞过去。一开始看第一档分，用个旋转扫描线 <span class="math inline">\(O(n^2\log n)\)</span> 似乎就行了，然后写了不知道多久。然后看第二档 <span class="math inline">\(n\le 1000\)</span>，第三档 <span class="math inline">\(n\le 20\)</span> 以为第三档更可搞，就花了很多时间写了第三档的分段爬山+费用流，试图搞过去，事实证明我的姿势不对。。。搞了很久还是和样例差一点但不能过。</p>
+<p>只剩不到2h了，感觉进前6没希望了。于是顿时失去了梦想，也没去搞第二档部分分，就在一直调第三档的参，然而没啥效果，然而明知没啥效果却没有停手。最后，还是准备打T2暴力，想到DP状态里记个LIS的DP，一直觉得能优化却没心思去想，最后一直处于打暴力状态，随机了几组大数据测效率，也没拍暴力，一直盯着代码看，神智也不是很清楚，一直都在做无用功。最后几分钟干脆关掉代码对着空屏幕看等着结束，感觉掉出前6是稳了。</p>
+<p>出来听说immortalCO打了T2的费用流，我怎么就没有去想呢……最好今天直接挂掉几题掉出前6算了。</p>
+<p>immortalCO还说T1复杂度是 <span class="math inline">\(O(n\sqrt n)\)</span> 的，跑得飞快。还说有一种 <span class="math inline">\(3^{18}\)</span> 的做法也能过还很好写。我好菜啊为啥只有我写了个这么复杂的东西。</p>
+<p>看成绩，100+5+30=135，T2意料之中地挂了20，T3第一档居然没挂。感觉很害怕，要是不小心掉进了第5、6名怎么办。</p>
+<p>这时候CY教练告诉我#4了？？？奥妙重重。滚粗成这样居然还能卡线，真是没想到。</p>
+<p>以为immortalCO会比我高很多，问了一下发现100+40+0=140，T1复杂度比我优，T3却挂了，最后由于两天T3的挂分而没进队，惨。（后来才知道原来他T3整题写了个模拟退火，没特判第一档子任务，最后全炸了）fateice和我同分。</p>
+<p>dick32165401好强啊，100+5+50=155，T3模拟退火搞了50。了解了一下情况，他第三题搞过了第一档和第二档的两个点。然后想想，第二档判定只要排序，第三档要二分图最大权匹配，前者比后者情况更简单，似乎更容易搞过去。</p>
+<p>（后来发现其实是我爬山的step忘了减小！！）</p>
+<p>（后来改完上述bug发现还是过不去。。。10组就挂1组，改成不挂的就TLE。。。）</p>
+<p>仔细想想还是有点儿后悔的，如果我考场上以前4为目标的话可能会更尽力地去拿分，不至于滚成135吧。</p>
+<p>不过人生真是难以预料，滚成这样竟然进了#4。</p>
+<p>然后就开始准备面试了，结果面试还是过度紧张，感觉真是在大众面前丢脸【我的脸呢？】总之面试自我感觉实在糟糕。</p>
+<p>面试完如释重负吃完饭看闭幕式，czt 435分非集训队#1真是太巨了。今年分数线好高啊，Au线255创历史新高。非集训队好劲啊，我这个360分在非集训队进不了前4。</p>
+<p>不过既然进了IOI又有什么可抱怨的呢？再说还有不少神犇CTSC失利了，immortalCO巨神挂了，chentong和runzhe2000 Ag了，wzt挂成Cu了，zhshr队长和初三Au的pyz5715也意外考挂了。看到immortalCO的QQ签名“AFO”，实力远在我之上的大爷却没能进队，感觉真是十分遗憾。</p>
+<p>后来和教练谈了一下，决定我放弃省队名额。于是我成为了非省队选手。祝贺Au爷dick32165401进入省队。</p>
+<h3 id="apio2017">APIO2017</h3>
+<p>这个试机赛，原题+时间短+网络不好+交上去测不出来，写了前两题交上去结果都是错的，交UOJ结果十分感人地27+0+0=27，连去年的Cu线都没到，胸牌既视感。T1数组开小，T2每次合并完去掉最后一段是错的，以及有个函数没开64位。还好APIO有即时反馈不然就要像CTSC Day2那样大自爆了。</p>
+<p>然后APIO果然就滚粗了。</p>
+<p>开场看三道题，居然有两道交互，害怕。花了一会儿看题，T1看样子可以想出来，T2挺复杂，还那么多子任务，估计是拉区分度的难题，T3看起来是二分+最短路的套路题。</p>
+<p>于是先切T3，由于个人比较傻逼，Floyd最短路都能写错，用了半个多小时才调对，50min的时候才过，我好菜啊。</p>
+<p>接着开始想T1，一开始的想法是考虑snake的运动轨迹把询问矩形划分成的区域，然后想不清楚，而且运动轨迹本身可以连得很复杂。重新想。</p>
+<p>下一个思路类似NOI2016的grid，把地图的每一行所有空地组成的连续段提取出来，每段建一个点，相邻两行有相交的段连一条边，每次询问就是把询问矩形包含的点和边取出来看有多少个连通块。</p>
+<p>然后开始掉坑。因为我不知道图大概长什么样，所以理所应当地认为图中有多个环。那么怎么求连通块个数呢？想到一道每次保留一个区间内的边询问连通块个数的题，然后发现这题问的不是区间而是有多维的东西，接着纠结了很久能不能用什么数据结构来维护。</p>
+<p>LCT、线段树分治、分块，没有一个能解决。</p>
+<p>有点慌地去看了下T2，然后想出了subtask1只要随便放一个1就行，subtask2一开始想法是第一轮每个地方放一个1，对方会把较大的50个取出来，第二轮把较大的50个每个地方放一个2，对方会把较大的几个取出来……然而由于我以为第二轮对方可能取33个，第三轮每个地方放3个对方可能取25个……觉得好像做不下去，想优化，但实在不会优化。再看subtask3，一开始以为只要0和1各放50个就行，发现对方可以不取，那就改成放1个，发现对方可以都取- -b感觉好难啊，还是回去搞T1吧。</p>
+<p>比赛近半的时候我才决定打T1暴力。由于我比较弱，打了一个多小时才过47分。</p>
+<p>最后也就剩一个多小时了，专攻T2。挣扎了很久subtask2，然后由于想看看规律，把每次询问的东西打出来看，发现我一开始的思路其实是可以过的= =因为算法是确定性的，第二轮对方恰好取25个，第三轮恰好取9个，第四轮就剩1个，OK了。</p>
+<p>于是写掉subtask2，看subtask3，同样用打表找规律大法，试了下把0和1放的个数在1到8之间调整总有一个能让对方恰好取了0和1中的一个，然而二分会炸次数。就随机了10000+组数据，好像区间都比较长，有些数可以不用试。最后搞着搞着把subtask3过了。</p>
+<p>再看最后两个subtask，都是要排序，似乎强上 <span class="math inline">\(O(n\log n)\)</span> 的排序可以过subtask4，还能拿到一部分subtask5的分数。然而快速排序好像会被卡常数，就用 <code>std::inplace_merge</code> 写了个归并排序，把subtask4的程序改了改作为subtask5的程序。最后subtask4过了，subtask5得了28/53。</p>
+<p>这时候离比赛结束剩10min-，想了想subtask5好像只要把快排的 <code>partition</code> 用subtask2的搞法可能可以多拿不少分（考完意识到 <code>partition</code> 的次数是99次，可以AC），然而最后几分钟我啥都写不对，于是很遗憾地没有过……</p>
+<p>最后得分47+75+100=222，一个滚粗的成绩。</p>
+<p>出来听说fateice 227，高一的wzt 211，感觉我要被好多人吊打了。</p>
+<p>考完以后yjqqqaq讲了他的T1做法和我的想法类似，然后说这样构出来的图每个连通块基本上都是树，最多有一个是基环外向树，那就只要统计点数和边数就行了，哎我的智商哪里去了。</p>
+<p>赶飞机翘了颁奖，后来得知我只有rank 5。前4名是lych_cys，RXDoi，fateice，fanzewen，比我不知道高到哪里去了。</p>
+<p>orz lych_cys AK虐场！！！</p>
+<p>wzt Au rank7，dick32165401 Au（现在3个Au），我校的希望。</p>
+<h3 id="ctscapio总结">CTSC&amp;APIO总结</h3>
+<p>这次的CTSC&amp;APIO依旧发挥得比较糟糕，当然比去年还是好不少的，去年CTSC非集训队#9，APIO#36，今年CTSC非集训队#5，APIO#5，还是有进步的。</p>
+<p>CTSC Day1发挥比较正常，T1和T3两道比较多人A的题都A了，排名也比较靠前。T2还是有一些遗憾的，考场上错误地否定了加边两端点在直径上的结论（当时觉得一定要缩短直径两端的距离，但以为往下走一段可能会更优），同时以为这题类似某道TC题（后来经过immortalCO的提醒那题是个计数题。。。）就没分析出任何性质，也就只剩暴力分。</p>
+<p>CTSC Day2比较失败。T1第一反应想到FMT优化DP，好在没花多长时间就卡过去了，考场上能过了就不需要花更多时间。（怀疑只有我想偏了）之后犯了好几个错误。一个是把乱搞当靠谱做法，我以为T3的第三个子任务 <span class="math inline">\(n\le 20\)</span> 用分段爬山十分靠谱，却没注意到它依旧是个非完美算法，不一定能搞过去。这种需要花很多时间却不一定有分的东西一定要放在最后搞。其次是一种意识上的错误，平时总以为写错会导致答案差很远，和答案差不多是因为参数调得不好或者算法不优，当我看到T3程序运行结果和答案只差一点但超出误差范围时，只调了分段的参数，没有想过去检查程序实现。其次就是考试时的心态以及判断，由于我在T3上浪费了太多时间，觉得这一场一定会爆炸。实际上从部分分就可以看出Day2的区分度不是很大，这也是我最后刚好没掉出集训队前4的原因。结果导致我既没有尝试去搞子任务2，也没有想到程序实现上的错误，也没有认真去搞T2。</p>
+<p>T2我的想法是，考虑 <span class="math inline">\(O(n\log n)\)</span> 求LIS的做法，维护了一个栈 <span class="math inline">\(S\)</span>，每加入一个元素 <span class="math inline">\(a\)</span> 时，将 <span class="math inline">\(S\)</span> 中不大于 <span class="math inline">\(a\)</span> 的最大值改成 <span class="math inline">\(a\)</span>。那么就在DP中状压当前LIS的栈，很容易转移，<span class="math inline">\(k=2\)</span> 时这个栈内最多两个元素，所以可以做到 <span class="math inline">\(O(n^3)\)</span>，优化之后是 <span class="math inline">\(O(n^2\log n)\)</span>。把转移过程建图就可以跑网络流了。由于没有检查，我除了第一个点以外全部写挂，也没想去构网络流的图，最后只有5分。</p>
+<p>感觉今年的CTSC比较看脸（当然matthew99这样的大神除外）。immortalCO Day1挂30，我Day2挂20，最后我卡线了，immortalCO挂了。讲道理immortalCO的实力是在我之上的。</p>
+<p>APIO也发挥得不理想。主要的问题在于T1想复杂了，一开始分析问题时意识到Snake是一个四连通块，然而分析到后面忽略了这个条件，以至于当我建出图以后没意识到最多只有一个环。如果遇到瓶颈以后回头看题目性质，或者模拟几组数据，就能发现图中不可能有两个环。以及一开始没有仔细想T2也是一个失误，这题我完全是可以搞出来的。</p>
+<hr>
+<p>准备把CTSC2017&amp;APIO2017的坑填了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/16/ctsc2017-apio2017/" data-id="cjegzidem0011df1lvpyfw5v6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/APIO/">APIO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-51nod-24" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/01/51nod-24/" class="article-date">
+  <time datetime="2017-05-01T06:25:17.000Z" itemprop="datePublished">2017-05-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/01/51nod-24/">51nod算法马拉松24</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>唉……搞了这么久OI还是只会暴力打打，没救了……</p>
+<p>最近没有一场比赛打得爽，互测Round 5 GG，校内训练GG，Codechef GG，省选GG。本来想打打51nod出点气，结果TM又崩了。。。</p>
+<p>51nod被两道码农数据结构恶心了一脸（应该是我太弱），F题写了个 <span class="math inline">\(O(n\log^2n)\)</span> 的东西被卡常数卡内存，然后才发现做复杂了。最后。。。被9min绝杀，#11滚粗。。。真是不爽。</p>
+<p>以下是本人参加51nod算法马拉松24的滚粗过程。</p>
+<p>开场看题，A一开始没懂，跳过，看B。</p>
+<p>B一开始猜贪心结论，每个尽量往后选，然后随手叉掉了。看 <span class="math inline">\(n\le 20\)</span> 奥妙重重的样子，似乎暴力状压DP可过。</p>
+<p>于是10min+的时候把B题过了。</p>
+<p>C一开始以为是丧题，感觉数据范围这么大一定有什么性质。先猜足够大的图一定有解，然后发现死活没法把一个格子取反，才发现怎么弄xor和都是0。。。</p>
+<p>于是猜想足够大的图有偶数个1就行了。为了验证这个规律，写了个暴力高斯消元观察规律。。。好像确实是这样2333</p>
+<p>然后特判了 <span class="math inline">\(n=1\)</span>、<span class="math inline">\(m=1\)</span>、<span class="math inline">\(n=m=2\)</span> 的情况就切掉了C题，大概30min+？</p>
+<p>D目测套路题。。。推下式子 <span class="math inline">\(\sum_{i=1}^n\sum_{j=i+1}^n\sum_{k=1}^{j-i+1}sum_{i,j,k}\)</span>，<span class="math inline">\(sum_{i,j,k}\)</span> 为区间 <span class="math inline">\([i,j]\)</span> 前 <span class="math inline">\(k\)</span> 大和，再推一下变成 <span class="math display">\[\sum_{i=1}^n\sum_{j=i+1}^n\sum_{k=i}^ja_k\cdot rank_{i,j}(a_k)=\sum_{i=1}^n\sum_{j=i+1}^n\sum_{k=i}^ja_k\sum_{t=i}^j[a_t\le a_k]\]</span></p>
+<p><span class="math inline">\(rank_{i,j}(x)\)</span> 表示 <span class="math inline">\(x\)</span> 是 <span class="math inline">\([i,j]\)</span> 里面第几小的，假设所有数互不相同。于是交换下求和顺序 <span class="math display">\[\sum_{k=1}^na_k\sum_{t=1}^n[a_t\le a_k] (\sum_{l=1}^{\min\{k,t\}}\sum_{r=\max\{k,t\}}^n1)=\sum_{k=1}^na_k\left[\sum_{t=1}^k[a_t\le a_k]t(n-k+1)+\sum_{t=k+1}^n[a_t\le a_k] (n-t+1)k\right]\]</span></p>
+<p>两个和式BIT搞搞就 <span class="math inline">\(O(n\log n)\)</span> 做完了。然后在1h左右的时候过掉了。。。</p>
+<p>接着开E。然后就进入了SB时间。。。一开始想直接弄个DFS序然后按深度奇偶性分成两个序列，接着发现操作3的LCA询问不会做。然后感觉LCA的条件很不好搞，似乎用距离来做更好做一些？于是作死时间开始。。。<span class="math inline">\(dist(a,b)=dep(a)+dep(b)-2\cdot dep(LCA(a,b))\)</span>，通过构造边权使得 <span class="math inline">\(dep(a)=a\)</span>，然后变成询问某点到所有黑点的距离和。接着继续作大死。。。树分治一波看看能不能搞出来，接着脑补了好久的树分治发现并不会做= =</p>
+<p>浪费了好久，回头考虑别的做法。对于每个询问，如果把 <span class="math inline">\(\sum_{i=1}^nLCA(i,x)\)</span> 换成 <span class="math inline">\(\sum_{a=1}^n\sum_{x=1}^n[LCA(i,x)=a]\)</span> 呢？然后发现 <span class="math inline">\(\sum_{x=1}^n[LCA(i,x)=a]\)</span> 并不是 <span class="math inline">\(a\)</span> 子树内的点数。。。如果强行按子树内的点来算呢？那就把LCA和它的所有祖先全算上了。如果构造点权 <span class="math inline">\(v_a\)</span> 使得 <span class="math inline">\(a\)</span> 到祖先的所有点的点权和等于 <span class="math inline">\(a\)</span> 呢？</p>
+<p>好像问题简单了些。。。记 <span class="math inline">\(s(i)\)</span> 为 <span class="math inline">\(i\)</span> 子树内黑点数乘以 <span class="math inline">\(v_i\)</span>，查询只要查 <span class="math inline">\(x\)</span> 到根的路径上 <span class="math inline">\(s(i)\)</span> 的和。似乎可以强上树剖线段树，然而信息不是很好维护？又纠结了一会儿无果。</p>
+<p>看了下好多人过了A，就回去看A，终于正确理解题意了。列了几个方程发现 <span class="math inline">\(n\)</span> 偶数才有解，有解的时候外圈填 <span class="math inline">\(1,2,\cdots,n-1\)</span> 内圈列个方程，似乎直接解出来了= =然后就过了A。</p>
+<p>回去研究E树剖以后怎么维护线段树信息，但搞不清楚，于是准备第二天起来继续研究。</p>
+<p>……</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/01/51nod-24/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/01/51nod-24/" data-id="cjegzidam0003df1lvm21pe9d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51nod/">51nod</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/酱油记/">酱油记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-sdoi2017-record" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/26/sdoi2017-record/" class="article-date">
+  <time datetime="2017-04-26T02:15:14.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/26/sdoi2017-record/">SDOI2017做题记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先做了D2T3。</p>
+<h4 id="d2t3相关分析">D2T3：相关分析</h4>
+<p>这种题入手，先推个式子：</p>
+<p><span class="math display">\[a=\frac{\sum_{i=L}^R(x_i-\overline{x})(y_i-\overline{y})}{\sum_{i=L}^R(x_i-\overline{x})^2}
+=\frac{\sum_{i=L}^R(x_iy_i-x_i\overline{y}-y_i\overline{x}+\overline{x}\overline{y})}{\sum_{i=L}^R(x_i^2-2x_i\overline{x}+\overline{x}^2)}
+=\frac{\sum_{i=L}^Rx_iy_i-n^{-1}\sum_{i=L}^Rx_i\sum_{i=L}^Ry_i}{\sum_{i=L}^Rx_i^2-n^{-1}(\sum_{i=L}^Rx_i)^2}\]</span></p>
+<p>于是问题转化为询问 <span class="math inline">\(\sum_{i=L}^Rx_i\)</span>，<span class="math inline">\(\sum_{i=L}^Ry_i\)</span>，<span class="math inline">\(\sum_{i=L}^Rx_i^2\)</span>，<span class="math inline">\(\sum_{i=L}^Rx_iy_i\)</span>，就比较裸了。</p>
+<p>用线段树维护这4个和，以及维护两种标记：区间的 <span class="math inline">\(x,y\)</span> 增加量，区间是否被修改为等差数列。显然标记可以合并，注意后一个标记会覆盖前一个标记。接着考虑标记如何应用到结点信息。</p>
+<p>设 <span class="math inline">\(x_L,x_{L+1},\cdots,x_R\)</span> 应用 <span class="math inline">\(x_i\leftarrow x_i+s\)</span>，<span class="math inline">\(y_i\leftarrow y_i+t\)</span> 标记后为 <span class="math inline">\(x_L&#39;,x_{L+1}&#39;,\cdots,x_R&#39;\)</span>，则 <span class="math display">\[\sum_{i=L}^Rx_i&#39;=\sum_{i=L}^R(x_i+s)=\sum_{i=L}^Rx_i+(R-L+1)s\]</span> <span class="math display">\[\sum_{i=L}^Ry_i&#39;=\sum_{i=L}^R(y_i+t)=\sum_{i=L}^Ry_i+(R-L+1)t\]</span> <span class="math display">\[\sum_{i=L}^Rx_i&#39;^2=\sum_{i=L}^R(x_i+s)^2=\sum_{i=L}^Rx_i^2+2s\sum_{i=L}^Rx_i+(R-L+1)s^2\]</span> <span class="math display">\[\sum_{i=L}^Rx_i&#39;y_i&#39;=\sum_{i=L}^R(x_i+s)(y_i+t)=\sum_{i=L}^Rx_iy_i+t\sum_{i=L}^Rx_i+s\sum_{i=L}^Ry_i+(R-L+1)st\]</span></p>
+<p>设 <span class="math inline">\(x_L,x_{L+1},\cdots,x_R\)</span> 应用 <span class="math inline">\(x_i\leftarrow i\)</span>，<span class="math inline">\(y_i\leftarrow i\)</span> 标记后为 <span class="math inline">\(x_L&#39;,x_{L+1}&#39;,\cdots,x_R&#39;\)</span>，则 <span class="math display">\[\sum_{i=L}^Rx_i&#39;=\sum_{i=L}^Ry_i&#39;=\sum_{i=L}^Ri=\frac{(L+R)(R-L+1)}{2}\]</span> <span class="math display">\[\sum_{i=L}^Rx_i&#39;^2=\sum_{i=L}^Rx_i&#39;y_i&#39;=\sum_{i=L}^Ri^2=\frac{R(R+1)(2R+1)-L(L-1)(2L-1)}{6}\]</span></p>
+<p>于是线段树信息维护完成。复杂度 <span class="math inline">\(O(n+m\log n)\)</span>。</p>
+<p>由于我没有chentong那么强，写得比较复杂，差不多2KB……</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">double</span> X[<span class="number">100010</span>],Y[<span class="number">100010</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">info</span>&#123;</span></span><br><span class="line">	<span class="keyword">double</span> x,y,x2,xy,s,t;</span><br><span class="line">	<span class="keyword">bool</span> fa,fm;</span><br><span class="line">	info <span class="keyword">operator</span>+(<span class="keyword">const</span> info&amp;a)<span class="keyword">const</span>&#123;</span><br><span class="line">		<span class="keyword">return</span>(info)&#123;x+a.x,y+a.y,x2+a.x2,xy+a.xy,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;T[<span class="number">1</span>&lt;&lt;<span class="number">18</span>];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Def int node,int L,int R</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Mid (L+R&gt;&gt;1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Cur node,L,R</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Ls node&lt;&lt;1,L,Mid</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Rs node&lt;&lt;1|1,Mid+1,R</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_v</span><span class="params">(Def,<span class="keyword">double</span> s,<span class="keyword">double</span> t)</span></span>&#123;</span><br><span class="line">	T[node]=(info)&#123;</span><br><span class="line">		T[node].x+s*(R-L+<span class="number">1</span>),T[node].y+t*(R-L+<span class="number">1</span>),</span><br><span class="line">		T[node].x2+<span class="number">2</span>*s*T[node].x+(R-L+<span class="number">1</span>)*s*s,</span><br><span class="line">		T[node].xy+t*T[node].x+s*T[node].y+s*t*(R-L+<span class="number">1</span>),</span><br><span class="line">		T[node].s+s,T[node].t+t,<span class="number">1</span>,T[node].fm</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify_v</span><span class="params">(Def)</span></span>&#123;</span><br><span class="line">	T[node]=(info)&#123;</span><br><span class="line">		(L+R)*(R-L+<span class="number">1.0</span>)/<span class="number">2</span>,(L+R)*(R-L+<span class="number">1.0</span>)/<span class="number">2</span>,</span><br><span class="line">		(R*(R+<span class="number">1.0</span>)*(<span class="number">2</span>*R+<span class="number">1</span>)-L*(L<span class="number">-1.0</span>)*(<span class="number">2</span>*L<span class="number">-1</span>))/<span class="number">6</span>,</span><br><span class="line">		(R*(R+<span class="number">1.0</span>)*(<span class="number">2</span>*R+<span class="number">1</span>)-L*(L<span class="number">-1.0</span>)*(<span class="number">2</span>*L<span class="number">-1</span>))/<span class="number">6</span>,</span><br><span class="line">		<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(Def)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(T[node].fm)&#123;</span><br><span class="line">		modify_v(Ls);</span><br><span class="line">		modify_v(Rs);</span><br><span class="line">		T[node].fm=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(T[node].fa)&#123;</span><br><span class="line">		add_v(Ls,T[node].s,T[node].t);</span><br><span class="line">		add_v(Rs,T[node].s,T[node].t);</span><br><span class="line">		T[node].s=T[node].t=<span class="number">0</span>;T[node].fa=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(Def)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(L==R)add_v(Cur,X[L],Y[L]);</span><br><span class="line">	<span class="keyword">else</span> build(Ls),build(Rs),T[node]=T[node&lt;&lt;<span class="number">1</span>]+T[node&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Def,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">bool</span> ty,<span class="keyword">double</span> s,<span class="keyword">double</span> t)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==L&amp;&amp;r==R)&#123;</span><br><span class="line">		<span class="keyword">if</span>(ty)modify_v(Cur);</span><br><span class="line">		add_v(Cur,s,t);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		pushdown(Cur);</span><br><span class="line">		<span class="keyword">if</span>(r&lt;=Mid)add(Ls,l,r,ty,s,t);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(l&gt;Mid)add(Rs,l,r,ty,s,t);</span><br><span class="line">		<span class="keyword">else</span> add(Ls,l,Mid,ty,s,t),add(Rs,Mid+<span class="number">1</span>,r,ty,s,t);</span><br><span class="line">		T[node]=T[node&lt;&lt;<span class="number">1</span>]+T[node&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">info <span class="title">query</span><span class="params">(Def,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==L&amp;&amp;r==R)<span class="keyword">return</span> T[node];</span><br><span class="line">	pushdown(Cur);</span><br><span class="line">	<span class="keyword">if</span>(r&lt;=Mid)<span class="keyword">return</span> query(Ls,l,r);</span><br><span class="line">	<span class="keyword">if</span>(l&gt;Mid)<span class="keyword">return</span> query(Rs,l,r);</span><br><span class="line">	<span class="keyword">return</span> query(Ls,l,Mid)+query(Rs,Mid+<span class="number">1</span>,r); </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%lf"</span>,X+i);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%lf"</span>,Y+i);</span><br><span class="line">	build(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">	<span class="keyword">int</span> op,L,R;</span><br><span class="line">	<span class="keyword">double</span> S,T;</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;op,&amp;L,&amp;R);</span><br><span class="line">		<span class="keyword">if</span>(op==<span class="number">1</span>)&#123;</span><br><span class="line">			info a=query(<span class="number">1</span>,<span class="number">1</span>,n,L,R);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%.10lf\n"</span>,((R-L+<span class="number">1</span>)*a.xy-a.x*a.y)/((R-L+<span class="number">1</span>)*a.x2-a.x*a.x));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;S,&amp;T);</span><br><span class="line">			add(<span class="number">1</span>,<span class="number">1</span>,n,L,R,op&gt;<span class="number">2</span>,S,T);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/26/sdoi2017-record/" data-id="cjegzidgw0020df1lsgf2smzm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-shoi2017-record" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/26/shoi2017-record/" class="article-date">
+  <time datetime="2017-04-26T02:15:14.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/26/shoi2017-record/">SHOI2017（六省联考）做题记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最后一次FJOI滚粗，APIO也没考好，让我明白自己技不如人，需要多刷题。</p>
+<p>打算先把各省省选题刷完。</p>
+<hr>
+<p>做完之后的感觉是难度偏小，出题人很良心，暴力送了很多分……省队线一定很高……</p>
+<p>比较资磁的是数学题比较多。</p>
+<h4 id="d1t1期末考试">D1T1：期末考试</h4>
+<p>数据范围 <span class="math inline">\(t_i,b_i\le 10^5\)</span> 直接告诉我们算法——枚举。</p>
+<p>枚举最后结束的时间 <span class="math inline">\(T\le\max\{b_i\}\)</span>，那么等待的不愉快度为 <span class="math inline">\(\sum_{t_i\le T}(T-t_i)\)</span>。</p>
+<p>考虑把所有 <span class="math inline">\(b_i\)</span> 调到不大于 <span class="math inline">\(T\)</span> 的最小不愉快度。假设先进行操作1再进行操作2，那么对 <span class="math inline">\(b_i\le T\)</span> 的操作没意义，所以操作2只对 <span class="math inline">\(b_i&gt;T\)</span> 的 <span class="math inline">\(b_i\)</span> 减到 <span class="math inline">\(T\)</span> 有意义。假设先进行操作2再进行操作1，设 <span class="math inline">\(b_i&#39;\)</span> 为操作后的 <span class="math inline">\(b_i\)</span>，由于操作1不改变总和，故需要满足 <span class="math display">\[\sum_ib_i&#39;\le mT\]</span></p>
+<p>即 <span class="math display">\[\sum_{b_i&#39;&gt;T}(b_i&#39;-T)\le \sum_{b_i&#39;\le T}(T-b_i&#39;)\]</span></p>
+<p>同时，满足上述条件一定能通过每次选一对小于 <span class="math inline">\(T\)</span> 和大于 <span class="math inline">\(T\)</span> 的 <span class="math inline">\(b_i&#39;\)</span> 总共进行 <span class="math inline">\(\sum_{b_i&#39;&gt;T}(b_i&#39;-T)\)</span> 次操作1完成。所以：</p>
+<p>（1）如果 <span class="math inline">\(A&gt;B\)</span>，那么只用操作2最优，否则可以把所有操作1换成对减小的 <span class="math inline">\(b_i\)</span> 进行操作2，不愉快度为 <span class="math display">\[B\sum_{b_i&gt;T}(b_i-T)\]</span></p>
+<p>（2）否则，如果 <span class="math inline">\(\sum_{b_i&gt;T}(b_i-T)\le \sum_{b_i\le T}(T-b_i)\)</span>，那么只需要做操作1，不愉快度为 <span class="math display">\[A\sum_{b_i&gt;T}(b_i-T)\]</span></p>
+<p>（3）否则，需要先对 <span class="math inline">\(b_i&gt;T\)</span> 的 <span class="math inline">\(b_i\)</span> 做 <span class="math inline">\(\sum_{b_i&gt;T}(b_i-T)-\sum_{b_i\le T}(T-b_i)\)</span> 次操作2，再做 <span class="math inline">\(\sum_{b_i\le T}(T-b_i)\)</span> 次操作1，不愉快度为 <span class="math display">\[B[\sum_{b_i&gt;T}(b_i-T)-\sum_{b_i\le T}(T-b_i)]+A\sum_{b_i\le T}(T-b_i)\]</span></p>
+<p>预处理前缀和可以 <span class="math inline">\(O(1)\)</span> 计算不愉快度和。复杂度 <span class="math inline">\(O(n+m+\max\{b_i\})\)</span>。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/26/shoi2017-record/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/26/shoi2017-record/" data-id="cjegzidgy0021df1l42t4ekgy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51nod/">51nod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIO/">APIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AtCoder/">AtCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTSC/">CTSC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codechef/">Codechef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJOI/">FJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FJWC/">FJWC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HNOI/">HNOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOI/">IOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LYDSY/">LYDSY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDOI/">SDOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHOI/">SHOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UOJ/">UOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WC/">WC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZJOI/">ZJOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/清华集训/">清华集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度之星/">百度之星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省队集训/">省队集训</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记录/">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/酱油记/">酱油记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集训队互测/">集训队互测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51nod/" style="font-size: 16.25px;">51nod</a> <a href="/tags/APIO/" style="font-size: 12.5px;">APIO</a> <a href="/tags/AtCoder/" style="font-size: 10px;">AtCoder</a> <a href="/tags/CTSC/" style="font-size: 11.25px;">CTSC</a> <a href="/tags/Codechef/" style="font-size: 10px;">Codechef</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/FJOI/" style="font-size: 12.5px;">FJOI</a> <a href="/tags/FJWC/" style="font-size: 10px;">FJWC</a> <a href="/tags/HNOI/" style="font-size: 10px;">HNOI</a> <a href="/tags/IOI/" style="font-size: 10px;">IOI</a> <a href="/tags/LYDSY/" style="font-size: 11.25px;">LYDSY</a> <a href="/tags/NOI/" style="font-size: 12.5px;">NOI</a> <a href="/tags/SDOI/" style="font-size: 10px;">SDOI</a> <a href="/tags/SHOI/" style="font-size: 10px;">SHOI</a> <a href="/tags/TopCoder/" style="font-size: 10px;">TopCoder</a> <a href="/tags/UOJ/" style="font-size: 13.75px;">UOJ</a> <a href="/tags/WC/" style="font-size: 10px;">WC</a> <a href="/tags/ZJOI/" style="font-size: 10px;">ZJOI</a> <a href="/tags/总结/" style="font-size: 17.5px;">总结</a> <a href="/tags/模板/" style="font-size: 10px;">模板</a> <a href="/tags/清华集训/" style="font-size: 11.25px;">清华集训</a> <a href="/tags/百度之星/" style="font-size: 10px;">百度之星</a> <a href="/tags/省队集训/" style="font-size: 11.25px;">省队集训</a> <a href="/tags/记录/" style="font-size: 11.25px;">记录</a> <a href="/tags/酱油记/" style="font-size: 20px;">酱油记</a> <a href="/tags/集训队互测/" style="font-size: 10px;">集训队互测</a> <a href="/tags/题解/" style="font-size: 18.75px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/04/lydsy-3489/">LYDSY P3489 题解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/29/codeforces-443/">Codeforces Round 443 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/22/astar2017/">百度之星Astar决赛被虐记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/15/codeforces-440/">Codeforces Round 440 总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/atcoder-codefestival2017-qualb/">AtCoder CODE FESTIVAL 2017 qual B 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 j324h9<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
