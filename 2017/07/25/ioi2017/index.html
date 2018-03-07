@@ -2,26 +2,10 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive_a');
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  
+  <title>退役之战——IOI2017 | oi_loser&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -36,19 +20,31 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
--->
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
-  <% if (config.highlight.enable){ %>
+  
+  <meta name="description" content="退役前的最后一战。 挺紧张的，毕竟我NOI只有#40+，就算把Day2挂掉的66分加上还是只有#20+。不止一题脑抽差一点想出来还是相当不爽的啊。 毕竟还是运气选手唉= = 以及我现在考场心态还是太糟糕。 不过作为国家队的最后一名，我也没有什么太多的梦想吧。保Ag争Au吧。 orz matthew99,xumingkuan,cy。  7月25日 入住酒店。 刷了CEOI2016D2T1。想了一个比">
+<meta name="keywords" content="酱油记,IOI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="退役之战——IOI2017">
+<meta property="og:url" content="http://yoursite.com/2017/07/25/ioi2017/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="退役前的最后一战。 挺紧张的，毕竟我NOI只有#40+，就算把Day2挂掉的66分加上还是只有#20+。不止一题脑抽差一点想出来还是相当不爽的啊。 毕竟还是运气选手唉= = 以及我现在考场心态还是太糟糕。 不过作为国家队的最后一名，我也没有什么太多的梦想吧。保Ag争Au吧。 orz matthew99,xumingkuan,cy。  7月25日 入住酒店。 刷了CEOI2016D2T1。想了一个比">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-07T08:25:29.460Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="退役之战——IOI2017">
+<meta name="twitter:description" content="退役前的最后一战。 挺紧张的，毕竟我NOI只有#40+，就算把Day2挂掉的66分加上还是只有#20+。不止一题脑抽差一点想出来还是相当不爽的啊。 毕竟还是运气选手唉= = 以及我现在考场心态还是太糟糕。 不过作为国家队的最后一名，我也没有什么太多的梦想吧。保Ag争Au吧。 orz matthew99,xumingkuan,cy。  7月25日 入住酒店。 刷了CEOI2016D2T1。想了一个比">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <% } %>
-  <%- css('css/style') %>
-  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 </head>
 
 <body>

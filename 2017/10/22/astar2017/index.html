@@ -2,26 +2,10 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive_a');
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  
+  <title>百度之星Astar决赛被虐记 | oi_loser&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -36,19 +20,31 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
--->
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
-  <% if (config.highlight.enable){ %>
+  
+  <meta name="description" content="作为无实力退役选手参加Astar玩玩，居然卡进决赛了。综合NOI排名（约47）和Astar线上赛的平均排名（约45），估计我的最终排名在40-50之间，拿奖是没希望了，就当一次旅游吧。 10月22日 报道等一系列行为。 对欢迎仪式的认识环节感到严重不习惯。 10月23日 开始 来到考场，发完密码条，诶怎么用户名是奇怪的名字？试了下，登不进去。然后通知说登录名是前面那个数字。 登进去一看，傻眼了，这">
+<meta name="keywords" content="酱油记,百度之星">
+<meta property="og:type" content="article">
+<meta property="og:title" content="百度之星Astar决赛被虐记">
+<meta property="og:url" content="http://yoursite.com/2017/10/22/astar2017/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="作为无实力退役选手参加Astar玩玩，居然卡进决赛了。综合NOI排名（约47）和Astar线上赛的平均排名（约45），估计我的最终排名在40-50之间，拿奖是没希望了，就当一次旅游吧。 10月22日 报道等一系列行为。 对欢迎仪式的认识环节感到严重不习惯。 10月23日 开始 来到考场，发完密码条，诶怎么用户名是奇怪的名字？试了下，登不进去。然后通知说登录名是前面那个数字。 登进去一看，傻眼了，这">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-07T08:10:02.254Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="百度之星Astar决赛被虐记">
+<meta name="twitter:description" content="作为无实力退役选手参加Astar玩玩，居然卡进决赛了。综合NOI排名（约47）和Astar线上赛的平均排名（约45），估计我的最终排名在40-50之间，拿奖是没希望了，就当一次旅游吧。 10月22日 报道等一系列行为。 对欢迎仪式的认识环节感到严重不习惯。 10月23日 开始 来到考场，发完密码条，诶怎么用户名是奇怪的名字？试了下，登不进去。然后通知说登录名是前面那个数字。 登进去一看，傻眼了，这">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <% } %>
-  <%- css('css/style') %>
-  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 </head>
 
 <body>

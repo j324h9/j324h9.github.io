@@ -2,26 +2,10 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive_a');
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  
+  <title>FJOI2017滚粗记 | oi_loser&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -36,19 +20,31 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
--->
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
-  <% if (config.highlight.enable){ %>
+  
+  <meta name="description" content="这场省选毁掉了我对好成绩的梦想。 8:00开场看题，T1貌似是可持久化Treap裸题，T2字符串DP似乎挺可做，T3居然是去年原题扩大数据范围，做过。 感觉这场很容易拿高分的样子，想想能A两题再写一题高分就稳了。 于是开场先做T2，求两个长度 \(n\le 500\) 的字符串的最长公共回文子序列。一开始以为直接写就行了，结果发现复杂度 \(O(n^4)\)，还10组数据，没救。 想了想直接上序列">
+<meta name="keywords" content="酱油记,FJOI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FJOI2017滚粗记">
+<meta property="og:url" content="http://yoursite.com/2017/04/23/fjoi2017-r2/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="这场省选毁掉了我对好成绩的梦想。 8:00开场看题，T1貌似是可持久化Treap裸题，T2字符串DP似乎挺可做，T3居然是去年原题扩大数据范围，做过。 感觉这场很容易拿高分的样子，想想能A两题再写一题高分就稳了。 于是开场先做T2，求两个长度 \(n\le 500\) 的字符串的最长公共回文子序列。一开始以为直接写就行了，结果发现复杂度 \(O(n^4)\)，还10组数据，没救。 想了想直接上序列">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T12:10:48.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FJOI2017滚粗记">
+<meta name="twitter:description" content="这场省选毁掉了我对好成绩的梦想。 8:00开场看题，T1貌似是可持久化Treap裸题，T2字符串DP似乎挺可做，T3居然是去年原题扩大数据范围，做过。 感觉这场很容易拿高分的样子，想想能A两题再写一题高分就稳了。 于是开场先做T2，求两个长度 \(n\le 500\) 的字符串的最长公共回文子序列。一开始以为直接写就行了，结果发现复杂度 \(O(n^4)\)，还10组数据，没救。 想了想直接上序列">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <% } %>
-  <%- css('css/style') %>
-  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 </head>
 
 <body>

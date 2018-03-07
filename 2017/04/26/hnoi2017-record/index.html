@@ -2,26 +2,10 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive_a');
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  
+  <title>HNOI2017做题记录 | oi_loser&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -36,19 +20,31 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
--->
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
-  <% if (config.highlight.enable){ %>
+  
+  <meta name="description" content="除了迷之D2T2以外难度十分正常，不会太难，D1具有可AK性。代码量也很正常，都在1KB到2KB之间。虽然D1考点有点偏？不过反正比HNOI2016好 D1T1：单旋 这题本来很简单的，然而我卡了很久= =因为我读错题了！以为要旋任意结点，然后思博了一个多小时，越想越复杂……等我写了个暴力，考虑暴力怎么卡的时候，才发现只要求旋最小/最大就行了。。。 那么就是个线段树/树状数组练习题。。。 考虑几个">
+<meta name="keywords" content="题解,HNOI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HNOI2017做题记录">
+<meta property="og:url" content="http://yoursite.com/2017/04/26/hnoi2017-record/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="除了迷之D2T2以外难度十分正常，不会太难，D1具有可AK性。代码量也很正常，都在1KB到2KB之间。虽然D1考点有点偏？不过反正比HNOI2016好 D1T1：单旋 这题本来很简单的，然而我卡了很久= =因为我读错题了！以为要旋任意结点，然后思博了一个多小时，越想越复杂……等我写了个暴力，考虑暴力怎么卡的时候，才发现只要求旋最小/最大就行了。。。 那么就是个线段树/树状数组练习题。。。 考虑几个">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T13:37:55.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HNOI2017做题记录">
+<meta name="twitter:description" content="除了迷之D2T2以外难度十分正常，不会太难，D1具有可AK性。代码量也很正常，都在1KB到2KB之间。虽然D1考点有点偏？不过反正比HNOI2016好 D1T1：单旋 这题本来很简单的，然而我卡了很久= =因为我读错题了！以为要旋任意结点，然后思博了一个多小时，越想越复杂……等我写了个暴力，考虑暴力怎么卡的时候，才发现只要求旋最小/最大就行了。。。 那么就是个线段树/树状数组练习题。。。 考虑几个">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <% } %>
-  <%- css('css/style') %>
-  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 </head>
 
 <body>

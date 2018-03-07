@@ -2,26 +2,10 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive_a');
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  
+  <title>WC2017 暴力之战 | oi_loser&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -36,19 +20,31 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
--->
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
-  <% if (config.highlight.enable){ %>
+  
+  <meta name="description" content="由于我太狭隘了并不知道别的东西有哪些值得写，我就讲下自己这次参加WC比赛的状态吧。 考前几天刷了一波题：http://wronganswer.blog.uoj.ac/blog/2314 ，尽管改变不了我是无实力选手的事实。  8:35，终于开考了。 首先开场的时候看了下三道题。第一题看起来是个要推性质的题，我这种辣鸡水平就别想做出来了。第二题是个卡常数题，感觉很丧病。第三题是个构造类提交答案题，不">
+<meta name="keywords" content="酱油记,WC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WC2017 暴力之战">
+<meta property="og:url" content="http://yoursite.com/2017/02/08/wc2017/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="由于我太狭隘了并不知道别的东西有哪些值得写，我就讲下自己这次参加WC比赛的状态吧。 考前几天刷了一波题：http://wronganswer.blog.uoj.ac/blog/2314 ，尽管改变不了我是无实力选手的事实。  8:35，终于开考了。 首先开场的时候看了下三道题。第一题看起来是个要推性质的题，我这种辣鸡水平就别想做出来了。第二题是个卡常数题，感觉很丧病。第三题是个构造类提交答案题，不">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T11:59:21.986Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WC2017 暴力之战">
+<meta name="twitter:description" content="由于我太狭隘了并不知道别的东西有哪些值得写，我就讲下自己这次参加WC比赛的状态吧。 考前几天刷了一波题：http://wronganswer.blog.uoj.ac/blog/2314 ，尽管改变不了我是无实力选手的事实。  8:35，终于开考了。 首先开场的时候看了下三道题。第一题看起来是个要推性质的题，我这种辣鸡水平就别想做出来了。第二题是个卡常数题，感觉很丧病。第三题是个构造类提交答案题，不">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <% } %>
-  <%- css('css/style') %>
-  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 </head>
 
 <body>

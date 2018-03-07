@@ -2,26 +2,10 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive_a');
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  
+  <title>NOI2016考前刷题记录 | oi_loser&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -36,19 +20,31 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
--->
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
-  <% if (config.highlight.enable){ %>
+  
+  <meta name="description" content="先挖个坑。 以下是吐槽时间 原以为自己实力还行，结果省队集训3次考挂让我明白了什么- - 说白了还是自己太弱了2333 既然弱那NOI当然是滚粗咯 [UPDATE 7/12 16:00] 12号校内训练又被immortalCO和lightning虐成垫底了，一道CF的图象识别题居然不知道有给样例，完全不会搞，最后高二神犇immortalCO、lightning，高一神犇dick32165401都A">
+<meta name="keywords" content="题解,记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOI2016考前刷题记录">
+<meta property="og:url" content="http://yoursite.com/2016/07/12/before-noi2016/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="先挖个坑。 以下是吐槽时间 原以为自己实力还行，结果省队集训3次考挂让我明白了什么- - 说白了还是自己太弱了2333 既然弱那NOI当然是滚粗咯 [UPDATE 7/12 16:00] 12号校内训练又被immortalCO和lightning虐成垫底了，一道CF的图象识别题居然不知道有给样例，完全不会搞，最后高二神犇immortalCO、lightning，高一神犇dick32165401都A">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T10:28:01.743Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOI2016考前刷题记录">
+<meta name="twitter:description" content="先挖个坑。 以下是吐槽时间 原以为自己实力还行，结果省队集训3次考挂让我明白了什么- - 说白了还是自己太弱了2333 既然弱那NOI当然是滚粗咯 [UPDATE 7/12 16:00] 12号校内训练又被immortalCO和lightning虐成垫底了，一道CF的图象识别题居然不知道有给样例，完全不会搞，最后高二神犇immortalCO、lightning，高一神犇dick32165401都A">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <% } %>
-  <%- css('css/style') %>
-  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 </head>
 
 <body>

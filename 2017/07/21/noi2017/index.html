@@ -2,26 +2,10 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive_a');
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  
+  <title>NOI2017滚粗记 | oi_loser&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -36,19 +20,31 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
--->
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
-  <% if (config.highlight.enable){ %>
+  
+  <meta name="description" content="由于省队名额让人，只好以同步赛参加NOI2017。本以为从NOI2016到现在过了一年，我的水平应该进步不少，就算拿不到前3名，起码应该比去年排名高吧。然而最后的结果差到连我自己都不敢相信。 Day 1 以一种能拿前几名的心态开了题。 T1，目测线段树裸题，好的，开始码。 一开始码的时候没有仔细想，一开始只开了 \(10^6/32\) 的线段树，然后看下数据范围改成 \(10^6\) 的线段树。处">
+<meta name="keywords" content="酱油记,NOI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOI2017滚粗记">
+<meta property="og:url" content="http://yoursite.com/2017/07/21/noi2017/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="由于省队名额让人，只好以同步赛参加NOI2017。本以为从NOI2016到现在过了一年，我的水平应该进步不少，就算拿不到前3名，起码应该比去年排名高吧。然而最后的结果差到连我自己都不敢相信。 Day 1 以一种能拿前几名的心态开了题。 T1，目测线段树裸题，好的，开始码。 一开始码的时候没有仔细想，一开始只开了 \(10^6/32\) 的线段树，然后看下数据范围改成 \(10^6\) 的线段树。处">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-07T08:16:19.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOI2017滚粗记">
+<meta name="twitter:description" content="由于省队名额让人，只好以同步赛参加NOI2017。本以为从NOI2016到现在过了一年，我的水平应该进步不少，就算拿不到前3名，起码应该比去年排名高吧。然而最后的结果差到连我自己都不敢相信。 Day 1 以一种能拿前几名的心态开了题。 T1，目测线段树裸题，好的，开始码。 一开始码的时候没有仔细想，一开始只开了 \(10^6/32\) 的线段树，然后看下数据范围改成 \(10^6\) 的线段树。处">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <% } %>
-  <%- css('css/style') %>
-  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 </head>
 
 <body>

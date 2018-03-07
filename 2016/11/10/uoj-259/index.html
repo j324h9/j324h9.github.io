@@ -2,26 +2,10 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive_a');
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  
+  <title>UOJ 259 子集计数问题 题解 | oi_loser&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -36,19 +20,31 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
--->
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
-  <% if (config.highlight.enable){ %>
+  
+  <meta name="description" content="由于题解没检查，可能写的时候有一些小问题，欢迎指正。 算法一：搜索 对于测试点1，\(n=24\)，所以可以暴力 DFS 点集 \(V\) 的所有子集，对每个集合 \(V\) 判断是否有 \(|V|=k\) 且 \(V\) 是独立集，统计出独立集的个数。这样可以得到测试点1的 \(5\) 分。 对于测试点2，\(n=40\)，看起来搜索复杂度不能接受，不过可以加一些剪枝优化（比如，一旦出现 \(\">
+<meta name="keywords" content="题解,UOJ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UOJ 259 子集计数问题 题解">
+<meta property="og:url" content="http://yoursite.com/2016/11/10/uoj-259/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="由于题解没检查，可能写的时候有一些小问题，欢迎指正。 算法一：搜索 对于测试点1，\(n=24\)，所以可以暴力 DFS 点集 \(V\) 的所有子集，对每个集合 \(V\) 判断是否有 \(|V|=k\) 且 \(V\) 是独立集，统计出独立集的个数。这样可以得到测试点1的 \(5\) 分。 对于测试点2，\(n=40\)，看起来搜索复杂度不能接受，不过可以加一些剪枝优化（比如，一旦出现 \(\">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T11:26:16.368Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UOJ 259 子集计数问题 题解">
+<meta name="twitter:description" content="由于题解没检查，可能写的时候有一些小问题，欢迎指正。 算法一：搜索 对于测试点1，\(n=24\)，所以可以暴力 DFS 点集 \(V\) 的所有子集，对每个集合 \(V\) 判断是否有 \(|V|=k\) 且 \(V\) 是独立集，统计出独立集的个数。这样可以得到测试点1的 \(5\) 分。 对于测试点2，\(n=40\)，看起来搜索复杂度不能接受，不过可以加一些剪枝优化（比如，一旦出现 \(\">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <% } %>
-  <%- css('css/style') %>
-  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 </head>
 
 <body>

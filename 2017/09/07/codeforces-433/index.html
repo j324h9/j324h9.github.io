@@ -2,26 +2,10 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive_a');
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  
+  <title>Codeforces Round 433 总结 | oi_loser&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -36,19 +20,31 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
--->
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
-  <% if (config.highlight.enable){ %>
+  
+  <meta name="description" content="这场打挂了，只过了A和C，rank271，掉了112的rating。 A题是个简单贪心，只需按c[i]从大到小顺序给每个c[i]找一个没使用过的最小的t[i]即可，这是因为如果t[i]用了比能用的更大的t[j]（其中c[j]≤c[i]），交换t[i]和t[j]的值，由于ci+cj≥ci+cj，所以答案不会变差。排序+并查集可以O(nlogn)解决这个题。 然而这题我的第一想法并不是将c排序，而是在">
+<meta name="keywords" content="总结,Codeforces">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces Round 433 总结">
+<meta property="og:url" content="http://yoursite.com/2017/09/07/codeforces-433/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="这场打挂了，只过了A和C，rank271，掉了112的rating。 A题是个简单贪心，只需按c[i]从大到小顺序给每个c[i]找一个没使用过的最小的t[i]即可，这是因为如果t[i]用了比能用的更大的t[j]（其中c[j]≤c[i]），交换t[i]和t[j]的值，由于ci+cj≥ci+cj，所以答案不会变差。排序+并查集可以O(nlogn)解决这个题。 然而这题我的第一想法并不是将c排序，而是在">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-07T10:19:28.150Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Codeforces Round 433 总结">
+<meta name="twitter:description" content="这场打挂了，只过了A和C，rank271，掉了112的rating。 A题是个简单贪心，只需按c[i]从大到小顺序给每个c[i]找一个没使用过的最小的t[i]即可，这是因为如果t[i]用了比能用的更大的t[j]（其中c[j]≤c[i]），交换t[i]和t[j]的值，由于ci+cj≥ci+cj，所以答案不会变差。排序+并查集可以O(nlogn)解决这个题。 然而这题我的第一想法并不是将c排序，而是在">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <% } %>
-  <%- css('css/style') %>
-  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 </head>
 
 <body>

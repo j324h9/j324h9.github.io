@@ -2,26 +2,10 @@
 <html>
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive_a');
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = __('category') + ': ' + page.category;
-  } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  
+  <title>FJOI2016二试爆炸记 | oi_loser&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -36,19 +20,31 @@
   </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
--->
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
-  <% if (config.highlight.enable){ %>
+  
+  <meta name="description" content="今天福建省选二试。果然，还是我太弱了，完美爆炸。 [以下是废话部分] 早上起床迟了，7点才起来，然后由于自己作死把手机掉床缝里面去了找了好久才找到（还好找到了）。 @Paladin100100 进宿舍催感觉很急于是匆忙吃了个早饭检查了下证就出发了，车上一直看考生须知，感觉就怕哪里看错了- - 来的时候和 @immortalCO 大神交流了一些算法（呸只是聊一聊啥都没交流）接着就入场了。 各种紧张。">
+<meta name="keywords" content="酱油记,FJOI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FJOI2016二试爆炸记">
+<meta property="og:url" content="http://yoursite.com/2016/04/10/fjoi2016/index.html">
+<meta property="og:site_name" content="oi_loser&#39;s blog">
+<meta property="og:description" content="今天福建省选二试。果然，还是我太弱了，完美爆炸。 [以下是废话部分] 早上起床迟了，7点才起来，然后由于自己作死把手机掉床缝里面去了找了好久才找到（还好找到了）。 @Paladin100100 进宿舍催感觉很急于是匆忙吃了个早饭检查了下证就出发了，车上一直看考生须知，感觉就怕哪里看错了- - 来的时候和 @immortalCO 大神交流了一些算法（呸只是聊一聊啥都没交流）接着就入场了。 各种紧张。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T10:28:34.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FJOI2016二试爆炸记">
+<meta name="twitter:description" content="今天福建省选二试。果然，还是我太弱了，完美爆炸。 [以下是废话部分] 早上起床迟了，7点才起来，然后由于自己作死把手机掉床缝里面去了找了好久才找到（还好找到了）。 @Paladin100100 进宿舍催感觉很急于是匆忙吃了个早饭检查了下证就出发了，车上一直看考生须知，感觉就怕哪里看错了- - 来的时候和 @immortalCO 大神交流了一些算法（呸只是聊一聊啥都没交流）接着就入场了。 各种紧张。">
+  
+    <link rel="alternate" href="/atom.xml" title="oi_loser&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <% } %>
-  <%- css('css/style') %>
-  <%- partial('google-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 </head>
 
 <body>
